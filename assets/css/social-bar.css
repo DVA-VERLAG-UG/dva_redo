@@ -1,0 +1,157 @@
+/* ==========================================
+   SOCIAL BAR STYLES
+   ========================================== */
+
+/* Desktop: Fixed right side vertical bar */
+.social-bar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  
+  width: 48px;
+  padding: 16px 0;
+  
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-right: none;
+  border-radius: 999px 0 0 999px;
+  box-shadow: -2px 0 16px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* "FOLLOW" label */
+.social-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #0f172a;
+  margin-bottom: 12px;
+  user-select: none;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+/* Social links */
+.social-link {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  color: #0f172a;
+  margin: 3px 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+html[data-theme="dim"] .social-bar {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: -2px 0 16px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dim"] .social-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+html[data-theme="dim"] .social-link {
+  color: #fff;
+}
+
+/* ==========================================
+   MOBILE: Bottom pill design
+   ========================================== */
+@media (max-width: 768px) {
+  .social-bar {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    top: auto;
+    right: auto;
+    
+    transform: translateX(-50%);
+    
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    width: auto;
+    height: auto;
+    padding: 12px 20px;
+    
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 999px;
+    
+    gap: 12px;
+  }
+  
+  /* Hide label on mobile */
+  .social-label {
+    display: none;
+  }
+  
+  .social-link {
+    width: 38px;
+    height: 38px;
+    margin: 0;
+  }
+  
+  .social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Hide when scrolling down */
+  .social-bar.is-hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+  }
+  
+  /* Dark mode on mobile */
+  html[data-theme="dim"] .social-bar {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+}
+
+@media (max-width: 360px) {
+  .social-bar {
+    padding: 10px 16px;
+    gap: 10px;
+    bottom: 16px;
+  }
+  
+  .social-link {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
