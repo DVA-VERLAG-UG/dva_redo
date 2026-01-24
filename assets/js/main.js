@@ -6,13 +6,16 @@ import { initSocialBar } from './social-bar.js';
 import { initFooter } from './footer.js';
 import { initBackground } from './background.js';
 
+// Detect base path for GitHub Pages vs local
+const BASE_PATH = window.location.hostname.includes('github.io') ? '/dva_redo' : '';
+
 // Load header component
 async function loadHeader() {
   const placeholder = document.getElementById('header-placeholder');
   if (!placeholder) return;
   
   try {
-    const response = await fetch('/components/header.html');
+    const response = await fetch(`${BASE_PATH}/components/header.html`);
     if (!response.ok) throw new Error('Failed to load header');
     
     const html = await response.text();
@@ -31,7 +34,7 @@ async function loadFooter() {
   if (!placeholder) return;
   
   try {
-    const response = await fetch('/components/footer.html');
+    const response = await fetch(`${BASE_PATH}/components/footer.html`);
     if (!response.ok) throw new Error('Failed to load footer');
     
     const html = await response.text();
