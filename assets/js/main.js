@@ -7,7 +7,14 @@ import { initFooter } from './footer.js';
 import { initBackground } from './background.js';
 
 // Detect base path for GitHub Pages vs local
-const BASE_PATH = window.location.hostname.includes('github.io') ? '/dva_redo' : '';
+const isGitHubPages = window.location.hostname.includes('github.io');
+const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
+
+console.log('🌍 Environment Detection:');
+console.log('  - Hostname:', window.location.hostname);
+console.log('  - Is GitHub Pages:', isGitHubPages);
+console.log('  - BASE_PATH:', BASE_PATH || '(empty - local)');
+console.log('  - Full URL:', window.location.href);
 
 // Load header component
 async function loadHeader() {
