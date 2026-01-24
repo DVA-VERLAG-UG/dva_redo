@@ -5,6 +5,7 @@ import { initHeader } from './header.js';
 import { initSocialBar } from './social-bar.js';
 import { initFooter } from './footer.js';
 import { initBackground } from './background.js';
+import { initCurtain } from './curtain.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -67,6 +68,9 @@ async function loadFooter() {
 // Initialize everything
 async function init() {
   console.log('🚀 Starting initialization...');
+  
+  // Show curtain first (only on first visit in session)
+  initCurtain();
   
   // Apply stored theme immediately to prevent flash (but don't setup button yet)
   console.log('1️⃣ Applying stored theme...');

@@ -1,0 +1,107 @@
+/* ==========================================
+   CURTAIN SPLASH SCREEN
+   ========================================== */
+
+/* Curtain overlay - covers entire viewport */
+.curtain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: curtainSlideUp 0.6s ease-in-out 2s forwards;
+  pointer-events: none;
+}
+
+/* Hide curtain after animation completes */
+.curtain-overlay.hide {
+  display: none;
+}
+
+/* Prevent body scroll during curtain */
+body.curtain-active {
+  overflow: hidden;
+}
+
+/* Text container */
+.curtain-text {
+  text-align: center;
+}
+
+/* Individual words */
+.curtain-word {
+  display: block;
+  font-size: 4rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Staggered fade-in animations */
+.curtain-word:nth-child(1) {
+  animation: wordReveal 0.4s ease-out 0.2s forwards;
+}
+
+.curtain-word:nth-child(2) {
+  animation: wordReveal 0.4s ease-out 0.7s forwards;
+}
+
+.curtain-word:nth-child(3) {
+  animation: wordReveal 0.4s ease-out 1.2s forwards;
+}
+
+/* Gradient text effect */
+.curtain-word {
+  background: linear-gradient(135deg, #fff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Word reveal animation */
+@keyframes wordReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Curtain slide up animation */
+@keyframes curtainSlideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  .curtain-word {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .curtain-word {
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ==========================================
+   PREVENT FLASH - Hide content initially
+   ========================================== */
+/* Content is visible behind curtain - no need to hide it */
