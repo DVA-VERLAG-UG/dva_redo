@@ -7,6 +7,7 @@ import { initFooter } from './footer.js';
 import { initBackground } from './background.js';
 import { initCurtain } from './curtain.js';
 import { initCarousel } from './carousel.js';
+import { initKonfiguratorCTA } from './konfigurator-cta.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -100,6 +101,10 @@ async function init() {
   console.log('6️⃣ Initializing carousel...');
   // Initialize add-ons carousel
   initCarousel();
+  
+  console.log('7️⃣ Initializing konfigurator CTA...');
+  // Initialize konfigurator CTA overlay
+  initKonfiguratorCTA();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
