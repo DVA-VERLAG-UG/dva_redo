@@ -1,0 +1,218 @@
+/* ==========================================
+   ADD-ONS CAROUSEL
+   ========================================== */
+
+.addons-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 60px 0 80px;
+  margin-top: -100px; /* Overlap hero slightly */
+  z-index: 5;
+}
+
+/* Carousel Track - Contains all cards */
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  animation: scroll-carousel 40s linear infinite;
+  width: max-content;
+}
+
+/* Pause animation on hover */
+.addons-carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* Scroll Animation */
+@keyframes scroll-carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Scroll through half (duplicated content) */
+  }
+}
+
+/* Add-On Card - Glassmorphism */
+.addon-card {
+  flex-shrink: 0;
+  width: 380px;
+  height: 280px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+/* Hover Effect */
+.addon-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 
+    0 20px 60px rgba(139, 92, 246, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Dark Mode Card */
+html[data-theme="dim"] .addon-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dim"] .addon-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 
+    0 20px 60px rgba(139, 92, 246, 0.5),
+    0 0 0 1px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Card Badge */
+.addon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a78bfa;
+  margin-bottom: 20px;
+}
+
+html[data-theme="dim"] .addon-badge {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+}
+
+/* Icon */
+.addon-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Title */
+.addon-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.8);
+}
+
+html[data-theme="dim"] .addon-title {
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Description */
+.addon-desc {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.8);
+  margin-bottom: 16px;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.7);
+}
+
+html[data-theme="dim"] .addon-desc {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* "For" Tag */
+.addon-for {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.7);
+  position: absolute;
+  bottom: 24px;
+  left: 32px;
+}
+
+html[data-theme="dim"] .addon-for {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Glow effect on hover */
+.addon-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(139, 92, 246, 0.15) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.addon-card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  .addon-card {
+    width: 320px;
+    height: 260px;
+    padding: 24px;
+  }
+  
+  .addon-title {
+    font-size: 1.25rem;
+  }
+  
+  .addon-desc {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .addons-carousel {
+    padding: 40px 0 60px;
+    margin-top: -80px;
+  }
+  
+  .addon-card {
+    width: 280px;
+    height: 240px;
+    padding: 20px;
+  }
+  
+  .carousel-track {
+    gap: 16px;
+  }
+}

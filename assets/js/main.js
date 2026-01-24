@@ -6,6 +6,7 @@ import { initSocialBar } from './social-bar.js';
 import { initFooter } from './footer.js';
 import { initBackground } from './background.js';
 import { initCurtain } from './curtain.js';
+import { initCarousel } from './carousel.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -95,6 +96,10 @@ async function init() {
   console.log('5️⃣ Initializing background particles...');
   // Initialize animated background
   initBackground();
+  
+  console.log('6️⃣ Initializing carousel...');
+  // Initialize add-ons carousel
+  initCarousel();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
