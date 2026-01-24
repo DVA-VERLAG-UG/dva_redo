@@ -12,19 +12,29 @@ const BASE_PATH = window.location.hostname.includes('github.io') ? '/dva_redo' :
 // Load header component
 async function loadHeader() {
   const placeholder = document.getElementById('header-placeholder');
-  if (!placeholder) return;
+  if (!placeholder) {
+    console.error('❌ Header placeholder not found!');
+    return;
+  }
+  
+  console.log('📍 Header placeholder found');
+  console.log('🌐 BASE_PATH:', BASE_PATH);
+  console.log('🔗 Fetching:', `${BASE_PATH}/components/header.html`);
   
   try {
     const response = await fetch(`${BASE_PATH}/components/header.html`);
+    console.log('📡 Fetch response:', response.status, response.statusText);
+    
     if (!response.ok) throw new Error('Failed to load header');
     
     const html = await response.text();
+    console.log('✅ Header HTML loaded, length:', html.length);
     placeholder.innerHTML = html;
     
     // Initialize header functionality after loading
     initHeader();
   } catch (error) {
-    console.error('Error loading header:', error);
+    console.error('❌ Error loading header:', error);
   }
 }
 
