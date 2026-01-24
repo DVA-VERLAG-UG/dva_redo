@@ -4,6 +4,7 @@ import { initTheme, getStoredTheme, applyTheme } from './theme.js';
 import { initHeader } from './header.js';
 import { initSocialBar } from './social-bar.js';
 import { initFooter } from './footer.js';
+import { initBackground } from './background.js';
 
 // Load header component
 async function loadHeader() {
@@ -66,6 +67,10 @@ async function init() {
   console.log('4️⃣ Initializing social bar...');
   // Initialize social bar
   initSocialBar();
+  
+  console.log('5️⃣ Initializing background particles...');
+  // Initialize animated background
+  initBackground();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
