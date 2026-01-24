@@ -174,16 +174,29 @@ function setupLanguageSwitcher() {
 
 // Simple search functionality
 function setupSearch() {
+  console.log('🔍 Setting up search...');
+  
   const searchInput = document.getElementById('headerSearchInput');
   const searchForm = document.querySelector('.search-form');
   const searchDropdown = document.getElementById('searchDropdown');
   
-  if (!searchInput || !searchForm || !searchDropdown) return;
+  if (!searchInput || !searchForm || !searchDropdown) {
+    console.error('❌ Search elements not found:', {
+      searchInput: !!searchInput,
+      searchForm: !!searchForm,
+      searchDropdown: !!searchDropdown
+    });
+    return;
+  }
+  
+  console.log('✅ Search elements found');
   
   let searchTimeout;
   
   function performSearch(query) {
     query = query.trim();
+    
+    console.log('🔎 Searching for:', query);
     
     if (!query) {
       searchDropdown.classList.remove('is-open');
@@ -201,6 +214,7 @@ function setupSearch() {
     `;
     
     searchDropdown.classList.add('is-open');
+    console.log('✅ Search dropdown opened');
   }
   
   // Debounced search on input
@@ -230,4 +244,6 @@ function setupSearch() {
       searchDropdown.classList.remove('is-open');
     }
   });
+  
+  console.log('✅ Search initialized');
 }

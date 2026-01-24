@@ -5,7 +5,7 @@ const THEME_DARK = 'dim';
 const THEME_ATTR = 'data-theme';
 
 // Get stored theme preference
-function getStoredTheme() {
+export function getStoredTheme() {
   try {
     return localStorage.getItem(THEME_KEY) || '';
   } catch {
@@ -27,7 +27,7 @@ function saveTheme(theme) {
 }
 
 // Apply theme to document
-function applyTheme(theme) {
+export function applyTheme(theme) {
   if (theme === THEME_DARK) {
     document.documentElement.setAttribute(THEME_ATTR, THEME_DARK);
   } else {
@@ -50,29 +50,38 @@ function toggleTheme() {
 
 // Initialize theme on page load
 export function initTheme() {
+  console.log('🎨 Initializing theme...');
+  
   // Apply stored theme immediately (before page renders)
   const storedTheme = getStoredTheme();
+  console.log('📦 Stored theme:', storedTheme);
   applyTheme(storedTheme);
   
   // Setup theme toggle button
   const themeToggle = document.getElementById('themeToggle');
   if (!themeToggle) {
-    console.warn('Theme toggle button not found');
+    console.error('❌ Theme toggle button NOT found! Check if header loaded.');
     return;
   }
   
+  console.log('✅ Theme toggle button found');
+  
   // Sync button state
   function syncButtonState() {
-    themeToggle.setAttribute('aria-pressed', isDarkMode() ? 'true' : 'false');
-    console.log('Theme is now:', isDarkMode() ? 'dark' : 'light');
+    const isDark = isDarkMode();
+    themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    console.log('🌓 Theme synced. Dark mode:', isDark);
   }
   
   syncButtonState();
   
   themeToggle.addEventListener('click', () => {
+    console.log('🖱️ Theme button clicked!');
     toggleTheme();
     syncButtonState();
   });
+  
+  console.log('✅ Theme initialized successfully');
 }
 
 // Apply theme early (call this in <head> if possible to prevent flash)

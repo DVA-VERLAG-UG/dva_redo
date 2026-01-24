@@ -1,6 +1,6 @@
 // main.js - Main entry point that orchestrates everything
 
-import { initTheme } from './theme.js';
+import { initTheme, getStoredTheme, applyTheme } from './theme.js';
 import { initHeader } from './header.js';
 import { initSocialBar } from './social-bar.js';
 import { initFooter } from './footer.js';
@@ -45,20 +45,31 @@ async function loadFooter() {
 
 // Initialize everything
 async function init() {
-  // Apply theme immediately to prevent flash
-  initTheme();
+  console.log('🚀 Starting initialization...');
+  
+  // Apply stored theme immediately to prevent flash (but don't setup button yet)
+  console.log('1️⃣ Applying stored theme...');
+  const storedTheme = getStoredTheme();
+  applyTheme(storedTheme);
   
   // Load components in parallel
+  console.log('2️⃣ Loading components...');
   await Promise.all([
     loadHeader(),
     loadFooter()
   ]);
   
+  // NOW initialize theme toggle button (after header is loaded)
+  console.log('3️⃣ Setting up theme toggle...');
+  initTheme();
+  
+  console.log('4️⃣ Initializing social bar...');
   // Initialize social bar
   initSocialBar();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
+  console.log('✅ All initialization complete!');
 }
 
 // Start when DOM is ready

@@ -1,6 +1,13 @@
 /* ==========================================
    FOOTER BASE
    ========================================== */
+
+/* Ensure no white gaps around footer */
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .dv-footer {
   background:
     radial-gradient(900px 520px at 15% 0%, rgba(139, 92, 246, 0.25), transparent 60%),
@@ -8,12 +15,26 @@
   color: rgba(255, 255, 255, 0.88);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   font-family: Inter, system-ui, sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  box-sizing: border-box;
 }
 
 .dv-footer-inner {
   max-width: 1060px;
   margin: 0 auto;
   padding: 56px 20px 26px;
+}
+
+/* Account for social bar on desktop */
+@media (min-width: 769px) {
+  .dv-footer-inner {
+    padding-right: 70px; /* Space for fixed social bar */
+  }
 }
 
 /* ==========================================
@@ -152,6 +173,9 @@
   grid-template-columns: 1fr 1.2fr;
   gap: 22px;
   align-items: start;
+  
+  max-width: 100%;
+  overflow: hidden; /* Prevent content from escaping */
 }
 
 /* Upload Head */
@@ -200,6 +224,8 @@
 .dv-footer-upload .upload-section {
   padding: 0;
   margin: 0;
+  container-type: inline-size;
+  container-name: upload-form;
 }
 
 .dv-footer-upload .upload-inner {
@@ -213,17 +239,27 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(0, 0, 0, 0.18);
   padding: 16px;
+  min-width: 280px; /* Prevent card from getting too narrow */
 }
 
-/* Grid */
+/* Grid - SIMPLE: Always stack vertically, never side-by-side */
 .dv-footer-upload .upload-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+  width: 100%;
 }
 
-.dv-footer-upload .field.full {
-  grid-column: 1 / -1;
+.dv-footer-upload .field {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Container query: stack when container is narrow (regardless of viewport) */
+@container upload-form (max-width: 400px) {
+  .dv-footer-upload .upload-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Labels */
@@ -460,11 +496,17 @@
 /* ==========================================
    RESPONSIVE
    ========================================== */
-@media (max-width: 900px) {
+
+/* Stack upload form left/right sections earlier */
+@media (max-width: 1100px) {
   .dv-footer-upload {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+}
 
+/* Stack name/email fields - this is the key fix */
+@media (max-width: 900px) {
   .dv-footer-upload .upload-grid {
     grid-template-columns: 1fr;
   }
@@ -476,7 +518,10 @@
   .dv-footer-upload .upload-actions .btn {
     width: 100%;
   }
+}
 
+/* Footer grid responsive */
+@media (max-width: 768px) {
   .dv-footer-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -498,4 +543,74 @@
   .dv-footer-upload-head .upload-title {
     font-size: 22px;
   }
+}
+
+/* =========================================================
+   FIX: Name/E-Mail overlap in footer upload form (scoped)
+   Paste at the VERY END of your CSS
+   ========================================================= */
+
+.dv-footer-upload .upload-card form{
+  position: relative;
+}
+
+/* Make the grid a normal vertical flow (no surprises) */
+.dv-footer-upload .upload-grid{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  width: 100% !important;
+}
+
+/* Each field: stacked label + input */
+.dv-footer-upload .field{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+
+  /* critical: neutralize global positioning/transforms */
+  position: relative !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  float: none !important;
+  clear: both !important;
+}
+
+/* Labels must take space above inputs */
+.dv-footer-upload .field > label{
+  display: block !important;
+  position: static !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+  transform: none !important;
+}
+
+/* Inputs must remain in normal document flow */
+.dv-footer-upload .field > input[type="text"],
+.dv-footer-upload .field > input[type="email"]{
+  display: block !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Dropzone: also prevent weird absolute bleed */
+.dv-footer-upload .dropzone{
+  position: relative !important;
+}
+
+/* Optional: ensure .full doesn’t have hidden layout rules */
+.dv-footer-upload .field.full{
+  width: 100% !important;
 }
