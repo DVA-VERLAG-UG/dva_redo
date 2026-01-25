@@ -241,25 +241,39 @@ function initReviewsCarousel() {
   }
   
   let isAnimating = false;
-  function switchTo(newIndex) {
+  let direction = 'next'; // Track direction: 'next' or 'prev'
+  
+  function switchTo(newIndex, dir = 'next') {
     if (isAnimating || reviews.length <= 1) return;
     isAnimating = true;
+    direction = dir;
     
+    // Calculate new index first
+    const nextIndex = clampIndex(newIndex);
+    
+    // Add direction class for animation
+    stack.setAttribute('data-direction', direction);
     stack.classList.add('is-switching');
+    
+    // Wait for animation to complete BEFORE updating content
     setTimeout(() => {
-      index = clampIndex(newIndex);
+      // Now update the content
+      index = nextIndex;
       render();
-      requestAnimationFrame(() => {
+      
+      // Small delay before removing classes to ensure render is complete
+      setTimeout(() => {
         stack.classList.remove('is-switching');
-        setTimeout(() => { isAnimating = false; }, 520);
-      });
-    }, 180);
+        stack.removeAttribute('data-direction');
+        isAnimating = false;
+      }, 50);
+    }, 400); // Shorter duration for simple fade
   }
   
-  prevBtn.addEventListener('click', () => switchTo(index - 1));
-  nextBtn.addEventListener('click', () => switchTo(index + 1));
+  prevBtn.addEventListener('click', () => switchTo(index - 1, 'prev'));
+  nextBtn.addEventListener('click', () => switchTo(index + 1, 'next'));
   
-  // Auto-rotate reviews every 5 seconds
+  // Auto-rotate reviews every 10 seconds
   let autoRotateInterval;
   
   function startAutoRotate() {
@@ -267,7 +281,7 @@ function initReviewsCarousel() {
       if (reviews.length > 1) {
         switchTo(index + 1);
       }
-    }, 5000); // 5 seconds
+    }, 10000); // 10 seconds
   }
   
   function stopAutoRotate() {

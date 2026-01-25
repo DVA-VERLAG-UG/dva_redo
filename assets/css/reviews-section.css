@@ -102,12 +102,48 @@ html[data-theme="dim"] .reviews-description {
 .reviews-stack {
   position: relative;
   height: 500px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: none;
 }
 
+/* Prevent interaction during animation */
 .reviews-stack.is-switching {
-  opacity: 0.5;
-  transform: scale(0.98);
+  pointer-events: none;
+}
+
+/* Hide cards that are being repositioned */
+.reviews-stack.is-switching .review-card {
+  will-change: transform, opacity;
+}
+
+/* Simple fade transition - no flying cards */
+.reviews-stack[data-direction="next"].is-switching #reviewCard1,
+.reviews-stack[data-direction="prev"].is-switching #reviewCard1 {
+  animation: fadeOut 0.4s ease forwards;
+}
+
+.reviews-stack[data-direction="next"].is-switching #reviewCard2,
+.reviews-stack[data-direction="prev"].is-switching #reviewCard3 {
+  animation: fadeIn 0.4s ease forwards;
+  visibility: visible !important;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Individual Review Cards */
@@ -141,25 +177,32 @@ html[data-theme="dim"] .review-card {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Card stacking positions */
+/* Card stacking positions - ONLY SHOW CARD 1 */
 #reviewCard1 {
   top: 0;
   z-index: 3;
   opacity: 1;
+  visibility: visible;
 }
 
-#reviewCard2 {
-  top: 20px;
-  z-index: 2;
-  opacity: 0.7;
-  transform: translateX(-50%) scale(0.95);
-}
-
+#reviewCard2,
 #reviewCard3 {
-  top: 40px;
-  z-index: 1;
-  opacity: 0.4;
-  transform: translateX(-50%) scale(0.9);
+  top: 0;
+  z-index: 2;
+  opacity: 0 !important; /* Force hidden with !important */
+  visibility: hidden !important; /* Force hidden */
+  pointer-events: none;
+}
+
+/* Only show cards 2/3 during their specific animations */
+.reviews-stack[data-direction="next"].is-switching #reviewCard2 {
+  visibility: visible !important;
+  z-index: 4 !important; /* Above card 1 during transition */
+}
+
+.reviews-stack[data-direction="prev"].is-switching #reviewCard3 {
+  visibility: visible !important;
+  z-index: 4 !important; /* Above card 1 during transition */
 }
 
 .review-card:hover {
