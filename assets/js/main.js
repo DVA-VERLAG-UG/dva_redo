@@ -12,6 +12,7 @@ import { initHorizontalScroll } from './horizontal-scroll-section.js';
 import { initProcessSteps } from './process-steps.js';
 import { initLogoCarousel } from './logo-carousel.js';
 import { initReviews } from './reviews-section.js';
+import { initBridge } from './bridge-section.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -122,7 +123,11 @@ async function init() {
   // Initialize logo carousel
   initLogoCarousel();
   
-  console.log('1️⃣1️⃣ Initializing reviews...');
+  console.log('1️⃣1️⃣ Initializing bridge...');
+  // Initialize bridge section
+  initBridge();
+  
+  console.log('1️⃣2️⃣ Initializing reviews...');
   // Initialize reviews section
   initReviews();
   

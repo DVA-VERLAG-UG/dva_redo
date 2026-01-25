@@ -4,7 +4,7 @@
 
 .reviews-section {
   position: relative;
-  padding: 100px 20px;
+  padding: 60px 20px 100px; /* Added back top padding for header visibility */
   overflow: hidden;
 }
 
@@ -17,11 +17,12 @@
 .reviews-header {
   text-align: center;
   margin-bottom: 80px;
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1; /* Changed from 0 to 1 - visible by default */
+  transform: translateY(0); /* Changed from 30px to 0 */
   transition: all 0.8s ease;
 }
 
+/* Animation on scroll - now just for extra effect */
 .reviews-header.visible {
   opacity: 1;
   transform: translateY(0);

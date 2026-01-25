@@ -259,8 +259,30 @@ function initReviewsCarousel() {
   prevBtn.addEventListener('click', () => switchTo(index - 1));
   nextBtn.addEventListener('click', () => switchTo(index + 1));
   
+  // Auto-rotate reviews every 5 seconds
+  let autoRotateInterval;
+  
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(() => {
+      if (reviews.length > 1) {
+        switchTo(index + 1);
+      }
+    }, 5000); // 5 seconds
+  }
+  
+  function stopAutoRotate() {
+    clearInterval(autoRotateInterval);
+  }
+  
+  // Pause auto-rotate on hover
+  stack.addEventListener('mouseenter', stopAutoRotate);
+  stack.addEventListener('mouseleave', startAutoRotate);
+  
   // Initial render
   render();
+  
+  // Start auto-rotation
+  startAutoRotate();
   
   // Load from Google Sheets
   loadReviewsFromSheet()

@@ -1,0 +1,87 @@
+/* ==========================================
+   BRIDGE SECTION (Between Logo Carousel & Reviews)
+   ========================================== */
+
+.bridge-section {
+  position: relative;
+  padding: 40px 20px 20px; /* Reduced bottom padding */
+  text-align: center;
+  overflow: hidden;
+}
+
+.bridge-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bridge-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.bridge-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bridge-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  margin: 0 auto 32px;
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.bridge-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.8);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+html[data-theme="dim"] .bridge-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bridge-arrow {
+  font-size: 2rem;
+  color: #8b5cf6;
+  margin-top: 32px;
+  animation: bounce 2s infinite;
+}
+
+html[data-theme="dim"] .bridge-arrow {
+  color: #a78bfa;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  .bridge-section {
+    padding: 40px 20px;
+  }
+
+  .bridge-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bridge-text {
+    font-size: 1.1rem;
+  }
+}
