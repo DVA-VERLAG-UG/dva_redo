@@ -25,6 +25,16 @@ console.log('  - Is GitHub Pages:', isGitHubPages);
 console.log('  - BASE_PATH:', BASE_PATH || '(empty - local)');
 console.log('  - Full URL:', window.location.href);
 
+// ---- helper: never let one module crash the whole page
+function safeInit(name, fn) {
+  try {
+    fn();
+    console.log(`✅ ${name} initialized`);
+  } catch (err) {
+    console.error(`❌ ${name} failed:`, err);
+  }
+}
+
 // Load header component
 async function loadHeader() {
   const placeholder = document.getElementById('header-placeholder');
@@ -32,23 +42,23 @@ async function loadHeader() {
     console.error('❌ Header placeholder not found!');
     return;
   }
-  
+
   console.log('📍 Header placeholder found');
   console.log('🌐 BASE_PATH:', BASE_PATH);
   console.log('🔗 Fetching:', `${BASE_PATH}/components/header.html`);
-  
+
   try {
-    const response = await fetch(`${BASE_PATH}/components/header.html`);
+    const response = await fetch(`${BASE_PATH}/components/header.html`, { cache: 'no-store' });
     console.log('📡 Fetch response:', response.status, response.statusText);
-    
-    if (!response.ok) throw new Error('Failed to load header');
-    
+
+    if (!response.ok) throw new Error(`Failed to load header (${response.status})`);
+
     const html = await response.text();
     console.log('✅ Header HTML loaded, length:', html.length);
     placeholder.innerHTML = html;
-    
-    // Initialize header functionality after loading
-    initHeader();
+
+    // Initialize header functionality after loading (safe)
+    safeInit('Header', initHeader);
   } catch (error) {
     console.error('❌ Error loading header:', error);
   }
@@ -58,84 +68,76 @@ async function loadHeader() {
 async function loadFooter() {
   const placeholder = document.getElementById('footer-placeholder');
   if (!placeholder) return;
-  
+
   try {
-    const response = await fetch(`${BASE_PATH}/components/footer.html`);
-    if (!response.ok) throw new Error('Failed to load footer');
-    
+    const response = await fetch(`${BASE_PATH}/components/footer.html`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Failed to load footer (${response.status})`);
+
     const html = await response.text();
     placeholder.innerHTML = html;
-    
-    // Initialize footer functionality after loading
-    initFooter();
+
+    // Initialize footer functionality after loading (safe)
+    safeInit('Footer', initFooter);
   } catch (error) {
-    console.error('Error loading footer:', error);
+    console.error('❌ Error loading footer:', error);
   }
 }
 
 // Initialize everything
 async function init() {
   console.log('🚀 Starting initialization...');
-  
-  // Show curtain first (only on first visit in session)
-  initCurtain();
-  
-  // Apply stored theme immediately to prevent flash (but don't setup button yet)
+
+  // Curtain first (safe)
+  safeInit('Curtain', initCurtain);
+
+  // Apply stored theme immediately to prevent flash (safe)
   console.log('1️⃣ Applying stored theme...');
-  const storedTheme = getStoredTheme();
-  applyTheme(storedTheme);
-  
-  // Load components in parallel
+  try {
+    const storedTheme = getStoredTheme();
+    applyTheme(storedTheme);
+    console.log('✅ Theme applied:', storedTheme);
+  } catch (e) {
+    console.error('❌ Theme apply failed:', e);
+  }
+
+  // Load components in parallel but don't die if one fails
   console.log('2️⃣ Loading components...');
-  await Promise.all([
-    loadHeader(),
-    loadFooter()
-  ]);
-  
-  // NOW initialize theme toggle button (after header is loaded)
+  await Promise.allSettled([loadHeader(), loadFooter()]);
+
+  // Initialize modules (each is isolated)
   console.log('3️⃣ Setting up theme toggle...');
-  initTheme();
-  
+  safeInit('Theme Toggle', initTheme);
+
   console.log('4️⃣ Initializing social bar...');
-  // Initialize social bar
-  initSocialBar();
-  
+  safeInit('Social Bar', initSocialBar);
+
   console.log('5️⃣ Initializing background particles...');
-  // Initialize animated background
-  initBackground();
-  
+  safeInit('Background', initBackground);
+
   console.log('6️⃣ Initializing carousel...');
-  // Initialize add-ons carousel
-  initCarousel();
-  
+  safeInit('Carousel', initCarousel);
+
   console.log('7️⃣ Initializing konfigurator CTA...');
-  // Initialize konfigurator CTA overlay
-  initKonfiguratorCTA();
-  
+  safeInit('Konfigurator CTA', initKonfiguratorCTA);
+
   console.log('8️⃣ Initializing horizontal scroll...');
-  // Initialize horizontal scroll section
-  initHorizontalScroll();
-  
+  safeInit('Horizontal Scroll', initHorizontalScroll);
+
   console.log('9️⃣ Initializing process steps...');
-  // Initialize process steps timeline
-  initProcessSteps();
-  
+  safeInit('Process Steps', initProcessSteps);
+
   console.log('🔟 Initializing logo carousel...');
-  // Initialize logo carousel
-  initLogoCarousel();
-  
+  safeInit('Logo Carousel', initLogoCarousel);
+
   console.log('1️⃣1️⃣ Initializing bridge...');
-  // Initialize bridge section
-  initBridge();
-  
+  safeInit('Bridge', initBridge);
+
   console.log('1️⃣2️⃣ Initializing reviews...');
-  // Initialize reviews section
-  initReviews();
-  
+  safeInit('Reviews', initReviews);
+
   console.log('1️⃣3️⃣ Initializing news...');
-  // Initialize news section
-  initNews();
-  
+  safeInit('News', initNews);
+
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
   console.log('✅ All initialization complete!');

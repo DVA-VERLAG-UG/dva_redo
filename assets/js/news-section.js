@@ -1,102 +1,80 @@
-// news-section.js - Latest news/updates from Google Sheets
+// /assets/js/news-section.js
 
 export function initNews() {
-  console.log('📰 Initializing news section...');
-  
+  console.log("📰 initNews() fired");
+
+  // ✅ IMPORTANT: must be the CSV endpoint (not pubhtml)
   const SHEET_CSV_URL =
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pubhtml?gid=0&single=true";
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?gid=0&single=true&output=csv";
 
   const FALLBACK = [
     {
       href: "/de/blog/",
       tag: "Update",
       date: "Gerade eben",
-      cover: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=70",
+      cover:
+        "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=70",
       title: "Blog lädt gerade nicht",
-      text: "Bitte prüfe ob der Google Sheet Link veröffentlicht ist und ob die Spalten slug,title,excerpt,date,author,cover,tags existieren."
+      text:
+        "Bitte prüfe ob der Google Sheet Link veröffentlicht ist und ob die Spalten slug,title,excerpt,date,author,cover,tags existieren."
     }
   ];
 
-  const esc = (str) => String(str ?? "").replace(/[&<>"']/g, m => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
-
   const norm = (s) => String(s ?? "").trim().toLowerCase();
 
-  function splitTags(s){
+  function splitTags(s) {
     return String(s ?? "")
       .split(",")
-      .map(t => t.trim())
+      .map((t) => t.trim())
       .filter(Boolean);
   }
 
-  function parseCSV(text){
+  function parseCSV(text) {
     const rows = [];
     let row = [];
     let cur = "";
     let inQuotes = false;
 
-    for(let i=0;i<text.length;i++){
+    for (let i = 0; i < text.length; i++) {
       const c = text[i];
-      const n = text[i+1];
+      const n = text[i + 1];
 
-      if(inQuotes){
-        if(c === '"' && n === '"'){ cur += '"'; i++; }
-        else if(c === '"'){ inQuotes = false; }
+      if (inQuotes) {
+        if (c === '"' && n === '"') { cur += '"'; i++; }
+        else if (c === '"') { inQuotes = false; }
         else { cur += c; }
       } else {
-        if(c === '"'){ inQuotes = true; }
-        else if(c === ","){ row.push(cur); cur=""; }
-        else if(c === "\n"){ row.push(cur); rows.push(row); row=[]; cur=""; }
-        else if(c === "\r"){ /* ignore */ }
+        if (c === '"') inQuotes = true;
+        else if (c === ",") { row.push(cur); cur = ""; }
+        else if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; }
+        else if (c === "\r") { /* ignore */ }
         else { cur += c; }
       }
     }
     row.push(cur);
     rows.push(row);
-    return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
+    return rows.filter((r) => r.some((cell) => String(cell).trim() !== ""));
   }
 
-  async function loadLatest3(){
-    const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-    if(!res.ok) throw new Error("Blog CSV fetch failed");
-    const csv = await res.text();
-
-    const rows = parseCSV(csv);
-    if(rows.length < 2) throw new Error("CSV has no data rows");
-
-    const header = rows[0].map(h => norm(h));
-    const idx = (name) => header.indexOf(norm(name));
-    const val = (r, name) => {
-      const i = idx(name);
-      return i >= 0 ? String(r[i] ?? "").trim() : "";
+  function setCtaLink(ctaEl, href) {
+    if (!ctaEl) return;
+    if (ctaEl.tagName === "A") {
+      ctaEl.setAttribute("href", href);
+      return;
+    }
+    ctaEl.setAttribute("role", "link");
+    ctaEl.style.cursor = "pointer";
+    ctaEl.tabIndex = 0;
+    ctaEl.onclick = () => (window.location.href = href);
+    ctaEl.onkeydown = (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        window.location.href = href;
+      }
     };
-
-    const posts = rows.slice(1).map(r => ({
-      slug:    val(r, "slug"),
-      title:   val(r, "title"),
-      excerpt: val(r, "excerpt") || val(r, "content"),
-      date:    val(r, "date"),
-      cover:   val(r, "cover"),
-      tags:    splitTags(val(r, "tags"))
-    }))
-    .filter(p => p.slug && p.title);
-
-    posts.sort((a,b) => (b.date || "").localeCompare(a.date || ""));
-    const latest = posts.slice(0, 3);
-    if(!latest.length) return FALLBACK;
-
-    return latest.map(p => ({
-      href: `/de/blog/post.html?slug=${encodeURIComponent(p.slug)}`,
-      tag: (p.tags?.[0] || "Update"),
-      date: (p.date || ""),
-      cover: (p.cover || ""),
-      title: (p.title || ""),
-      text: (p.excerpt || "")
-    }));
   }
 
-  function applyRow(i, item){
+  function applyRow(i, item) {
     const n = i + 1;
 
     const link = document.getElementById(`lp${n}Link`);
@@ -107,36 +85,93 @@ export function initNews() {
     const text = document.getElementById(`lp${n}Text`);
     const cta  = document.getElementById(`lp${n}Cta`);
 
-    if(!link || !img || !date || !tag || !title || !text || !cta) return;
+    if (!link || !img || !date || !tag || !title || !text) {
+      console.warn(`🟡 Missing DOM nodes for lp${n}...`);
+      return;
+    }
 
     const href = item.href || "#";
-    link.href = href;
-    cta.href = href;
+    link.setAttribute("href", href);
 
-    date.textContent = item.date || "";
-    tag.textContent = item.tag || "Update";
+    date.textContent  = item.date || "";
+    tag.textContent   = item.tag || "Update";
     title.textContent = item.title || "";
-    text.textContent = item.text || "";
+    text.textContent  = item.text || "";
 
-    // Use background-image for easy "cover" styling
-    const cover = item.cover ? esc(item.cover) : "";
-    img.style.backgroundImage = cover ? `url('${cover}')` : "none";
-    img.setAttribute("aria-label", item.title ? esc(item.title) : "");
+    const cover = item.cover || "";
+    img.style.backgroundImage = cover ? `url("${cover}")` : "none";
+
+    setCtaLink(cta, href);
   }
 
-  // Initial placeholders
-  const starter = [...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0,3);
+  async function loadLatest3() {
+    console.log("🔗 Fetching CSV:", SHEET_CSV_URL);
+
+    const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+    console.log("📡 Response:", res.status, res.statusText, "type:", res.type);
+
+    const raw = await res.text();
+    console.log("📄 First 200 chars:", raw.slice(0, 200));
+
+    // If Google returns HTML (error/login page), we detect it
+    if (raw.trim().startsWith("<")) {
+      throw new Error("Got HTML instead of CSV. Sheet not published or wrong URL.");
+    }
+
+    const rows = parseCSV(raw);
+    console.log("🧾 Rows:", rows.length);
+
+    if (rows.length < 2) throw new Error("CSV has no data rows");
+
+    const header = rows[0].map((h) => norm(h));
+    console.log("🏷️ Header:", header);
+
+    const idx = (name) => header.indexOf(norm(name));
+    const val = (r, name) => {
+      const i = idx(name);
+      return i >= 0 ? String(r[i] ?? "").trim() : "";
+    };
+
+    const posts = rows.slice(1)
+      .map((r) => ({
+        slug:    val(r, "slug"),
+        title:   val(r, "title"),
+        excerpt: val(r, "excerpt") || val(r, "content"),
+        date:    val(r, "date"),
+        cover:   val(r, "cover"),
+        tags:    splitTags(val(r, "tags")),
+      }))
+      .filter((p) => p.slug && p.title);
+
+    console.log("🧩 Parsed posts:", posts.length);
+
+    posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+    const latest = posts.slice(0, 3);
+    if (!latest.length) return FALLBACK;
+
+    return latest.map((p) => ({
+      href: `/de/blog/post.html?slug=${encodeURIComponent(p.slug)}`,
+      tag: p.tags?.[0] || "Update",
+      date: p.date || "",
+      cover: p.cover || "",
+      title: p.title || "",
+      text: p.excerpt || "",
+    }));
+  }
+
+  // placeholders first
+  const starter = [...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 3);
   starter.forEach((it, i) => applyRow(i, it));
 
   loadLatest3()
-    .then(items => {
-      const list = [...items, ...FALLBACK, ...FALLBACK].slice(0,3);
+    .then((items) => {
+      console.log("✅ Using items:", items);
+      const list = [...items, ...FALLBACK, ...FALLBACK].slice(0, 3);
       list.forEach((it, i) => applyRow(i, it));
-      console.log('✅ News loaded:', items.length, 'posts');
     })
-    .catch(err => {
-      console.warn("Latest posts load failed, using fallback.", err);
-      const list = [...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0,3);
+    .catch((err) => {
+      console.error("❌ News load failed:", err);
+      const list = [...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 3);
       list.forEach((it, i) => applyRow(i, it));
     });
 }
