@@ -9,6 +9,7 @@ import { initCurtain } from './curtain.js';
 import { initCarousel } from './carousel.js';
 import { initKonfiguratorCTA } from './konfigurator-cta.js';
 import { initHorizontalScroll } from './horizontal-scroll-section.js';
+import { initProcessSteps } from './process-steps.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -110,6 +111,10 @@ async function init() {
   console.log('8️⃣ Initializing horizontal scroll...');
   // Initialize horizontal scroll section
   initHorizontalScroll();
+  
+  console.log('9️⃣ Initializing process steps...');
+  // Initialize process steps timeline
+  initProcessSteps();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
