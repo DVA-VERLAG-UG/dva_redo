@@ -13,6 +13,7 @@ import { initProcessSteps } from './process-steps.js';
 import { initLogoCarousel } from './logo-carousel.js';
 import { initReviews } from './reviews-section.js';
 import { initBridge } from './bridge-section.js';
+import { initNews } from './news-section.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -130,6 +131,10 @@ async function init() {
   console.log('1️⃣2️⃣ Initializing reviews...');
   // Initialize reviews section
   initReviews();
+  
+  console.log('1️⃣3️⃣ Initializing news...');
+  // Initialize news section
+  initNews();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
