@@ -457,3 +457,36 @@ html[data-theme="dim"] .process-btn-secondary {
     font-size: 40px;
   }
 }
+
+
+/* ==========================================
+   Background Book PNG (theme aware)
+   ========================================== */
+
+.timeline-book-bg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;              /* ⬅️ bigger than container */
+  max-width: 10000px;        /* ⬅️ allow it to grow */
+  aspect-ratio: 3 / 2;
+
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url("../images/index/process/schwarz/background_book.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 0.12;
+}
+
+html[data-theme="dim"] .timeline-book-bg{
+  background-image: url("../images/index/process/weiss/background_book.png");
+  opacity: 0.15;
+}
+
+
