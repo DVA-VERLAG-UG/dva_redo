@@ -10,6 +10,8 @@ import { initCarousel } from './carousel.js';
 import { initKonfiguratorCTA } from './konfigurator-cta.js';
 import { initHorizontalScroll } from './horizontal-scroll-section.js';
 import { initProcessSteps } from './process-steps.js';
+import { initLogoCarousel } from './logo-carousel.js';
+import { initReviews } from './reviews-section.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -115,6 +117,14 @@ async function init() {
   console.log('9️⃣ Initializing process steps...');
   // Initialize process steps timeline
   initProcessSteps();
+  
+  console.log('🔟 Initializing logo carousel...');
+  // Initialize logo carousel
+  initLogoCarousel();
+  
+  console.log('1️⃣1️⃣ Initializing reviews...');
+  // Initialize reviews section
+  initReviews();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');

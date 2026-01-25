@@ -1,0 +1,197 @@
+/* ==========================================
+   LOGO CAROUSEL SECTION
+   ========================================== */
+
+.logo-carousel-section {
+  position: relative;
+  padding: 80px 0; /* Remove horizontal padding */
+  overflow: hidden;
+  background: transparent;
+}
+
+.logo-carousel-container {
+  width: 100%; /* Full width instead of max-width */
+  margin: 0 auto;
+}
+
+/* Section Header */
+.logo-carousel-header {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 0 20px; /* Add padding only to header */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.logo-carousel-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logo-carousel-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+html[data-theme="dim"] .logo-carousel-title {
+  color: #fff;
+}
+
+.logo-carousel-subtitle {
+  font-size: 1.15rem;
+  color: rgba(15, 23, 42, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+html[data-theme="dim"] .logo-carousel-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Carousel Wrapper */
+.logo-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+/* Carousel Track */
+.logo-carousel-track {
+  display: flex;
+  gap: 80px;
+  animation: scrollLogos 30s linear infinite;
+  width: max-content;
+}
+
+/* Pause on hover */
+.logo-carousel-wrapper:hover .logo-carousel-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Logo Item */
+.logo-item {
+  flex-shrink: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-item:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.logo-item img {
+  height: 100%;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  /* Color inversion for theme switching */
+  transition: filter 0.3s ease;
+}
+
+/* Light mode: Keep logos as they are (assuming they're dark) */
+.logo-item img {
+  filter: brightness(0) saturate(100%);
+}
+
+/* Dark mode: Invert to white */
+html[data-theme="dim"] .logo-item img {
+  filter: brightness(0) saturate(100%) invert(1);
+}
+
+/* Fade edges effect */
+.logo-carousel-wrapper::before,
+.logo-carousel-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.logo-carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+html[data-theme="dim"] .logo-carousel-wrapper::before {
+  background: linear-gradient(90deg, 
+    rgba(15, 23, 42, 1) 0%, 
+    rgba(15, 23, 42, 0) 100%
+  );
+}
+
+html[data-theme="dim"] .logo-carousel-wrapper::after {
+  background: linear-gradient(90deg, 
+    rgba(15, 23, 42, 0) 0%, 
+    rgba(15, 23, 42, 1) 100%
+  );
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  .logo-carousel-title {
+    font-size: 2rem;
+  }
+
+  .logo-carousel-track {
+    gap: 60px;
+  }
+
+  .logo-item {
+    height: 60px;
+  }
+
+  .logo-carousel-wrapper::before,
+  .logo-carousel-wrapper::after {
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-carousel-title {
+    font-size: 1.75rem;
+  }
+
+  .logo-carousel-track {
+    gap: 40px;
+  }
+
+  .logo-item {
+    height: 50px;
+  }
+}

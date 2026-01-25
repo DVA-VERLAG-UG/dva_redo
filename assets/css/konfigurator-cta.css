@@ -4,7 +4,7 @@
 
 .konfigurator-cta {
   position: relative;
-  margin-top: -200px; /* Overlaps carousel bottom third */
+  margin-top: -100px; /* Overlaps carousel bottom third */
   z-index: 20;
   padding: 0 20px 80px;
   opacity: 0;

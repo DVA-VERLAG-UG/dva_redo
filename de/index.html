@@ -47,6 +47,8 @@
     <link rel="stylesheet" href="../assets/css/konfigurator-cta.css">
     <link rel="stylesheet" href="../assets/css/horizontal-scroll-section.css">
     <link rel="stylesheet" href="../assets/css/process-steps.css">
+    <link rel="stylesheet" href="../assets/css/logo-carousel.css">
+    <link rel="stylesheet" href="../assets/css/reviews-section.css">
     <!-- No page-specific CSS needed for home page yet -->
     
     <!-- Favicon -->
@@ -231,8 +233,111 @@
                 <div class="process-timeline">
                     
                     <!-- Background Book with Flowers Outline -->
-                    <div class="timeline-book-bg"></div>
-
+                    <div class="timeline-book-bg">
+                        <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- Define animation groups -->
+                                <g id="book-base">
+                                    <!-- Left page outline -->
+                                    <path class="book-path book-stage-1" d="M 50 280 Q 50 270 55 265 L 280 220 Q 285 218 290 220 L 295 280 Q 290 340 285 345 L 55 390 Q 50 392 50 385 Z" />
+                                    
+                                    <!-- Right page outline -->
+                                    <path class="book-path book-stage-1" d="M 305 280 L 310 220 Q 315 218 320 220 L 545 265 Q 550 270 550 280 L 550 385 Q 550 392 545 390 L 315 345 Q 310 340 305 280 Z" />
+                                    
+                                    <!-- Page curves (multiple lines for depth) -->
+                                    <path class="book-path book-stage-1" d="M 60 275 Q 150 265 290 255" style="opacity: 0.6;" />
+                                    <path class="book-path book-stage-1" d="M 60 285 Q 150 275 290 265" style="opacity: 0.5;" />
+                                    <path class="book-path book-stage-1" d="M 60 295 Q 150 285 290 275" style="opacity: 0.4;" />
+                                    <path class="book-path book-stage-1" d="M 60 305 Q 150 295 290 285" style="opacity: 0.3;" />
+                                    <path class="book-path book-stage-1" d="M 60 315 Q 150 305 290 295" style="opacity: 0.2;" />
+                                    <path class="book-path book-stage-1" d="M 60 325 Q 150 315 290 305" style="opacity: 0.15;" />
+                                    <path class="book-path book-stage-1" d="M 60 335 Q 150 325 290 315" style="opacity: 0.1;" />
+                                    
+                                    <path class="book-path book-stage-1" d="M 310 255 Q 450 265 540 275" style="opacity: 0.6;" />
+                                    <path class="book-path book-stage-1" d="M 310 265 Q 450 275 540 285" style="opacity: 0.5;" />
+                                    <path class="book-path book-stage-1" d="M 310 275 Q 450 285 540 295" style="opacity: 0.4;" />
+                                    <path class="book-path book-stage-1" d="M 310 285 Q 450 295 540 305" style="opacity: 0.3;" />
+                                    <path class="book-path book-stage-1" d="M 310 295 Q 450 305 540 315" style="opacity: 0.2;" />
+                                    <path class="book-path book-stage-1" d="M 310 305 Q 450 315 540 325" style="opacity: 0.15;" />
+                                    <path class="book-path book-stage-1" d="M 310 315 Q 450 325 540 335" style="opacity: 0.1;" />
+                                    
+                                    <!-- Spine/binding -->
+                                    <ellipse class="book-path book-stage-1" cx="300" cy="280" rx="8" ry="60" />
+                                </g>
+                            </defs>
+                            
+                            <!-- Book (draws first) -->
+                            <use href="#book-base" />
+                            
+                            <!-- Flowers growing from center (draws second) -->
+                            <!-- Left Flower -->
+                            <g class="flower-group">
+                                <!-- Stem -->
+                                <path class="book-path book-stage-2" d="M 220 280 Q 215 240 210 200 Q 208 180 205 160" />
+                                <!-- Leaves -->
+                                <path class="book-path book-stage-2" d="M 215 240 Q 205 235 200 230" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 215 240 Q 225 235 230 230" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 210 210 Q 200 208 195 205" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 210 210 Q 220 208 225 205" style="opacity: 0.7;" />
+                                <!-- Flower petals -->
+                                <path class="book-path book-stage-2" d="M 205 160 Q 185 150 180 135 Q 185 125 205 130 Z" />
+                                <path class="book-path book-stage-2" d="M 205 160 Q 195 140 185 130 Q 195 120 210 135 Z" />
+                                <path class="book-path book-stage-2" d="M 205 160 Q 205 135 210 120 Q 220 125 215 145 Z" />
+                                <path class="book-path book-stage-2" d="M 205 160 Q 215 140 225 130 Q 230 140 215 155 Z" />
+                                <path class="book-path book-stage-2" d="M 205 160 Q 225 150 235 140 Q 230 155 210 160 Z" />
+                                <!-- Center -->
+                                <circle class="book-path book-stage-2" cx="205" cy="155" r="8" />
+                            </g>
+                            
+                            <!-- Center Flower -->
+                            <g class="flower-group">
+                                <!-- Stem -->
+                                <path class="book-path book-stage-2" d="M 300 280 L 300 200 Q 300 180 298 160 Q 297 140 295 120" />
+                                <!-- Leaves -->
+                                <path class="book-path book-stage-2" d="M 300 220 Q 285 215 275 210" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 300 220 Q 315 215 325 210" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 298 180 Q 283 178 273 175" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 298 180 Q 313 178 323 175" style="opacity: 0.7;" />
+                                <!-- Flower petals -->
+                                <path class="book-path book-stage-2" d="M 295 120 Q 275 110 265 95 Q 270 80 290 90 Z" />
+                                <path class="book-path book-stage-2" d="M 295 120 Q 285 95 275 80 Q 285 70 300 95 Z" />
+                                <path class="book-path book-stage-2" d="M 295 120 Q 295 90 295 70 Q 305 75 303 100 Z" />
+                                <path class="book-path book-stage-2" d="M 295 120 Q 305 95 315 80 Q 320 90 305 110 Z" />
+                                <path class="book-path book-stage-2" d="M 295 120 Q 315 110 330 100 Q 325 115 300 120 Z" />
+                                <!-- Center -->
+                                <circle class="book-path book-stage-2" cx="295" cy="112" r="10" />
+                            </g>
+                            
+                            <!-- Right Flower -->
+                            <g class="flower-group">
+                                <!-- Stem -->
+                                <path class="book-path book-stage-2" d="M 380 280 Q 385 250 390 220 Q 392 190 395 170" />
+                                <!-- Leaves -->
+                                <path class="book-path book-stage-2" d="M 385 250 Q 375 245 365 240" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 385 250 Q 395 245 405 240" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 390 215 Q 380 213 370 210" style="opacity: 0.7;" />
+                                <path class="book-path book-stage-2" d="M 390 215 Q 400 213 410 210" style="opacity: 0.7;" />
+                                <!-- Flower petals -->
+                                <path class="book-path book-stage-2" d="M 395 170 Q 375 160 365 145 Q 370 130 390 140 Z" />
+                                <path class="book-path book-stage-2" d="M 395 170 Q 385 150 375 135 Q 385 125 400 145 Z" />
+                                <path class="book-path book-stage-2" d="M 395 170 Q 395 145 398 125 Q 408 130 405 155 Z" />
+                                <path class="book-path book-stage-2" d="M 395 170 Q 405 150 415 140 Q 420 150 405 165 Z" />
+                                <path class="book-path book-stage-2" d="M 395 170 Q 415 163 430 155 Q 425 170 400 173 Z" />
+                                <!-- Center -->
+                                <circle class="book-path book-stage-2" cx="395" cy="165" r="9" />
+                            </g>
+                            
+                            <!-- Decorative dots/seeds -->
+                            <circle class="book-path book-stage-2" cx="180" cy="120" r="3" style="opacity: 0.6;" />
+                            <circle class="book-path book-stage-2" cx="250" cy="90" r="2" style="opacity: 0.5;" />
+                            <circle class="book-path book-stage-2" cx="340" cy="85" r="2.5" style="opacity: 0.5;" />
+                            <circle class="book-path book-stage-2" cx="420" cy="130" r="3" style="opacity: 0.6;" />
+                            <circle class="book-path book-stage-2" cx="160" cy="150" r="2" style="opacity: 0.4;" />
+                            <circle class="book-path book-stage-2" cx="440" cy="140" r="2" style="opacity: 0.4;" />
+                            <circle class="book-path book-stage-2" cx="270" cy="60" r="2" style="opacity: 0.4;" />
+                            <circle class="book-path book-stage-2" cx="320" cy="55" r="2.5" style="opacity: 0.5;" />
+                        </svg>
+                    </div>
                     
                     <div class="timeline-line">
                         <div class="timeline-line-progress"></div>
@@ -352,6 +457,70 @@
                         <a href="../de/pakete.html" class="process-btn process-btn-secondary">
                             Pakete entdecken
                         </a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- Logo Carousel Section -->
+        <section class="logo-carousel-section">
+            <div class="logo-carousel-container">
+                
+                <!-- Header -->
+                <div class="logo-carousel-header">
+                    <h2 class="logo-carousel-title">Über 20 Jahre Erfahrung</h2>
+                    <p class="logo-carousel-subtitle">
+                        Wir arbeiten mit allen großen Online-Shops zusammen – weltweit verfügbar
+                    </p>
+                </div>
+                
+                <!-- Carousel -->
+                <div class="logo-carousel-wrapper">
+                    <div class="logo-carousel-track">
+                        <!-- Logos will be inserted by JavaScript -->
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="reviews-container">
+                
+                <!-- Header with animated counter -->
+                <div class="reviews-header">
+                    <div class="reviews-kicker">Warum wir keine Konkurrenz haben</div>
+                    <div class="reviews-counter">0+</div>
+                    <h2 class="reviews-title">Autoren erfolgreich in den Buchmarkt gebracht</h2>
+                    <p class="reviews-subtitle">
+                        Die meisten Dienstleister verwalten nur Dateien. Wir schaffen Marktzugänge.
+                    </p>
+                    <p class="reviews-description">
+                        Während andere sich in Bürokratie verlieren, haben wir eine direkte Pipeline 
+                        zwischen Produktion und Vertrieb gebaut.
+                    </p>
+                </div>
+                
+                <!-- Reviews Stack -->
+                <div class="reviews-stack-wrapper">
+                    <div class="reviews-stack" id="reviewsStack">
+                        <div class="review-card" id="reviewCard1">
+                            <!-- Content loaded by JavaScript -->
+                        </div>
+                        <div class="review-card" id="reviewCard2">
+                            <!-- Content loaded by JavaScript -->
+                        </div>
+                        <div class="review-card" id="reviewCard3">
+                            <!-- Content loaded by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <div class="reviews-nav">
+                        <button class="reviews-nav-btn" id="reviewsPrev" aria-label="Previous review">←</button>
+                        <button class="reviews-nav-btn" id="reviewsNext" aria-label="Next review">→</button>
                     </div>
                 </div>
                 
