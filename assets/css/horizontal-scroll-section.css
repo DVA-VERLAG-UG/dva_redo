@@ -1,0 +1,366 @@
+/* ==========================================
+   HORIZONTAL SCROLL SECTION
+   ========================================== */
+
+.horizontal-scroll-wrapper {
+  position: relative;
+  height: 300vh; /* 3x viewport height for scroll length */
+  overflow: visible;
+}
+
+.horizontal-scroll-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.horizontal-scroll-track {
+  display: flex;
+  gap: 100px;
+  will-change: transform;
+  transition: none;
+  padding: 0 10vw;
+  align-items: center;
+}
+
+/* ==========================================
+   SCROLL PANELS
+   ========================================== */
+
+.scroll-panel {
+  flex-shrink: 0;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Panel Variants */
+.scroll-panel.text-left {
+  flex-direction: row;
+}
+
+.scroll-panel.text-right {
+  flex-direction: row-reverse;
+}
+
+/* Text-only panel - Panel 3 */
+.scroll-panel-text-only {
+  justify-content: center;
+}
+
+.panel-text-full {
+  flex: none;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Panel 3 - Animated elements */
+.scroll-panel:nth-child(3) .panel-title,
+.scroll-panel:nth-child(3) .panel-description {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-panel:nth-child(3) .panel-info {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+/* Visible state when Panel 3 is in view */
+.scroll-panel:nth-child(3).panel-visible .panel-title,
+.scroll-panel:nth-child(3).panel-visible .panel-description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-panel:nth-child(3).panel-visible .panel-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================
+   PANEL CONTENT
+   ========================================== */
+
+/* Image Container */
+.panel-image {
+  flex: 1;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.panel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-image:hover img {
+  transform: scale(1.1);
+}
+
+/* Text Container */
+.panel-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Large Panel Text - More compact */
+.scroll-panel-large .panel-text {
+  gap: 20px;
+}
+
+/* Regular Title */
+.panel-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+html[data-theme="dim"] .panel-title {
+  color: #fff;
+}
+
+/* Description */
+.panel-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.8);
+}
+
+html[data-theme="dim"] .panel-description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Glass Info Box */
+.panel-info {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  box-shadow: 
+    0 16px 48px rgba(139, 92, 246, 0.15),
+    0 0 0 1px rgba(139, 92, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  margin-top: 12px;
+}
+
+html[data-theme="dim"] .panel-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 
+    0 16px 48px rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.panel-info-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+html[data-theme="dim"] .panel-info-title {
+  color: #fff;
+}
+
+.panel-info-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(15, 23, 42, 0.75);
+  margin-bottom: 24px;
+}
+
+html[data-theme="dim"] .panel-info-text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* CTA Buttons in Panel */
+.panel-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.panel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Primary Button */
+.panel-btn-primary {
+  background: rgba(139, 92, 246, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  color: #fff;
+  box-shadow: 
+    0 8px 24px rgba(139, 92, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.panel-btn-primary:hover {
+  background: rgba(139, 92, 246, 0.9);
+  border-color: rgba(139, 92, 246, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(139, 92, 246, 0.5),
+    0 0 0 1px rgba(139, 92, 246, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Secondary Button */
+.panel-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  color: #000;
+}
+
+html[data-theme="dim"] .panel-btn-secondary {
+  color: #fff;
+}
+
+.panel-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(139, 92, 246, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .scroll-panel {
+    width: 85vw;
+    gap: 40px;
+  }
+
+  .panel-title-large {
+    font-size: 6rem;
+  }
+
+  .panel-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Mobile - Switch to Vertical Stacking */
+@media (max-width: 768px) {
+  .horizontal-scroll-wrapper {
+    height: auto;
+  }
+
+  .horizontal-scroll-container {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  .horizontal-scroll-track {
+    flex-direction: column;
+    gap: 60px;
+    padding: 60px 20px;
+    transform: none !important;
+  }
+
+  .scroll-panel {
+    width: 100%;
+    height: auto;
+    flex-direction: column !important;
+    gap: 32px;
+  }
+
+  .scroll-panel.text-right {
+    flex-direction: column !important;
+  }
+
+  .panel-image {
+    width: 100%;
+    height: 400px;
+  }
+
+  .panel-text {
+    width: 100%;
+  }
+
+  .panel-title-large {
+    font-size: 4rem;
+  }
+
+  .panel-title {
+    font-size: 2rem;
+  }
+
+  .panel-description {
+    font-size: 1rem;
+  }
+
+  .panel-info {
+    padding: 24px;
+  }
+
+  .panel-buttons {
+    flex-direction: column;
+  }
+
+  .panel-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel-title-large {
+    font-size: 3rem;
+  }
+
+  .panel-title {
+    font-size: 1.75rem;
+  }
+
+  .panel-image {
+    height: 300px;
+  }
+}

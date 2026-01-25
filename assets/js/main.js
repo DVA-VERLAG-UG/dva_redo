@@ -8,6 +8,7 @@ import { initBackground } from './background.js';
 import { initCurtain } from './curtain.js';
 import { initCarousel } from './carousel.js';
 import { initKonfiguratorCTA } from './konfigurator-cta.js';
+import { initHorizontalScroll } from './horizontal-scroll-section.js';
 
 // Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
@@ -105,6 +106,10 @@ async function init() {
   console.log('7️⃣ Initializing konfigurator CTA...');
   // Initialize konfigurator CTA overlay
   initKonfiguratorCTA();
+  
+  console.log('8️⃣ Initializing horizontal scroll...');
+  // Initialize horizontal scroll section
+  initHorizontalScroll();
   
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');
