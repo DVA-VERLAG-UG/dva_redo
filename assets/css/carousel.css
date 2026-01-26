@@ -7,7 +7,7 @@
   width: 100%;
   overflow: hidden;
   padding: 60px 0 80px;
-  margin-top: -100px; /* Overlap hero slightly */
+  margin-top: -200px; /* Overlap hero slightly */
   z-index: 5;
 }
 
