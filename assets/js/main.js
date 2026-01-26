@@ -19,11 +19,22 @@ import { initNews } from './news-section.js';
 const isGitHubPages = window.location.hostname.includes('github.io');
 const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
 
+// ✅ Make BASE_PATH available to other modules (header.js, etc.)
+window.BASE_PATH = BASE_PATH;
+
+// ✅ Optional helper: build URLs safely everywhere (assets, routes, fetches)
+window.withBase = (p = '') => {
+  if (!p) return BASE_PATH || '/';
+  return `${BASE_PATH}${p.startsWith('/') ? p : '/' + p}`;
+};
+
 console.log('🌍 Environment Detection:');
 console.log('  - Hostname:', window.location.hostname);
 console.log('  - Is GitHub Pages:', isGitHubPages);
 console.log('  - BASE_PATH:', BASE_PATH || '(empty - local)');
 console.log('  - Full URL:', window.location.href);
+console.log('  - withBase("/de/") =>', window.withBase('/de/'));
+console.log('  - withBase("/assets/...") =>', window.withBase('/assets/images/branding/dva-logo.png'));
 
 // ---- helper: never let one module crash the whole page
 function safeInit(name, fn) {

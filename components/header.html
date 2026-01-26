@@ -1,22 +1,22 @@
 <header class="site-header" id="site-header">
   <div class="header-inner">
-    
+
     <!-- Logo/Brand -->
-    <a href="/" class="brand" aria-label="DVAYD Publishing Home">
-      <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="brand-logo">
+    <a href="#" class="brand" id="brandHomeLink" aria-label="DVAYD Publishing Home">
+      <img src="#" alt="DVAYD Logo" class="brand-logo" id="brandLogo">
       <span class="brand-name">DVAYD Publishing</span>
     </a>
 
     <!-- Right Side: Search, Theme, Languages, Menu -->
     <div class="header-right">
-      
+
       <!-- Search Bar -->
       <div class="search-wrapper">
         <form class="search-form" role="search">
-          <input 
-            type="search" 
-            class="search-input" 
-            placeholder="Suchbegriff eingeben" 
+          <input
+            type="search"
+            class="search-input"
+            placeholder="Suchbegriff eingeben"
             aria-label="Suche"
             id="headerSearchInput"
           >
@@ -26,7 +26,7 @@
               <path d="m21 21-4.35-4.35"></path>
             </svg>
           </button>
-          
+
           <!-- Search Results Dropdown -->
           <div class="search-dropdown" id="searchDropdown"></div>
         </form>
@@ -70,13 +70,15 @@
     <h2 class="drawer-title">Menü</h2>
     <button class="drawer-close" id="drawerClose" type="button" aria-label="Schließen">✕</button>
   </div>
-  
+
   <nav class="drawer-nav">
-    <a href="/de/" class="drawer-link">Startseite</a>
-    <a href="/de/ueber-uns.html" class="drawer-link">Über uns</a>
-    <a href="/de/projekte.html" class="drawer-link">Projekte</a>
-    <a href="/de/konfigurator-page.html" class="drawer-link">Konfigurator</a>
-    <a href="/de/kontakt.html" class="drawer-link">Kontakt</a>
-    <a href="/de/blog/blog-index.html" class="drawer-link">Blog</a>
+    <a href="#" class="drawer-link" data-route="home">Startseite</a>
+    <a href="#" class="drawer-link" data-route="about">Über uns</a>
+    <a href="#" class="drawer-link" data-route="projects">Projekte</a>
+    <a href="#" class="drawer-link" data-route="config">Konfigurator</a>
+    <a href="#" class="drawer-link" data-route="contact">Kontakt</a>
+
+    <!-- Blog: wenn du später Blog pro Sprache routen willst, sag Bescheid -->
+    <a href="#" class="drawer-link" data-route="blog" data-href="/de/blog/blog-index.html">Blog</a>
   </nav>
 </aside>
