@@ -8,7 +8,7 @@ const ROUTES = {
     contact: "/de/kontakt.html",
     projects: "/de/projekte.html",
     packages: "/de/pakete.html",
-    config: "/de/konfig.html"
+    config: "/de/konfigurator-page.html"
   },
   en: {
     home: "/en/",
@@ -16,7 +16,7 @@ const ROUTES = {
     contact: "/en/contact.html",
     projects: "/en/projects.html",
     packages: "/en/packages.html",
-    config: "/en/config.html"
+    config: "/en/configurator-page.html"
   },
   tr: {
     home: "/tr/",
