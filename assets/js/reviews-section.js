@@ -24,7 +24,7 @@ function initCounter() {
   if (!counter) return;
   
   const targetNumber = 200;
-  const duration = 2000; // 2 seconds
+  const duration = 8000; // 4 seconds (was 2000)
   const startTime = Date.now();
   let hasAnimated = false;
   
