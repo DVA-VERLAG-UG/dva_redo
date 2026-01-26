@@ -1,0 +1,47 @@
+/* ==========================================
+   CURSOR FOLLOWER (Non-invasive)
+   ========================================== */
+
+/* Cursor Follower - does NOT hide default cursor */
+.cursor-follower {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.3);
+  border: 2px solid rgba(139, 92, 246, 0.6);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border 0.3s ease;
+  opacity: 0;
+}
+
+.cursor-follower.active {
+  opacity: 1;
+}
+
+html[data-theme="dim"] .cursor-follower {
+  background: rgba(167, 139, 250, 0.3);
+  border: 2px solid rgba(167, 139, 250, 0.6);
+}
+
+/* Hover State - Bigger & More Transparent */
+.cursor-follower.hover {
+  width: 50px;
+  height: 50px;
+  background: rgba(139, 92, 246, 0.05); /* Much more transparent - was 0.15 */
+  border: 2px solid rgba(139, 92, 246, 0.9); /* Stronger border - was 0.8 */
+}
+
+html[data-theme="dim"] .cursor-follower.hover {
+  background: rgba(167, 139, 250, 0.05); /* Much more transparent - was 0.15 */
+  border: 2px solid rgba(167, 139, 250, 0.9); /* Stronger border - was 0.8 */
+}
+
+/* Hide on touch devices */
+@media (hover: none) {
+  .cursor-follower {
+    display: none !important;
+  }
+}

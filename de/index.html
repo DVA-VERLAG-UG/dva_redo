@@ -516,5 +516,18 @@
     <!-- JavaScript: Load components and handle translations -->
     <script type="module" src="../assets/js/main.js"></script>
     
+    <!-- Cursor Follower (Optional Enhancement - Won't break anything) -->
+    <link rel="stylesheet" href="../assets/css/cursor-follower.css">
+    <script type="module">
+        // Load cursor follower AFTER everything else
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                import('../assets/js/cursor-follower.js')
+                    .then(module => module.initCursorFollower())
+                    .catch(err => console.log('Cursor follower skipped:', err));
+            }, 500);
+        });
+    </script>
+    
 </body>
 </html>
