@@ -1,0 +1,513 @@
+/* ==========================================
+   KONFIGURATOR POPUP (BOOK STYLE)
+   ========================================== */
+
+.konfig-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.konfig-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Book Container - FIXED SIZE */
+.konfig-book {
+    position: relative;
+    width: 90%;
+    max-width: 1100px;
+    height: 700px; /* FIXED HEIGHT - no more jumping! */
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+html[data-theme="dim"] .konfig-book {
+    background: #1e293b;
+}
+
+.konfig-overlay.is-open .konfig-book {
+    transform: scale(1);
+}
+
+/* Progress Bar */
+.konfig-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(15, 23, 42, 0.1);
+    z-index: 10;
+}
+
+html[data-theme="dim"] .konfig-progress {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.konfig-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.konfig-progress-text {
+    position: absolute;
+    top: 16px;
+    right: 60px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(15, 23, 42, 0.6);
+}
+
+html[data-theme="dim"] .konfig-progress-text {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Close Button */
+.konfig-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(15, 23, 42, 0.1);
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 11;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+}
+
+html[data-theme="dim"] .konfig-close {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.konfig-close:hover {
+    background: rgba(220, 38, 38, 0.2);
+    color: #dc2626;
+}
+
+/* Book Pages Layout - FIXED HEIGHT */
+.konfig-pages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(700px - 4px); /* Full height minus progress bar */
+    padding-top: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Left Page - Shows answered questions */
+.konfig-page-left {
+    padding: 40px;
+    background: rgba(139, 92, 246, 0.05);
+    border-right: 2px solid rgba(15, 23, 42, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+html[data-theme="dim"] .konfig-page-left {
+    background: rgba(139, 92, 246, 0.1);
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.konfig-page-left h2 {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: #7c3aed;
+    margin: 0 0 16px;
+}
+
+.konfig-page-left p {
+    font-size: 0.95rem;
+    color: rgba(15, 23, 42, 0.7);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+html[data-theme="dim"] .konfig-page-left p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Answered Questions on Left */
+.answered-questions {
+    flex: 1;
+    margin-bottom: 24px;
+}
+
+.answered-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="dim"] .answered-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.answered-item:last-child {
+    border-bottom: none;
+}
+
+.answered-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin: 0 0 8px;
+}
+
+html[data-theme="dim"] .answered-title {
+    color: #a78bfa;
+}
+
+.answered-value {
+    font-size: 0.8rem;
+    color: rgba(15, 23, 42, 0.6);
+    line-height: 1.4;
+}
+
+html[data-theme="dim"] .answered-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Right Page - Current Question - FIXED HEIGHT */
+.konfig-page-right {
+    padding: 40px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Questions Container - FIXED HEIGHT */
+.konfig-questions {
+    position: relative;
+    flex: 1;
+    min-height: 500px; /* Prevents jumping */
+}
+
+.question-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+.question-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+    position: relative;
+}
+
+.question-slide.prev {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.question-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 8px;
+}
+
+html[data-theme="dim"] .question-title {
+    color: #fff;
+}
+
+.question-subtitle {
+    font-size: 0.9rem;
+    color: rgba(15, 23, 42, 0.6);
+    margin: 0 0 24px;
+}
+
+html[data-theme="dim"] .question-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Options */
+.question-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.option-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(15, 23, 42, 0.03);
+    border: 2px solid rgba(15, 23, 42, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dim"] .option-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.option-item:hover {
+    background: rgba(139, 92, 246, 0.05);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.option-item.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    position: relative;
+}
+
+.option-item.disabled::after {
+    content: 'Coming Soon';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #7c3aed;
+    background: rgba(139, 92, 246, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.option-checkbox {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+}
+
+.option-label {
+    flex: 1;
+    font-size: 0.95rem;
+    color: #000;
+    font-weight: 500;
+}
+
+html[data-theme="dim"] .option-label {
+    color: #fff;
+}
+
+/* File Upload */
+.upload-area {
+    margin-top: 12px;
+    padding: 24px;
+    border: 2px dashed rgba(139, 92, 246, 0.3);
+    border-radius: 12px;
+    text-align: center;
+    background: rgba(139, 92, 246, 0.05);
+}
+
+.upload-label {
+    font-weight: 600;
+    color: #7c3aed;
+    margin-bottom: 8px;
+}
+
+.upload-subtext {
+    font-size: 0.85rem;
+    color: rgba(15, 23, 42, 0.6);
+    margin-bottom: 12px;
+}
+
+html[data-theme="dim"] .upload-subtext {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Navigation Buttons */
+.konfig-navigation {
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.btn-nav {
+    padding: 12px 24px;
+    border: 2px solid rgba(15, 23, 42, 0.2);
+    background: transparent;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #000;
+}
+
+html[data-theme="dim"] .btn-nav {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.btn-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.btn-nav:not(:disabled):hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.btn-next {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 16px;
+    margin-top: 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #000;
+}
+
+html[data-theme="dim"] .form-label {
+    color: #fff;
+}
+
+.form-input,
+.form-textarea {
+    padding: 12px;
+    border: 2px solid rgba(15, 23, 42, 0.1);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dim"] .form-input,
+html[data-theme="dim"] .form-textarea {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(139, 92, 246, 0.05);
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Success Message */
+.success-message {
+    text-align: center;
+    padding: 40px;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.success-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #10b981;
+    margin: 0 0 12px;
+}
+
+.success-text {
+    font-size: 1rem;
+    color: rgba(15, 23, 42, 0.7);
+    line-height: 1.6;
+}
+
+html[data-theme="dim"] .success-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .konfig-book {
+        width: 95%;
+        height: 90vh;
+    }
+    
+    .konfig-pages {
+        grid-template-columns: 1fr;
+        height: calc(90vh - 4px);
+    }
+    
+    .konfig-page-left {
+        display: none;
+    }
+    
+    .konfig-page-right {
+        padding: 24px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

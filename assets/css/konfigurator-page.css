@@ -1,0 +1,321 @@
+/* ==========================================
+   KONFIGURATOR PAGE STYLES
+   ========================================== */
+
+/* Hero Section (Custom for Konfigurator) */
+.konfig-hero {
+    padding: 140px 20px 60px;
+    text-align: center;
+}
+
+.konfig-hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.konfig-kicker {
+    font-size: 13px;
+    color: rgba(139, 92, 246, 0.9);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+}
+
+.konfig-hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #000;
+    margin: 0 0 20px;
+}
+
+html[data-theme="dim"] .konfig-hero-title {
+    color: #fff;
+}
+
+.konfig-hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(15, 23, 42, 0.7);
+    line-height: 1.6;
+    margin: 0;
+}
+
+html[data-theme="dim"] .konfig-hero-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.konfig-main {
+    min-height: 100vh;
+}
+
+/* Trust Ticker */
+.konfig-trust {
+    padding: 20px;
+    background: rgba(139, 92, 246, 0.05);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    margin-bottom: 60px;
+}
+
+html[data-theme="dim"] .konfig-trust {
+    background: rgba(139, 92, 246, 0.1);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.konfig-container-full {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.konfig-trust-ticker {
+    font-size: 13px;
+    color: rgba(139, 92, 246, 0.9);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-align: center;
+}
+
+.konfig-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Packages Grid */
+.konfig-packages {
+    padding: 0 20px 100px;
+}
+
+.konfig-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Package Card */
+.package-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+}
+
+html[data-theme="dim"] .package-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.package-featured {
+    position: relative;
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+}
+
+.package-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 1;
+}
+
+.package-header {
+    padding: 24px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="dim"] .package-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.package-header h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 8px;
+}
+
+html[data-theme="dim"] .package-header h3 {
+    color: #fff;
+}
+
+.package-subtitle {
+    font-size: 0.9rem;
+    color: rgba(15, 23, 42, 0.6);
+    margin: 0;
+}
+
+html[data-theme="dim"] .package-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.package-body {
+    padding: 24px;
+    flex: 1;
+}
+
+.package-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="dim"] .package-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.package-row:last-child {
+    border-bottom: none;
+}
+
+.package-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #000;
+    flex-shrink: 0;
+}
+
+html[data-theme="dim"] .package-label {
+    color: #fff;
+}
+
+.package-value {
+    font-size: 0.85rem;
+    color: rgba(15, 23, 42, 0.7);
+    text-align: right;
+}
+
+html[data-theme="dim"] .package-value {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Custom Configuration Card */
+.package-custom .package-body {
+    min-height: 400px;
+}
+
+.custom-config-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-message {
+    font-size: 1.1rem;
+    color: rgba(15, 23, 42, 0.6);
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+html[data-theme="dim"] .empty-message {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.empty-hint {
+    font-size: 0.9rem;
+    color: rgba(15, 23, 42, 0.4);
+    margin: 0;
+}
+
+html[data-theme="dim"] .empty-hint {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.config-item-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="dim"] .config-item-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.config-item-row:last-child {
+    border-bottom: none;
+}
+
+.config-item-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #7c3aed;
+}
+
+html[data-theme="dim"] .config-item-label {
+    color: #a78bfa;
+}
+
+.config-item-value {
+    font-size: 0.85rem;
+    color: rgba(15, 23, 42, 0.7);
+    text-align: right;
+}
+
+html[data-theme="dim"] .config-item-value {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.package-footer {
+    padding: 24px;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+html[data-theme="dim"] .package-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-configure {
+    width: 100%;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-configure:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .konfig-container {
+        grid-template-columns: 1fr;
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .konfig-hero {
+        padding: 120px 20px 40px;
+    }
+    
+    .konfig-packages {
+        padding: 0 16px 80px;
+    }
+}

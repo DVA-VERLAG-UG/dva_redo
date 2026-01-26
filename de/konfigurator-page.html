@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konfigurator | DVAYD Publishing</title>
+    
+    <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+    
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('dvayd_theme');
+                if (theme === 'dim') {
+                    document.documentElement.setAttribute('data-theme', 'dim');
+                }
+            } catch(e) {}
+        })();
+    </script>
+    
+    <link rel="stylesheet" href="/assets/css/global.css">
+    <link rel="stylesheet" href="/assets/css/background.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/konfigurator-page.css">
+    <link rel="stylesheet" href="/assets/css/konfigurator-popup.css">
+</head>
+<body>
+    
+    <!-- Header (Direct HTML) -->
+    <header class="site-header" id="site-header">
+        <div class="header-inner">
+            
+            <!-- Logo/Brand -->
+            <a href="/de/index.html" class="brand" aria-label="DVAYD Publishing Home">
+                <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="brand-logo">
+                <span class="brand-name">DVAYD Publishing</span>
+            </a>
+
+            <!-- Right Side: Search, Theme, Languages, Menu -->
+            <div class="header-right">
+                
+                <!-- Search Bar -->
+                <div class="search-wrapper">
+                    <form class="search-form" role="search">
+                        <input 
+                            type="search" 
+                            class="search-input" 
+                            placeholder="Suchbegriff eingeben" 
+                            aria-label="Suche"
+                            id="headerSearchInput"
+                        >
+                        <button type="submit" class="search-btn" aria-label="Suchen">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                        <div class="search-dropdown" id="searchDropdown"></div>
+                    </form>
+                </div>
+
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme umschalten">
+                    <span class="theme-icon theme-icon-moon">🌙</span>
+                    <span class="theme-icon theme-icon-sun">☀️</span>
+                </button>
+
+                <!-- Language Switcher -->
+                <div class="lang-switcher">
+                    <a href="#" data-lang="de" class="lang-link is-active">DE</a>
+                    <span class="lang-sep">|</span>
+                    <a href="#" data-lang="en" class="lang-link">EN</a>
+                    <span class="lang-sep">|</span>
+                    <a href="#" data-lang="tr" class="lang-link">TR</a>
+                    <span class="lang-sep">|</span>
+                    <a href="#" data-lang="fr" class="lang-link">FR</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü" aria-expanded="false">
+                    <span class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <aside class="menu-drawer" id="menuDrawer">
+        <div class="drawer-header">
+            <h2 class="drawer-title">Menü</h2>
+            <button class="drawer-close" id="drawerClose" type="button" aria-label="Schließen">✕</button>
+        </div>
+        
+        <nav class="drawer-nav">
+            <a href="/de/index.html" class="drawer-link">Startseite</a>
+            <a href="/de/ueber-uns.html" class="drawer-link">Über uns</a>
+            <a href="/de/projekte.html" class="drawer-link">Projekte</a>
+            <a href="/de/pakete.html" class="drawer-link">Pakete</a>
+            <a href="/de/konfig.html" class="drawer-link">Konfigurator</a>
+            <a href="/de/blog/" class="drawer-link">Blog</a>
+            <a href="/de/kontakt.html" class="drawer-link">Kontakt</a>
+        </nav>
+    </aside>
+    
+    <script>
+        // Header functionality
+        (function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dim' ? 'light' : 'dim';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('dvayd_theme', newTheme);
+                });
+            }
+            
+            // Mobile Menu
+            const menuToggle = document.getElementById('menuToggle');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuDrawer = document.getElementById('menuDrawer');
+            const drawerClose = document.getElementById('drawerClose');
+            
+            function openMenu() {
+                if (menuOverlay) menuOverlay.classList.add('is-open');
+                if (menuDrawer) menuDrawer.classList.add('is-open');
+                if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+            }
+            
+            function closeMenu() {
+                if (menuOverlay) menuOverlay.classList.remove('is-open');
+                if (menuDrawer) menuDrawer.classList.remove('is-open');
+                if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+            }
+            
+            if (menuToggle) menuToggle.addEventListener('click', openMenu);
+            if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+            
+            // Header scroll behavior
+            let lastScroll = 0;
+            const header = document.getElementById('site-header');
+            
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > 100) {
+                    header?.classList.add('is-scrolled');
+                } else {
+                    header?.classList.remove('is-scrolled');
+                }
+                
+                if (currentScroll > lastScroll && currentScroll > 200) {
+                    header?.classList.add('is-hidden');
+                } else {
+                    header?.classList.remove('is-hidden');
+                }
+                
+                lastScroll = currentScroll;
+            }, { passive: true });
+        })();
+    </script>
+    
+    <!-- Hero -->
+    <section class="konfig-hero">
+        <div class="konfig-hero-container">
+            <p class="konfig-kicker">PAKETE & KONFIGURATOR</p>
+            <h1 class="konfig-hero-title">Konfiguriere deinen Erfolg</h1>
+            <p class="konfig-hero-subtitle">
+                Services starten ab 49 €. Wähle ein Paket oder stelle dir deine individuelle Lösung zusammen.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Trust -->
+    <section class="konfig-trust">
+        <div class="konfig-container-full">
+            <p class="konfig-trust-ticker">
+                Infrastructure Partner since 2016 +++ Über 124.500 Seiten gedruckt +++ Priority Check: Analyse & Erstkontakt in < 24 Std.
+            </p>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main class="konfig-main">
+        <section class="konfig-packages">
+            <div class="konfig-container">
+                
+                <!-- Starter Package -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Buch veröffentlichen Starter</h3>
+                        <p class="package-subtitle">Debütautor:innen, schneller Start (eBook)</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-row">
+                            <span class="package-label">Korrektur / Lektorat</span>
+                            <span class="package-value">Light-Korrektur (optional)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Cover Design</span>
+                            <span class="package-value">Basic-Cover (Template)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Satz (Buchlayout)</span>
+                            <span class="package-value">eBook-Satz (Standard)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">eBook-Konvertierung (ePUB)</span>
+                            <span class="package-value">✓</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Print-Veröffentlichung</span>
+                            <span class="package-value">— (optional zubuchbar)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">ISBN</span>
+                            <span class="package-value">Optional empfohlen</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Distribution</span>
+                            <span class="package-value">Amazon KDP (eBook)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Marketing</span>
+                            <span class="package-value">— (optional zubuchbar)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Rechte</span>
+                            <span class="package-value">100% beim Autor</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Deluxe Package -->
+                <div class="package-card package-featured">
+                    <div class="package-badge">Empfohlen</div>
+                    <div class="package-header">
+                        <h3>Verlagspaket Deluxe</h3>
+                        <p class="package-subtitle">Anspruchsvolle Projekte, Premium-Launch</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-row">
+                            <span class="package-label">Korrektur / Lektorat</span>
+                            <span class="package-value">✓ Intensiv-Lektorat</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Cover Design</span>
+                            <span class="package-value">✓ Premium-Cover-Art</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Satz (Buchlayout)</span>
+                            <span class="package-value">✓ Print + eBook-Satz</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">eBook-Konvertierung</span>
+                            <span class="package-value">✓</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Print-Veröffentlichung</span>
+                            <span class="package-value">✓ Print</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">ISBN</span>
+                            <span class="package-value">Wahlrecht: Eigen oder Verlags</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Distribution</span>
+                            <span class="package-value">Amazon KDP + Aggregator</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Marketing</span>
+                            <span class="package-value">✓ Launch-Kampagne</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Rechte</span>
+                            <span class="package-value">100% beim Autor</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Custom Configuration -->
+                <div class="package-card package-custom">
+                    <div class="package-header">
+                        <h3>Individuelle Konfiguration</h3>
+                        <p class="package-subtitle">Stelle dir dein perfektes Paket zusammen</p>
+                    </div>
+                    <div class="package-body">
+                        <div id="custom-config-display" class="custom-config-empty">
+                            <p class="empty-message">Noch keine Services ausgewählt</p>
+                            <p class="empty-hint">Klicke auf "Jetzt konfigurieren" um zu starten</p>
+                        </div>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn-configure" id="openConfigBtn">
+                            Jetzt konfigurieren →
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- Configurator Popup -->
+    <div class="konfig-overlay" id="configOverlay">
+        <div class="konfig-book">
+            <div class="konfig-progress">
+                <div class="konfig-progress-bar" id="progressBar"></div>
+                <span class="konfig-progress-text" id="progressText">Schritt 1 von 6</span>
+            </div>
+            <button class="konfig-close" id="closeConfigBtn">✕</button>
+            <div class="konfig-pages">
+                <div class="konfig-page konfig-page-left" id="leftPage">
+                    <h2>Jetzt anfragen</h2>
+                    <p>Beantworte ein paar Fragen und wir erstellen dir ein maßgeschneidertes Angebot.</p>
+                    <div class="konfig-navigation">
+                        <button class="btn-nav btn-prev" id="prevBtn" disabled>← Zurück</button>
+                    </div>
+                </div>
+                <div class="konfig-page konfig-page-right">
+                    <div class="konfig-questions" id="questionsContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script type="module">
+        // Load footer
+        (async function() {
+            const placeholder = document.getElementById('footer-placeholder');
+            if (placeholder) {
+                try {
+                    const response = await fetch('/components/footer.html');
+                    const html = await response.text();
+                    placeholder.innerHTML = html;
+                } catch (error) {
+                    console.error('Footer loading failed:', error);
+                }
+            }
+        })();
+    </script>
+    
+    <script type="module" src="/assets/js/konfigurator-page.js"></script>
+    
+</body>
+</html>
