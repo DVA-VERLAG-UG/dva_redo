@@ -84,7 +84,7 @@ html[data-theme="dim"] .konfig-trust {
 
 /* Packages Grid */
 .konfig-packages {
-    padding: 0 20px 100px;
+    padding: 0 20px 60px; /* Reduced from 100px to 60px */
 }
 
 .konfig-container {
@@ -258,11 +258,11 @@ html[data-theme="dim"] .config-item-row {
 .config-item-label {
     font-weight: 600;
     font-size: 0.9rem;
-    color: #7c3aed;
+    color: #000;
 }
 
 html[data-theme="dim"] .config-item-label {
-    color: #a78bfa;
+    color: #fff;
 }
 
 .config-item-value {
