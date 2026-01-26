@@ -1,0 +1,319 @@
+/* ==========================================
+   BLOG POST PAGE STYLES
+   ========================================== */
+
+:root {
+    --post-max: 900px;
+}
+
+/* Post Container */
+.post-wrap {
+    width: min(var(--post-max), calc(100% - 48px));
+    margin: 0 auto;
+    padding: calc(72px + 60px) 0 100px;
+}
+
+/* Back Button */
+.post-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #000;
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: 10px 16px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+html[data-theme="dim"] .post-back {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.post-back:hover {
+    transform: translateY(-2px);
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+html[data-theme="dim"] .post-back:hover {
+    background: rgba(139, 92, 246, 0.15);
+}
+
+/* Hero Card */
+.post-hero {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(20px);
+    margin-bottom: 24px;
+}
+
+html[data-theme="dim"] .post-hero {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.post-cover {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: none;
+    background: rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="dim"] .post-cover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.post-head {
+    padding: 32px 32px 28px;
+}
+
+.post-title {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #000;
+    font-weight: 900;
+}
+
+html[data-theme="dim"] .post-title {
+    color: #fff;
+}
+
+.post-meta {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    color: rgba(15, 23, 42, 0.6);
+    font-size: 14px;
+}
+
+html[data-theme="dim"] .post-meta {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.post-pill {
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(139, 92, 246, 0.1);
+    color: #7c3aed;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+html[data-theme="dim"] .post-pill {
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+}
+
+/* Content Body */
+.post-body {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(20px);
+    line-height: 1.7;
+}
+
+html[data-theme="dim"] .post-body {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.post-body h2,
+.post-body h3 {
+    margin: 32px 0 16px;
+    line-height: 1.3;
+    color: #000;
+    font-weight: 700;
+}
+
+html[data-theme="dim"] .post-body h2,
+html[data-theme="dim"] .post-body h3 {
+    color: #fff;
+}
+
+.post-body h2 {
+    font-size: 1.75rem;
+}
+
+.post-body h3 {
+    font-size: 1.35rem;
+}
+
+.post-body p,
+.post-body ul,
+.post-body ol {
+    margin: 0 0 16px;
+    color: rgba(15, 23, 42, 0.8);
+    font-size: 1.05rem;
+}
+
+html[data-theme="dim"] .post-body p,
+html[data-theme="dim"] .post-body ul,
+html[data-theme="dim"] .post-body ol {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.post-body ul,
+.post-body ol {
+    padding-left: 24px;
+}
+
+.post-body li {
+    margin-bottom: 8px;
+}
+
+.post-body a {
+    color: #7c3aed;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.3s ease;
+}
+
+html[data-theme="dim"] .post-body a {
+    color: #a78bfa;
+}
+
+.post-body a:hover {
+    color: #6d28d9;
+}
+
+html[data-theme="dim"] .post-body a:hover {
+    color: #c4b5fd;
+}
+
+.post-body code {
+    background: rgba(139, 92, 246, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #7c3aed;
+}
+
+html[data-theme="dim"] .post-body code {
+    background: rgba(139, 92, 246, 0.2);
+    color: #a78bfa;
+}
+
+.post-body pre {
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    padding: 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 24px 0;
+}
+
+html[data-theme="dim"] .post-body pre {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 24px 0;
+}
+
+.post-body blockquote {
+    border-left: 4px solid rgba(139, 92, 246, 0.5);
+    margin: 24px 0;
+    padding: 16px 24px;
+    background: rgba(139, 92, 246, 0.05);
+    border-radius: 0 8px 8px 0;
+}
+
+html[data-theme="dim"] .post-body blockquote {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.post-body hr {
+    border: none;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    margin: 32px 0;
+}
+
+html[data-theme="dim"] .post-body hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.post-body strong {
+    font-weight: 700;
+    color: #000;
+}
+
+html[data-theme="dim"] .post-body strong {
+    color: #fff;
+}
+
+.post-body em {
+    font-style: italic;
+}
+
+/* State Message */
+.post-state {
+    margin: 24px 0;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px dashed rgba(15, 23, 42, 0.2);
+    color: rgba(15, 23, 42, 0.7);
+    background: rgba(15, 23, 42, 0.05);
+}
+
+html[data-theme="dim"] .post-state {
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+    .post-wrap {
+        width: calc(100% - 32px);
+        padding-top: calc(72px + 40px);
+    }
+    
+    .post-head {
+        padding: 24px 20px 20px;
+    }
+    
+    .post-body {
+        padding: 24px 20px;
+    }
+    
+    .post-body h2 {
+        font-size: 1.5rem;
+    }
+    
+    .post-body h3 {
+        font-size: 1.25rem;
+    }
+}

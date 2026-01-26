@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Blogpost | DVAYD Publishing</title>
+    <meta name="description" content="Blogpost von DVAYD Publishing.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../../assets/images/favicon.png">
+    
+    <!-- Apply theme immediately -->
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('dvayd_theme');
+                if (theme === 'dim') {
+                    document.documentElement.setAttribute('data-theme', 'dim');
+                }
+            } catch(e) {}
+        })();
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/blog-post.css">
+    <link rel="stylesheet" href="../../assets/css/cursor-follower.css">
+</head>
+<body>
+    
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Main Content -->
+    <main>
+        <section class="post-wrap">
+            <a class="post-back" href="blog-index.html">
+                <span aria-hidden="true">←</span> Zurück zum Blog
+            </a>
+            
+            <div id="state" class="post-state">Lade Beitrag …</div>
+            
+            <article id="article" class="post-hero" style="display:none;">
+                <img id="cover" class="post-cover" alt="">
+                <div class="post-head">
+                    <h1 id="title" class="post-title"></h1>
+                    <div id="meta" class="post-meta"></div>
+                </div>
+            </article>
+            
+            <section id="content" class="post-body" style="display:none;"></section>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- JavaScript -->
+    <script type="module" src="../../assets/js/main.js"></script>
+    
+    <!-- Post Script -->
+    <script>
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?output=csv";
+        
+        const slug = new URLSearchParams(location.search).get("slug");
+        
+        const els = {
+            state: document.getElementById("state"),
+            article: document.getElementById("article"),
+            cover: document.getElementById("cover"),
+            title: document.getElementById("title"),
+            meta: document.getElementById("meta"),
+            content: document.getElementById("content"),
+        };
+        
+        function esc(str) {
+            return String(str ?? "").replace(/[&<>"']/g, m => ({
+                "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+            }[m]));
+        }
+        
+        function norm(s) {
+            return String(s ?? "").toLowerCase().trim();
+        }
+        
+        function splitTags(s) {
+            return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean);
+        }
+        
+        function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let cur = "";
+            let inQuotes = false;
+            
+            for(let i=0; i<text.length; i++) {
+                const c = text[i];
+                const n = text[i+1];
+                
+                if(inQuotes) {
+                    if(c === '"' && n === '"') { cur += '"'; i++; }
+                    else if(c === '"') { inQuotes = false; }
+                    else { cur += c; }
+                } else {
+                    if(c === '"') { inQuotes = true; }
+                    else if(c === ",") { row.push(cur); cur=""; }
+                    else if(c === "\n") { row.push(cur); rows.push(row); row=[]; cur=""; }
+                    else if(c === "\r") { /* ignore */ }
+                    else { cur += c; }
+                }
+            }
+            row.push(cur);
+            rows.push(row);
+            return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
+        }
+        
+        function setMetaDescription(desc) {
+            let m = document.querySelector('meta[name="description"]');
+            if(!m) {
+                m = document.createElement("meta");
+                m.setAttribute("name", "description");
+                document.head.appendChild(m);
+            }
+            m.setAttribute("content", desc);
+        }
+        
+        function renderPost(p) {
+            document.title = `${p.title} | DVAYD Blog`;
+            setMetaDescription(p.excerpt || "Blogpost von DVAYD Publishing.");
+            
+            els.title.textContent = p.title;
+            
+            const metaBits = [];
+            if(p.date) metaBits.push(`<span>${esc(p.date)}</span>`);
+            if(p.author) metaBits.push(`<span>·</span><span>${esc(p.author)}</span>`);
+            (p.tags || []).forEach(t => metaBits.push(`<span class="post-pill">${esc(t)}</span>`));
+            els.meta.innerHTML = metaBits.join(" ");
+            
+            if(p.cover) {
+                els.cover.src = p.cover;
+                els.cover.alt = p.title;
+                els.cover.style.display = "block";
+            }
+            
+            // content is treated as HTML (trusted)
+            els.content.innerHTML = p.content || "";
+            
+            els.state.style.display = "none";
+            els.article.style.display = "block";
+            els.content.style.display = "block";
+        }
+        
+        (async function init() {
+            if(!slug) {
+                els.state.textContent = "Kein Beitrag gewählt. Bitte gehe zurück zur Blog-Übersicht.";
+                return;
+            }
+            
+            try {
+                els.state.textContent = "Lade Beitrag …";
+                
+                const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+                const csv = await res.text();
+                
+                const rows = parseCSV(csv);
+                if(rows.length < 2) throw new Error("CSV has no data rows");
+                
+                const header = rows[0].map(h => norm(h));
+                const idx = (name) => header.indexOf(norm(name));
+                
+                const posts = rows.slice(1).map(r => ({
+                    slug:    r[idx("slug")] || "",
+                    title:   r[idx("title")] || "",
+                    excerpt: r[idx("excerpt")] || "",
+                    content: r[idx("content")] || "",
+                    date:    r[idx("date")] || "",
+                    author:  r[idx("author")] || "",
+                    cover:   r[idx("cover")] || "",
+                    tags:    splitTags(r[idx("tags")] || ""),
+                })).filter(p => p.slug && p.title);
+                
+                const post = posts.find(p => p.slug === slug);
+                
+                if(!post) {
+                    els.state.textContent = "Beitrag nicht gefunden. Prüfe den slug in der URL und im Sheet.";
+                    return;
+                }
+                
+                renderPost(post);
+                
+            } catch(err) {
+                console.error(err);
+                els.state.textContent = "Fehler beim Laden des Beitrags. Prüfe: (1) Sheet ist 'Published', (2) Header-Zeile heißt slug,title,excerpt,content,date,author,cover,tags.";
+            }
+        })();
+    </script>
+    
+    <!-- Cursor Follower -->
+    <script type="module">
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                import('../../assets/js/cursor-follower.js')
+                    .then(module => module.initCursorFollower())
+                    .catch(err => console.log('Cursor follower skipped:', err));
+            }, 500);
+        });
+    </script>
+    
+</body>
+</html>
