@@ -257,70 +257,55 @@ html[data-theme="dim"] .panel-info-text {
   color: rgba(255, 255, 255, 0.75);
 }
 
-/* CTA Buttons in Panel */
+/* CTA Button in Panel - Subtle Style */
 .panel-buttons {
   display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
 }
 
 .panel-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-/* Primary Button */
-.panel-btn-primary {
-  background: rgba(139, 92, 246, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(139, 92, 246, 0.5);
-  color: #fff;
-  box-shadow: 
-    0 8px 24px rgba(139, 92, 246, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.panel-btn-primary:hover {
-  background: rgba(139, 92, 246, 0.9);
-  border-color: rgba(139, 92, 246, 0.7);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.5),
-    0 0 0 1px rgba(139, 92, 246, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-/* Secondary Button */
-.panel-btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  gap: 12px;
+  padding: 0;
+  padding-bottom: 4px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid currentColor;
   color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-html[data-theme="dim"] .panel-btn-secondary {
+html[data-theme="dim"] .panel-btn {
   color: #fff;
 }
 
-.panel-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(139, 92, 246, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.panel-btn:hover {
+  color: #7c3aed;
+  border-bottom-color: #7c3aed;
+  transform: translateY(-1px);
 }
+
+html[data-theme="dim"] .panel-btn:hover {
+  color: #a78bfa;
+  border-bottom-color: #a78bfa;
+}
+
+.panel-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.panel-btn:hover svg {
+  transform: translateX(4px);
+}
+
 
 /* ==========================================
    RESPONSIVE

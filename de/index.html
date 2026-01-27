@@ -296,12 +296,9 @@
                                     Wir finden gemeinsam die beste Lösung für dein Projekt.
                                 </p>
                                 <div class="panel-buttons">
-                                    <a href="../de/pakete.html" class="panel-btn panel-btn-primary">
-                                        Pakete entdecken
-                                    </a>
-                                    <a href="../de/kontakt.html" class="panel-btn panel-btn-secondary">
-                                        Erst kurz beraten lassen
-                                    </a>
+                                    <button class="panel-btn" id="panelContactBtn">
+                                        Lass uns sprechen
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -519,6 +516,7 @@
 <script>
     const contactBtn = document.getElementById("contactBtn");
     const processContactBtn = document.getElementById("processContactBtn");
+    const panelContactBtn = document.getElementById("panelContactBtn");
     const contactOverlay = document.getElementById("contactOverlay");
     const contactClose = document.getElementById("contactClose");
     
@@ -530,6 +528,12 @@
     
     // Process section contact button
     processContactBtn?.addEventListener("click", () => {
+        contactOverlay.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+    });
+    
+    // Panel contact button
+    panelContactBtn?.addEventListener("click", () => {
         contactOverlay.classList.add("is-open");
         document.body.style.overflow = "hidden";
     });
