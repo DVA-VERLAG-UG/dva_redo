@@ -22,7 +22,7 @@
 
 .horizontal-scroll-track {
   display: flex;
-  gap: 100px;
+  gap: 40px; /* Enger: 100px → 40px */
   will-change: transform;
   transition: none;
   padding: 0 10vw;
@@ -39,7 +39,8 @@
   height: 80vh;
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 0; /* Kein gap - für Überlappung */
+  position: relative;
 }
 
 /* Panel Variants */
@@ -104,6 +105,7 @@
   box-shadow: 
     0 24px 60px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 1; /* Image behind text */
 }
 
 .panel-image img {
@@ -114,16 +116,37 @@
 }
 
 .panel-image:hover img {
-  transform: scale(1.1);
+  transform: scale(1.05); /* Weniger zoom */
 }
 
-/* Text Container */
+/* Text Container - Overlaps image */
 .panel-text {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  gap: 32px;
+  z-index: 2; /* Text over image */
+  position: relative;
+  will-change: transform; /* Für Parallax */
+}
+
+/* Text left - overlaps image on right */
+.text-left .panel-text {
+  margin-right: -120px; /* Mehr Overlap: -80px → -120px */
+  padding-right: 120px;
+}
+
+/* Text right - overlaps image on left */
+.text-right .panel-text {
+  margin-left: -120px; /* Mehr Overlap: -80px → -120px */
+  padding-left: 120px;
+}
+
+/* Parallax effect on text - moves slower */
+.scroll-panel[data-parallax] .panel-text {
+  transform: translateX(0);
+  transition: transform 0.1s linear;
 }
 
 /* Large Panel Text - More compact */
@@ -131,28 +154,61 @@
   gap: 20px;
 }
 
-/* Regular Title */
+/* Regular Title - Größer mit Effekten */
 .panel-title {
-  font-size: 3rem;
-  font-weight: 800;
+  font-size: 4rem;
+  font-weight: 900;
   color: #000;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: linear-gradient(135deg, #000, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover - Farbe ändert sich zu Lila */
+.panel-title:hover {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+  transform: translateX(8px); /* Leichte Bewegung */
 }
 
 html[data-theme="dim"] .panel-title {
-  color: #fff;
+  background: linear-gradient(135deg, #fff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
-/* Description */
+html[data-theme="dim"] .panel-title:hover {
+  background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 8px 24px rgba(139, 92, 246, 0.6);
+}
+
+/* Description - Größer */
 .panel-description {
-  font-size: 1.2rem;
+  font-size: 1.4rem; /* Größer: 1.2rem → 1.4rem */
   line-height: 1.7;
   color: rgba(15, 23, 42, 0.8);
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 html[data-theme="dim"] .panel-description {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Glass Info Box */
