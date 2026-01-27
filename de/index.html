@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="../assets/css/social-bar.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/hero.css?v=2">
+    <link rel="stylesheet" href="../assets/css/contact-popup.css">
     <link rel="stylesheet" href="../assets/css/carousel.css">
     <link rel="stylesheet" href="../assets/css/konfigurator-cta.css">
     <link rel="stylesheet" href="../assets/css/horizontal-scroll-section.css">
@@ -70,95 +71,124 @@
         <section class="hero">
             <div class="hero-container">
                 <div class="hero-content">
-                    <div class="hero-kicker">
-                        QUALITY CHECKED
-                        <span class="hero-kicker-sep"></span>
-                        BREMEN
-                        <span class="hero-kicker-sep"></span>
-                        EDITION DVAYD
-                    </div>
-                    
                     <h1 class="hero-title">Mach dein Manuskript unsterblich.</h1>
                     
                     <p class="hero-description">
-                        Gedruckt in Istanbul. Zertifiziert in Bremen. Gelesen auf der ganzen Welt. 
+                        Gedruckt in Istanbul. Zertifiziert in Bremen. Gelesen auf der ganzen Welt.<br>
                         Wir haben bereits über 220 Autoren erfolgreich in den Buchmarkt gebracht.
                     </p>
                     
                     <div class="hero-cta-group">
-                        <a href="#upload" class="hero-cta">
-                            MEINE ZERTIFIZIERUNG STARTEN
-                        </a>
-                        
-                        <a href="../de/pakete.html" class="hero-cta hero-cta-secondary">
-                            PAKETE ENTDECKEN
-                        </a>
+                        <button class="hero-cta-subtle" id="contactBtn">
+                            Kontakt aufnehmen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Process Steps Section -->
+        <section class="process-steps-section">
+            <div class="process-container">
+                
+                <!-- Header -->
+                <div class="process-header">
+                    <div class="process-kicker">Der Prozess</div>
+                    <h2 class="process-title">In 5 Schritten zum Buch</h2>
+                    <p class="process-subtitle">
+                        Klar strukturiert. Hochwertig umgesetzt. Weltweit bestellbar.
+                    </p>
+                </div>
+                
+                <!-- Timeline with Steps -->
+                <div class="process-timeline">
+                    <div class="timeline-book-bg"></div>
+                    <div class="timeline-line">
+                        <div class="timeline-line-progress"></div>
                     </div>
                     
-                    <div class="hero-features">
-                        <div class="hero-feature">
-                            <span class="hero-feature-icon">✓</span>
-                            100% Rechte bei dir
+                    <div class="process-steps">
+                        <!-- Step 1 -->
+                        <div class="process-step">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg"></div>
+                                <div class="step-icon">
+                                    <img src="../assets/images/index/process/schwarz/schreiben.png" alt="Manuskript" class="step-icon-light">
+                                    <img src="../assets/images/index/process/weiss/schreiben.png" alt="Manuskript" class="step-icon-dark">
+                                </div>
+                                <div class="step-number">1</div>
+                            </div>
+                            <h3 class="step-title">Manuskript-Check</h3>
+                            <p class="step-description">Wir sichten dein Werk kostenlos und geben dir klare nächste Schritte.</p>
                         </div>
-                        <div class="hero-feature">
-                            <span class="hero-feature-icon">✓</span>
-                            Deutscher Vertrag
+                        
+                        <!-- Step 2 -->
+                        <div class="process-step">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg"></div>
+                                <div class="step-icon">
+                                    <img src="../assets/images/index/process/schwarz/lupe.png" alt="Feinschliff" class="step-icon-light">
+                                    <img src="../assets/images/index/process/weiss/lupe.png" alt="Feinschliff" class="step-icon-dark">
+                                </div>
+                                <div class="step-number">2</div>
+                            </div>
+                            <h3 class="step-title">Feinschliff</h3>
+                            <p class="step-description">Professionelles Lektorat & Korrektorat – sauber, stilsicher, konsistent.</p>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div class="process-step">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg"></div>
+                                <div class="step-icon">
+                                    <img src="../assets/images/index/process/schwarz/design.png" alt="Design" class="step-icon-light">
+                                    <img src="../assets/images/index/process/weiss/design.png" alt="Design" class="step-icon-dark">
+                                </div>
+                                <div class="step-number">3</div>
+                            </div>
+                            <h3 class="step-title">Design & Produktion</h3>
+                            <p class="step-description">Cover-Design, Buchsatz & Druck in Premium-Qualität – Made in Istanbul.</p>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div class="process-step">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg"></div>
+                                <div class="step-icon">
+                                    <img src="../assets/images/index/process/schwarz/welt.png" alt="Distribution" class="step-icon-light">
+                                    <img src="../assets/images/index/process/weiss/welt.png" alt="Distribution" class="step-icon-dark">
+                                </div>
+                                <div class="step-number">4</div>
+                            </div>
+                            <h3 class="step-title">Welt-Distribution</h3>
+                            <p class="step-description">Dein Buch landet in allen wichtigen Online-Stores & (optional) im Buchhandel.</p>
+                        </div>
+                        
+                        <!-- Step 5 -->
+                        <div class="process-step">
+                            <div class="step-icon-wrapper">
+                                <div class="step-icon-bg"></div>
+                                <div class="step-icon">
+                                    <img src="../assets/images/index/process/schwarz/rakete.png" alt="Marketing" class="step-icon-light">
+                                    <img src="../assets/images/index/process/weiss/rakete.png" alt="Marketing" class="step-icon-dark">
+                                </div>
+                                <div class="step-number">5</div>
+                            </div>
+                            <h3 class="step-title">Launch & Marketing</h3>
+                            <p class="step-description">Wir pushen dein Buch mit gezielten Kampagnen – du bleibst bei 100 % Rechten.</p>
                         </div>
                     </div>
+                    
+                    <!-- CTA Button -->
+                    <div class="process-cta-wrapper">
+                        <button class="process-btn" id="processContactBtn">
+                            Kostenlos anfragen
+                        </button>
+                    </div>
                 </div>
+                
             </div>
         </section>
-        
-        <!-- Add-ons Carousel -->
-        <section class="addons-carousel" id="addons-carousel">
-          <!-- Carousel cards will be inserted by JavaScript -->
-        </section>
-        
-        <!-- Konfigurator CTA Overlay -->
-        <section class="konfigurator-cta">
-            <div class="konfigurator-container">
-                <h2 class="konfigurator-title">Verlags-Konfigurator</h2>
-                
-                <p class="konfigurator-description">
-                    Stelle dein Publishing-Paket in wenigen Minuten zusammen: pro Kategorie eine 
-                    Option auswählen, Prognose sehen, und danach direkt eine unverbindliche 
-                    Terminanfrage senden.
-                </p>
-                
-                <div class="konfigurator-features">
-                    <div class="konfigurator-feature">
-                        <div class="konfigurator-feature-icon">✓</div>
-                        <span>Klarer Paket-Überblick (Starter / Plus / Deluxe / EU-TR)</span>
-                    </div>
-                    <div class="konfigurator-feature">
-                        <div class="konfigurator-feature-icon">✓</div>
-                        <span>Verkaufs-Prognose & transparente Auswahl je Kategorie</span>
-                    </div>
-                    <div class="konfigurator-feature">
-                        <div class="konfigurator-feature-icon">✓</div>
-                        <span>Am Ende: Anfrage per Netlify Forms (ohne Verpflichtung)</span>
-                    </div>
-                </div>
-                
-                <div class="konfigurator-meta">
-                    <span>Dauer: ca. 2–4 Minuten</span>
-                    <span class="konfigurator-meta-sep"></span>
-                    <span>Keine Registrierung</span>
-                    <span class="konfigurator-meta-sep"></span>
-                    <span>Unverbindlich</span>
-                </div>
-                
-                <div class="konfigurator-buttons">
-                    <a href="../de/konfig.html" class="konfigurator-btn konfigurator-btn-primary">
-                        Pakete entdecken
-                    </a>
-                    <a href="../de/kontakt.html" class="konfigurator-btn konfigurator-btn-secondary">
-                        Erst kurz beraten lassen
-                    </a>
-                </div>
-            </div>
-        </section>
-        
         <!-- Horizontal Scroll Section -->
         <div class="horizontal-scroll-wrapper">
             <div class="horizontal-scroll-container">
@@ -220,149 +250,6 @@
             </div>
         </div>
         
-        <!-- Process Steps Section -->
-        <section class="process-steps-section">
-            <div class="process-container">
-                
-                <!-- Header -->
-                <div class="process-header">
-                    <div class="process-kicker">Sektion 4 • Der Prozess</div>
-                    <h2 class="process-title">In 5 Schritten zum Buch</h2>
-                    <p class="process-subtitle">
-                        Klar strukturiert. Hochwertig umgesetzt. Weltweit bestellbar.
-                    </p>
-                </div>
-                
-                <!-- Timeline -->
-                <div class="process-timeline">
-                    
-                    <!-- Background Book with Flowers Outline -->
-                    <div class="timeline-book-bg">
-                    </div>
-                    
-                    <div class="timeline-line">
-                        <div class="timeline-line-progress"></div>
-                    </div>
-                    
-                    <div class="process-steps">
-                        
-                        <!-- Step 1 -->
-                        <div class="process-step">
-                            <div class="step-icon-wrapper">
-                                <div class="step-icon-bg"></div>
-                                <div class="step-icon">
-                                    <img src="../assets/images/index/process/schwarz/schreiben.png" 
-                                         alt="Manuskript" 
-                                         class="step-icon-light">
-                                    <img src="../assets/images/index/process/weiss/schreiben.png" 
-                                         alt="Manuskript" 
-                                         class="step-icon-dark">
-                                </div>
-                                <div class="step-number">1</div>
-                            </div>
-                            <h3 class="step-title">Manuskript-Check</h3>
-                            <p class="step-description">
-                                Wir sichten dein Werk kostenlos und geben dir klare nächste Schritte.
-                            </p>
-                        </div>
-                        
-                        <!-- Step 2 -->
-                        <div class="process-step">
-                            <div class="step-icon-wrapper">
-                                <div class="step-icon-bg"></div>
-                                <div class="step-icon">
-                                    <img src="../assets/images/index/process/schwarz/lupe.png" 
-                                         alt="Feinschliff" 
-                                         class="step-icon-light">
-                                    <img src="../assets/images/index/process/weiss/lupe.png" 
-                                         alt="Feinschliff" 
-                                         class="step-icon-dark">
-                                </div>
-                                <div class="step-number">2</div>
-                            </div>
-                            <h3 class="step-title">Feinschliff</h3>
-                            <p class="step-description">
-                                Professionelles Lektorat & Korrektorat – sauber, stilsicher, konsistent.
-                            </p>
-                        </div>
-                        
-                        <!-- Step 3 -->
-                        <div class="process-step">
-                            <div class="step-icon-wrapper">
-                                <div class="step-icon-bg"></div>
-                                <div class="step-icon">
-                                    <img src="../assets/images/index/process/schwarz/design.png" 
-                                         alt="Design" 
-                                         class="step-icon-light">
-                                    <img src="../assets/images/index/process/weiss/design.png" 
-                                         alt="Design" 
-                                         class="step-icon-dark">
-                                </div>
-                                <div class="step-number">3</div>
-                            </div>
-                            <h3 class="step-title">Design</h3>
-                            <p class="step-description">
-                                Cover & Layout, die Vertrauen schaffen und sich hochwertig anfühlen.
-                            </p>
-                        </div>
-                        
-                        <!-- Step 4 -->
-                        <div class="process-step">
-                            <div class="step-icon-wrapper">
-                                <div class="step-icon-bg"></div>
-                                <div class="step-icon">
-                                    <img src="../assets/images/index/process/schwarz/buch.png" 
-                                         alt="Produktion" 
-                                         class="step-icon-light">
-                                    <img src="../assets/images/index/process/weiss/buch.png" 
-                                         alt="Produktion" 
-                                         class="step-icon-dark">
-                                </div>
-                                <div class="step-number">4</div>
-                            </div>
-                            <h3 class="step-title">Produktion</h3>
-                            <p class="step-description">
-                                ISBN + Listing (Amazon & Buchhandel) – professionell umgesetzt.
-                            </p>
-                        </div>
-                        
-                        <!-- Step 5 -->
-                        <div class="process-step">
-                            <div class="step-icon-wrapper">
-                                <div class="step-icon-bg"></div>
-                                <div class="step-icon">
-                                    <img src="../assets/images/index/process/schwarz/erfolg.png" 
-                                         alt="Marketing" 
-                                         class="step-icon-light">
-                                    <img src="../assets/images/index/process/weiss/erfolg.png" 
-                                         alt="Marketing" 
-                                         class="step-icon-dark">
-                                </div>
-                                <div class="step-number">5</div>
-                            </div>
-                            <h3 class="step-title">Marketing & Erfolg</h3>
-                            <p class="step-description">
-                                Dein Buch ist weltweit bestellbar – optional mit gezieltem Marketing.
-                            </p>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-                <!-- CTA -->
-                <div class="process-cta">
-                    <div class="process-cta-buttons">
-                        <a href="../de/kontakt.html" class="process-btn process-btn-primary">
-                            Kostenloses Gespräch
-                        </a>
-                        <a href="../de/pakete.html" class="process-btn process-btn-secondary">
-                            Pakete entdecken
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
         
         <!-- Logo Carousel Section -->
         <section class="logo-carousel-section">
@@ -529,5 +416,70 @@
         });
     </script>
     
+<!-- Contact Form Popup -->
+<div class="contact-overlay" id="contactOverlay">
+    <div class="contact-popup">
+        <button class="contact-close" id="contactClose">✕</button>
+        <div class="contact-header">
+            <h2>Kontakt aufnehmen</h2>
+            <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
+        </div>
+        <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Vorname *</label>
+                    <input type="text" name="vorname" required>
+                </div>
+                <div class="form-group">
+                    <label>Nachname *</label>
+                    <input type="text" name="nachname" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>E-Mail *</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Telefon</label>
+                <input type="tel" name="telefon">
+            </div>
+            <div class="form-group">
+                <label>Nachricht</label>
+                <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">Absenden</button>
+        </form>
+    </div>
+</div>
+<script>
+    const contactBtn = document.getElementById("contactBtn");
+    const processContactBtn = document.getElementById("processContactBtn");
+    const contactOverlay = document.getElementById("contactOverlay");
+    const contactClose = document.getElementById("contactClose");
+    
+    // Hero contact button
+    contactBtn?.addEventListener("click", () => {
+        contactOverlay.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+    });
+    
+    // Process section contact button
+    processContactBtn?.addEventListener("click", () => {
+        contactOverlay.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+    });
+    
+    contactClose?.addEventListener("click", () => {
+        contactOverlay.classList.remove("is-open");
+        document.body.style.overflow = "";
+    });
+    contactOverlay?.addEventListener("click", (e) => {
+        if (e.target === contactOverlay) {
+            contactOverlay.classList.remove("is-open");
+            document.body.style.overflow = "";
+        }
+    });
+</script>
 </body>
 </html>
