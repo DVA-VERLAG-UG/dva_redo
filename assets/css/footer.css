@@ -153,464 +153,70 @@ body {
   color: #fff;
 }
 
+
 /* ==========================================
-   FOOTER MANUSKRIPT UPLOAD
+   LET'S TALK CTA
    ========================================== */
-.dv-footer-upload {
-  margin-bottom: 44px;
-  padding: 22px;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background:
-    radial-gradient(900px 520px at 15% 0%, rgba(139, 92, 246, 0.2), transparent 60%),
-    radial-gradient(700px 420px at 85% 40%, rgba(99, 102, 241, 0.14), transparent 62%),
-    rgba(255, 255, 255, 0.04);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px) saturate(1.2);
-  -webkit-backdrop-filter: blur(12px) saturate(1.2);
 
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 22px;
-  align-items: start;
-  
-  max-width: 100%;
-  overflow: hidden; /* Prevent content from escaping */
+.dv-footer-cta {
+  margin-bottom: 80px;
+  text-align: center;
+  padding: 80px 20px;
 }
 
-/* Upload Head */
-.dv-footer-upload-head .upload-kicker {
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  margin-bottom: 10px;
-}
-
-.dv-footer-upload-head .upload-title {
-  margin: 0 0 8px;
-  font-size: 26px;
-  line-height: 1.15;
-  font-weight: 900;
+.footer-talk-btn {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 400;
+  font-style: italic;
   color: #fff;
-}
-
-.dv-footer-upload-head .upload-sub {
-  margin: 0 0 14px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-/* Chips */
-.dv-footer-upload .upload-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.dv-footer-upload .chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.86);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-/* Section */
-.dv-footer-upload .upload-section {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
   margin: 0;
-  container-type: inline-size;
-  container-name: upload-form;
-}
-
-.dv-footer-upload .upload-inner {
-  width: 100%;
-  margin: 0;
-}
-
-/* Card */
-.dv-footer-upload .upload-card {
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.18);
-  padding: 16px;
-  min-width: 280px; /* Prevent card from getting too narrow */
-}
-
-/* Grid - SIMPLE: Always stack vertically, never side-by-side */
-.dv-footer-upload .upload-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-}
-
-.dv-footer-upload .field {
-  min-width: 0;
-  width: 100%;
-}
-
-/* Container query: stack when container is narrow (regardless of viewport) */
-@container upload-form (max-width: 400px) {
-  .dv-footer-upload .upload-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Labels */
-.dv-footer-upload .field label {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-  margin-bottom: 6px;
-}
-
-/* ==========================================
-   INPUTS - PREMIUM LOOK
-   ========================================== */
-.dv-footer-upload input[type="text"],
-.dv-footer-upload input[type="email"] {
-  width: 100%;
-  height: 48px;
-  padding: 0 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(0, 0, 0, 0.32)
-  );
-  color: #fff;
-  font-size: 14.5px;
-  font-weight: 500;
-  outline: none;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 6px 18px rgba(0, 0, 0, 0.25);
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.dv-footer-upload input::placeholder {
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.dv-footer-upload input:focus {
-  border-color: rgba(139, 92, 246, 0.65);
-  background: rgba(0, 0, 0, 0.38);
-  box-shadow:
-    0 0 0 4px rgba(139, 92, 246, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-}
-
-/* iOS Safari fix */
-.dv-footer-upload input[type="text"],
-.dv-footer-upload input[type="email"] {
-  background-color: transparent;
-  -webkit-text-fill-color: #fff;
-  caret-color: #fff;
-}
-
-/* ==========================================
-   DROPZONE
-   ========================================== */
-.dv-footer-upload .dropzone {
+  line-height: 1;
   position: relative;
-  border-radius: 14px;
-  border: 1px dashed rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 14px;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
 }
 
-.dv-footer-upload .dropzone:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.dv-footer-upload .dropzone input[type="file"] {
+.footer-talk-btn::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dv-footer-upload .dz-ui {
-  pointer-events: none;
-  text-align: center;
+.footer-talk-btn:hover {
+  color: #a78bfa;
+  transform: translateY(-4px);
 }
 
-.dv-footer-upload .dz-title {
-  font-weight: 900;
-  color: #fff;
-  margin-bottom: 4px;
+.footer-talk-btn:hover::after {
+  transform: scaleX(1);
 }
 
-.dv-footer-upload .dz-meta {
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.72);
-}
-
-/* File pills */
-.dv-footer-upload .file-list {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.dv-footer-upload .file-pill {
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  background: rgba(139, 92, 246, 0.16);
-  border: 1px solid rgba(139, 92, 246, 0.26);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Actions */
-.dv-footer-upload .upload-actions {
-  margin-top: 12px;
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-.dv-footer-upload .upload-actions .btn {
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  font-weight: 900;
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-
-.dv-footer-upload .upload-actions .btn:hover {
-  transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.dv-footer-upload .upload-actions .btn.primary {
-  border: none;
-  background: linear-gradient(135deg, #8b5cf6, #6366f1);
-}
-
-.dv-footer-upload .upload-actions .btn.primary:hover {
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
-}
-
-/* Note */
-.dv-footer-upload .upload-note {
-  margin-top: 10px;
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* ==========================================
-   LOADING OVERLAY
-   ========================================== */
-.dv-footer-upload .upload-loading {
-  position: fixed;
-  inset: 0;
-  display: none;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 9999;
-}
-
-.dv-footer-upload .upload-loading.is-on {
-  display: grid;
-}
-
-.dv-footer-upload .loading-card {
-  width: min(420px, calc(100% - 40px));
-  padding: 18px 18px 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(10, 12, 20, 0.75);
-  color: #fff;
-  text-align: center;
-}
-
-.dv-footer-upload .spinner {
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.28);
-  border-top-color: rgba(255, 255, 255, 0.9);
-  animation: dvSpin 0.7s linear infinite;
-  margin: 0 auto 10px;
-}
-
-@keyframes dvSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.dv-footer-upload .loading-title {
-  font-weight: 900;
-  margin-bottom: 10px;
-}
-
-.dv-footer-upload .loading-bar {
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.dv-footer-upload .loading-bar span {
-  display: block;
-  height: 100%;
-  width: 45%;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #8b5cf6, #6366f1);
-  animation: dvBar 1.1s ease-in-out infinite;
-}
-
-@keyframes dvBar {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(260%);
-  }
+.footer-talk-btn:active {
+  transform: translateY(-2px);
 }
 
 /* ==========================================
    RESPONSIVE
    ========================================== */
 
-/* Stack upload form left/right sections earlier */
-@media (max-width: 1100px) {
-  .dv-footer-upload {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-
-/* Stack name/email fields - this is the key fix */
-@media (max-width: 900px) {
-  .dv-footer-upload .upload-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dv-footer-upload .upload-actions {
-    justify-content: stretch;
-  }
-
-  .dv-footer-upload .upload-actions .btn {
-    width: 100%;
-  }
-}
-
-/* Footer grid responsive */
 @media (max-width: 768px) {
-  .dv-footer-grid {
-    grid-template-columns: 1fr 1fr;
+  .dv-footer-cta {
+    padding: 60px 20px;
+    margin-bottom: 60px;
   }
-}
-
-@media (max-width: 520px) {
-  .dv-footer-grid {
-    grid-template-columns: 1fr;
+  
+  .footer-talk-btn {
+    font-size: clamp(3rem, 10vw, 6rem);
   }
-
-  .dv-footer-inner {
-    padding: 40px 16px 20px;
-  }
-
-  .dv-footer-upload {
-    padding: 18px;
-  }
-
-  .dv-footer-upload-head .upload-title {
-    font-size: 22px;
-  }
-}
-
-/* =========================================================
-   FIX: Name/E-Mail overlap in footer upload form (scoped)
-   Paste at the VERY END of your CSS
-   ========================================================= */
-
-.dv-footer-upload .upload-card form{
-  position: relative;
-}
-
-/* Make the grid a normal vertical flow (no surprises) */
-.dv-footer-upload .upload-grid{
-  display: grid !important;
-  grid-template-columns: 1fr !important;
-  gap: 12px !important;
-  width: 100% !important;
-}
-
-/* Each field: stacked label + input */
-.dv-footer-upload .field{
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 6px !important;
-  width: 100% !important;
-  min-width: 0 !important;
-
-  /* critical: neutralize global positioning/transforms */
-  position: relative !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  transform: none !important;
-  float: none !important;
-  clear: both !important;
-}
-
-/* Labels must take space above inputs */
-.dv-footer-upload .field > label{
-  display: block !important;
-  position: static !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1.2 !important;
-  transform: none !important;
-}
-
-/* Inputs must remain in normal document flow */
-.dv-footer-upload .field > input[type="text"],
-.dv-footer-upload .field > input[type="email"]{
-  display: block !important;
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-
-  margin: 0 !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Dropzone: also prevent weird absolute bleed */
-.dv-footer-upload .dropzone{
-  position: relative !important;
-}
-
-/* Optional: ensure .full doesn’t have hidden layout rules */
-.dv-footer-upload .field.full{
-  width: 100% !important;
 }
