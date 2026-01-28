@@ -296,6 +296,44 @@ html[data-theme="dim"] .review-badge {
   gap: 30px;
 }
 
+/* Dot Indicator - Below Cards */
+.reviews-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.reviews-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.reviews-dot:hover {
+  background: rgba(139, 92, 246, 0.4);
+  transform: scale(1.2);
+}
+
+.reviews-dot.active {
+  width: 32px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+}
+
+html[data-theme="dim"] .reviews-dot {
+  background: rgba(139, 92, 246, 0.25);
+}
+
+html[data-theme="dim"] .reviews-dot:hover {
+  background: rgba(139, 92, 246, 0.45);
+}
+
 .reviews-nav-btn {
   width: 48px;
   height: 48px;

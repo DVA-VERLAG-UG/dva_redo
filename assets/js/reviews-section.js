@@ -212,6 +212,55 @@ function initReviewsCarousel() {
   
   let reviews = [...FALLBACK_REVIEWS];
   
+  // Create dot indicators
+  function createDots() {
+    // Create dots container if it doesn't exist
+    let dotsContainer = document.querySelector('.reviews-dots');
+    if (!dotsContainer) {
+      dotsContainer = document.createElement('div');
+      dotsContainer.className = 'reviews-dots';
+      stack.parentElement.appendChild(dotsContainer);
+    }
+    
+    // Clear existing dots
+    dotsContainer.innerHTML = '';
+    
+    // Create dots based on number of "pages" (2 cards visible at once)
+    const visibleCards = window.innerWidth > 1024 ? 2 : 1;
+    const totalPages = Math.max(1, reviews.length - visibleCards + 1);
+    
+    for (let i = 0; i < totalPages; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'reviews-dot';
+      dot.dataset.page = i;
+      
+      // Click to scroll to page
+      dot.addEventListener('click', () => {
+        const cardWidth = c1.offsetWidth + 30;
+        stack.scrollTo({ left: i * cardWidth, behavior: 'smooth' });
+      });
+      
+      dotsContainer.appendChild(dot);
+    }
+  }
+  
+  // Update active dot based on scroll position
+  function updateDots() {
+    const dots = document.querySelectorAll('.reviews-dot');
+    if (dots.length === 0) return;
+    
+    const cardWidth = c1.offsetWidth + 30;
+    const currentPage = Math.round(stack.scrollLeft / cardWidth);
+    
+    dots.forEach((dot, index) => {
+      if (index === currentPage) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+  
   // Render all cards - dynamically add more if needed
   function renderAllCards() {
     if (reviews.length === 0) return;
@@ -262,6 +311,9 @@ function initReviewsCarousel() {
     // Update button states
     prevBtn.disabled = scrollLeft <= 0;
     nextBtn.disabled = scrollLeft >= scrollWidth - 5; // -5 for tolerance
+    
+    // Update dots
+    updateDots();
   }
   
   // Scroll to specific card
@@ -293,7 +345,10 @@ function initReviewsCarousel() {
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateProgress, 250);
+    resizeTimer = setTimeout(() => {
+      createDots(); // Recreate dots for new layout
+      updateProgress();
+    }, 250);
   });
   
   // Auto-scroll every 8 seconds
@@ -338,6 +393,7 @@ function initReviewsCarousel() {
   
   // Initial setup
   renderAllCards();
+  createDots(); // Create dots
   updateProgress();
   startAutoScroll();
   
@@ -346,6 +402,7 @@ function initReviewsCarousel() {
     .then((loaded) => {
       reviews = loaded;
       renderAllCards();
+      createDots(); // Recreate dots with correct count
       updateProgress();
     })
     .catch((err) => {
