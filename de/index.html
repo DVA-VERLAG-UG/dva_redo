@@ -54,7 +54,7 @@
     <link rel="stylesheet" href="../assets/css/konfig-showcase.css">
     <link rel="stylesheet" href="../assets/css/logo-carousel.css">
     <link rel="stylesheet" href="../assets/css/bridge-section.css">
-    <link rel="stylesheet" href="../assets/css/reviews-section.css">
+    <link rel="stylesheet" href="../assets/css/stats-combined-section.css">
     <link rel="stylesheet" href="../assets/css/news-section.css">
     
     <!-- Favicon -->
@@ -190,6 +190,7 @@
                 
             </div>
         </section>
+        
         <!-- Konfigurator Showcase Section -->
         <section class="konfig-showcase">
             <div class="konfig-showcase-container">
@@ -202,7 +203,6 @@
                             <source src="../assets/videos/konfigurator-demo.webm" type="video/webm">
                         </video>
                     </div>
-                    
                 </div>
                 
                 <!-- Text Side (Right) -->
@@ -308,80 +308,52 @@
             </div>
         </div>
         
-        
         <!-- Logo Carousel Section -->
         <section class="logo-carousel-section">
             <div class="logo-carousel-container">
-                
-                <!-- Header -->
-                <div class="logo-carousel-header">
-                    <h2 class="logo-carousel-title">Über 20 Jahre Erfahrung</h2>
-                    <p class="logo-carousel-subtitle">
-                        Wir arbeiten mit allen großen Online-Shops zusammen – weltweit verfügbar
-                    </p>
-                </div>
-                
                 <!-- Carousel -->
                 <div class="logo-carousel-wrapper">
                     <div class="logo-carousel-track">
                         <!-- Logos will be inserted by JavaScript -->
                     </div>
                 </div>
-                
             </div>
         </section>
         
-        <!-- Bridge Section -->
-        <section class="bridge-section">
-            <div class="bridge-container">
-                <div class="bridge-content">
-                    <div class="bridge-line"></div>
-                    <p class="bridge-text">
-                        Aber hör nicht nur auf uns – hör, was unsere Autoren sagen
-                    </p>
-                    <div class="bridge-arrow">↓</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Reviews Section -->
-        <section class="reviews-section">
-            <div class="reviews-container">
+        <!-- Combined Stats Section (200+ Authors & 20+ Years) - NEW -->
+        <section class="stats-combined-section">
+            <div class="stats-combined-container">
                 
-                <!-- Header with animated counter -->
-                <div class="reviews-header">
-                    <div class="reviews-kicker">Warum wir keine Konkurrenz haben</div>
-                    <div class="reviews-counter">0+</div>
-                    <h2 class="reviews-title">Autoren erfolgreich in den Buchmarkt gebracht</h2>
-                    <p class="reviews-subtitle">
+                <!-- Left Panel: 200+ Authors -->
+                <div class="stats-panel-left">
+                    <div class="stats-panel-kicker">Warum wir keine Konkurrenz haben</div>
+                    <div class="stats-panel-counter">0+</div>
+                    <h2 class="stats-panel-title">Autoren erfolgreich in den Buchmarkt gebracht</h2>
+                    <p class="stats-panel-subtitle">
                         Die meisten Dienstleister verwalten nur Dateien. Wir schaffen Marktzugänge.
                     </p>
-                    <p class="reviews-description">
+                    <p class="stats-panel-description">
                         Während andere sich in Bürokratie verlieren, haben wir eine direkte Pipeline 
                         zwischen Produktion und Vertrieb gebaut.
                     </p>
                 </div>
                 
-                <!-- Reviews Stack -->
-                <div class="reviews-stack-wrapper">
-                    <div class="reviews-stack" id="reviewsStack">
-                        <div class="review-card" id="reviewCard1">
-                            <!-- Content loaded by JavaScript -->
-                        </div>
-                        <div class="review-card" id="reviewCard2">
-                            <!-- Content loaded by JavaScript -->
-                        </div>
-                        <div class="review-card" id="reviewCard3">
-                            <!-- Content loaded by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <!-- Navigation -->
-                    <div class="reviews-nav">
-                        <button class="reviews-nav-btn" id="reviewsPrev" aria-label="Previous review">←</button>
-                        <button class="reviews-nav-btn" id="reviewsNext" aria-label="Next review">→</button>
-                    </div>
+                <!-- Right Panel: 20+ Years Experience -->
+                <div class="stats-panel-right">
+                    <div class="stats-panel-kicker">Über zwei Jahrzehnte Expertise</div>
+                    <div class="stats-panel-counter">0+</div>
+                    <h2 class="stats-panel-title">Jahre Erfahrung im Publishing</h2>
+                    <p class="stats-panel-subtitle">
+                        Wir arbeiten mit allen großen Online-Shops zusammen – weltweit verfügbar.
+                    </p>
+                    <p class="stats-panel-description">
+                        Von lokalen Buchhandlungen bis zu internationalen Plattformen wie Amazon, 
+                        Google Books, Kobo und Thalia – dein Buch erreicht Leser überall.
+                    </p>
                 </div>
+                
+                <!-- Decorative accent line between panels (desktop only) -->
+                <div class="stats-panel-accent"></div>
                 
             </div>
         </section>
@@ -464,13 +436,15 @@
     <!-- Horizontal Scroll Parallax -->
     <script src="../assets/js/horizontal-scroll-parallax.js"></script>
     
-    <!-- Konfigurator Showcase Parallax - NEW -->
+    <!-- Konfigurator Showcase Parallax -->
     <script src="../assets/js/konfig-showcase-parallax.js"></script>
     
-    <!-- Cursor Follower (Optional Enhancement - Won't break anything) -->
+    <!-- Combined Stats Section Parallax - NEW -->
+    <script src="../assets/js/stats-combined-section.js"></script>
+    
+    <!-- Cursor Follower (Optional Enhancement) -->
     <link rel="stylesheet" href="../assets/css/cursor-follower.css">
     <script type="module">
-        // Load cursor follower AFTER everything else
         window.addEventListener('load', () => {
             setTimeout(() => {
                 import('../assets/js/cursor-follower.js')
@@ -480,77 +454,79 @@
         });
     </script>
     
-<!-- Contact Form Popup -->
-<div class="contact-overlay" id="contactOverlay">
-    <div class="contact-popup">
-        <button class="contact-close" id="contactClose">✕</button>
-        <div class="contact-header">
-            <h2>Kontakt aufnehmen</h2>
-            <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
+    <!-- Contact Form Popup -->
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-popup">
+            <button class="contact-close" id="contactClose">✕</button>
+            <div class="contact-header">
+                <h2>Kontakt aufnehmen</h2>
+                <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
+            </div>
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" name="vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname *</label>
+                        <input type="text" name="nachname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>E-Mail *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" name="telefon">
+                </div>
+                <div class="form-group">
+                    <label>Nachricht</label>
+                    <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Absenden</button>
+            </form>
         </div>
-        <form class="contact-form" name="contact" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact">
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Vorname *</label>
-                    <input type="text" name="vorname" required>
-                </div>
-                <div class="form-group">
-                    <label>Nachname *</label>
-                    <input type="text" name="nachname" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>E-Mail *</label>
-                <input type="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label>Telefon</label>
-                <input type="tel" name="telefon">
-            </div>
-            <div class="form-group">
-                <label>Nachricht</label>
-                <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Absenden</button>
-        </form>
     </div>
-</div>
-<script>
-    const contactBtn = document.getElementById("contactBtn");
-    const processContactBtn = document.getElementById("processContactBtn");
-    const panelContactBtn = document.getElementById("panelContactBtn");
-    const contactOverlay = document.getElementById("contactOverlay");
-    const contactClose = document.getElementById("contactClose");
     
-    // Hero contact button
-    contactBtn?.addEventListener("click", () => {
-        contactOverlay.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-    });
-    
-    // Process section contact button
-    processContactBtn?.addEventListener("click", () => {
-        contactOverlay.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-    });
-    
-    // Panel contact button
-    panelContactBtn?.addEventListener("click", () => {
-        contactOverlay.classList.add("is-open");
-        document.body.style.overflow = "hidden";
-    });
-    
-    contactClose?.addEventListener("click", () => {
-        contactOverlay.classList.remove("is-open");
-        document.body.style.overflow = "";
-    });
-    contactOverlay?.addEventListener("click", (e) => {
-        if (e.target === contactOverlay) {
+    <script>
+        const contactBtn = document.getElementById("contactBtn");
+        const processContactBtn = document.getElementById("processContactBtn");
+        const panelContactBtn = document.getElementById("panelContactBtn");
+        const contactOverlay = document.getElementById("contactOverlay");
+        const contactClose = document.getElementById("contactClose");
+        
+        // Hero contact button
+        contactBtn?.addEventListener("click", () => {
+            contactOverlay.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+        });
+        
+        // Process section contact button
+        processContactBtn?.addEventListener("click", () => {
+            contactOverlay.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+        });
+        
+        // Panel contact button
+        panelContactBtn?.addEventListener("click", () => {
+            contactOverlay.classList.add("is-open");
+            document.body.style.overflow = "hidden";
+        });
+        
+        contactClose?.addEventListener("click", () => {
             contactOverlay.classList.remove("is-open");
             document.body.style.overflow = "";
-        }
-    });
-</script>
+        });
+        
+        contactOverlay?.addEventListener("click", (e) => {
+            if (e.target === contactOverlay) {
+                contactOverlay.classList.remove("is-open");
+                document.body.style.overflow = "";
+            }
+        });
+    </script>
 </body>
 </html>
