@@ -12,7 +12,7 @@ export function initLogoCarousel() {
     return;
   }
 
-  // Logo data
+  // Logo dataa
   const logos = [
     { name: 'Amazon', file: 'amazon.png' },
     { name: 'Google Books', file: 'google-books.png' },
@@ -35,7 +35,7 @@ export function initLogoCarousel() {
     logoItem.className = 'logo-carousel-item'; // Changed from 'logo-item'
     
     const img = document.createElement('img');
-    img.src = `${BASE_PATH}/../assets/images/logos/${logo.file}`;
+    img.src = `${BASE_PATH}/../assets/images/index/logos/${logo.file}`;
     img.alt = logo.name;
     img.loading = 'lazy';
     
