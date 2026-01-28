@@ -1,5 +1,5 @@
 /* ==========================================
-   LOGO CAROUSEL SECTION - INDEPENDENT
+   LOGO CAROUSEL SECTION - BIGGER LOGOS
    ========================================== */
 
 .logo-carousel-section {
@@ -14,17 +14,16 @@
   margin: 0 auto;
 }
 
-/* Section Header - RENAMED to avoid conflicts a*/
+/* Section Header */
 .logo-carousel-header {
   text-align: center;
   margin-bottom: 60px;
   padding: 0 20px;
-  opacity: 1; /* Changed to 1 like reviews */
-  transform: translateY(0); /* Changed to 0 */
+  opacity: 1;
+  transform: translateY(0);
   transition: all 0.8s ease;
 }
 
-/* Animation on scroll - optional enhancement */
 .logo-carousel-header.logo-visible {
   opacity: 1;
   transform: translateY(0);
@@ -58,13 +57,13 @@ html[data-theme="dim"] .logo-carousel-subtitle {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 60px 0; /* More padding for bigger logos */
 }
 
 /* Carousel Track */
 .logo-carousel-track {
   display: flex;
-  gap: 80px;
+  gap: 100px; /* Bigger gap between logos */
   animation: scrollLogos 30s linear infinite;
   width: max-content;
 }
@@ -83,10 +82,10 @@ html[data-theme="dim"] .logo-carousel-subtitle {
   }
 }
 
-/* Logo Item */
+/* Logo Item - BIGGER */
 .logo-carousel-item {
   flex-shrink: 0;
-  height: 80px;
+  height: 120px; /* 50% bigger than before (was 80px) */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,13 +96,13 @@ html[data-theme="dim"] .logo-carousel-subtitle {
 
 .logo-carousel-item:hover {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.15); /* Slightly bigger hover effect */
 }
 
 .logo-carousel-item img {
   height: 100%;
   width: auto;
-  max-width: 200px;
+  max-width: 300px; /* Bigger max width (was 200px) */
   object-fit: contain;
   transition: filter 0.3s ease;
 }
@@ -124,7 +123,7 @@ html[data-theme="dim"] .logo-carousel-item img {
   content: '';
   position: absolute;
   top: 0;
-  width: 150px;
+  width: 200px; /* Wider fade for bigger logos */
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -169,16 +168,20 @@ html[data-theme="dim"] .logo-carousel-wrapper::after {
   }
 
   .logo-carousel-track {
-    gap: 60px;
+    gap: 70px;
   }
 
   .logo-carousel-item {
-    height: 60px;
+    height: 90px;
+  }
+
+  .logo-carousel-item img {
+    max-width: 220px;
   }
 
   .logo-carousel-wrapper::before,
   .logo-carousel-wrapper::after {
-    width: 80px;
+    width: 100px;
   }
 }
 
@@ -188,10 +191,14 @@ html[data-theme="dim"] .logo-carousel-wrapper::after {
   }
 
   .logo-carousel-track {
-    gap: 40px;
+    gap: 50px;
   }
 
   .logo-carousel-item {
-    height: 50px;
+    height: 70px;
+  }
+
+  .logo-carousel-item img {
+    max-width: 180px;
   }
 }

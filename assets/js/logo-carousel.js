@@ -18,8 +18,7 @@ export function initLogoCarousel() {
     { name: 'Google Books', file: 'google-books.png' },
     { name: 'Thalia', file: 'thalia.png' },
     { name: 'Hugendubel', file: 'hugendubel.png' },
-    { name: 'Kobo', file: 'kobo.png' },
-    { name: 'Apple Books', file: 'apple-books.png' }
+    { name: 'Kobo', file: 'kobo.png' }
   ];
 
   // Detect base path for GitHub Pages vs local
