@@ -1,5 +1,5 @@
 /* ==========================================
-   REVIEWS SECTION - HORIZONTAL SLIDER (5 CARDS)
+   REVIEWS SECTION - TRUE HORIZONTAL SCROLL
    ========================================== */
 
 .reviews-section {
@@ -74,60 +74,40 @@ html[data-theme="dim"] .reviews-subtitle {
   display: none;
 }
 
-/* Cards Wrapper - Overflow Container */
+/* Cards Wrapper - Horizontal Scroll Container */
 .reviews-stack-wrapper {
   position: relative;
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
-  overflow: hidden; /* Hide cards sliding out */
+  overflow: hidden;
 }
 
-/* Cards Track - With Smooth Transition */
+/* Cards Track - Horizontal Scroller */
 .reviews-stack {
-  position: relative;
-  height: auto;
-  min-height: 320px;
   display: flex;
   gap: 30px;
-  overflow: visible;
-  transition: none; /* No default transition */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding: 20px 0;
+  min-height: 350px;
 }
 
-/* Enable smooth transition during switching */
-.reviews-stack.is-switching {
-  pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide */
+/* Hide scrollbar Webkit */
+.reviews-stack::-webkit-scrollbar {
+  display: none;
 }
 
-.reviews-stack.is-switching .review-card {
-  will-change: transform;
-}
-
-/* Smooth horizontal slide animations */
-.reviews-stack[data-direction="next"].is-switching {
-  transform: translateX(-100%);
-}
-
-.reviews-stack[data-direction="prev"].is-switching {
-  transform: translateX(100%);
-}
-
-/* Reset transform after animation */
-.reviews-stack:not(.is-switching) {
-  transform: translateX(0);
-}
-
-/* Individual Review Cards - All Visible in Track */
+/* Individual Review Cards - All Preloaded */
 .review-card {
-  position: relative !important;
-  flex: 0 0 calc(50% - 15px); /* 2 cards visible at once */
-  width: calc(50% - 15px);
-  min-width: 450px;
-  max-width: none;
-  left: auto !important;
-  transform: none !important;
-  top: auto !important;
+  flex: 0 0 calc(50% - 15px); /* 2 cards visible */
+  min-width: calc(50% - 15px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
@@ -143,6 +123,7 @@ html[data-theme="dim"] .reviews-subtitle {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: block;
+  position: relative;
 }
 
 html[data-theme="dim"] .review-card {
@@ -153,16 +134,24 @@ html[data-theme="dim"] .review-card {
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Show all 5 cards (with visibility overrides) */
+/* All cards are always visible in the scroll track */
 #reviewCard1,
 #reviewCard2,
 #reviewCard3,
 #reviewCard4,
-#reviewCard5 {
+#reviewCard5,
+#reviewCard6,
+#reviewCard7,
+#reviewCard8,
+#reviewCard9,
+#reviewCard10 {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
-  display: block !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none !important;
 }
 
 .review-card:hover {
@@ -340,7 +329,7 @@ html[data-theme="dim"] .reviews-nav-btn {
   cursor: not-allowed;
 }
 
-/* Progress Bar */
+/* Progress Bar - More Visible */
 .reviews-progress {
   flex: 1;
   display: flex;
@@ -351,36 +340,37 @@ html[data-theme="dim"] .reviews-nav-btn {
 
 .reviews-progress-bar {
   flex: 1;
-  height: 3px;
-  background: rgba(139, 92, 246, 0.1);
+  height: 4px; /* Slightly thicker */
+  background: rgba(139, 92, 246, 0.2); /* More visible */
   border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
 
 html[data-theme="dim"] .reviews-progress-bar {
-  background: rgba(139, 92, 246, 0.15);
+  background: rgba(139, 92, 246, 0.25);
 }
 
 .reviews-progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #7c3aed, #a78bfa);
   border-radius: 10px;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.3s ease;
   width: 0%;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5); /* Glow effect */
 }
 
 .reviews-progress-text {
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(15, 23, 42, 0.6);
+  color: rgba(15, 23, 42, 0.7); /* More visible */
   white-space: nowrap;
   min-width: 60px;
   text-align: right;
 }
 
 html[data-theme="dim"] .reviews-progress-text {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* ==========================================
@@ -389,7 +379,6 @@ html[data-theme="dim"] .reviews-progress-text {
 @media (max-width: 1024px) {
   .review-card {
     flex: 0 0 100%;
-    width: 100%;
     min-width: 100%;
   }
 }
@@ -405,7 +394,6 @@ html[data-theme="dim"] .reviews-progress-text {
 
   .review-card {
     padding: 28px;
-    min-width: 100%;
   }
 
   .reviews-nav {
