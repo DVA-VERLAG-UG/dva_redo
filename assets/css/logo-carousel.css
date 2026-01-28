@@ -1,30 +1,31 @@
 /* ==========================================
-   LOGO CAROUSEL SECTION
+   LOGO CAROUSEL SECTION - INDEPENDENT
    ========================================== */
 
 .logo-carousel-section {
   position: relative;
-  padding: 80px 0 40px 0; /* Reduced bottom padding */
+  padding: 80px 0 40px 0;
   overflow: hidden;
   background: transparent;
 }
 
 .logo-carousel-container {
-  width: 100%; /* Full width instead of max-width */
+  width: 100%;
   margin: 0 auto;
 }
 
-/* Section Header */
+/* Section Header - RENAMED to avoid conflicts */
 .logo-carousel-header {
   text-align: center;
   margin-bottom: 60px;
-  padding: 0 20px; /* Add padding only to header */
-  opacity: 0;
-  transform: translateY(30px);
+  padding: 0 20px;
+  opacity: 1; /* Changed to 1 like reviews */
+  transform: translateY(0); /* Changed to 0 */
   transition: all 0.8s ease;
 }
 
-.logo-carousel-header.visible {
+/* Animation on scroll - optional enhancement */
+.logo-carousel-header.logo-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -83,7 +84,7 @@ html[data-theme="dim"] .logo-carousel-subtitle {
 }
 
 /* Logo Item */
-.logo-item {
+.logo-carousel-item {
   flex-shrink: 0;
   height: 80px;
   display: flex;
@@ -94,27 +95,26 @@ html[data-theme="dim"] .logo-carousel-subtitle {
   cursor: pointer;
 }
 
-.logo-item:hover {
+.logo-carousel-item:hover {
   opacity: 1;
   transform: scale(1.1);
 }
 
-.logo-item img {
+.logo-carousel-item img {
   height: 100%;
   width: auto;
   max-width: 200px;
   object-fit: contain;
-  /* Color inversion for theme switching */
   transition: filter 0.3s ease;
 }
 
 /* Light mode: Keep logos as they are (assuming they're dark) */
-.logo-item img {
+.logo-carousel-item img {
   filter: brightness(0) saturate(100%);
 }
 
 /* Dark mode: Invert to white */
-html[data-theme="dim"] .logo-item img {
+html[data-theme="dim"] .logo-carousel-item img {
   filter: brightness(0) saturate(100%) invert(1);
 }
 
@@ -172,7 +172,7 @@ html[data-theme="dim"] .logo-carousel-wrapper::after {
     gap: 60px;
   }
 
-  .logo-item {
+  .logo-carousel-item {
     height: 60px;
   }
 
@@ -191,7 +191,7 @@ html[data-theme="dim"] .logo-carousel-wrapper::after {
     gap: 40px;
   }
 
-  .logo-item {
+  .logo-carousel-item {
     height: 50px;
   }
 }

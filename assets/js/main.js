@@ -138,9 +138,10 @@ async function init() {
   console.log('1️⃣3️⃣ Initializing news...');
   safeInit('News', initNews);
 
-  // Note: Konfig Showcase Parallax is loaded separately in index.html via script tag
-  // This is because it's a standalone vanilla JS module (not ES6 module)
+  // Note: Konfig Showcase Parallax & Stats Combined Parallax loaded separately via script tag
+  // This is because they are standalone vanilla JS modules (not ES6 modules)
   console.log('ℹ️ Konfig Showcase Parallax loaded separately via script tag');
+  console.log('ℹ️ Stats Combined Parallax loaded separately via script tag');
 
   // Mark page as ready
   document.documentElement.classList.add('page-loaded');

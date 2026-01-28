@@ -55,6 +55,7 @@
     <link rel="stylesheet" href="../assets/css/logo-carousel.css">
     <link rel="stylesheet" href="../assets/css/bridge-section.css">
     <link rel="stylesheet" href="../assets/css/stats-combined-section.css">
+    <link rel="stylesheet" href="../assets/css/reviews-section.css">
     <link rel="stylesheet" href="../assets/css/news-section.css">
     
     <!-- Favicon -->
@@ -320,7 +321,7 @@
             </div>
         </section>
         
-        <!-- Combined Stats Section (200+ Authors & 20+ Years) - NEW -->
+        <!-- Combined Stats Section (200+ Authors & 20+ Years) -->
         <section class="stats-combined-section">
             <div class="stats-combined-container">
                 
@@ -354,6 +355,43 @@
                 
                 <!-- Decorative accent line between panels (desktop only) -->
                 <div class="stats-panel-accent"></div>
+                
+            </div>
+        </section>
+        
+        <!-- Reviews Section -->
+        <section class="reviews-section">
+            <div class="reviews-container">
+                
+                <!-- Header with animated counter -->
+                <div class="reviews-header">
+                    <div class="reviews-kicker">Was unsere Autoren sagen</div>
+                    <h2 class="reviews-title">Erfolgsgeschichten aus der Praxis</h2>
+                    <p class="reviews-subtitle">
+                        Echte Erfahrungen von Autoren, die mit uns ihren Traum vom eigenen Buch verwirklicht haben.
+                    </p>
+                </div>
+                
+                <!-- Reviews Stack -->
+                <div class="reviews-stack-wrapper">
+                    <div class="reviews-stack" id="reviewsStack">
+                        <div class="review-card" id="reviewCard1">
+                            <!-- Content loaded by JavaScript -->
+                        </div>
+                        <div class="review-card" id="reviewCard2">
+                            <!-- Content loaded by JavaScript -->
+                        </div>
+                        <div class="review-card" id="reviewCard3">
+                            <!-- Content loaded by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation -->
+                    <div class="reviews-nav">
+                        <button class="reviews-nav-btn" id="reviewsPrev" aria-label="Previous review">←</button>
+                        <button class="reviews-nav-btn" id="reviewsNext" aria-label="Next review">→</button>
+                    </div>
+                </div>
                 
             </div>
         </section>
@@ -439,7 +477,7 @@
     <!-- Konfigurator Showcase Parallax -->
     <script src="../assets/js/konfig-showcase-parallax.js"></script>
     
-    <!-- Combined Stats Section Parallax - NEW -->
+    <!-- Combined Stats Section Parallax -->
     <script src="../assets/js/stats-combined-section.js"></script>
     
     <!-- Cursor Follower (Optional Enhancement) -->

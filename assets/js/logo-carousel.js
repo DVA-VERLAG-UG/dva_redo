@@ -1,63 +1,70 @@
-// logo-carousel.js - Auto-scrolling logo carousel
+// logo-carousel.js - FIXED with unique selectors
 
 export function initLogoCarousel() {
-  console.log('🎨 Initializing logo carousel...');
-  
   const section = document.querySelector('.logo-carousel-section');
-  if (!section) {
-    console.warn('Logo carousel section not found');
-    return;
-  }
-  
+  if (!section) return;
+
   const track = section.querySelector('.logo-carousel-track');
+  const header = section.querySelector('.logo-carousel-header');
+  
   if (!track) {
-    console.warn('Logo carousel track not found');
+    console.error('Logo carousel track not found');
     return;
   }
-  
-  // Logo filenames (add all your logos here)
+
+  // Logo data
   const logos = [
-    'amazon.png',
-    'google-books.png',
-    'hugendubel.png',
-    'kobo.png',
-    'thalia.png'
+    { name: 'Amazon', file: 'amazon.svg' },
+    { name: 'Google Books', file: 'google-books.svg' },
+    { name: 'Thalia', file: 'thalia.svg' },
+    { name: 'Hugendubel', file: 'hugendubel.svg' },
+    { name: 'Kobo', file: 'kobo.svg' },
+    { name: 'Apple Books', file: 'apple-books.svg' }
   ];
-  
-  // Create logo items
-  logos.forEach(logoFile => {
+
+  // Detect base path for GitHub Pages vs local
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
+
+  // Duplicate logos for seamless loop
+  const allLogos = [...logos, ...logos];
+
+  // Create logo elements
+  allLogos.forEach(logo => {
     const logoItem = document.createElement('div');
-    logoItem.className = 'logo-item';
+    logoItem.className = 'logo-carousel-item'; // Changed from 'logo-item'
     
     const img = document.createElement('img');
-    img.src = `../assets/images/index/logos/${logoFile}`;
-    img.alt = logoFile.replace('.png', '').replace('-', ' ');
+    img.src = `${BASE_PATH}/../assets/images/logos/${logo.file}`;
+    img.alt = logo.name;
     img.loading = 'lazy';
+    
+    // Fallback if image doesn't load
+    img.onerror = () => {
+      logoItem.innerHTML = `<span style="font-size: 1.5rem; font-weight: 700; opacity: 0.5;">${logo.name}</span>`;
+    };
     
     logoItem.appendChild(img);
     track.appendChild(logoItem);
   });
-  
-  // Duplicate logos for infinite scroll effect
-  const originalLogos = track.innerHTML;
-  track.innerHTML = originalLogos + originalLogos;
-  
-  // Animate header on scroll
-  const header = section.querySelector('.logo-carousel-header');
+
+  // Intersection Observer for header animation (optional)
   if (header) {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -10% 0px'
+    };
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('logo-visible'); // Changed from 'visible'
         }
       });
-    }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px'
-    });
-    
+    }, observerOptions);
+
     observer.observe(header);
   }
-  
-  console.log('✅ Logo carousel initialized with', logos.length, 'logos');
+
+  console.log('✅ Logo carousel initialized');
 }
