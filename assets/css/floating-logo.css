@@ -1,0 +1,180 @@
+/* ==========================================
+   FLOATING LOGO - INTELLIGENT RESPONSIVE (NO OVERLAP!)
+   ========================================== */
+
+.floating-brand {
+  position: fixed;
+  top: 16px;
+  left: 20px; /* 🎯 STELLSCHRAUBE 1: Position von links */
+  z-index: 1100; /* Higher than header (1000) */
+  
+  display: flex;
+  align-items: center;
+  gap: 12px; /* 🎯 STELLSCHRAUBE 2: Abstand zwischen Logo und Text */
+  
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 20px; /* 🎯 STELLSCHRAUBE 3: Text Größe */
+  
+  /* KOMPLETT TRANSPARENT - Kein Container! */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-brand:hover {
+  opacity: 0.8;
+  transform: translateY(-2px); /* 🎯 STELLSCHRAUBE 4: Hover Lift */
+}
+
+.floating-brand-logo {
+  width: 46px; /* 🎯 STELLSCHRAUBE 5: Logo Größe Desktop */
+  height: 46px;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.floating-brand:hover .floating-brand-logo {
+  transform: scale(1.05);
+}
+
+.floating-brand-name {
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: opacity 0.3s ease;
+}
+
+/* Dark Mode */
+html[data-theme="dim"] .floating-brand {
+  color: #fff;
+}
+
+/* ==========================================
+   RESPONSIVE - TEXT VERSTECKT SICH AUTOMATISCH
+   ========================================== */
+
+/* Sehr große Bildschirme - Alles zeigen */
+@media (min-width: 1200px) {
+  .floating-brand {
+    left: 200px; /* 🎯 STELLSCHRAUBE 6: Desktop Position */
+  }
+  .floating-brand-name {
+    display: block;
+  }
+}
+
+/* Mittlere Bildschirme - Text noch sichtbar */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .floating-brand {
+    left: 20px; /* 🎯 STELLSCHRAUBE 7: Medium Desktop Position */
+    font-size: 15px; /* Etwas kleiner */
+  }
+  .floating-brand-logo {
+    width: 34px;
+    height: 34px;
+  }
+  .floating-brand-name {
+    display: block;
+  }
+}
+
+/* Tablet - Text VERSTECKT sich wenn eng */
+@media (min-width: 769px) and (max-width: 899px) {
+  .floating-brand {
+    left: 16px; /* 🎯 STELLSCHRAUBE 8: Tablet Position */
+    gap: 0;
+  }
+  .floating-brand-logo {
+    width: 32px; /* 🎯 STELLSCHRAUBE 9: Logo Größe Tablet */
+    height: 32px;
+  }
+  .floating-brand-name {
+    display: none; /* TEXT WEG! Kein Overlap mehr */
+  }
+}
+
+/* Kleine Tablets - Nur Logo */
+@media (max-width: 768px) {
+  .floating-brand {
+    top: 12px; /* 🎯 STELLSCHRAUBE 10: Mobile Top Position */
+    left: 16px; /* 🎯 STELLSCHRAUBE 11: Mobile Left Position */
+    gap: 0;
+  }
+  
+  .floating-brand-logo {
+    width: 32px; /* 🎯 STELLSCHRAUBE 12: Logo Größe Small Tablet */
+    height: 32px;
+  }
+  
+  .floating-brand-name {
+    display: none; /* TEXT WEG! */
+  }
+}
+
+/* Mobile - Kleinstes Logo */
+@media (max-width: 520px) {
+  .floating-brand-logo {
+    width: 28px; /* 🎯 STELLSCHRAUBE 13: Logo Größe Mobile */
+    height: 28px;
+  }
+}
+
+/* ==========================================
+   ALTERNATIVE: Container-Query Based (Modern)
+   Aktiviere diese wenn du modernere Browser targetten willst
+   ========================================== */
+
+/* 
+@container (max-width: 900px) {
+  .floating-brand-name {
+    display: none;
+  }
+}
+*/
+
+/* ==========================================
+   STELLSCHRAUBEN ÜBERSICHT
+   ========================================== 
+   
+   Design:
+   1. left: 20px              → Position von links (Desktop)
+   2. gap: 12px               → Abstand Logo ↔ Text
+   3. font-size: 16px         → Text Größe
+   4. translateY(-2px)        → Hover Lift Effekt
+   5. width: 36px             → Logo Größe Desktop
+   
+   Position je nach Screen:
+   6. left: 20px (>1200px)    → Große Screens
+   7. left: 20px (900-1199px) → Mittlere Screens
+   8. left: 16px (769-899px)  → Tablets
+   11. left: 16px (<768px)    → Mobile
+   
+   Logo Größen:
+   5. 36px (>1200px)          → Desktop
+   9. 32px (769-899px)        → Tablet
+   12. 32px (<768px)          → Small Tablet
+   13. 28px (<520px)          → Mobile
+   
+   Text Sichtbarkeit (Automatisch!):
+   - ≥1200px: Text SICHTBAR
+   - 900-1199px: Text SICHTBAR (kleiner)
+   - <900px: Text VERSTECKT (kein Overlap!)
+   
+   ⚠️ WICHTIG: 
+   Der Text versteckt sich automatisch bei <900px Bildschirmbreite.
+   
+   Willst du das früher/später?
+   → Ändere die Breakpoints (900px → dein Wert)
+   
+   ========================================== */

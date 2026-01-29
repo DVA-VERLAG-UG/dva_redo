@@ -1,5 +1,5 @@
 /* ==========================================
-   HEADER STYLES
+   HEADER STYLES - WITHOUT LOGO
    ========================================== */
 
 /* Header Container */
@@ -43,41 +43,19 @@
   max-width: 1200px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 0 200px; /* Extra left padding for floating logo space */
   
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end; /* Everything to the right now */
   gap: 16px;
 }
 
 /* ==========================================
-   BRAND / LOGO
+   BRAND / LOGO - HIDDEN
    ========================================== */
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: #0f172a;
-  font-weight: 700;
-  font-size: 16px;
-  transition: opacity 0.2s ease;
-}
-
-.brand:hover {
-  opacity: 0.8;
-}
-
-.brand-logo {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  display: block;
-}
-
-.brand-name {
-  white-space: nowrap;
+  display: none !important; /* Logo is now floating, not in header */
 }
 
 /* ==========================================
@@ -91,6 +69,9 @@
   justify-content: flex-end;
   min-width: 0;
 }
+
+/* Rest of the CSS stays the same... */
+/* (Search, Theme Toggle, Language Switcher, etc.) */
 
 /* ==========================================
    SEARCH BAR
@@ -158,7 +139,6 @@
   background: rgba(15, 23, 42, 0.06);
 }
 
-/* Search Dropdown */
 .search-dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -235,7 +215,6 @@
   display: block;
 }
 
-/* When dark mode is active */
 html[data-theme="dim"] .theme-icon-moon {
   display: none;
 }
@@ -282,7 +261,7 @@ html[data-theme="dim"] .theme-icon-sun {
 .menu-toggle {
   width: 42px;
   height: 42px;
-  display: flex; /* Changed from none to flex - always visible */
+  display: flex;
   place-items: center;
   border: 0;
   background: transparent;
@@ -307,7 +286,7 @@ html[data-theme="dim"] .theme-icon-sun {
 }
 
 /* ==========================================
-   MOBILE MENU OVERLAY & DRAWER
+   MOBILE MENU
    ========================================== */
 .menu-overlay {
   position: fixed;
@@ -331,10 +310,10 @@ html[data-theme="dim"] .theme-icon-sun {
   bottom: 0;
   width: min(380px, 90vw);
   
-  background: rgba(255, 255, 255, 0.5); /* Changed from 0.95 to 0.5 - more transparent */
+  background: rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(15, 23, 42, 0.1);
   box-shadow: -16px 0 60px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(20px) saturate(1.2); /* Added saturate for richer effect */
+  backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
   
   padding: 20px;
@@ -395,15 +374,11 @@ html[data-theme="dim"] .theme-icon-sun {
 }
 
 /* ==========================================
-   DARK MODE OVERRIDES
+   DARK MODE
    ========================================== */
 html[data-theme="dim"] .site-header.is-scrolled {
   background: rgba(15, 23, 42, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-html[data-theme="dim"] .brand {
-  color: #fff;
 }
 
 html[data-theme="dim"] .search-form {
@@ -466,7 +441,7 @@ html[data-theme="dim"] .menu-icon span {
 }
 
 html[data-theme="dim"] .menu-drawer {
-  background: rgba(15, 23, 42, 0.5); /* Changed from 0.95 to 0.5 - more transparent */
+  background: rgba(15, 23, 42, 0.5);
   border-left-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -497,16 +472,7 @@ html[data-theme="dim"] .drawer-link:hover {
   }
   
   .header-inner {
-    padding: 0 16px;
-  }
-  
-  .brand-name {
-    display: none;
-  }
-  
-  .brand-logo {
-    width: 32px;
-    height: 32px;
+    padding: 0 16px 0 160px; /* Less left padding on mobile */
   }
   
   .search-wrapper {
@@ -538,6 +504,7 @@ html[data-theme="dim"] .drawer-link:hover {
   
   .header-inner {
     gap: 8px;
+    padding: 0 16px 0 60px; /* Even less left padding */
   }
   
   .search-wrapper {
