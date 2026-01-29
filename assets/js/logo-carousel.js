@@ -14,10 +14,10 @@ export function initLogoCarousel() {
 
   // Logo dataa
   const logos = [
-    { name: 'Amazon', file: '../images/index/logos/amazon.png' },
-    { name: 'Google Books', file: '../images/index/logos/google-books.png' },
-    { name: 'Thalia', file: '/assets/images/index/logos/thalia.png' },
-    { name: 'Hugendubel', file: 'assets/images/index/logos/hugendubel.png' },
+    { name: 'Amazon', file: 'amazon.png' },
+    { name: 'Google Books', file: 'google-books.png' },
+    { name: 'Thalia', file: 'thalia.png' },
+    { name: 'Hugendubel', file: 'hugendubel.png' },
     { name: 'Kobo', file: 'kobo.png' }
   ];
 
