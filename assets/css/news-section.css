@@ -17,19 +17,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
-
-  width: clamp(7200px, 90vw, 3000px);   /* War: 1200px → 1800px (50% größer) */
-  height: clamp(2400px, 35vw, 1000px);   /* War: 400px → 600px (50% größer) */
-  
+  width: clamp(72000px, 90vw, 3000px);
+  height: clamp(2400px, 35vw, 1000px);
   background-image: url('../images/index/news_weiss.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  
-  /* 🔧 SICHTBARKEIT ANPASSEN - Höher = sichtbarer */
-  opacity: 0.42;  /* War: 0.04 → 0.12 (3x sichtbarer) */
-  
+  opacity: 0.42;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -38,22 +32,7 @@
           drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.02));
 }
 
-html[data-theme="dim"] .news-section::before {
-  /* 🔧 DARK MODE SICHTBARKEIT */
-  opacity: 0.72;  /* War: 0.04 → 0.12 */
-  filter: brightness(0) saturate(100%) invert(1)
-          drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))
-          drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2))
-          drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.1));
-}
 
-html[data-theme="dim"] .news-section::before {
-  opacity: 0.04;
-  filter: brightness(0) saturate(100%) invert(1)
-          drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))
-          drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.2))
-          drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.1));
-}
 
 .news-container {
   max-width: 1400px;
@@ -81,6 +60,7 @@ html[data-theme="dim"] .news-kicker {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Clickable Title */
 .news-title {
   font-size: 3.5rem;
   font-weight: 900;
@@ -88,10 +68,38 @@ html[data-theme="dim"] .news-kicker {
   color: #000;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 html[data-theme="dim"] .news-title {
   color: #fff;
+}
+
+/* Underline effect on hover */
+.news-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #8b5cf6;
+  transition: width 0.3s ease;
+}
+
+.news-title:hover {
+  color: #8b5cf6;
+}
+
+html[data-theme="dim"] .news-title:hover {
+  color: #a78bfa;
+}
+
+.news-title:hover::after {
+  width: 100%;
 }
 
 .news-subtitle {
@@ -105,57 +113,92 @@ html[data-theme="dim"] .news-subtitle {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* CTA Buttons */
+/* CTA Buttons - Underlined Style */
 .news-cta-buttons {
   display: flex;
-  gap: 16px;
+  gap: 32px;
   justify-content: center;
   margin-bottom: 80px;
+  flex-wrap: wrap;
 }
 
 .news-cta-btn {
   display: inline-flex;
   align-items: center;
-  padding: 14px 28px;
-  font-size: 14px;
+  gap: 12px;
+  padding: 0;
+  padding-bottom: 4px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid currentColor;
+  color: #000;
+  font-size: 1.5rem;
   font-weight: 600;
-  border-radius: 10px;
+  font-style: italic;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  transition: all 0.3s ease;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.news-cta-primary {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  color: #000;
-}
-
-html[data-theme="dim"] .news-cta-primary {
+html[data-theme="dim"] .news-cta-btn {
   color: #fff;
 }
 
-.news-cta-primary:hover {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(139, 92, 246, 0.3);
-  transform: translateY(-2px);
+.news-cta-btn:hover {
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+  transform: translateY(-1px);
 }
 
+html[data-theme="dim"] .news-cta-btn:hover {
+  color: #a78bfa;
+  border-bottom-color: #a78bfa;
+}
+
+.news-cta-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.news-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* Remove old button styles */
+.news-cta-primary,
 .news-cta-secondary {
-  background: transparent;
-  border: 1.5px solid rgba(15, 23, 42, 0.2);
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  padding-bottom: 4px;
+  border-bottom: 2px solid currentColor;
   color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+html[data-theme="dim"] .news-cta-primary,
 html[data-theme="dim"] .news-cta-secondary {
-  border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 
+.news-cta-primary:hover,
 .news-cta-secondary:hover {
-  border-color: rgba(139, 92, 246, 0.3);
-  transform: translateY(-2px);
+  color: #8b5cf6;
+  border-bottom-color: #8b5cf6;
+  transform: translateY(-1px);
+}
+
+html[data-theme="dim"] .news-cta-primary:hover,
+html[data-theme="dim"] .news-cta-secondary:hover {
+  color: #a78bfa;
+  border-bottom-color: #a78bfa;
 }
 
 /* News Grid - DIAGONAL LAYOUT */
