@@ -1,6 +1,7 @@
 /* ==========================================
    COMBINED STATS SECTION
    200+ Authors | 20+ Years Experience
+   SUBTLE GRAY VERSION - Rot nur bei Hover
    ========================================== */
 
 .stats-combined-section {
@@ -16,7 +17,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  align-items: stretch; /* Stretch to equal height */
+  align-items: stretch;
   position: relative;
 }
 
@@ -31,20 +32,19 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  min-height: 500px; /* Minimum height for equal size */
+  justify-content: center;
+  min-height: 500px;
   
-  /* Subtle glass effect */
-  background: rgba(255, 255, 255, 0.03);
+  /* Subtle glass effect - GRAU statt Rot */
+  background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
-  border: 1px solid rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(15, 23, 42, 0.08); /* GRAU */
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 32px rgba(15, 23, 42, 0.05), /* GRAU */
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
   
-  /* Smooth transition for ALL transforms including parallax */
   transition: 
     background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -56,55 +56,68 @@
 
 html[data-theme="dim"] .stats-panel-left,
 html[data-theme="dim"] .stats-panel-right {
-  background: rgba(255, 255, 255, 0.02);
-  border-color: rgba(139, 92, 246, 0.15);
+  background: rgba(255, 255, 255, 0.01);
+  border-color: rgba(255, 255, 255, 0.06); /* GRAU */
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 8px 32px rgba(0, 0, 0, 0.15), /* GRAU */
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
-/* Purple glow when hovering over entire container */
+/* Subtiler roter Akzent NUR bei Hover */
 .stats-panel-left:hover,
 .stats-panel-right:hover {
-  background: rgba(139, 92, 246, 0.05);
-  border-color: rgba(139, 92, 246, 0.25);
+  background: rgba(220, 38, 38, 0.02); /* SEHR SUBTIL */
+  border-color: rgba(220, 38, 38, 0.12); /* DEZENT */
   box-shadow: 
-    0 0 40px rgba(139, 92, 246, 0.25),
-    0 0 60px rgba(139, 92, 246, 0.15),
-    0 12px 48px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 0 30px rgba(220, 38, 38, 0.08), /* SCHWACH */
+    0 12px 40px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 html[data-theme="dim"] .stats-panel-left:hover,
 html[data-theme="dim"] .stats-panel-right:hover {
-  background: rgba(139, 92, 246, 0.06);
-  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(239, 68, 68, 0.03); /* SEHR SUBTIL */
+  border-color: rgba(239, 68, 68, 0.15); /* DEZENT */
   box-shadow: 
-    0 0 50px rgba(139, 92, 246, 0.3),
-    0 0 80px rgba(139, 92, 246, 0.2),
-    0 12px 48px rgba(139, 92, 246, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 0 35px rgba(239, 68, 68, 0.1), /* SCHWACH */
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-/* Kicker */
+/* Kicker - GRAU statt Rot */
 .stats-panel-kicker {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #8b5cf6;
+  color: rgba(15, 23, 42, 0.5); /* GRAU */
   margin-bottom: 24px;
+  transition: color 0.3s ease;
 }
 
 html[data-theme="dim"] .stats-panel-kicker {
-  color: #a78bfa;
+  color: rgba(255, 255, 255, 0.4); /* GRAU */
 }
 
-/* Counter (animated number) */
+/* Kicker wird rot bei Hover */
+.stats-panel-left:hover .stats-panel-kicker,
+.stats-panel-right:hover .stats-panel-kicker {
+  color: #dc2626; /* ROT NUR BEI HOVER */
+}
+
+html[data-theme="dim"] .stats-panel-left:hover .stats-panel-kicker,
+html[data-theme="dim"] .stats-panel-right:hover .stats-panel-kicker {
+  color: #ef4444; /* ROT NUR BEI HOVER */
+}
+
+/* Counter (animated number) - GRAU Gradient */
 .stats-panel-counter {
   font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 900;
-  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.9),  /* GRAU */
+    rgba(15, 23, 42, 0.6)   /* GRAU */
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -116,7 +129,26 @@ html[data-theme="dim"] .stats-panel-kicker {
   position: relative;
 }
 
-/* Underline effect on hover */
+html[data-theme="dim"] .stats-panel-counter {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95), /* GRAU */
+    rgba(255, 255, 255, 0.7)   /* GRAU */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Counter wird rot bei Hover */
+.stats-panel-left:hover .stats-panel-counter,
+.stats-panel-right:hover .stats-panel-counter {
+  background: linear-gradient(135deg, #b91c1c, #ef4444); /* ROT BEI HOVER */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Underline effect on hover - ROT */
 .stats-panel-counter::after {
   content: '';
   position: absolute;
@@ -125,72 +157,73 @@ html[data-theme="dim"] .stats-panel-kicker {
   transform: translateX(-50%) scaleX(0);
   width: 80%;
   height: 4px;
-  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  background: linear-gradient(135deg, #b91c1c, #ef4444); /* ROT */
   border-radius: 2px;
   transition: transform 0.4s ease;
 }
 
 .stats-panel-counter:hover {
   transform: scale(1.05);
-  text-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+  text-shadow: 0 8px 24px rgba(220, 38, 38, 0.2); /* SUBTILER SCHATTEN */
 }
 
 .stats-panel-counter:hover::after {
   transform: translateX(-50%) scaleX(1);
 }
 
-/* Title */
+/* Title - NORMAL SCHWARZ/WEISS */
 .stats-panel-title {
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 900;
-  color: #000;
+  color: #0f172a; /* SCHWARZ */
   line-height: 1.3;
   margin-bottom: 20px;
   transition: color 0.3s ease;
 }
 
 html[data-theme="dim"] .stats-panel-title {
-  color: #fff;
+  color: #fff; /* WEISS */
 }
 
+/* Title wird rot NUR bei Hover */
 .stats-panel-left:hover .stats-panel-title,
 .stats-panel-right:hover .stats-panel-title {
-  color: #7c3aed;
+  color: #dc2626; /* ROT NUR BEI HOVER */
 }
 
 html[data-theme="dim"] .stats-panel-left:hover .stats-panel-title,
 html[data-theme="dim"] .stats-panel-right:hover .stats-panel-title {
-  color: #a78bfa;
+  color: #ef4444; /* ROT NUR BEI HOVER */
 }
 
 /* Subtitle */
 .stats-panel-subtitle {
   font-size: 1.15rem;
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.75);
+  color: rgba(15, 23, 42, 0.7); /* GRAU */
   max-width: 500px;
   margin: 0 auto 20px;
 }
 
 html[data-theme="dim"] .stats-panel-subtitle {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.65); /* GRAU */
 }
 
 /* Description */
 .stats-panel-description {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.65);
+  color: rgba(15, 23, 42, 0.6); /* GRAU */
   max-width: 500px;
   margin: 0 auto;
 }
 
 html[data-theme="dim"] .stats-panel-description {
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.55); /* GRAU */
 }
 
 /* ==========================================
-   DECORATIVE ACCENT LINE (between panels)
+   DECORATIVE ACCENT LINE (between panels) - GRAU
    ========================================== */
 
 .stats-panel-accent {
@@ -203,13 +236,24 @@ html[data-theme="dim"] .stats-panel-description {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(139, 92, 246, 0.2) 20%,
-    rgba(139, 92, 246, 0.4) 50%,
-    rgba(139, 92, 246, 0.2) 80%,
+    rgba(15, 23, 42, 0.1) 20%, /* GRAU */
+    rgba(15, 23, 42, 0.15) 50%, /* GRAU */
+    rgba(15, 23, 42, 0.1) 80%, /* GRAU */
     transparent 100%
   );
   pointer-events: none;
   z-index: 1;
+}
+
+html[data-theme="dim"] .stats-panel-accent {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 20%, /* GRAU */
+    rgba(255, 255, 255, 0.12) 50%, /* GRAU */
+    rgba(255, 255, 255, 0.08) 80%, /* GRAU */
+    transparent 100%
+  );
 }
 
 /* ==========================================

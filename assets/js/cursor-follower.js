@@ -35,8 +35,8 @@ export function initCursorFollower() {
     // Smooth animation loop
     function animate() {
       // Smooth lerp
-      followerX += (mouseX - followerX) * 0.1;
-      followerY += (mouseY - followerY) * 0.1;
+      followerX += (mouseX - followerX) * 0.3;
+      followerY += (mouseY - followerY) * 0.3;
       
       follower.style.left = followerX + 'px';
       follower.style.top = followerY + 'px';

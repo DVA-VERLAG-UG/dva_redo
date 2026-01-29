@@ -1,0 +1,75 @@
+/* ==========================================
+   FIX 1: Grauer Balken in Reviews entfernen
+   ========================================== */
+
+/* Progress Bar verstecken */
+.reviews-progress-bar,
+.reviews-progress,
+[class*="progress-bar"] {
+  display: none !important;
+}
+
+/* Falls es ein anderes Element ist: */
+.reviews-section hr,
+.reviews-container hr,
+.reviews-stack-wrapper hr {
+  display: none !important;
+}
+
+/* Falls es ein Border ist: */
+.reviews-stack-wrapper {
+  border: none !important;
+  border-bottom: none !important;
+}
+
+/* ==========================================
+   FIX 2: Kein roter Hintergrund bei Button Hover
+   NUR Text soll rot werden
+   ========================================== */
+
+/* Alle Buttons: Kein Background bei Hover */
+.hero-cta-subtle:hover,
+.process-btn:hover,
+.panel-btn:hover,
+.konfig-showcase-cta:hover,
+.news-cta-btn:hover,
+button[class*="cta"]:hover,
+a[class*="cta"]:hover {
+  background: transparent !important; /* KEIN roter Hintergrund */
+  border-color: var(--color-primary, #C92F2A) !important;
+  color: var(--color-primary, #C92F2A) !important;
+}
+
+/* Spezifisch für den "Lass uns sprechen" Button */
+.news-cta-btn:hover,
+.news-cta-primary:hover,
+.news-cta-secondary:hover {
+  background: transparent !important;
+  color: #C92F2A !important;
+  border-bottom-color: #C92F2A !important;
+}
+
+/* Alle anderen interaktiven Elemente */
+button:hover,
+a:hover {
+  background: transparent !important;
+}
+
+/* ==========================================
+   BONUS: Reviews Navigation Buttons Fix
+   ========================================== */
+
+/* Falls die Nav Buttons auch betroffen sind */
+.reviews-nav-btn:hover {
+  background: rgba(220, 38, 38, 0.05) !important; /* Nur sehr subtil */
+}
+
+/* ==========================================
+   ZUSAMMENFASSUNG
+   ========================================== 
+   
+   ✅ FIX 1: Progress Bar / Grauer Balken versteckt
+   ✅ FIX 2: Kein roter Hintergrund bei Button Hover
+   ✅ NUR Text wird rot, Background bleibt transparent
+   
+   ========================================== */

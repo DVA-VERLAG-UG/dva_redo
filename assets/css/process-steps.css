@@ -35,12 +35,12 @@
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #8b5cf6;
+  color: rgba(15, 23, 42, 0.75); /* was red */
   margin-bottom: 16px;
 }
 
 html[data-theme="dim"] .process-kicker {
-  color: #a78bfa;
+  color: rgba(255, 255, 255, 0.75); /* was red */
 }
 
 .process-title {
@@ -107,8 +107,8 @@ html[data-theme="dim"] .timeline-book-bg{
   left: 0;
   height: 3px;
   background: linear-gradient(90deg, 
-    rgba(139, 92, 246, 0.2) 0%,
-    rgba(139, 92, 246, 0.1) 100%
+    rgba(0, 0, 0, 0.18) 0%,   /* was red */
+    rgba(0, 0, 0, 0.08) 100%  /* was red */
   );
   width: 100%;
   z-index: 0;
@@ -119,10 +119,10 @@ html[data-theme="dim"] .timeline-book-bg{
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  background: linear-gradient(90deg, #373131, #373131); /* keep red accent */
   width: 0%;
   transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 20px rgba(201, 47, 42, 0.35); /* toned down */
 }
 
 .timeline-line.visible .timeline-line-progress {
@@ -187,31 +187,33 @@ html[data-theme="dim"] .timeline-book-bg{
 .step-icon-bg {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(120, 120, 125, 0.12); /* was white glass */
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 2px solid rgba(139, 92, 246, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.15); /* was red */
   border-radius: 50%;
   transition: all 0.4s ease;
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.10), /* was red */
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 html[data-theme="dim"] .step-icon-bg {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(139, 92, 246, 0.25);
+  border-color: rgba(255, 255, 255, 0.14); /* was red */
 }
 
 .process-step:hover .step-icon-bg {
-  background: rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.5);
-  transform: scale(1.1);
-  box-shadow: 
-    0 16px 48px rgba(139, 92, 246, 0.4),
-    0 0 0 4px rgba(139, 92, 246, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(120, 120, 125, 0.18); /* warm grey */
+  border-color: rgba(0, 0, 0, 0.25);
+  transform: scale(1.08);
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.22),
+    0 0 0 4px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
+
 
 /* Icon */
 .step-icon {
@@ -228,7 +230,7 @@ html[data-theme="dim"] .step-icon-bg {
   width: 60%;
   height: 60%;
   object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.3));
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.22)); /* was red */
 }
 
 /* Theme-based icon visibility */
@@ -255,7 +257,7 @@ html[data-theme="dim"] .step-icon-dark {
   right: -8px;
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  background: rgba(30, 30, 35, 0.85); /* keep red accent */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -263,7 +265,7 @@ html[data-theme="dim"] .step-icon-dark {
   font-size: 14px;
   font-weight: 700;
   color: #fff;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18); /* was red */
   z-index: 2;
 }
 
@@ -317,23 +319,23 @@ html[data-theme="dim"] .step-description {
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  background: rgba(139, 92, 246, 0.8);
+  background: rgba(201, 47, 42, 0.78); /* slightly calmer */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(139, 92, 246, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.18); /* was red */
   color: #fff;
   box-shadow: 
-    0 8px 24px rgba(139, 92, 246, 0.3),
+    0 8px 24px rgba(0, 0, 0, 0.18), /* was red */
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .process-btn:hover {
-  background: rgba(139, 92, 246, 0.9);
-  border-color: rgba(139, 92, 246, 0.7);
+  background: rgba(201, 47, 42, 0.92);
+  border-color: rgba(0, 0, 0, 0.22); /* was red */
   transform: translateY(-2px);
   box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.5),
-    0 0 0 1px rgba(139, 92, 246, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.26), /* was red */
+    0 0 0 1px rgba(201, 47, 42, 0.28), /* subtle red outline */
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 

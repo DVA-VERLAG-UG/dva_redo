@@ -1,56 +1,181 @@
-// background.js - Animated particle system
+// background.js - Falling book pages for publishing house
 
 let particleCanvas = null;
 let ctx = null;
-let particles = [];
+let pages = [];
 let animationId = null;
 
-// Particle configuration
-const PARTICLE_COUNT = 50; // Adjust for performance
-const PARTICLE_SIZE_MIN = 1;
-const PARTICLE_SIZE_MAX = 3;
-const PARTICLE_SPEED_MIN = 0.1;
-const PARTICLE_SPEED_MAX = 0.5;
+// Page configuration - 🎯 STELLSCHRAUBEN
+const PAGE_COUNT = 12; // Anzahl der fallenden Seiten (8-15)
+const PAGE_SIZE_MIN = 80; // Min Größe (60-100)
+const PAGE_SIZE_MAX = 140; // Max Größe (100-180)
+const FALL_SPEED_MIN = 0.3; // Min Fall-Geschwindigkeit (0.2-0.5)
+const FALL_SPEED_MAX = 0.8; // Max Fall-Geschwindigkeit (0.5-1.2)
 
-class Particle {
+class FallingPage {
   constructor(canvas) {
+    this.reset(canvas, true); // true = start from random position
+  }
+  
+  reset(canvas, randomStart = false) {
     this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = Math.random() * (PARTICLE_SIZE_MAX - PARTICLE_SIZE_MIN) + PARTICLE_SIZE_MIN;
-    this.speedX = (Math.random() - 0.5) * (PARTICLE_SPEED_MAX - PARTICLE_SPEED_MIN) + PARTICLE_SPEED_MIN;
-    this.speedY = (Math.random() - 0.5) * (PARTICLE_SPEED_MAX - PARTICLE_SPEED_MIN) + PARTICLE_SPEED_MIN;
-    this.opacity = Math.random() * 0.5 + 0.2;
+    
+    // Start position
+    if (randomStart) {
+      this.y = Math.random() * canvas.height; // Random für initialen Start
+    } else {
+      this.y = -200; // Oben außerhalb des Bildschirms
+    }
+    
+    this.width = Math.random() * (PAGE_SIZE_MAX - PAGE_SIZE_MIN) + PAGE_SIZE_MIN;
+    this.height = this.width * 1.3; // Buch-Proportionen
+    this.rotation = (Math.random() - 0.5) * 0.3; // Leichte Rotation
+    this.rotationSpeed = (Math.random() - 0.5) * 0.005; // Langsame Rotation beim Fallen
+    
+    // Hauptbewegung: NACH UNTEN!
+    this.speedY = Math.random() * (FALL_SPEED_MAX - FALL_SPEED_MIN) + FALL_SPEED_MIN; // 🎯 Fallgeschwindigkeit
+    
+    // Minimale horizontale Drift (leichte Seitwärtsbewegung)
+    this.speedX = (Math.random() - 0.5) * 0.2; // Sehr wenig horizontal
+    
+    this.opacity = Math.random() * 0.35 + 0.25; // 0.25-0.6
+    this.type = Math.random() > 0.5 ? 'page' : 'folded';
+    
+    // Für sanfte Seitwärtsbewegung (Pendel-Effekt)
+    this.swayOffset = Math.random() * Math.PI * 2;
+    this.swaySpeed = 0.002 + Math.random() * 0.002; // Wie schnell sie pendelt
+    this.swayAmount = 0.5 + Math.random() * 1; // Wie weit sie pendelt
   }
 
   update(canvas) {
+    // Hauptbewegung: FALLEN (nach unten)
+    this.y += this.speedY; // 🔥 Nach unten bewegen!
+    
+    // Minimale horizontale Bewegung
     this.x += this.speedX;
-    this.y += this.speedY;
-
-    // Wrap around edges
-    if (this.x < 0) this.x = canvas.width;
-    if (this.x > canvas.width) this.x = 0;
-    if (this.y < 0) this.y = canvas.height;
-    if (this.y > canvas.height) this.y = 0;
+    
+    // Sanftes Pendeln beim Fallen (wie echtes Papier)
+    this.x += Math.sin(this.y * this.swaySpeed + this.swayOffset) * this.swayAmount;
+    
+    // Rotation beim Fallen
+    this.rotation += this.rotationSpeed;
+    
+    // Wenn Seite unten raus ist → Oben neu spawnen
+    if (this.y > canvas.height + 200) {
+      this.reset(canvas, false); // false = start from top
+    }
+    
+    // Wenn Seite seitlich raus ist → korrigieren
+    if (this.x < -100) this.x = canvas.width + 100;
+    if (this.x > canvas.width + 100) this.x = -100;
   }
 
   draw(ctx, isDarkMode) {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+    ctx.globalAlpha = this.opacity;
+
+    // Farben
+    const pageColor = isDarkMode 
+      ? `rgba(239, 68, 68, 0.35)`
+      : `rgba(220, 38, 38, 0.25)`;
     
-    // Different colors for light/dark mode
-    if (isDarkMode) {
-      ctx.fillStyle = `rgba(167, 139, 250, ${this.opacity})`; // Purple in dark mode
+    const lineColor = isDarkMode
+      ? `rgba(239, 68, 68, 0.25)`
+      : `rgba(220, 38, 38, 0.2)`;
+    
+    const shadowColor = isDarkMode
+      ? `rgba(239, 68, 68, 0.2)`
+      : `rgba(185, 28, 28, 0.15)`;
+
+    if (this.type === 'page') {
+      // Rechteckige Seite
+      ctx.fillStyle = pageColor;
+      ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
+      
+      // Textlinien
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 1;
+      const lineSpacing = 12;
+      const lineCount = Math.floor(this.height / lineSpacing);
+      for (let i = 0; i < lineCount; i++) {
+        const lineY = -this.height / 2 + 15 + i * lineSpacing;
+        ctx.beginPath();
+        ctx.moveTo(-this.width / 2 + 8, lineY);
+        ctx.lineTo(this.width / 2 - 8, lineY);
+        ctx.stroke();
+      }
+      
+      // Schatten (stärker nach unten für Fall-Effekt)
+      ctx.shadowColor = shadowColor;
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetX = 1;
+      ctx.shadowOffsetY = 3; // Mehr Schatten nach unten!
+      
+      // Border
+      ctx.strokeStyle = isDarkMode 
+        ? `rgba(239, 68, 68, 0.4)`
+        : `rgba(220, 38, 38, 0.3)`;
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(-this.width / 2, -this.height / 2, this.width, this.height);
+      
     } else {
-      ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity * 0.6})`; // Lighter purple in light mode
+      // Gefaltete Seite
+      const foldSize = 20;
+      
+      ctx.fillStyle = pageColor;
+      ctx.beginPath();
+      ctx.moveTo(-this.width / 2, -this.height / 2);
+      ctx.lineTo(this.width / 2, -this.height / 2);
+      ctx.lineTo(this.width / 2, this.height / 2);
+      ctx.lineTo(-this.width / 2 + foldSize, this.height / 2);
+      ctx.lineTo(-this.width / 2, this.height / 2 - foldSize);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Gefaltete Ecke
+      ctx.fillStyle = isDarkMode
+        ? `rgba(220, 38, 38, ${this.opacity * 0.7})`
+        : `rgba(185, 28, 28, ${this.opacity * 0.6})`;
+      ctx.beginPath();
+      ctx.moveTo(-this.width / 2, this.height / 2 - foldSize);
+      ctx.lineTo(-this.width / 2 + foldSize, this.height / 2);
+      ctx.lineTo(-this.width / 2, this.height / 2);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Textlinien
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = 1;
+      const lineSpacing = 12;
+      const lineCount = Math.floor(this.height / lineSpacing);
+      for (let i = 0; i < lineCount - 2; i++) {
+        const lineY = -this.height / 2 + 15 + i * lineSpacing;
+        ctx.beginPath();
+        ctx.moveTo(-this.width / 2 + 8, lineY);
+        ctx.lineTo(this.width / 2 - 8, lineY);
+        ctx.stroke();
+      }
+      
+      // Schatten
+      ctx.shadowColor = shadowColor;
+      ctx.shadowBlur = 10;
+      ctx.shadowOffsetX = 1;
+      ctx.shadowOffsetY = 3;
     }
-    
-    ctx.fill();
+
+    ctx.restore();
   }
 }
 
 function createCanvas() {
-  // Check if canvas already exists
-  if (document.getElementById('particle-canvas')) return;
+  if (document.getElementById('particle-canvas')) {
+    particleCanvas = document.getElementById('particle-canvas');
+    ctx = particleCanvas.getContext('2d');
+    resizeCanvas();
+    return;
+  }
 
   particleCanvas = document.createElement('canvas');
   particleCanvas.id = 'particle-canvas';
@@ -59,9 +184,8 @@ function createCanvas() {
   ctx = particleCanvas.getContext('2d');
   resizeCanvas();
 
-  // Create particles
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    particles.push(new Particle(particleCanvas));
+  for (let i = 0; i < PAGE_COUNT; i++) {
+    pages.push(new FallingPage(particleCanvas));
   }
 }
 
@@ -75,58 +199,34 @@ function resizeCanvas() {
 function animate() {
   if (!ctx || !particleCanvas) return;
 
-  // Check if dark mode is active
   const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dim';
 
-  // Clear canvas
   ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
 
-  // Update and draw particles
-  particles.forEach(particle => {
-    particle.update(particleCanvas);
-    particle.draw(ctx, isDarkMode);
+  pages.forEach(page => {
+    page.update(particleCanvas);
+    page.draw(ctx, isDarkMode);
   });
-
-  // Draw connecting lines between nearby particles (optional)
-  drawConnections(isDarkMode);
 
   animationId = requestAnimationFrame(animate);
 }
 
-function drawConnections(isDarkMode) {
-  const maxDistance = 150;
+export function initBackground() {
+  console.log('📚 Initializing falling book pages...');
   
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < maxDistance) {
-        const opacity = (1 - distance / maxDistance) * 0.15;
-        ctx.beginPath();
-        ctx.strokeStyle = isDarkMode 
-          ? `rgba(167, 139, 250, ${opacity})`
-          : `rgba(139, 92, 246, ${opacity * 0.5})`;
-        ctx.lineWidth = 0.5;
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
-      }
+  pages = [];
+  createCanvas();
+  
+  if (pages.length === 0) {
+    for (let i = 0; i < PAGE_COUNT; i++) {
+      pages.push(new FallingPage(particleCanvas));
     }
   }
-}
-
-export function initBackground() {
-  console.log('🌌 Initializing background particles...');
   
-  createCanvas();
   animate();
-
-  // Handle window resize
   window.addEventListener('resize', resizeCanvas);
 
-  console.log('✅ Background particles initialized');
+  console.log('✅ Falling book pages initialized - pages falling down like rain!');
 }
 
 export function stopBackground() {
@@ -135,3 +235,53 @@ export function stopBackground() {
     animationId = null;
   }
 }
+
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.attributeName === 'data-theme') {
+      console.log('🎨 Theme changed, pages will adapt');
+    }
+  });
+});
+
+observer.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['data-theme']
+});
+
+/* ==========================================
+   STELLSCHRAUBEN - FALLING VERSION
+   ========================================== 
+   
+   🎯 ANZAHL:
+   PAGE_COUNT: 12            → Anzahl Seiten (8-20)
+   
+   📏 GRÖßE:
+   PAGE_SIZE_MIN: 80         → Min (60-100)
+   PAGE_SIZE_MAX: 140        → Max (100-180)
+   
+   ⬇️ FALL-GESCHWINDIGKEIT:
+   FALL_SPEED_MIN: 0.3       → Min Speed (0.2-0.5)
+   FALL_SPEED_MAX: 0.8       → Max Speed (0.5-1.5)
+   
+   🌊 PENDEL-BEWEGUNG:
+   swaySpeed: 0.002-0.004    → Wie schnell sie pendelt
+   swayAmount: 0.5-1.5       → Wie weit sie pendelt
+   speedX: 0.2               → Horizontale Drift (0.1-0.3)
+   
+   💡 TIPPS:
+   
+   Schneller fallen:
+   FALL_SPEED_MIN: 0.5
+   FALL_SPEED_MAX: 1.2
+   
+   Mehr Seiten (dichter Regen):
+   PAGE_COUNT: 20
+   
+   Weniger Pendeln:
+   swayAmount: 0.3
+   
+   Mehr Pendeln (dramatischer):
+   swayAmount: 2.0
+   
+   ========================================== */

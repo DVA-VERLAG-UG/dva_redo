@@ -1,5 +1,6 @@
 /* ==========================================
    CURSOR FOLLOWER (Non-invasive)
+   Base color: dark warm red (#C92F2A)
    ========================================== */
 
 /* Cursor Follower - does NOT hide default cursor */
@@ -8,12 +9,21 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: rgba(139, 92, 246, 0.3);
-  border: 2px solid rgba(139, 92, 246, 0.6);
+
+  /* Small dot: warm grey + dark red hint */
+  background: rgba(236, 200, 200, 0.26);
+  border: 2px solid rgba(201, 47, 42, 0.55);
+
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border 0.3s ease;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    background 0.3s ease,
+    border 0.3s ease,
+    opacity 0.3s ease;
+
   opacity: 0;
 }
 
@@ -21,22 +31,25 @@
   opacity: 1;
 }
 
+/* Dim theme — calmer, slightly muted */
 html[data-theme="dim"] .cursor-follower {
-  background: rgba(167, 139, 250, 0.3);
-  border: 2px solid rgba(167, 139, 250, 0.6);
+  background: rgba(201, 47, 42, 0.20);
+  border: 2px solid rgba(201, 47, 42, 0.42);
 }
 
-/* Hover State - Bigger & More Transparent */
+/* Hover State - Bigger & Red */
 .cursor-follower.hover {
   width: 50px;
   height: 50px;
-  background: rgba(139, 92, 246, 0.05); /* Much more transparent - was 0.15 */
-  border: 2px solid rgba(139, 92, 246, 0.9); /* Stronger border - was 0.8 */
+
+  /* Stronger red presence */
+  background: rgba(201, 47, 42, 0.08);
+  border: 2px solid rgba(201, 47, 42, 0.85);
 }
 
 html[data-theme="dim"] .cursor-follower.hover {
-  background: rgba(167, 139, 250, 0.05); /* Much more transparent - was 0.15 */
-  border: 2px solid rgba(167, 139, 250, 0.9); /* Stronger border - was 0.8 */
+  background: rgba(201, 47, 42, 0.06);
+  border: 2px solid rgba(201, 47, 42, 0.72);
 }
 
 /* Hide on touch devices */

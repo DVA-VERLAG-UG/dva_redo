@@ -1,5 +1,6 @@
 /* ==========================================
-   DYNAMIC BACKGROUND SYSTEM
+   ELEGANT PUBLISHING HOUSE BACKGROUND
+   Literarisch, warm, einladend
    ========================================== */
 
 /* Base body styles */
@@ -13,28 +14,43 @@ body {
 }
 
 /* ==========================================
-   LIGHT MODE BACKGROUND
+   LIGHT MODE BACKGROUND - Warm & Paper-like
    ========================================== */
 body {
+  /* Warme Papier-Textur mit subtilen Schatten */
   background: 
-    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.03), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.03), transparent 40%),
-    linear-gradient(180deg, #f8f9fa, #e9ecef);
+    /* Subtle ink stains */
+    radial-gradient(circle at 15% 20%, rgba(185, 28, 28, 0.02), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(220, 38, 38, 0.025), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.015), transparent 50%),
+    /* Warm paper gradient */
+    linear-gradient(180deg, 
+      #fdfcfb 0%,    /* Warm off-white */
+      #f9f8f6 40%,   /* Creamy paper */
+      #f5f3f0 100%   /* Soft beige */
+    );
 }
 
 /* ==========================================
-   DARK MODE BACKGROUND
+   DARK MODE BACKGROUND - Rich Library Atmosphere
    ========================================== */
 html[data-theme="dim"] body {
+  /* Dunkle Bibliothek mit warmen Akzenten */
   background:
-    radial-gradient(900px 520px at 15% 10%, rgba(139, 92, 246, 0.15), transparent 60%),
-    radial-gradient(700px 420px at 85% 80%, rgba(99, 102, 241, 0.12), transparent 62%),
-    radial-gradient(600px 400px at 50% 50%, rgba(167, 139, 250, 0.08), transparent 55%),
-    linear-gradient(180deg, #0a0d1f, #070814);
+    /* Warm candlelight glows */
+    radial-gradient(1000px 600px at 20% 15%, rgba(220, 38, 38, 0.08), transparent 55%),
+    radial-gradient(800px 500px at 80% 85%, rgba(239, 68, 68, 0.06), transparent 60%),
+    radial-gradient(700px 450px at 50% 50%, rgba(185, 28, 28, 0.04), transparent 65%),
+    /* Deep library atmosphere */
+    linear-gradient(180deg, 
+      #1a1612 0%,    /* Dark wood */
+      #110e0b 50%,   /* Deep brown-black */
+      #0d0b09 100%   /* Almost black with warmth */
+    );
 }
 
 /* ==========================================
-   PARTICLE CANVAS
+   FLOATING BOOK PAGES CANVAS
    ========================================== */
 #particle-canvas {
   position: fixed;
@@ -44,9 +60,131 @@ html[data-theme="dim"] body {
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  opacity: 0.4; /* 🎯 STELLSCHRAUBE 1: Sichtbarkeit der Pages (0.2-0.6) */
 }
 
-/* Ensure content is above particles */
+html[data-theme="dim"] #particle-canvas {
+  opacity: 0.3; /* Etwas subtiler im Dark Mode */
+}
+
+/* ==========================================
+   PAPER TEXTURE OVERLAY
+   ========================================== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Subtile Papier-Textur */
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.01) 2px,
+      rgba(0, 0, 0, 0.01) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.01) 2px,
+      rgba(0, 0, 0, 0.01) 4px
+    );
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.3; /* 🎯 STELLSCHRAUBE 2: Papier-Textur Intensität (0.1-0.5) */
+}
+
+html[data-theme="dim"] body::before {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    );
+  opacity: 0.15;
+}
+
+/* ==========================================
+   SUBTLE INK DIFFUSION EFFECT
+   ========================================== */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(220, 38, 38, 0.015), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(185, 28, 28, 0.02), transparent 50%);
+  animation: ink-diffusion 12s ease-in-out infinite; /* 🎯 STELLSCHRAUBE 3: Animation Speed (8s-20s) */
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.6; /* 🎯 STELLSCHRAUBE 4: Ink Effect Intensität (0.3-0.8) */
+}
+
+html[data-theme="dim"] body::after {
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(239, 68, 68, 0.03), transparent 45%),
+    radial-gradient(circle at 70% 60%, rgba(220, 38, 38, 0.025), transparent 50%);
+  opacity: 0.4;
+}
+
+@keyframes ink-diffusion {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1) translate(0, 0);
+  }
+  25% {
+    opacity: 0.5;
+    transform: scale(1.02) translate(1%, -1%);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05) translate(-1%, 1%);
+  }
+  75% {
+    opacity: 0.5;
+    transform: scale(1.03) translate(0.5%, -0.5%);
+  }
+}
+
+/* ==========================================
+   VIGNETTE EFFECT - Library Feeling
+   ========================================== */
+.site-header::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+html[data-theme="dim"] .site-header::before {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+/* Ensure content is above effects */
 .site-header,
 .social-bar,
 main,
@@ -56,45 +194,72 @@ main,
 }
 
 /* ==========================================
-   SHIMMER EFFECT (optional enhancement)
+   ALTERNATIVE: Falling Letters Animation
+   Aktiviere dies für fallende Buchstaben statt Pages
    ========================================== */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 50%);
-  animation: shimmer 8s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
+
+/* 
+#particle-canvas.letters-mode {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ctext x='50' y='50' font-size='20' fill='rgba(220,38,38,0.1)' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E");
+  animation: falling-letters 20s linear infinite;
 }
 
-html[data-theme="dim"] body::before {
-  background: 
-    radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05), transparent 50%);
+@keyframes falling-letters {
+  from { background-position: 0 0; }
+  to { background-position: 0 100vh; }
 }
+*/
 
-@keyframes shimmer {
-  0%, 100% {
+/* ==========================================
+   RESPONSIVE - Performance Optimization
+   ========================================== */
+@media (max-width: 768px) {
+  /* Reduziere Effekte auf Mobile */
+  body::after {
+    animation: ink-diffusion 15s ease-in-out infinite;
     opacity: 0.3;
-    transform: scale(1);
   }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.05);
+  
+  #particle-canvas {
+    opacity: 0.25;
+  }
+  
+  html[data-theme="dim"] #particle-canvas {
+    opacity: 0.2;
   }
 }
 
 /* ==========================================
-   RESPONSIVE
+   STELLSCHRAUBEN ÜBERSICHT
+   ========================================== 
+   
+   🎯 1. Floating Pages Sichtbarkeit:
+      #particle-canvas { opacity: 0.4; }
+      Werte: 0.2 = sehr subtil, 0.6 = deutlich sichtbar
+   
+   🎯 2. Papier-Textur Intensität:
+      body::before { opacity: 0.3; }
+      Werte: 0.1 = kaum sichtbar, 0.5 = stark sichtbar
+   
+   🎯 3. Animation Geschwindigkeit:
+      animation: ink-diffusion 12s ease-in-out infinite;
+      Werte: 8s = schnell, 20s = sehr langsam
+   
+   🎯 4. Ink Effect Intensität:
+      body::after { opacity: 0.6; }
+      Werte: 0.3 = subtil, 0.8 = stark
+   
+   🎨 FARBEN ÄNDERN:
+   
+   Light Mode Paper Color:
+   linear-gradient(180deg, #fdfcfb, #f9f8f6, #f5f3f0)
+   
+   Dark Mode Library Color:
+   linear-gradient(180deg, #1a1612, #110e0b, #0d0b09)
+   
+   Red Ink Accents:
+   rgba(220, 38, 38, 0.02) - Helleres Rot
+   rgba(185, 28, 28, 0.04) - Dunkleres Rot
+   
    ========================================== */
-@media (max-width: 768px) {
-  /* Reduce particle effects on mobile for performance */
-  body::before {
-    animation: none;
-    opacity: 0.2;
-  }
-}
