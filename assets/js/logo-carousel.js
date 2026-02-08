@@ -14,11 +14,11 @@ export function initLogoCarousel() {
 
   // Logo dataa
   const logos = [
-    { name: 'Amazon', file: 'assets/images/index/logos/amazon.png' },
-    { name: 'Google Books', file: '../assets/images/index/logos/google-books.png' },
-    { name: 'Thalia', file: '../assets/images/index/logos/thalia.png' },
-    { name: 'Hugendubel', file: '../assets/images/index/logos/hugendubel.png' },
-    { name: 'Kobo', file: '../assets/images/index/logos/kobo.png' }
+    { name: 'Amazon', file: 'amazon.png' },
+    { name: 'Google Books', file: 'google-books.png' },
+    { name: 'Thalia', file: 'thalia.png' },
+    { name: 'Hugendubel', file: 'hugendubel.png' },
+    { name: 'Kobo', file: 'kobo.png' }
   ];
 
   // Detect base path for GitHub Pages vs local
