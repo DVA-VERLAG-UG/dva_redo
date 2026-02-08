@@ -1,5 +1,5 @@
 // footer.js - Footer functionality
-// Royal Bronze Theme - Opens Contact Popup
+// Simple inline script style - matches index.html behavior
 
 export function initFooter() {
   // Update year dynamically
@@ -13,58 +13,57 @@ export function initFooter() {
     `;
   }
 
-  // Setup footer buttons to open contact popup
-  setupFooterContact();
+  // Setup footer contact buttons (simple approach)
+  setupFooterContactButtons();
+  
+  console.log('✅ Footer initialized');
 }
 
-function setupFooterContact() {
-  // Find all buttons that should open the contact popup
-  const contactButtons = [
-    document.getElementById('footerConfigBtn'),      // "Lass uns sprechen" Button
-    document.getElementById('footerContactBtn'),     // Falls noch vorhanden
-    document.getElementById('footerConfiguratorBtn'), // "Konfigurator" Button
-    ...document.querySelectorAll('[data-open-contact]'),
-    ...document.querySelectorAll('.footer-contact-btn')
-  ].filter(Boolean);
-  
+function setupFooterContactButtons() {
   const contactOverlay = document.getElementById('contactOverlay');
+  const contactClose = document.querySelector('.contact-close');
   
   if (!contactOverlay) {
-    console.warn('⚠️ Contact overlay not found - make sure #contactOverlay exists in HTML');
+    console.warn('⚠️ Contact overlay not found');
     return;
   }
   
-  if (contactButtons.length === 0) {
-    console.warn('⚠️ No contact buttons found in footer');
+  // Find all footer buttons that should open contact
+  const footerButtons = [
+    document.getElementById('footerConfigBtn'),
+    document.getElementById('footerContactBtn'),
+    document.getElementById('footerConfiguratorBtn')
+  ].filter(Boolean);
+  
+  if (footerButtons.length === 0) {
+    console.warn('⚠️ No footer buttons found');
     return;
   }
   
-  // Add click event to all buttons
-  contactButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
+  // Add click handlers to all footer buttons
+  footerButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
       contactOverlay.classList.add('is-open');
       document.body.style.overflow = 'hidden';
-      console.log('✅ Contact popup opened');
+      console.log('✅ Contact popup opened from footer');
     });
   });
   
-  // Setup close button
-  const closeBtn = contactOverlay.querySelector('.contact-close');
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
+  // Close button
+  if (contactClose) {
+    contactClose.addEventListener('click', () => {
       contactOverlay.classList.remove('is-open');
       document.body.style.overflow = '';
       console.log('✅ Contact popup closed');
     });
   }
   
-  // Close on overlay click (outside popup)
+  // Close on overlay click
   contactOverlay.addEventListener('click', (e) => {
     if (e.target === contactOverlay) {
       contactOverlay.classList.remove('is-open');
       document.body.style.overflow = '';
-      console.log('✅ Contact popup closed (overlay click)');
+      console.log('✅ Contact popup closed (overlay)');
     }
   });
   
@@ -73,9 +72,9 @@ function setupFooterContact() {
     if (e.key === 'Escape' && contactOverlay.classList.contains('is-open')) {
       contactOverlay.classList.remove('is-open');
       document.body.style.overflow = '';
-      console.log('✅ Contact popup closed (ESC key)');
+      console.log('✅ Contact popup closed (ESC)');
     }
   });
   
-  console.log(`✅ ${contactButtons.length} contact button(s) initialized`);
+  console.log(`✅ ${footerButtons.length} footer button(s) connected to contact popup`);
 }

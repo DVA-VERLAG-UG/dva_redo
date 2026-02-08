@@ -53,6 +53,47 @@ html[data-theme="dim"] .konfig-hero-subtitle {
     color: rgba(245, 242, 237, 0.7);
 }
 
+/* Hero CTA - Underline Style (wie Index) */
+.konfig-hero-cta {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.konfig-hero-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    padding-bottom: 6px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid currentColor;
+    color: #2C3E50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dim"] .konfig-hero-cta-btn {
+    color: #B08D57;
+}
+
+.konfig-hero-cta-btn:hover {
+    color: #B08D57;
+    border-bottom-color: #B08D57;
+    transform: translateY(-1px);
+}
+
+html[data-theme="dim"] .konfig-hero-cta-btn:hover {
+    color: #d4b07a;
+    border-bottom-color: #d4b07a;
+}
+
 .konfig-main {
     min-height: 100vh;
 }
@@ -98,7 +139,7 @@ html[data-theme="dim"] .konfig-trust-ticker {
    ========================================== */
 
 .konfig-packages {
-    padding: 0 20px 100px;
+    padding: 0 20px 40px; /* Von 100px auf 40px reduziert */
 }
 
 .konfig-container {
@@ -118,11 +159,12 @@ html[data-theme="dim"] .konfig-trust-ticker {
     background: rgba(176, 141, 87, 0.05);
     border: 1px solid rgba(176, 141, 87, 0.15);
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible; /* Badge nicht abschneiden */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
+    position: relative; /* Für absolute Badge */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
         0 8px 32px rgba(176, 141, 87, 0.1),
@@ -280,6 +322,8 @@ html[data-theme="dim"] .package-subtitle {
 .package-body {
     padding: 20px;
     flex: 1;
+    overflow: auto; /* Scrollbar wenn Content zu lang */
+    border-radius: 0 0 20px 20px; /* Runde Ecken unten */
 }
 
 /* Custom config body - larger */
@@ -451,6 +495,53 @@ html[data-theme="dim"] .package-footer {
     transform: translateY(0);
 }
 
+/* CTA Top - Neuer Container für Button oben */
+.package-cta-top {
+    padding: 0 24px 20px;
+    border-bottom: 1px solid rgba(176, 141, 87, 0.1);
+}
+
+html[data-theme="dim"] .package-cta-top {
+    border-bottom-color: rgba(176, 141, 87, 0.15);
+}
+
+/* Primary Button - Underline Style wie Index */
+.btn-configure-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+    padding-bottom: 8px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid currentColor;
+    color: #2C3E50;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dim"] .btn-configure-primary {
+    color: #B08D57;
+}
+
+.btn-configure-primary:hover {
+    color: #B08D57;
+    border-bottom-color: #B08D57;
+    transform: translateY(-1px);
+}
+
+html[data-theme="dim"] .btn-configure-primary:hover {
+    color: #d4b07a;
+    border-bottom-color: #d4b07a;
+}
+
 /* Custom Config Button - Large */
 .package-card:nth-child(2) .btn-configure {
     padding: 20px 40px;
@@ -463,30 +554,41 @@ html[data-theme="dim"] .package-footer {
     box-shadow: 0 16px 60px rgba(176, 141, 87, 0.6);
 }
 
-/* Secondary Button for Side Packages */
-.btn-configure-secondary {
-    background: rgba(176, 141, 87, 0.15);
+/* Underline Button für alle Pakete */
+.btn-configure-underline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+    padding-bottom: 6px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid currentColor;
     color: #2C3E50;
-    border: 2px solid rgba(176, 141, 87, 0.3);
-    box-shadow: 0 4px 16px rgba(176, 141, 87, 0.15);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-html[data-theme="dim"] .btn-configure-secondary {
-    background: rgba(176, 141, 87, 0.2);
+html[data-theme="dim"] .btn-configure-underline {
     color: #B08D57;
-    border-color: rgba(176, 141, 87, 0.4);
 }
 
-.btn-configure-secondary:hover {
-    background: rgba(176, 141, 87, 0.25);
-    border-color: #B08D57;
+.btn-configure-underline:hover {
     color: #B08D57;
-    box-shadow: 0 8px 24px rgba(176, 141, 87, 0.3);
+    border-bottom-color: #B08D57;
+    transform: translateY(-1px);
 }
 
-html[data-theme="dim"] .btn-configure-secondary:hover {
-    background: rgba(176, 141, 87, 0.3);
+html[data-theme="dim"] .btn-configure-underline:hover {
     color: #d4b07a;
+    border-bottom-color: #d4b07a;
 }
 
 /* ==========================================
@@ -695,6 +797,19 @@ html[data-theme="dim"] .success-message-inline {
     .package-card:nth-child(3) {
         opacity: 1;
     }
+    
+    /* Mobile Reihenfolge: Custom Config zuerst */
+    .package-card:nth-child(1) {
+        order: 2; /* Starter nach unten */
+    }
+    
+    .package-card:nth-child(2) {
+        order: 1; /* Custom Config nach oben */
+    }
+    
+    .package-card:nth-child(3) {
+        order: 3; /* Deluxe ganz unten */
+    }
 }
 
 @media (max-width: 768px) {
@@ -703,7 +818,7 @@ html[data-theme="dim"] .success-message-inline {
     }
     
     .konfig-packages {
-        padding: 0 16px 80px;
+        padding: 0 16px 40px; /* Von 80px auf 40px reduziert */
     }
     
     .package-body {
