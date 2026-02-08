@@ -1,7 +1,7 @@
 /* ==========================================
    GLOBAL STYLES
    Royal Bronze Theme - Literary & Sophisticated
-   EXAKTE FARBPALETTE
+   EXAKTE FARBPALETTE + CURSOR FIX
    ========================================== */
 
 /* Basic reset */
@@ -21,6 +21,7 @@ body {
   background: #f5f3f0; /* Exakt aus der Palette - helles Beige */
   padding-top: 72px; /* Space for fixed header */
   transition: color 0.3s ease, background 0.3s ease;
+  cursor: auto; /* ← DEFAULT CURSOR! */
 }
 
 /* Headings - Literary Feel */
@@ -37,15 +38,17 @@ h1 { font-size: 2.75rem; }
 h2 { font-size: 2.25rem; }
 h3 { font-size: 1.75rem; }
 
-/* Links - Bronze Accents */
+/* Links - Bronze Accents + CURSOR FIX */
 a {
   color: #B08D57;
   text-decoration: none;
   transition: color 0.2s ease;
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 a:hover {
   color: #8a6d3f;
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 /* Paragraphs */
@@ -67,14 +70,14 @@ section {
   padding: 60px 0;
 }
 
-/* Buttons - Bronze Style */
+/* Buttons - Bronze Style + CURSOR FIX */
 .button {
   display: inline-block;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
   text-align: center;
-  cursor: pointer;
+  cursor: pointer !important; /* ← FIXED! */
   transition: all 0.3s ease;
   border: none;
   font-size: 16px;
@@ -82,28 +85,40 @@ section {
   letter-spacing: 0.03em;
 }
 
+button {
+  cursor: pointer !important; /* ← FIXED! Für ALLE Buttons */
+}
+
+button:hover {
+  cursor: pointer !important; /* ← FIXED! */
+}
+
 .button-primary {
   background: linear-gradient(135deg, #B08D57, #8a6d3f);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 .button-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(176, 141, 87, 0.45);
   background: linear-gradient(135deg, #8a6d3f, #B08D57);
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 .button-secondary {
   background: rgba(44, 62, 80, 0.06);
   color: #2C3E50;
   border: 2px solid rgba(44, 62, 80, 0.15);
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 .button-secondary:hover {
   background: rgba(176, 141, 87, 0.08);
   border-color: #B08D57;
   color: #B08D57;
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 /* ==========================================
@@ -129,10 +144,12 @@ html[data-theme="dim"] p {
 
 html[data-theme="dim"] a {
   color: #B08D57;
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 html[data-theme="dim"] a:hover {
   color: #d4b07a;
+  cursor: pointer !important; /* ← FIXED! */
 }
 
 html[data-theme="dim"] .button-primary {
@@ -351,6 +368,49 @@ html[data-theme="dim"] .bg-light {
 }
 
 /* ==========================================
+   CURSOR FIX - UNIVERSAL
+   Überschreibt alle fehlenden cursor Styles
+   ========================================== */
+
+/* ALL interactive elements */
+a,
+a:hover,
+a:active,
+a:focus,
+button,
+button:hover,
+button:active,
+button:focus,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+[onclick],
+[role="button"],
+label[for] {
+  cursor: pointer !important;
+}
+
+/* Text inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  cursor: text !important;
+}
+
+/* Disabled elements */
+button:disabled,
+button[disabled],
+input:disabled,
+input[disabled],
+.disabled {
+  cursor: not-allowed !important;
+}
+
+/* ==========================================
    EXAKTE FARBPALETTE - GLOBAL.CSS
    ========================================== 
    
@@ -371,5 +431,6 @@ html[data-theme="dim"] .bg-light {
    - Light Mode BG: #f5f3f0 (aus Palette, nicht #faf8f5)
    - Dark Mode BG:  #2C3E50 (aus Palette)
    - Alle Farben exakt nach Bild-Palette
+   - CURSOR FIX: Alle Links und Buttons haben cursor: pointer !important
    
    ========================================== */
