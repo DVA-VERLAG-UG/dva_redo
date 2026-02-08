@@ -1,6 +1,7 @@
 /* ==========================================
    CURSOR FOLLOWER (Non-invasive)
-   Base color: dark warm red (#C92F2A)
+   Royal Bronze Theme
+   Base color: bronze gold (#B08D57)
    ========================================== */
 
 /* Cursor Follower - does NOT hide default cursor */
@@ -10,9 +11,9 @@
   height: 20px;
   border-radius: 50%;
 
-  /* Small dot: warm grey + dark red hint */
-  background: rgba(236, 200, 200, 0.26);
-  border: 2px solid rgba(201, 47, 42, 0.55);
+  /* Small dot: warm bronze + subtle glow */
+  background: rgba(176, 141, 87, 0.15);
+  border: 2px solid rgba(176, 141, 87, 0.45);
 
   pointer-events: none;
   z-index: 9999;
@@ -31,25 +32,25 @@
   opacity: 1;
 }
 
-/* Dim theme — calmer, slightly muted */
+/* Dim theme — warmer, elegant bronze glow */
 html[data-theme="dim"] .cursor-follower {
-  background: rgba(201, 47, 42, 0.20);
-  border: 2px solid rgba(201, 47, 42, 0.42);
+  background: rgba(176, 141, 87, 0.20);
+  border: 2px solid rgba(176, 141, 87, 0.55);
 }
 
-/* Hover State - Bigger & Red */
+/* Hover State - Bigger & Bronze */
 .cursor-follower.hover {
   width: 50px;
   height: 50px;
 
-  /* Stronger red presence */
-  background: rgba(201, 47, 42, 0.08);
-  border: 2px solid rgba(201, 47, 42, 0.85);
+  /* Stronger bronze presence */
+  background: rgba(176, 141, 87, 0.12);
+  border: 2px solid rgba(176, 141, 87, 0.75);
 }
 
 html[data-theme="dim"] .cursor-follower.hover {
-  background: rgba(201, 47, 42, 0.06);
-  border: 2px solid rgba(201, 47, 42, 0.72);
+  background: rgba(176, 141, 87, 0.15);
+  border: 2px solid rgba(176, 141, 87, 0.85);
 }
 
 /* Hide on touch devices */
@@ -58,3 +59,14 @@ html[data-theme="dim"] .cursor-follower.hover {
     display: none !important;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 BRONZE CURSOR:
+   Base:            rgba(176, 141, 87, 0.15)
+   Border:          rgba(176, 141, 87, 0.45)
+   Hover:           rgba(176, 141, 87, 0.75)
+   
+   ========================================== */

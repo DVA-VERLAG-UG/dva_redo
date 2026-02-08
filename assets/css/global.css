@@ -1,5 +1,7 @@
 /* ==========================================
    GLOBAL STYLES
+   Royal Bronze Theme - Literary & Sophisticated
+   EXAKTE FARBPALETTE
    ========================================== */
 
 /* Basic reset */
@@ -10,44 +12,46 @@
 }
 
 /* ==========================================
-   LIGHT MODE (Default)
+   LIGHT MODE (Default) - Exakte Palette
    ========================================== */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.6;
-  color: #0f172a;
-  background: #fff;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.7;
+  color: #2C3E50;
+  background: #f5f3f0; /* Exakt aus der Palette - helles Beige */
   padding-top: 72px; /* Space for fixed header */
   transition: color 0.3s ease, background 0.3s ease;
 }
 
-/* Headings */
+/* Headings - Literary Feel */
 h1, h2, h3, h4, h5, h6 {
-  color: #0f172a;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  color: #2C3E50;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
   transition: color 0.3s ease;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.75rem; }
 
-/* Links */
+/* Links - Bronze Accents */
 a {
-  color: #6366f1;
+  color: #B08D57;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #4f46e5;
+  color: #8a6d3f;
 }
 
 /* Paragraphs */
 p {
   margin-bottom: 1rem;
-  color: rgba(15, 23, 42, 0.8);
+  color: rgba(44, 62, 80, 0.85);
   transition: color 0.3s ease;
 }
 
@@ -63,7 +67,7 @@ section {
   padding: 60px 0;
 }
 
-/* Buttons */
+/* Buttons - Bronze Style */
 .button {
   display: inline-block;
   padding: 12px 24px;
@@ -71,38 +75,43 @@ section {
   font-weight: 600;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   border: none;
   font-size: 16px;
+  font-family: 'Georgia', serif;
+  letter-spacing: 0.03em;
 }
 
 .button-primary {
-  background: linear-gradient(135deg, #8b5cf6, #6366f1);
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, #B08D57, #8a6d3f);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
 }
 
 .button-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 6px 20px rgba(176, 141, 87, 0.45);
+  background: linear-gradient(135deg, #8a6d3f, #B08D57);
 }
 
 .button-secondary {
-  background: rgba(15, 23, 42, 0.06);
-  color: #0f172a;
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(44, 62, 80, 0.06);
+  color: #2C3E50;
+  border: 2px solid rgba(44, 62, 80, 0.15);
 }
 
 .button-secondary:hover {
-  background: rgba(15, 23, 42, 0.1);
+  background: rgba(176, 141, 87, 0.08);
+  border-color: #B08D57;
+  color: #B08D57;
 }
 
 /* ==========================================
-   DARK MODE
+   DARK MODE - Exakte Palette
    ========================================== */
 html[data-theme="dim"] body {
-  color: #fff;
-  background: #0a0d1f;
+  color: #f5f2ed;
+  background: #2C3E50; /* Exakt aus der Palette - Deep Blue */
 }
 
 html[data-theme="dim"] h1,
@@ -111,29 +120,40 @@ html[data-theme="dim"] h3,
 html[data-theme="dim"] h4,
 html[data-theme="dim"] h5,
 html[data-theme="dim"] h6 {
-  color: #fff;
+  color: #B08D57;
 }
 
 html[data-theme="dim"] p {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(245, 242, 237, 0.85);
 }
 
 html[data-theme="dim"] a {
-  color: #a78bfa;
+  color: #B08D57;
 }
 
 html[data-theme="dim"] a:hover {
-  color: #c4b5fd;
+  color: #d4b07a;
+}
+
+html[data-theme="dim"] .button-primary {
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
+  color: #2C3E50;
+}
+
+html[data-theme="dim"] .button-primary:hover {
+  background: linear-gradient(135deg, #d4b07a, #B08D57);
+  box-shadow: 0 6px 20px rgba(176, 141, 87, 0.4);
 }
 
 html[data-theme="dim"] .button-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(176, 141, 87, 0.1);
+  color: #B08D57;
+  border: 2px solid rgba(176, 141, 87, 0.3);
 }
 
 html[data-theme="dim"] .button-secondary:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(176, 141, 87, 0.15);
+  border-color: #B08D57;
 }
 
 /* ==========================================
@@ -146,13 +166,18 @@ html[data-theme="dim"] .button-secondary:hover {
 
 .hero h1 {
   margin-bottom: 20px;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   margin-bottom: 30px;
   opacity: 0.9;
+  color: rgba(44, 62, 80, 0.8);
+}
+
+html[data-theme="dim"] .hero-subtitle {
+  color: rgba(245, 242, 237, 0.8);
 }
 
 .hero-buttons {
@@ -166,11 +191,11 @@ html[data-theme="dim"] .button-secondary:hover {
    FEATURES SECTION
    ========================================== */
 .features {
-  background: rgba(0, 0, 0, 0.02);
+  background: rgba(176, 141, 87, 0.03);
 }
 
 html[data-theme="dim"] .features {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(176, 141, 87, 0.05);
 }
 
 .features h2 {
@@ -187,32 +212,44 @@ html[data-theme="dim"] .features {
 .feature-card {
   padding: 30px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(176, 141, 87, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 html[data-theme="dim"] .feature-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(176, 141, 87, 0.08);
+  border: 1px solid rgba(176, 141, 87, 0.2);
 }
 
 .feature-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 40px rgba(176, 141, 87, 0.2);
+  border-color: #B08D57;
 }
 
 html[data-theme="dim"] .feature-card:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(176, 141, 87, 0.25);
+  border-color: #B08D57;
 }
 
 .feature-icon {
   font-size: 2.5rem;
   margin-bottom: 16px;
+  color: #B08D57;
+}
+
+html[data-theme="dim"] .feature-icon {
+  color: #B08D57;
 }
 
 .feature-card h3 {
   margin-bottom: 12px;
+  color: #2C3E50;
+}
+
+html[data-theme="dim"] .feature-card h3 {
+  color: #B08D57;
 }
 
 .feature-card p {
@@ -225,11 +262,11 @@ html[data-theme="dim"] .feature-card:hover {
 .cta {
   text-align: center;
   padding: 80px 0;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+  background: linear-gradient(135deg, rgba(176, 141, 87, 0.08), rgba(44, 62, 80, 0.06));
 }
 
 html[data-theme="dim"] .cta {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0.15));
+  background: linear-gradient(135deg, rgba(176, 141, 87, 0.12), rgba(44, 62, 80, 0.15));
 }
 
 .cta h2 {
@@ -237,7 +274,7 @@ html[data-theme="dim"] .cta {
 }
 
 .cta p {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 30px;
 }
 
@@ -249,12 +286,16 @@ html[data-theme="dim"] .cta {
     padding-top: 60px;
   }
 
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+
   .hero h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .hero-buttons {
@@ -270,3 +311,65 @@ html[data-theme="dim"] .cta {
     padding: 40px 0;
   }
 }
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Text Colors */
+.text-primary {
+  color: #2C3E50;
+}
+
+.text-accent {
+  color: #B08D57;
+}
+
+html[data-theme="dim"] .text-primary {
+  color: #f5f2ed;
+}
+
+html[data-theme="dim"] .text-accent {
+  color: #B08D57;
+}
+
+/* Background Colors */
+.bg-primary {
+  background: #2C3E50;
+}
+
+.bg-accent {
+  background: #B08D57;
+}
+
+.bg-light {
+  background: #f5f3f0; /* Exakt aus Palette */
+}
+
+html[data-theme="dim"] .bg-light {
+  background: rgba(176, 141, 87, 0.05);
+}
+
+/* ==========================================
+   EXAKTE FARBPALETTE - GLOBAL.CSS
+   ========================================== 
+   
+   🎨 PRIMARY COLORS (EXAKT):
+   Deep Blue:       #2C3E50 (Text Light Mode, BG Dark Mode)
+   Bronze/Gold:     #B08D57 (Akzente, Links, Buttons, Headings Dark Mode)
+   Cream/Beige:     #f5f3f0 (Light Mode Background - EXAKT)
+   
+   🎯 SECONDARY:
+   Dark Bronze:     #8a6d3f (Hover States)
+   Light Bronze:    #d4b07a (Dark Mode Highlights)
+   
+   🔤 TYPOGRAPHY:
+   Body:            Georgia, Times New Roman
+   Headings:        Playfair Display, Georgia
+   
+   💡 WICHTIG:
+   - Light Mode BG: #f5f3f0 (aus Palette, nicht #faf8f5)
+   - Dark Mode BG:  #2C3E50 (aus Palette)
+   - Alle Farben exakt nach Bild-Palette
+   
+   ========================================== */

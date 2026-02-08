@@ -1,7 +1,7 @@
 /* ==========================================
    COMBINED STATS SECTION
    200+ Authors | 20+ Years Experience
-   SUBTLE GRAY VERSION - Rot nur bei Hover
+   Royal Bronze Theme - Bronze bei Hover
    ========================================== */
 
 .stats-combined-section {
@@ -35,14 +35,14 @@
   justify-content: center;
   min-height: 500px;
   
-  /* Subtle glass effect - GRAU statt Rot */
+  /* Subtle glass effect - GRAU statt Bronze */
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 24px;
-  border: 1px solid rgba(15, 23, 42, 0.08); /* GRAU */
+  border: 1px solid rgba(44, 62, 80, 0.08);
   box-shadow: 
-    0 8px 32px rgba(15, 23, 42, 0.05), /* GRAU */
+    0 8px 32px rgba(44, 62, 80, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
   
   transition: 
@@ -57,66 +57,68 @@
 html[data-theme="dim"] .stats-panel-left,
 html[data-theme="dim"] .stats-panel-right {
   background: rgba(255, 255, 255, 0.01);
-  border-color: rgba(255, 255, 255, 0.06); /* GRAU */
+  border-color: rgba(255, 255, 255, 0.06);
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.15), /* GRAU */
+    0 8px 32px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
-/* Subtiler roter Akzent NUR bei Hover */
+/* Bronze Akzent bei Hover */
 .stats-panel-left:hover,
 .stats-panel-right:hover {
-  background: rgba(220, 38, 38, 0.02); /* SEHR SUBTIL */
-  border-color: rgba(220, 38, 38, 0.12); /* DEZENT */
+  background: rgba(176, 141, 87, 0.05);
+  border-color: rgba(176, 141, 87, 0.2);
   box-shadow: 
-    0 0 30px rgba(220, 38, 38, 0.08), /* SCHWACH */
-    0 12px 40px rgba(15, 23, 42, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 0 30px rgba(176, 141, 87, 0.15),
+    0 12px 40px rgba(44, 62, 80, 0.12),
+    inset 0 1px 0 rgba(176, 141, 87, 0.1);
 }
 
 html[data-theme="dim"] .stats-panel-left:hover,
 html[data-theme="dim"] .stats-panel-right:hover {
-  background: rgba(239, 68, 68, 0.03); /* SEHR SUBTIL */
-  border-color: rgba(239, 68, 68, 0.15); /* DEZENT */
+  background: rgba(176, 141, 87, 0.08);
+  border-color: rgba(176, 141, 87, 0.25);
   box-shadow: 
-    0 0 35px rgba(239, 68, 68, 0.1), /* SCHWACH */
+    0 0 35px rgba(176, 141, 87, 0.2),
     0 12px 40px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
-/* Kicker - GRAU statt Rot */
+/* Kicker - GRAU → Bronze bei Hover */
 .stats-panel-kicker {
+  font-family: 'Georgia', serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(15, 23, 42, 0.5); /* GRAU */
+  color: rgba(44, 62, 80, 0.5);
   margin-bottom: 24px;
   transition: color 0.3s ease;
 }
 
 html[data-theme="dim"] .stats-panel-kicker {
-  color: rgba(255, 255, 255, 0.4); /* GRAU */
+  color: rgba(245, 242, 237, 0.4);
 }
 
-/* Kicker wird rot bei Hover */
+/* Kicker wird bronze bei Hover */
 .stats-panel-left:hover .stats-panel-kicker,
 .stats-panel-right:hover .stats-panel-kicker {
-  color: #dc2626; /* ROT NUR BEI HOVER */
+  color: #B08D57;
 }
 
 html[data-theme="dim"] .stats-panel-left:hover .stats-panel-kicker,
 html[data-theme="dim"] .stats-panel-right:hover .stats-panel-kicker {
-  color: #ef4444; /* ROT NUR BEI HOVER */
+  color: #B08D57;
 }
 
 /* Counter (animated number) - GRAU Gradient */
 .stats-panel-counter {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: clamp(4rem, 10vw, 8rem);
   font-weight: 900;
   background: linear-gradient(135deg, 
-    rgba(15, 23, 42, 0.9),  /* GRAU */
-    rgba(15, 23, 42, 0.6)   /* GRAU */
+    rgba(44, 62, 80, 0.9),
+    rgba(44, 62, 80, 0.6)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -131,24 +133,24 @@ html[data-theme="dim"] .stats-panel-right:hover .stats-panel-kicker {
 
 html[data-theme="dim"] .stats-panel-counter {
   background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.95), /* GRAU */
-    rgba(255, 255, 255, 0.7)   /* GRAU */
+    rgba(245, 242, 237, 0.95),
+    rgba(245, 242, 237, 0.7)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Counter wird rot bei Hover */
+/* Counter wird bronze bei Hover */
 .stats-panel-left:hover .stats-panel-counter,
 .stats-panel-right:hover .stats-panel-counter {
-  background: linear-gradient(135deg, #b91c1c, #ef4444); /* ROT BEI HOVER */
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Underline effect on hover - ROT */
+/* Underline effect on hover - Bronze */
 .stats-panel-counter::after {
   content: '';
   position: absolute;
@@ -157,73 +159,76 @@ html[data-theme="dim"] .stats-panel-counter {
   transform: translateX(-50%) scaleX(0);
   width: 80%;
   height: 4px;
-  background: linear-gradient(135deg, #b91c1c, #ef4444); /* ROT */
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
   border-radius: 2px;
   transition: transform 0.4s ease;
 }
 
 .stats-panel-counter:hover {
   transform: scale(1.05);
-  text-shadow: 0 8px 24px rgba(220, 38, 38, 0.2); /* SUBTILER SCHATTEN */
+  text-shadow: 0 8px 24px rgba(176, 141, 87, 0.25);
 }
 
 .stats-panel-counter:hover::after {
   transform: translateX(-50%) scaleX(1);
 }
 
-/* Title - NORMAL SCHWARZ/WEISS */
+/* Title - NORMAL → Bronze bei Hover */
 .stats-panel-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 900;
-  color: #0f172a; /* SCHWARZ */
+  color: #2C3E50;
   line-height: 1.3;
   margin-bottom: 20px;
   transition: color 0.3s ease;
 }
 
 html[data-theme="dim"] .stats-panel-title {
-  color: #fff; /* WEISS */
+  color: #f5f2ed;
 }
 
-/* Title wird rot NUR bei Hover */
+/* Title wird bronze bei Hover */
 .stats-panel-left:hover .stats-panel-title,
 .stats-panel-right:hover .stats-panel-title {
-  color: #dc2626; /* ROT NUR BEI HOVER */
+  color: #B08D57;
 }
 
 html[data-theme="dim"] .stats-panel-left:hover .stats-panel-title,
 html[data-theme="dim"] .stats-panel-right:hover .stats-panel-title {
-  color: #ef4444; /* ROT NUR BEI HOVER */
+  color: #B08D57;
 }
 
 /* Subtitle */
 .stats-panel-subtitle {
+  font-family: 'Georgia', serif;
   font-size: 1.15rem;
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.7); /* GRAU */
+  color: rgba(44, 62, 80, 0.7);
   max-width: 500px;
   margin: 0 auto 20px;
 }
 
 html[data-theme="dim"] .stats-panel-subtitle {
-  color: rgba(255, 255, 255, 0.65); /* GRAU */
+  color: rgba(245, 242, 237, 0.65);
 }
 
 /* Description */
 .stats-panel-description {
+  font-family: 'Georgia', serif;
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.6); /* GRAU */
+  color: rgba(44, 62, 80, 0.6);
   max-width: 500px;
   margin: 0 auto;
 }
 
 html[data-theme="dim"] .stats-panel-description {
-  color: rgba(255, 255, 255, 0.55); /* GRAU */
+  color: rgba(245, 242, 237, 0.55);
 }
 
 /* ==========================================
-   DECORATIVE ACCENT LINE (between panels) - GRAU
+   DECORATIVE ACCENT LINE (between panels)
    ========================================== */
 
 .stats-panel-accent {
@@ -236,9 +241,9 @@ html[data-theme="dim"] .stats-panel-description {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(15, 23, 42, 0.1) 20%, /* GRAU */
-    rgba(15, 23, 42, 0.15) 50%, /* GRAU */
-    rgba(15, 23, 42, 0.1) 80%, /* GRAU */
+    rgba(176, 141, 87, 0.1) 20%,
+    rgba(176, 141, 87, 0.15) 50%,
+    rgba(176, 141, 87, 0.1) 80%,
     transparent 100%
   );
   pointer-events: none;
@@ -249,9 +254,9 @@ html[data-theme="dim"] .stats-panel-accent {
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(255, 255, 255, 0.08) 20%, /* GRAU */
-    rgba(255, 255, 255, 0.12) 50%, /* GRAU */
-    rgba(255, 255, 255, 0.08) 80%, /* GRAU */
+    rgba(176, 141, 87, 0.15) 20%,
+    rgba(176, 141, 87, 0.2) 50%,
+    rgba(176, 141, 87, 0.15) 80%,
     transparent 100%
   );
 }
@@ -318,3 +323,15 @@ html[data-theme="dim"] .stats-panel-accent {
     padding: 30px 20px;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 COLORS:
+   Default:         Grau/Neutral
+   Hover:           Bronze (#B08D57)
+   Counter:         Bronze Gradient bei Hover
+   Accent Line:     Bronze
+   
+   ========================================== */

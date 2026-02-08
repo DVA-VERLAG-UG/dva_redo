@@ -1,5 +1,6 @@
 /* ==========================================
    HERO SECTION - MINIMALIST & CLEAN
+   Royal Bronze Theme
    ========================================== */
 
 .hero {
@@ -50,8 +51,8 @@ html[data-theme="dim"] .hero::before {
   pointer-events: none;
   
   /* Schatten nur an den Seiten des Bildes */
-  filter: drop-shadow(-40px 0 60px rgba(0, 0, 0, 0.3))
-          drop-shadow(40px 0 60px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(-40px 0 60px rgba(44, 62, 80, 0.25))
+          drop-shadow(40px 0 60px rgba(44, 62, 80, 0.25));
   
   /* Gradient Mask - fade out am unteren Ende */
   mask-image: linear-gradient(to bottom,
@@ -110,35 +111,37 @@ html[data-theme="dim"] .hero::after {
 
 /* Hero Title - Clean Typography */
 .hero-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 4.5rem;
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 32px;
-  color: #000;
-  letter-spacing: -0.03em;
-  -webkit-text-stroke: 0.5px rgba(0, 0, 0, 0.3);
+  color: #2C3E50;
+  letter-spacing: -0.02em;
+  -webkit-text-stroke: 0.5px rgba(44, 62, 80, 0.2);
   paint-order: stroke fill;
 }
 
 html[data-theme="dim"] .hero-title {
-  color: #fff;
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
+  color: #B08D57;
+  -webkit-text-stroke: 0.5px rgba(176, 141, 87, 0.2);
 }
 
 /* Hero Description - Clean */
 .hero-description {
+  font-family: 'Georgia', serif;
   font-size: 1.35rem;
   line-height: 1.7;
-  color: #000;
+  color: #2C3E50;
   margin-bottom: 56px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 html[data-theme="dim"] .hero-description {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 242, 237, 0.9);
 }
 
 /* Hero CTA Buttons Container (CENTERED) */
@@ -157,7 +160,7 @@ html[data-theme="dim"] .hero-description {
   background: none;
   border: none;
   border-bottom: 2px solid currentColor;
-  color: #000;
+  color: #2C3E50;
   font-size: 1.5rem;
   font-weight: 600;
   font-style: italic;
@@ -166,99 +169,103 @@ html[data-theme="dim"] .hero-description {
   cursor: pointer;
   transition: all 0.3s ease;
   padding-bottom: 4px;
-  font-family: inherit;
+  font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .hero-cta-subtle {
-  color: #fff;
+  color: #B08D57;
 }
 
 .hero-cta-subtle:hover {
-  color: #7c3aed;
-  border-bottom-color: #7c3aed;
+  color: #B08D57;
+  border-bottom-color: #B08D57;
   transform: translateY(-1px);
 }
 
 html[data-theme="dim"] .hero-cta-subtle:hover {
-  color: #a78bfa;
-  border-bottom-color: #a78bfa;
+  color: #d4b07a;
+  border-bottom-color: #d4b07a;
 }
 
-/* OLD CTA STYLES (für andere Seiten) */
+/* GLASS BUTTON STYLES (Bronze Theme) */
 .hero-cta {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   padding: 16px 32px;
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(176, 141, 87, 0.15);
   backdrop-filter: blur(12px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  color: #2C3E50;
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.02em;
   border-radius: 10px;
   text-decoration: none;
   transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 8px 24px rgba(176, 141, 87, 0.15),
+    inset 0 1px 0 rgba(176, 141, 87, 0.2);
 }
 
 .hero-cta:hover {
-  background: rgba(139, 92, 246, 0.7);
-  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(176, 141, 87, 0.25);
+  border-color: #B08D57;
   transform: translateY(-2px);
   box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.5),
-    0 0 0 1px rgba(139, 92, 246, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 12px 40px rgba(176, 141, 87, 0.35),
+    0 0 0 1px rgba(176, 141, 87, 0.4),
+    inset 0 1px 0 rgba(176, 141, 87, 0.3);
 }
 
 /* Secondary Button - Glass Outline */
 .hero-cta-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1.5px solid rgba(15, 23, 42, 0.15);
-  color: #000;
+  background: rgba(44, 62, 80, 0.05);
+  border: 1.5px solid rgba(44, 62, 80, 0.2);
+  color: #2C3E50;
 }
 
 html[data-theme="dim"] .hero-cta-secondary {
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: rgba(176, 141, 87, 0.08);
+  border-color: rgba(176, 141, 87, 0.25);
+  color: #B08D57;
 }
 
 .hero-cta-secondary:hover {
-  background: rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.4);
-  color: #8b5cf6;
+  background: rgba(176, 141, 87, 0.15);
+  border-color: #B08D57;
+  color: #B08D57;
   box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.3),
-    0 0 0 1px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 12px 40px rgba(176, 141, 87, 0.25),
+    0 0 0 1px rgba(176, 141, 87, 0.3),
+    inset 0 1px 0 rgba(176, 141, 87, 0.2);
 }
 
 html[data-theme="dim"] .hero-cta-secondary:hover {
-  color: #c4b5fd;
+  background: rgba(176, 141, 87, 0.2);
+  color: #d4b07a;
 }
 
 /* Dark mode primary button */
 html[data-theme="dim"] .hero-cta {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: rgba(176, 141, 87, 0.2);
+  border-color: rgba(176, 141, 87, 0.35);
+  color: #B08D57;
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    inset 0 1px 0 rgba(176, 141, 87, 0.25);
 }
 
 html[data-theme="dim"] .hero-cta:hover {
-  background: rgba(139, 92, 246, 0.5);
-  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(176, 141, 87, 0.3);
+  border-color: #B08D57;
+  color: #d4b07a;
   box-shadow: 
-    0 12px 40px rgba(139, 92, 246, 0.6),
-    0 0 0 1px rgba(139, 92, 246, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 12px 40px rgba(176, 141, 87, 0.4),
+    0 0 0 1px rgba(176, 141, 87, 0.5),
+    inset 0 1px 0 rgba(176, 141, 87, 0.3);
 }
 
 /* Glass reflection effect */
@@ -272,22 +279,22 @@ html[data-theme="dim"] .hero-cta:hover {
   gap: 24px;
   flex-wrap: wrap;
   padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(176, 141, 87, 0.08);
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(10px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(176, 141, 87, 0.2);
   border-radius: 999px;
   box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 4px 16px rgba(176, 141, 87, 0.1),
+    inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
 html[data-theme="dim"] .hero-features {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(176, 141, 87, 0.12);
+  border-color: rgba(176, 141, 87, 0.25);
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    inset 0 1px 0 rgba(176, 141, 87, 0.2);
 }
 
 .hero-feature {
@@ -296,16 +303,17 @@ html[data-theme="dim"] .hero-features {
   gap: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: rgba(15, 23, 42, 0.8);
+  font-family: 'Georgia', serif;
+  color: rgba(44, 62, 80, 0.85);
 }
 
 html[data-theme="dim"] .hero-feature {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(245, 242, 237, 0.85);
 }
 
 .hero-feature-icon {
   font-size: 16px;
-  color: #10b981;
+  color: #B08D57;
 }
 
 /* ==========================================
@@ -362,3 +370,19 @@ html[data-theme="dim"] .hero-feature {
     justify-content: center;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 HERO COLORS:
+   Title:           #2C3E50 (Light) / #B08D57 (Dark)
+   Description:     #2C3E50 (Light) / #f5f2ed (Dark)
+   CTA Accent:      #B08D57 (Bronze/Gold)
+   Glass Buttons:   rgba(176, 141, 87, 0.15-0.3)
+   
+   🔤 TYPOGRAPHY:
+   Title:           Playfair Display
+   Body/CTA:        Georgia
+   
+   ========================================== */

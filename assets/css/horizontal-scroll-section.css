@@ -1,6 +1,7 @@
 /* ==========================================
    HORIZONTAL SCROLL SECTION
-   ========================================== */
+   Royal Bronze Theme
+   ========================================== */ 
 
 .horizontal-scroll-wrapper {
   position: relative;
@@ -22,7 +23,7 @@
 
 .horizontal-scroll-track {
   display: flex;
-  gap: 40px; /* Enger: 100px → 40px */
+  gap: 40px;
   will-change: transform;
   transition: none;
   padding: 0 10vw;
@@ -39,7 +40,7 @@
   height: 80vh;
   display: flex;
   align-items: center;
-  gap: 0; /* Kein gap - für Überlappung */
+  gap: 0;
   position: relative;
 }
 
@@ -100,12 +101,12 @@
   border-radius: 24px;
   overflow: hidden;
   position: relative;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(176, 141, 87, 0.05);
+  border: 1px solid rgba(176, 141, 87, 0.15);
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  z-index: 1; /* Image behind text */
+    0 24px 60px rgba(44, 62, 80, 0.2),
+    inset 0 1px 0 rgba(176, 141, 87, 0.1);
+  z-index: 1;
 }
 
 .panel-image img {
@@ -116,7 +117,7 @@
 }
 
 .panel-image:hover img {
-  transform: scale(1.05); /* Weniger zoom */
+  transform: scale(1.05);
 }
 
 /* Text Container - Overlaps image */
@@ -126,20 +127,20 @@
   flex-direction: column;
   justify-content: center;
   gap: 32px;
-  z-index: 2; /* Text over image */
+  z-index: 2;
   position: relative;
-  will-change: transform; /* Für Parallax */
+  will-change: transform;
 }
 
 /* Text left - overlaps image on right */
 .text-left .panel-text {
-  margin-right: -120px; /* Mehr Overlap: -80px → -120px */
+  margin-right: -120px;
   padding-right: 120px;
 }
 
 /* Text right - overlaps image on left */
 .text-right .panel-text {
-  margin-left: -120px; /* Mehr Overlap: -80px → -120px */
+  margin-left: -120px;
   padding-left: 120px;
 }
 
@@ -154,16 +155,17 @@
   gap: 20px;
 }
 
-/* Regular Title - Größer mit Effekten */
+/* Regular Title - Bronze Theme */
 .panel-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 4rem;
   font-weight: 900;
-  color: #000;
+  color: #2C3E50;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 4px 12px rgba(44, 62, 80, 0.1);
   position: relative;
-  background: linear-gradient(135deg, #000, #333);
+  background: linear-gradient(135deg, #2C3E50, #1a2631);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -171,93 +173,96 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover - Farbe ändert sich zu Lila */
+/* Hover - Farbe ändert sich zu Bronze */
 .panel-title:hover {
-  background: linear-gradient(135deg, #ed3a3a, #fa8b8b);
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 8px 24px rgba(86, 71, 71, 0.4);
-  transform: translateX(8px); /* Leichte Bewegung */
+  text-shadow: 0 8px 24px rgba(176, 141, 87, 0.4);
+  transform: translateX(8px);
 }
 
 html[data-theme="dim"] .panel-title {
-  background: linear-gradient(135deg, #fff, #fa8b8b);
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  text-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
 }
 
 html[data-theme="dim"] .panel-title:hover {
-  background: linear-gradient(135deg, #fa8b8b, #fdb5b5);
+  background: linear-gradient(135deg, #d4b07a, #e8c99a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 8px 24px rgba(246, 92, 92, 0.6);
+  text-shadow: 0 8px 24px rgba(176, 141, 87, 0.6);
 }
 
-/* Description - Größer */
+/* Description */
 .panel-description {
-  font-size: 1.4rem; /* Größer: 1.2rem → 1.4rem */
+  font-family: 'Georgia', serif;
+  font-size: 1.4rem;
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.8);
-  font-weight: 500;
+  color: rgba(44, 62, 80, 0.85);
+  font-weight: 400;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 html[data-theme="dim"] .panel-description {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(245, 242, 237, 0.85);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Glass Info Box */
+/* Glass Info Box - Bronze Theme */
 .panel-info {
   padding: 28px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(176, 141, 87, 0.08);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(176, 141, 87, 0.25);
   border-radius: 20px;
   box-shadow: 
-    0 16px 48px rgba(246, 92, 92, 0.15),
-    0 0 0 1px rgba(246, 92, 92, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 16px 48px rgba(176, 141, 87, 0.15),
+    0 0 0 1px rgba(176, 141, 87, 0.15),
+    inset 0 1px 0 rgba(176, 141, 87, 0.2);
   margin-top: 12px;
 }
 
 html[data-theme="dim"] .panel-info {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(246, 92, 92, 0.25);
+  background: rgba(176, 141, 87, 0.12);
+  border-color: rgba(176, 141, 87, 0.3);
   box-shadow: 
-    0 16px 48px rgba(246, 92, 92, 0.2),
-    0 0 0 1px rgba(246, 92, 92, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 16px 48px rgba(176, 141, 87, 0.2),
+    0 0 0 1px rgba(176, 141, 87, 0.2),
+    inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
 .panel-info-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #000;
+  color: #2C3E50;
   margin-bottom: 16px;
 }
 
 html[data-theme="dim"] .panel-info-title {
-  color: #fff;
+  color: #B08D57;
 }
 
 .panel-info-text {
+  font-family: 'Georgia', serif;
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(15, 23, 42, 0.75);
+  color: rgba(44, 62, 80, 0.75);
   margin-bottom: 24px;
 }
 
 html[data-theme="dim"] .panel-info-text {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(245, 242, 237, 0.75);
 }
 
-/* CTA Button in Panel - Subtle Style */
+/* CTA Button in Panel - Bronze Style */
 .panel-buttons {
   display: flex;
   justify-content: center;
@@ -273,7 +278,7 @@ html[data-theme="dim"] .panel-info-text {
   background: none;
   border: none;
   border-bottom: 2px solid currentColor;
-  color: #000;
+  color: #2C3E50;
   font-size: 1.5rem;
   font-weight: 600;
   font-style: italic;
@@ -281,21 +286,22 @@ html[data-theme="dim"] .panel-info-text {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .panel-btn {
-  color: #fff;
+  color: #B08D57;
 }
 
 .panel-btn:hover {
-  color: #ed3a3a;
-  border-bottom-color: #ed3a3a;
+  color: #B08D57;
+  border-bottom-color: #B08D57;
   transform: translateY(-1px);
 }
 
 html[data-theme="dim"] .panel-btn:hover {
-  color: #fa8b8b;
-  border-bottom-color: #fa8b8b;
+  color: #d4b07a;
+  border-bottom-color: #d4b07a;
 }
 
 .panel-btn svg {
@@ -305,7 +311,6 @@ html[data-theme="dim"] .panel-btn:hover {
 .panel-btn:hover svg {
   transform: translateX(4px);
 }
-
 
 /* ==========================================
    RESPONSIVE
@@ -405,3 +410,17 @@ html[data-theme="dim"] .panel-btn:hover {
     height: 300px;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 COLORS:
+   Title Light:     #2C3E50 → #1a2631 (Gradient)
+   Title Dark:      #B08D57 → #d4b07a (Gradient)
+   Title Hover:     Bronze
+   Description:     rgba(44, 62, 80, 0.85)
+   Info Box:        Bronze Glass Effect
+   Button:          Bronze Underline
+   
+   ========================================== */

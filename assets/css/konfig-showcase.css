@@ -1,5 +1,6 @@
 /* ==========================================
-   KONFIGURATOR SHOWCASE SECTION - WITH PARALLAX
+   KONFIGURATOR SHOWCASE SECTION - WITH PARALLAX 
+   Royal Bronze Theme
    ========================================== */
 
 .konfig-showcase {
@@ -25,7 +26,6 @@
 .konfig-showcase-media {
   position: relative;
   z-index: 1;
-  /* Parallax will be applied via JavaScript */
   will-change: transform;
   transition: transform 0.1s ease-out;
 }
@@ -38,16 +38,16 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 
-    0 24px 80px rgba(73, 66, 66, 0.4),
-    0 0 0 1px rgba(73, 66, 66, 0.4);
+    0 24px 80px rgba(44, 62, 80, 0.25),
+    0 0 0 1px rgba(176, 141, 87, 0.2);
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hover effect on video */
 .konfig-video-wrapper:hover {
   box-shadow: 
-    0 32px 100px rgba(87, 62, 62, 0.5),
-    0 0 0 1px rgba(82, 58, 58, 0.4);
+    0 32px 100px rgba(176, 141, 87, 0.3),
+    0 0 0 1px rgba(176, 141, 87, 0.4);
   transform: scale(1.02);
 }
 
@@ -65,8 +65,8 @@
   height: 140px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(44, 62, 80, 0.3);
+  border: 3px solid rgba(176, 141, 87, 0.2);
   will-change: transform;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -101,35 +101,36 @@
 .konfig-showcase-content {
   position: relative;
   z-index: 2;
-  /* Parallax will be applied via JavaScript */
   will-change: transform, opacity;
   transition: transform 0.1s ease-out;
 }
 
 /* Title with fade-in and slide effect */
 .konfig-showcase-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0 0 16px;
-  color: #000;
+  color: #2C3E50;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease forwards;
 }
 
 html[data-theme="dim"] .konfig-showcase-title {
-  color: #fff;
+  color: #B08D57;
 }
 
 /* Subtitle with delayed animation */
 .konfig-showcase-subtitle {
+  font-family: 'Georgia', serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(15, 23, 42, 0.6);
+  color: rgba(44, 62, 80, 0.6);
   margin: 0 0 32px;
   opacity: 0;
   transform: translateY(20px);
@@ -137,14 +138,15 @@ html[data-theme="dim"] .konfig-showcase-title {
 }
 
 html[data-theme="dim"] .konfig-showcase-subtitle {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(176, 141, 87, 0.7);
 }
 
 /* Description with gradient effect */
 .konfig-showcase-description {
+  font-family: 'Georgia', serif;
   font-size: 1.1rem;
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.8);
+  color: rgba(44, 62, 80, 0.85);
   margin: 0 0 40px;
   max-width: 560px;
   opacity: 0;
@@ -153,7 +155,7 @@ html[data-theme="dim"] .konfig-showcase-subtitle {
 }
 
 html[data-theme="dim"] .konfig-showcase-description {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(245, 242, 237, 0.85);
 }
 
 /* Features List with staggered animation */
@@ -170,7 +172,8 @@ html[data-theme="dim"] .konfig-showcase-description {
   gap: 12px;
   font-size: 1rem;
   font-weight: 600;
-  color: rgba(15, 23, 42, 0.9);
+  font-family: 'Georgia', serif;
+  color: rgba(44, 62, 80, 0.9);
   opacity: 0;
   transform: translateX(-20px);
   animation: slideInLeft 0.6s ease forwards;
@@ -194,7 +197,7 @@ html[data-theme="dim"] .konfig-showcase-description {
 }
 
 html[data-theme="dim"] .konfig-feature-item {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(245, 242, 237, 0.9);
 }
 
 .konfig-feature-icon {
@@ -204,18 +207,18 @@ html[data-theme="dim"] .konfig-feature-item {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(246, 92, 92, 0.2);
-  color: #080808;
+  background: rgba(176, 141, 87, 0.15);
+  color: #B08D57;
   font-size: 14px;
   transition: all 0.3s ease;
 }
 
 .konfig-feature-item:hover .konfig-feature-icon {
-  background: rgba(127, 0, 0, 0.3);
+  background: rgba(176, 141, 87, 0.25);
   transform: scale(1.15) rotate(10deg);
 }
 
-/* CTA Button with enhanced animation */
+/* CTA Button with enhanced animation - Bronze Style */
 .konfig-showcase-cta {
   display: inline-flex;
   align-items: center;
@@ -225,7 +228,7 @@ html[data-theme="dim"] .konfig-feature-item {
   background: none;
   border: none;
   border-bottom: 2px solid currentColor;
-  color: #000;
+  color: #2C3E50;
   font-size: 1.5rem;
   font-weight: 600;
   font-style: italic;
@@ -233,24 +236,25 @@ html[data-theme="dim"] .konfig-feature-item {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease 1s forwards;
 }
 
 html[data-theme="dim"] .konfig-showcase-cta {
-  color: #fff;
+  color: #B08D57;
 }
 
 .konfig-showcase-cta:hover {
-  color: #ed3a3a;
-  border-bottom-color: #ed3a3a;
+  color: #B08D57;
+  border-bottom-color: #B08D57;
   transform: translateY(-1px);
 }
 
 html[data-theme="dim"] .konfig-showcase-cta:hover {
-  color: #fa8b8b;
-  border-bottom-color: #fa8b8b;
+  color: #d4b07a;
+  border-bottom-color: #d4b07a;
 }
 
 .konfig-showcase-cta svg {
@@ -397,3 +401,20 @@ html[data-theme="dim"] .konfig-showcase-cta:hover {
     transform: none !important;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 COLORS:
+   Video Shadow:    rgba(44, 62, 80, 0.25)
+   Video Border:    rgba(176, 141, 87, 0.2)
+   Title:           #2C3E50 (Light) / #B08D57 (Dark)
+   Feature Icons:   Bronze (#B08D57)
+   CTA:             Bronze Underline
+   
+   🔤 TYPOGRAPHY:
+   Headings:        Playfair Display
+   Body:            Georgia
+   
+   ========================================== */

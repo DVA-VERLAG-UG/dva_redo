@@ -1,5 +1,6 @@
 /* ==========================================
    REVIEWS SECTION - TRUE HORIZONTAL SCROLL
+   Royal Bronze Theme
    ========================================== */
 
 .reviews-section {
@@ -28,16 +29,17 @@
 }
 
 .reviews-kicker {
+  font-family: 'Georgia', serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #8b5cf6;
+  color: rgba(176, 141, 87, 0.7);
   margin-bottom: 12px;
 }
 
 html[data-theme="dim"] .reviews-kicker {
-  color: #a78bfa;
+  color: #B08D57;
 }
 
 /* Hide counter for cleaner look */
@@ -46,28 +48,30 @@ html[data-theme="dim"] .reviews-kicker {
 }
 
 .reviews-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: 900;
-  color: #000;
+  color: #2C3E50;
   margin-bottom: 12px;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 html[data-theme="dim"] .reviews-title {
-  color: #fff;
+  color: #B08D57;
 }
 
 .reviews-subtitle {
+  font-family: 'Georgia', serif;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: rgba(15, 23, 42, 0.7);
+  color: rgba(44, 62, 80, 0.7);
   max-width: 700px;
   margin: 0;
 }
 
 html[data-theme="dim"] .reviews-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(245, 242, 237, 0.7);
 }
 
 .reviews-description {
@@ -102,23 +106,23 @@ html[data-theme="dim"] .reviews-subtitle {
   display: none;
 }
 
-/* Individual Review Cards - All Preloaded */
+/* Individual Review Cards - Bronze Theme */
 .review-card {
   flex: 0 0 calc(50% - 15px); /* 2 cards visible */
   min-width: calc(50% - 15px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
   
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(176, 141, 87, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(176, 141, 87, 0.15);
   border-radius: 20px;
   padding: 36px;
   
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 32px rgba(176, 141, 87, 0.12),
+    inset 0 1px 0 rgba(176, 141, 87, 0.1);
   
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
@@ -127,11 +131,11 @@ html[data-theme="dim"] .reviews-subtitle {
 }
 
 html[data-theme="dim"] .review-card {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(139, 92, 246, 0.2);
+  background: rgba(176, 141, 87, 0.08);
+  border-color: rgba(176, 141, 87, 0.2);
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 32px rgba(176, 141, 87, 0.15),
+    inset 0 1px 0 rgba(176, 141, 87, 0.12);
 }
 
 /* All cards are always visible in the scroll track */
@@ -156,19 +160,19 @@ html[data-theme="dim"] .review-card {
 
 .review-card:hover {
   transform: translateY(-4px) !important;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(139, 92, 246, 0.25);
+  background: rgba(176, 141, 87, 0.1);
+  border-color: #B08D57;
   box-shadow: 
-    0 12px 48px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    0 12px 48px rgba(176, 141, 87, 0.25),
+    inset 0 1px 0 rgba(176, 141, 87, 0.15) !important;
 }
 
 html[data-theme="dim"] .review-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(176, 141, 87, 0.12);
+  border-color: #B08D57;
   box-shadow: 
-    0 12px 48px rgba(139, 92, 246, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    0 12px 48px rgba(176, 141, 87, 0.3),
+    inset 0 1px 0 rgba(176, 141, 87, 0.18) !important;
 }
 
 /* Card Content */
@@ -191,7 +195,7 @@ html[data-theme="dim"] .review-card:hover {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,41 +204,45 @@ html[data-theme="dim"] .review-card:hover {
   color: #fff;
   flex-shrink: 0;
   overflow: hidden;
+  font-family: 'Georgia', serif;
 }
 
 .review-author-info h3 {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #000;
+  color: #2C3E50;
   margin-bottom: 2px;
 }
 
 html[data-theme="dim"] .review-author-info h3 {
-  color: #fff;
+  color: #B08D57;
 }
 
 .review-book-title {
+  font-family: 'Georgia', serif;
   font-size: 0.8rem;
-  color: rgba(15, 23, 42, 0.6);
+  color: rgba(44, 62, 80, 0.6);
   font-style: normal;
 }
 
 html[data-theme="dim"] .review-book-title {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(176, 141, 87, 0.7);
 }
 
 .review-stars {
   display: flex;
   gap: 2px;
   font-size: 16px;
-  color: #fbbf24;
+  color: #B08D57;
   flex-shrink: 0;
 }
 
 .review-text {
+  font-family: 'Georgia', serif;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(15, 23, 42, 0.8);
+  color: rgba(44, 62, 80, 0.8);
   margin-bottom: 16px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -243,7 +251,7 @@ html[data-theme="dim"] .review-book-title {
 }
 
 html[data-theme="dim"] .review-text {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(245, 242, 237, 0.8);
 }
 
 .review-meta {
@@ -251,15 +259,16 @@ html[data-theme="dim"] .review-text {
   align-items: center;
   justify-content: space-between;
   padding-top: 16px;
-  border-top: 1px solid rgba(139, 92, 246, 0.15);
+  border-top: 1px solid rgba(176, 141, 87, 0.15);
   font-size: 0.8rem;
-  color: rgba(15, 23, 42, 0.6);
+  font-family: 'Georgia', serif;
+  color: rgba(44, 62, 80, 0.6);
   gap: 12px;
 }
 
 html[data-theme="dim"] .review-meta {
-  color: rgba(255, 255, 255, 0.6);
-  border-top-color: rgba(139, 92, 246, 0.2);
+  color: rgba(245, 242, 237, 0.6);
+  border-top-color: rgba(176, 141, 87, 0.2);
 }
 
 .review-badge {
@@ -267,17 +276,17 @@ html[data-theme="dim"] .review-meta {
   align-items: center;
   gap: 6px;
   padding: 4px 10px;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(176, 141, 87, 0.1);
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #8b5cf6;
+  color: #B08D57;
   white-space: nowrap;
 }
 
 html[data-theme="dim"] .review-badge {
-  background: rgba(139, 92, 246, 0.15);
-  color: #a78bfa;
+  background: rgba(176, 141, 87, 0.15);
+  color: #d4b07a;
 }
 
 .review-dot {
@@ -309,39 +318,39 @@ html[data-theme="dim"] .review-badge {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(176, 141, 87, 0.2);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .reviews-dot:hover {
-  background: rgba(139, 92, 246, 0.4);
+  background: rgba(176, 141, 87, 0.4);
   transform: scale(1.2);
 }
 
 .reviews-dot.active {
   width: 32px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #7c3aed, #a78bfa);
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+  background: linear-gradient(90deg, #B08D57, #d4b07a);
+  box-shadow: 0 0 10px rgba(176, 141, 87, 0.5);
 }
 
 html[data-theme="dim"] .reviews-dot {
-  background: rgba(139, 92, 246, 0.25);
+  background: rgba(176, 141, 87, 0.25);
 }
 
 html[data-theme="dim"] .reviews-dot:hover {
-  background: rgba(139, 92, 246, 0.45);
+  background: rgba(176, 141, 87, 0.45);
 }
 
 .reviews-nav-btn {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(176, 141, 87, 0.08);
   backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(139, 92, 246, 0.2);
-  color: #000;
+  border: 1.5px solid rgba(176, 141, 87, 0.2);
+  color: #2C3E50;
   font-size: 20px;
   display: flex;
   align-items: center;
@@ -351,14 +360,14 @@ html[data-theme="dim"] .reviews-dot:hover {
 }
 
 html[data-theme="dim"] .reviews-nav-btn {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(139, 92, 246, 0.25);
+  color: #B08D57;
+  background: rgba(176, 141, 87, 0.1);
+  border-color: rgba(176, 141, 87, 0.25);
 }
 
 .reviews-nav-btn:hover:not(:disabled) {
-  background: rgba(139, 92, 246, 0.15);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(176, 141, 87, 0.15);
+  border-color: #B08D57;
   transform: scale(1.05);
 }
 
@@ -367,7 +376,7 @@ html[data-theme="dim"] .reviews-nav-btn {
   cursor: not-allowed;
 }
 
-/* Progress Bar - More Visible */
+/* Progress Bar - Bronze */
 .reviews-progress {
   flex: 1;
   display: flex;
@@ -378,37 +387,38 @@ html[data-theme="dim"] .reviews-nav-btn {
 
 .reviews-progress-bar {
   flex: 1;
-  height: 4px; /* Slightly thicker */
-  background: rgba(139, 92, 246, 0.2); /* More visible */
+  height: 4px;
+  background: rgba(176, 141, 87, 0.2);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
 }
 
 html[data-theme="dim"] .reviews-progress-bar {
-  background: rgba(139, 92, 246, 0.25);
+  background: rgba(176, 141, 87, 0.25);
 }
 
 .reviews-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  background: linear-gradient(90deg, #B08D57, #d4b07a);
   border-radius: 10px;
   transition: width 0.3s ease;
   width: 0%;
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5); /* Glow effect */
+  box-shadow: 0 0 10px rgba(176, 141, 87, 0.5);
 }
 
 .reviews-progress-text {
+  font-family: 'Georgia', serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(15, 23, 42, 0.7); /* More visible */
+  color: rgba(44, 62, 80, 0.7);
   white-space: nowrap;
   min-width: 60px;
   text-align: right;
 }
 
 html[data-theme="dim"] .reviews-progress-text {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(176, 141, 87, 0.8);
 }
 
 /* ==========================================
@@ -465,3 +475,16 @@ html[data-theme="dim"] .reviews-progress-text {
     margin-top: 8px;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 COLORS:
+   Cards:           rgba(176, 141, 87, 0.05-0.12)
+   Borders:         rgba(176, 141, 87, 0.15-0.2)
+   Avatar:          #B08D57 → #d4b07a Gradient
+   Stars:           #B08D57
+   Progress:        #B08D57 → #d4b07a
+   
+   ========================================== */

@@ -1,5 +1,6 @@
 /* ==========================================
    NEWS/UPDATES SECTION - DIAGONAL LAYOUT
+   Royal Bronze Theme
    ========================================== */
 
 .news-section {
@@ -17,8 +18,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(72000px, 90vw, 3000px);
-  height: clamp(2400px, 35vw, 1000px);
+  width: clamp(2000px, 90vw, 3000px);
+  height: clamp(400px, 35vw, 1000px);
   background-image: url('../images/index/news_weiss.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -29,10 +30,12 @@
   user-select: none;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.05))
           drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.03))
-          drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.02));
+          drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.02)); 
 }
 
-
+html[data-theme="dim"] .news-section::before {
+  background-image: url('../images/index/news_schwarz.png');
+}
 
 .news-container {
   max-width: 1400px;
@@ -41,31 +44,36 @@
   z-index: 1;
 }
 
-/* Section Header */
+/* ==========================================
+   SECTION HEADER
+   ========================================== */
+
 .news-header {
   text-align: center;
   margin-bottom: 100px;
 }
 
 .news-kicker {
+  font-family: 'Georgia', serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(15, 23, 42, 0.6);
+  color: rgba(44, 62, 80, 0.6);
   margin-bottom: 16px;
 }
 
 html[data-theme="dim"] .news-kicker {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(176, 141, 87, 0.7);
 }
 
 /* Clickable Title */
 .news-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1.1;
-  color: #000;
+  color: #2C3E50;
   margin-bottom: 16px;
   letter-spacing: -0.02em;
   cursor: pointer;
@@ -75,10 +83,10 @@ html[data-theme="dim"] .news-kicker {
 }
 
 html[data-theme="dim"] .news-title {
-  color: #fff;
+  color: #B08D57;
 }
 
-/* Underline effect on hover */
+/* Underline effect on hover - Bronze */
 .news-title::after {
   content: '';
   position: absolute;
@@ -86,16 +94,16 @@ html[data-theme="dim"] .news-title {
   left: 0;
   width: 0;
   height: 3px;
-  background: #8b5cf6;
+  background: #B08D57;
   transition: width 0.3s ease;
 }
 
 .news-title:hover {
-  color: #8b5cf6;
+  color: #B08D57;
 }
 
 html[data-theme="dim"] .news-title:hover {
-  color: #a78bfa;
+  color: #d4b07a;
 }
 
 .news-title:hover::after {
@@ -103,17 +111,21 @@ html[data-theme="dim"] .news-title:hover {
 }
 
 .news-subtitle {
+  font-family: 'Georgia', serif;
   font-size: 1.15rem;
-  color: rgba(15, 23, 42, 0.7);
+  color: rgba(44, 62, 80, 0.7);
   max-width: 700px;
   margin: 0 auto 40px;
 }
 
 html[data-theme="dim"] .news-subtitle {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(245, 242, 237, 0.7);
 }
 
-/* CTA Buttons - Underlined Style */
+/* ==========================================
+   CTA BUTTONS - Bronze Underlined Style
+   ========================================== */
+
 .news-cta-buttons {
   display: flex;
   gap: 32px;
@@ -122,7 +134,9 @@ html[data-theme="dim"] .news-subtitle {
   flex-wrap: wrap;
 }
 
-.news-cta-btn {
+.news-cta-btn,
+.news-cta-primary,
+.news-cta-secondary {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -131,77 +145,54 @@ html[data-theme="dim"] .news-subtitle {
   background: none;
   border: none;
   border-bottom: 2px solid currentColor;
-  color: #000;
+  color: #2C3E50;
   font-size: 1.5rem;
   font-weight: 600;
   font-style: italic;
+  font-family: 'Georgia', serif;
   letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-html[data-theme="dim"] .news-cta-btn {
-  color: #fff;
+html[data-theme="dim"] .news-cta-btn,
+html[data-theme="dim"] .news-cta-primary,
+html[data-theme="dim"] .news-cta-secondary {
+  color: #B08D57;
 }
 
-.news-cta-btn:hover {
-  color: #8b5cf6;
-  border-bottom-color: #8b5cf6;
+.news-cta-btn:hover,
+.news-cta-primary:hover,
+.news-cta-secondary:hover {
+  color: #B08D57;
+  border-bottom-color: #B08D57;
   transform: translateY(-1px);
 }
 
-html[data-theme="dim"] .news-cta-btn:hover {
-  color: #a78bfa;
-  border-bottom-color: #a78bfa;
+html[data-theme="dim"] .news-cta-btn:hover,
+html[data-theme="dim"] .news-cta-primary:hover,
+html[data-theme="dim"] .news-cta-secondary:hover {
+  color: #d4b07a;
+  border-bottom-color: #d4b07a;
 }
 
-.news-cta-btn svg {
+.news-cta-btn svg,
+.news-cta-primary svg,
+.news-cta-secondary svg {
   transition: transform 0.3s ease;
 }
 
-.news-cta-btn:hover svg {
+.news-cta-btn:hover svg,
+.news-cta-primary:hover svg,
+.news-cta-secondary:hover svg {
   transform: translateX(4px);
 }
 
-/* Remove old button styles */
-.news-cta-primary,
-.news-cta-secondary {
-  all: unset;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0;
-  padding-bottom: 4px;
-  border-bottom: 2px solid currentColor;
-  color: #000;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/* ==========================================
+   NEWS GRID - DIAGONAL LAYOUT
+   ========================================== */
 
-html[data-theme="dim"] .news-cta-primary,
-html[data-theme="dim"] .news-cta-secondary {
-  color: #fff;
-}
-
-.news-cta-primary:hover,
-.news-cta-secondary:hover {
-  color: #8b5cf6;
-  border-bottom-color: #8b5cf6;
-  transform: translateY(-1px);
-}
-
-html[data-theme="dim"] .news-cta-primary:hover,
-html[data-theme="dim"] .news-cta-secondary:hover {
-  color: #a78bfa;
-  border-bottom-color: #a78bfa;
-}
-
-/* News Grid - DIAGONAL LAYOUT */
 .news-grid {
   display: flex;
   flex-direction: column;
@@ -210,66 +201,74 @@ html[data-theme="dim"] .news-cta-secondary:hover {
   margin: 0 auto;
 }
 
-/* News Card - HORIZONTAL WITH IMAGE FADE */
+/* ==========================================
+   NEWS CARD - Bronze Theme
+   ========================================== */
+
 .news-card {
   display: grid;
   grid-template-columns: 380px 1fr;
   height: 280px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(176, 141, 87, 0.05);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(139, 92, 246, 0.15);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(176, 141, 87, 0.15);
   border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
   position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 8px 32px rgba(176, 141, 87, 0.1),
+    inset 0 1px 0 rgba(176, 141, 87, 0.1);
 }
 
 html[data-theme="dim"] .news-card {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(139, 92, 246, 0.2);
+  background: rgba(176, 141, 87, 0.08);
+  border-color: rgba(176, 141, 87, 0.2);
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 32px rgba(176, 141, 87, 0.15),
+    inset 0 1px 0 rgba(176, 141, 87, 0.12);
 }
 
 /* Card Positions - DIAGONAL */
 .news-card:nth-child(1) {
-  align-self: flex-start; /* Top-left */
+  align-self: flex-start;
   max-width: 900px;
 }
 
 .news-card:nth-child(2) {
-  align-self: center; /* Center */
+  align-self: center;
   max-width: 900px;
 }
 
 .news-card:nth-child(3) {
-  align-self: flex-end; /* Bottom-right */
+  align-self: flex-end;
   max-width: 900px;
 }
 
+/* Hover State */
 .news-card:hover {
   transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(139, 92, 246, 0.25);
+  background: rgba(176, 141, 87, 0.1);
+  border-color: #B08D57;
   box-shadow: 
-    0 16px 48px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 16px 48px rgba(176, 141, 87, 0.25),
+    inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
 html[data-theme="dim"] .news-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(176, 141, 87, 0.12);
+  border-color: #B08D57;
   box-shadow: 
-    0 16px 48px rgba(139, 92, 246, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 16px 48px rgba(176, 141, 87, 0.3),
+    inset 0 1px 0 rgba(176, 141, 87, 0.18);
 }
 
-/* Card Image - WITH GRADIENT FADE */
+/* ==========================================
+   CARD IMAGE - WITH GRADIENT FADE
+   ========================================== */
+
 .news-card-image {
   width: 100%;
   height: 100%;
@@ -278,7 +277,7 @@ html[data-theme="dim"] .news-card:hover {
   position: relative;
 }
 
-/* Gradient Fade Overlay - Image bleeds into content */
+/* Gradient Fade Overlay */
 .news-card-image::after {
   content: '';
   position: absolute;
@@ -287,27 +286,30 @@ html[data-theme="dim"] .news-card:hover {
   width: 100px;
   height: 100%;
   background: linear-gradient(90deg, 
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.05) 100%
+    rgba(176, 141, 87, 0) 0%,
+    rgba(176, 141, 87, 0.05) 50%,
+    rgba(176, 141, 87, 0.05) 100%
   );
   pointer-events: none;
 }
 
 html[data-theme="dim"] .news-card-image::after {
   background: linear-gradient(90deg, 
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.03) 50%,
-    rgba(255, 255, 255, 0.03) 100%
+    rgba(176, 141, 87, 0) 0%,
+    rgba(176, 141, 87, 0.08) 50%,
+    rgba(176, 141, 87, 0.08) 100%
   );
 }
 
-/* Card Content - OVERLAPS FADE AREA */
+/* ==========================================
+   CARD CONTENT
+   ========================================== */
+
 .news-card-content {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 36px 40px 36px 20px; /* Less left padding for overlap */
+  padding: 36px 40px 36px 20px;
   justify-content: center;
   position: relative;
   z-index: 1;
@@ -318,11 +320,12 @@ html[data-theme="dim"] .news-card-image::after {
   align-items: center;
   gap: 12px;
   font-size: 0.75rem;
-  color: rgba(15, 23, 42, 0.6);
+  font-family: 'Georgia', serif;
+  color: rgba(44, 62, 80, 0.6);
 }
 
 html[data-theme="dim"] .news-card-meta {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(176, 141, 87, 0.7);
 }
 
 .news-card-date {
@@ -333,25 +336,26 @@ html[data-theme="dim"] .news-card-meta {
 
 .news-card-tag {
   padding: 4px 10px;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(176, 141, 87, 0.1);
   border-radius: 6px;
   font-size: 0.7rem;
   font-weight: 700;
-  color: #8b5cf6;
+  color: #B08D57;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
 html[data-theme="dim"] .news-card-tag {
-  background: rgba(139, 92, 246, 0.15);
-  color: #a78bfa;
+  background: rgba(176, 141, 87, 0.15);
+  color: #d4b07a;
 }
 
 .news-card-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.3;
-  color: #000;
+  color: #2C3E50;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -360,13 +364,14 @@ html[data-theme="dim"] .news-card-tag {
 }
 
 html[data-theme="dim"] .news-card-title {
-  color: #fff;
+  color: #B08D57;
 }
 
 .news-card-text {
+  font-family: 'Georgia', serif;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba(15, 23, 42, 0.7);
+  color: rgba(44, 62, 80, 0.7);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -374,7 +379,7 @@ html[data-theme="dim"] .news-card-title {
 }
 
 html[data-theme="dim"] .news-card-text {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(245, 242, 237, 0.7);
 }
 
 .news-card-cta {
@@ -383,13 +388,14 @@ html[data-theme="dim"] .news-card-text {
   gap: 8px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #8b5cf6;
+  font-family: 'Georgia', serif;
+  color: #B08D57;
   margin-top: 4px;
   transition: gap 0.3s ease;
 }
 
 html[data-theme="dim"] .news-card-cta {
-  color: #a78bfa;
+  color: #d4b07a;
 }
 
 .news-card:hover .news-card-cta {
@@ -399,6 +405,7 @@ html[data-theme="dim"] .news-card-cta {
 /* ==========================================
    RESPONSIVE
    ========================================== */
+
 @media (max-width: 1024px) {
   .news-section::before {
     width: clamp(1000px, 65vw, 1500px);
@@ -457,15 +464,15 @@ html[data-theme="dim"] .news-card-cta {
     bottom: 0;
     right: 0;
     background: linear-gradient(180deg, 
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.05) 100%
+      rgba(176, 141, 87, 0) 0%,
+      rgba(176, 141, 87, 0.05) 100%
     );
   }
 
   html[data-theme="dim"] .news-card-image::after {
     background: linear-gradient(180deg, 
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.03) 100%
+      rgba(176, 141, 87, 0) 0%,
+      rgba(176, 141, 87, 0.08) 100%
     );
   }
 
@@ -496,3 +503,41 @@ html[data-theme="dim"] .news-card-cta {
     font-size: 1.25rem;
   }
 }
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 ROYAL BRONZE THEME COLORS:
+   
+   Cards Background:
+   - Light: rgba(176, 141, 87, 0.05)
+   - Dark:  rgba(176, 141, 87, 0.08)
+   - Hover Light: rgba(176, 141, 87, 0.1)
+   - Hover Dark:  rgba(176, 141, 87, 0.12)
+   
+   Borders:
+   - Default: rgba(176, 141, 87, 0.15-0.2)
+   - Hover:   #B08D57
+   
+   Typography:
+   - Title Light: #2C3E50
+   - Title Dark:  #B08D57
+   - Body Light:  rgba(44, 62, 80, 0.7)
+   - Body Dark:   rgba(245, 242, 237, 0.7)
+   
+   Accents:
+   - CTA:  #B08D57
+   - Tag:  #B08D57 → #d4b07a (Dark)
+   
+   🔤 TYPOGRAPHY:
+   Headings:  Playfair Display, Georgia
+   Body:      Georgia, Times New Roman
+   
+   💫 EFFECTS:
+   - Backdrop Blur: 20px
+   - Shadow: Bronze rgba(176, 141, 87, ...)
+   - Gradient Fade on Images
+   - Diagonal Layout (flex-start, center, flex-end)
+   
+   ========================================== */

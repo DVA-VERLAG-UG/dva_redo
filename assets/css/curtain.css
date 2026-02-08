@@ -1,5 +1,6 @@
 /* ==========================================
    CURTAIN SPLASH SCREEN
+   Royal Bronze Theme
    ========================================== */
 
 /* Curtain overlay - covers entire viewport */
@@ -7,7 +8,7 @@
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #000;
+  background: #2C3E50; /* Deep Blue statt Schwarz */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +38,8 @@ body.curtain-active {
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #fff;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  color: #B08D57; /* Bronze */
   opacity: 0;
   transform: translateY(20px);
 }
@@ -55,9 +57,9 @@ body.curtain-active {
   animation: wordReveal 0.4s ease-out 1.2s forwards;
 }
 
-/* Gradient text effect */
+/* Bronze gradient text effect */
 .curtain-word {
-  background: linear-gradient(135deg, #fff, #a78bfa);
+  background: linear-gradient(135deg, #B08D57, #d4b07a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -102,6 +104,11 @@ body.curtain-active {
 }
 
 /* ==========================================
-   PREVENT FLASH - Hide content initially
+   FARBPALETTE
+   ========================================== 
+   
+   Background: #2C3E50 (Deep Blue)
+   Text: #B08D57 → #d4b07a (Bronze Gradient)
+   Font: Playfair Display
+   
    ========================================== */
-/* Content is visible behind curtain - no need to hide it */

@@ -1,4 +1,4 @@
-// background.js - Falling book pages for publishing house
+// background.js - Falling book pages for publishing house - Royal Bronze Theme
 
 let particleCanvas = null;
 let ctx = null;
@@ -76,18 +76,18 @@ class FallingPage {
     ctx.rotate(this.rotation);
     ctx.globalAlpha = this.opacity;
 
-    // Farben
+    // 🎨 ROYAL BRONZE THEME COLORS
     const pageColor = isDarkMode 
-      ? `rgba(239, 68, 68, 0.35)`
-      : `rgba(220, 38, 38, 0.25)`;
+      ? `rgba(176, 141, 87, 0.25)` // Bronze im Dark Mode
+      : `rgba(176, 141, 87, 0.18)`; // Helleres Bronze im Light Mode
     
     const lineColor = isDarkMode
-      ? `rgba(239, 68, 68, 0.25)`
-      : `rgba(220, 38, 38, 0.2)`;
+      ? `rgba(176, 141, 87, 0.2)` // Bronze Lines Dark
+      : `rgba(176, 141, 87, 0.15)`; // Bronze Lines Light
     
     const shadowColor = isDarkMode
-      ? `rgba(239, 68, 68, 0.2)`
-      : `rgba(185, 28, 28, 0.15)`;
+      ? `rgba(176, 141, 87, 0.15)` // Bronze Shadow Dark
+      : `rgba(138, 109, 63, 0.12)`; // Dunkleres Bronze Shadow Light
 
     if (this.type === 'page') {
       // Rechteckige Seite
@@ -113,10 +113,10 @@ class FallingPage {
       ctx.shadowOffsetX = 1;
       ctx.shadowOffsetY = 3; // Mehr Schatten nach unten!
       
-      // Border
+      // Border - Bronze
       ctx.strokeStyle = isDarkMode 
-        ? `rgba(239, 68, 68, 0.4)`
-        : `rgba(220, 38, 38, 0.3)`;
+        ? `rgba(176, 141, 87, 0.35)` // Bronze Border Dark
+        : `rgba(176, 141, 87, 0.25)`; // Bronze Border Light
       ctx.lineWidth = 1.5;
       ctx.strokeRect(-this.width / 2, -this.height / 2, this.width, this.height);
       
@@ -134,10 +134,10 @@ class FallingPage {
       ctx.closePath();
       ctx.fill();
       
-      // Gefaltete Ecke
+      // Gefaltete Ecke - Dunkleres Bronze
       ctx.fillStyle = isDarkMode
-        ? `rgba(220, 38, 38, ${this.opacity * 0.7})`
-        : `rgba(185, 28, 28, ${this.opacity * 0.6})`;
+        ? `rgba(138, 109, 63, ${this.opacity * 0.7})` // Dunkleres Bronze Dark
+        : `rgba(138, 109, 63, ${this.opacity * 0.5})`; // Dunkleres Bronze Light
       ctx.beginPath();
       ctx.moveTo(-this.width / 2, this.height / 2 - foldSize);
       ctx.lineTo(-this.width / 2 + foldSize, this.height / 2);
@@ -212,7 +212,7 @@ function animate() {
 }
 
 export function initBackground() {
-  console.log('📚 Initializing falling book pages...');
+  console.log('📚 Initializing falling book pages (Royal Bronze Theme)...');
   
   pages = [];
   createCanvas();
@@ -226,7 +226,7 @@ export function initBackground() {
   animate();
   window.addEventListener('resize', resizeCanvas);
 
-  console.log('✅ Falling book pages initialized - pages falling down like rain!');
+  console.log('✅ Falling bronze book pages initialized!');
 }
 
 export function stopBackground() {
@@ -239,7 +239,7 @@ export function stopBackground() {
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.attributeName === 'data-theme') {
-      console.log('🎨 Theme changed, pages will adapt');
+      console.log('🎨 Theme changed, bronze pages will adapt');
     }
   });
 });
@@ -250,8 +250,23 @@ observer.observe(document.documentElement, {
 });
 
 /* ==========================================
-   STELLSCHRAUBEN - FALLING VERSION
+   STELLSCHRAUBEN - ROYAL BRONZE THEME
    ========================================== 
+   
+   🎨 FARBEN (Bronze Theme):
+   
+   Light Mode:
+   - Page Color:     rgba(176, 141, 87, 0.18)
+   - Line Color:     rgba(176, 141, 87, 0.15)
+   - Shadow:         rgba(138, 109, 63, 0.12)
+   - Border:         rgba(176, 141, 87, 0.25)
+   
+   Dark Mode:
+   - Page Color:     rgba(176, 141, 87, 0.25)
+   - Line Color:     rgba(176, 141, 87, 0.2)
+   - Shadow:         rgba(176, 141, 87, 0.15)
+   - Border:         rgba(176, 141, 87, 0.35)
+   - Fold:           rgba(138, 109, 63, ...)
    
    🎯 ANZAHL:
    PAGE_COUNT: 12            → Anzahl Seiten (8-20)
@@ -270,6 +285,10 @@ observer.observe(document.documentElement, {
    speedX: 0.2               → Horizontale Drift (0.1-0.3)
    
    💡 TIPPS:
+   
+   Mehr Bronze Sichtbarkeit:
+   Light Mode opacity: 0.25
+   Dark Mode opacity: 0.35
    
    Schneller fallen:
    FALL_SPEED_MIN: 0.5

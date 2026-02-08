@@ -23,8 +23,8 @@
 }
 
 /* ==========================================
-   FIX 2: Kein roter Hintergrund bei Button Hover
-   NUR Text soll rot werden
+   FIX 2: Kein Bronze Hintergrund bei Button Hover
+   NUR Text soll bronze werden
    ========================================== */
 
 /* Alle Buttons: Kein Background bei Hover */
@@ -35,9 +35,9 @@
 .news-cta-btn:hover,
 button[class*="cta"]:hover,
 a[class*="cta"]:hover {
-  background: transparent !important; /* KEIN roter Hintergrund */
-  border-color: var(--color-primary, #C92F2A) !important;
-  color: var(--color-primary, #C92F2A) !important;
+  background: transparent !important; /* KEIN bronze Hintergrund */
+  border-color: var(--color-primary, #B08D57) !important;
+  color: var(--color-primary, #B08D57) !important;
 }
 
 /* Spezifisch für den "Lass uns sprechen" Button */
@@ -45,8 +45,8 @@ a[class*="cta"]:hover {
 .news-cta-primary:hover,
 .news-cta-secondary:hover {
   background: transparent !important;
-  color: #C92F2A !important;
-  border-bottom-color: #C92F2A !important;
+  color: #B08D57 !important;
+  border-bottom-color: #B08D57 !important;
 }
 
 /* Alle anderen interaktiven Elemente */
@@ -61,7 +61,18 @@ a:hover {
 
 /* Falls die Nav Buttons auch betroffen sind */
 .reviews-nav-btn:hover {
-  background: rgba(220, 38, 38, 0.05) !important; /* Nur sehr subtil */
+  background: rgba(176, 141, 87, 0.05) !important; /* Nur sehr subtil */
+}
+
+/* ==========================================
+   Dark Mode Anpassungen
+   ========================================== */
+
+html[data-theme="dim"] .hero-cta-subtle:hover,
+html[data-theme="dim"] .process-btn:hover,
+html[data-theme="dim"] .panel-btn:hover {
+  color: #B08D57 !important;
+  border-color: #B08D57 !important;
 }
 
 /* ==========================================
@@ -69,7 +80,12 @@ a:hover {
    ========================================== 
    
    ✅ FIX 1: Progress Bar / Grauer Balken versteckt
-   ✅ FIX 2: Kein roter Hintergrund bei Button Hover
-   ✅ NUR Text wird rot, Background bleibt transparent
+   ✅ FIX 2: Kein bronze Hintergrund bei Button Hover
+   ✅ NUR Text wird bronze (#B08D57), Background bleibt transparent
+   ✅ Dark Mode kompatibel
+   
+   🎨 NEUE FARBEN:
+   Primary: #B08D57 (Bronze/Gold)
+   Dark: #2C3E50 (Deep Blue)
    
    ========================================== */

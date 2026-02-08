@@ -1,4 +1,4 @@
-// theme.js - Theme toggle functionality
+// theme.js - Theme toggle functionality - Royal Bronze Theme
 
 const THEME_KEY = 'dvayd_theme';
 const THEME_DARK = 'dim';
@@ -30,8 +30,10 @@ function saveTheme(theme) {
 export function applyTheme(theme) {
   if (theme === THEME_DARK) {
     document.documentElement.setAttribute(THEME_ATTR, THEME_DARK);
+    console.log('🌙 Dark mode activated - Deep Blue Library');
   } else {
     document.documentElement.removeAttribute(THEME_ATTR);
+    console.log('☀️ Light mode activated - Warm Cream Paper');
   }
 }
 
@@ -45,16 +47,23 @@ function toggleTheme() {
   const newTheme = isDarkMode() ? '' : THEME_DARK;
   applyTheme(newTheme);
   saveTheme(newTheme);
+  
+  // Log theme change with colors
+  const themeName = isDarkMode() 
+    ? 'Dark Mode (Deep Blue #2C3E50 + Bronze #B08D57)' 
+    : 'Light Mode (Cream #faf8f5 + Bronze #B08D57)';
+  console.log(`🎨 Theme switched to: ${themeName}`);
+  
   return isDarkMode();
 }
 
 // Initialize theme on page load
 export function initTheme() {
-  console.log('🎨 Initializing theme...');
+  console.log('🎨 Initializing Royal Bronze Theme...');
   
   // Apply stored theme immediately (before page renders)
   const storedTheme = getStoredTheme();
-  console.log('📦 Stored theme:', storedTheme);
+  console.log('📦 Stored theme:', storedTheme || 'default (light)');
   applyTheme(storedTheme);
   
   // Setup theme toggle button
@@ -70,7 +79,11 @@ export function initTheme() {
   function syncButtonState() {
     const isDark = isDarkMode();
     themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-    console.log('🌓 Theme synced. Dark mode:', isDark);
+    
+    const themeInfo = isDark 
+      ? 'Dark (Deep Blue + Bronze)' 
+      : 'Light (Cream + Bronze)';
+    console.log(`🌓 Theme synced: ${themeInfo}`);
   }
   
   syncButtonState();
@@ -81,7 +94,10 @@ export function initTheme() {
     syncButtonState();
   });
   
-  console.log('✅ Theme initialized successfully');
+  console.log('✅ Royal Bronze Theme initialized successfully');
+  console.log('🎨 Color Palette:');
+  console.log('   Light: Cream (#faf8f5) + Bronze (#B08D57)');
+  console.log('   Dark: Deep Blue (#2C3E50) + Bronze (#B08D57)');
 }
 
 // Apply theme early (call this in <head> if possible to prevent flash)
@@ -89,3 +105,23 @@ export function applyThemeEarly() {
   const storedTheme = getStoredTheme();
   applyTheme(storedTheme);
 }
+
+/* ==========================================
+   ROYAL BRONZE THEME COLORS
+   ========================================== 
+   
+   🎨 LIGHT MODE:
+   Background:      #faf8f5 → #f0ece5 (Warm Cream/Beige)
+   Text:            #2C3E50 (Deep Blue)
+   Accent:          #B08D57 (Bronze/Gold)
+   
+   🎨 DARK MODE:
+   Background:      #2C3E50 → #1a2631 (Deep Blue)
+   Text:            #f5f2ed (Cream)
+   Accent:          #B08D57 (Bronze/Gold)
+   
+   🔤 TYPOGRAPHY:
+   Body:            Georgia, Times New Roman
+   Headings:        Playfair Display, Georgia
+   
+   ========================================== */
