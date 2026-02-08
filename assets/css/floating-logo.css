@@ -178,3 +178,19 @@ html[data-theme="dim"] .floating-brand {
    → Ändere die Breakpoints (900px → dein Wert)
    
    ========================================== */
+
+   /* === CSS-only Logo Fallback: nutzt Background statt <img src> === */
+.floating-brand-logo{
+  display:none !important; /* kaputtes <img> ausblenden */
+}
+
+/* Logo als CSS-Icon rendern */
+.floating-brand::before{
+  content:"";
+  width:46px;
+  height:46px;
+  display:block;
+  border-radius:8px;
+  background: url("/assets/images/branding/dva-logo.png") center/contain no-repeat;
+  flex-shrink:0;
+}
