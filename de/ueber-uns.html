@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Über Uns | DVAYD Publishing</title>
+    <meta name="description" content="Die Geschichte von DVAYD Publishing – Zwischen Istanbul und Bremen, zwischen Tradition und Innovation.">
+    <link rel="canonical" href="https://yoursite.com/de/ueber-uns.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/favicon.png">
+    
+    <!-- Apply theme immediately -->
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('dvayd_theme');
+                if (theme === 'dim') {
+                    document.documentElement.setAttribute('data-theme', 'dim');
+                }
+            } catch(e) {}
+        })();
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/background.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/floating-logo.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/contact-popup.css">
+    <link rel="stylesheet" href="../assets/css/about-page.css">
+    <!-- Cursor Follower entfernt für bessere Performance -->
+</head>
+<body class="no-curtain">
+    
+    <!-- Floating Logo -->
+    <a href="/de/" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <span class="floating-brand-name">DVAYD Publishing</span>
+    </a>
+    
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Main Content -->
+    <main class="about-main">
+        
+        <!-- Hero Section - Parallax -->
+        <section class="about-hero" data-scroll-section>
+            <div class="about-hero-bg" data-scroll data-scroll-speed="-2"></div>
+            <div class="about-hero-content" data-scroll data-scroll-speed="1">
+                <div class="about-hero-kicker" data-scroll data-scroll-speed="0.5">
+                    Seit 2005
+                </div>
+                <h1 class="about-hero-title" data-scroll data-scroll-speed="0.8">
+                    Zwischen zwei Welten.<br>
+                    Für deine Geschichte.
+                </h1>
+                <p class="about-hero-subtitle" data-scroll data-scroll-speed="0.6">
+                    Von Istanbul nach Bremen. Von der Vision zum Verlag.<br>
+                    Wir verbinden literarische Tradition mit technologischer Innovation.
+                </p>
+            </div>
+            <div class="about-hero-scroll-indicator">
+                <span>Scrolle weiter</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </div>
+        </section>
+        
+        <!-- Story Section - Split Screen Parallax -->
+        <section class="about-story" data-scroll-section>
+            <div class="about-story-grid">
+                
+                <!-- Left: Text -->
+                <div class="about-story-text" data-scroll data-scroll-speed="0.5">
+                    <span class="about-section-label">Die Geschichte</span>
+                    <h2 class="about-section-title">
+                        Aus Leidenschaft<br>
+                        wurde Mission
+                    </h2>
+                    <div class="about-story-content">
+                        <p>
+                            <strong>2005 in Istanbul:</strong> Was als kleine Druckerei begann, entwickelte 
+                            sich zu einer Vision – Autoren weltweit den Zugang zum professionellen Buchmarkt 
+                            zu ermöglichen. Nicht durch Mittelsmänner. Nicht durch Kompromisse. Sondern durch 
+                            direkte Wege und höchste Qualität.
+                        </p>
+                        <p>
+                            Wir erkannten früh: Die Zukunft des Publishings liegt in der Verbindung von 
+                            internationaler Produktion und lokalem Marktzugang. Während andere Verlage 
+                            in Bürokratie erstickten, bauten wir eine Pipeline zwischen den besten 
+                            Druckereien der Türkei und dem deutschen Buchhandel.
+                        </p>
+                        <p>
+                            <strong>Heute:</strong> Über 220 Autoren haben mit uns ihren Weg in den Buchmarkt 
+                            gefunden. Von Amazon bis zur lokalen Buchhandlung – ohne Wartezeiten, ohne 
+                            Qualitätsverlust, ohne Kompromisse bei deinen Rechten.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Right: Image Parallax -->
+                <div class="about-story-media" data-scroll data-scroll-speed="1.5">
+                    <div class="about-story-image" style="background-image: url('../assets/images/about/story-image.jpg');">
+                        <div class="about-story-image-overlay"></div>
+                    </div>
+                    <div class="about-story-stats">
+                        <div class="about-stat" data-scroll data-scroll-speed="0.8">
+                            <span class="about-stat-number" data-count="220">0</span>
+                            <span class="about-stat-label">Veröffentlichte Autoren</span>
+                        </div>
+                        <div class="about-stat" data-scroll data-scroll-speed="1">
+                            <span class="about-stat-number" data-count="20">0</span>
+                            <span class="about-stat-label">Jahre Erfahrung</span>
+                        </div>
+                        <div class="about-stat" data-scroll data-scroll-speed="1.2">
+                            <span class="about-stat-number" data-count="2">0</span>
+                            <span class="about-stat-label">Länder, 1 Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- Values Section - Horizontal Scroll Cards -->
+        <section class="about-values" data-scroll-section>
+            <div class="about-values-header" data-scroll data-scroll-speed="0.5">
+                <span class="about-section-label">Unsere Werte</span>
+                <h2 class="about-section-title">
+                    Wofür wir stehen
+                </h2>
+            </div>
+            
+            <div class="about-values-scroll">
+                <div class="about-values-track" data-scroll data-scroll-direction="horizontal" data-scroll-speed="2">
+                    
+                    <!-- Value Card 1 -->
+                    <div class="about-value-card">
+                        <div class="about-value-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Transparenz</h3>
+                        <p>Keine versteckten Kosten. Keine Überraschungen. Du behältst 100% deiner Rechte und weißt genau, wofür du zahlst.</p>
+                    </div>
+                    
+                    <!-- Value Card 2 -->
+                    <div class="about-value-card">
+                        <div class="about-value-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Geschwindigkeit</h3>
+                        <p>Von der Druckfreigabe bis zur weltweiten Verfügbarkeit: maximal 14 Tage. Andere brauchen Monate.</p>
+                    </div>
+                    
+                    <!-- Value Card 3 -->
+                    <div class="about-value-card">
+                        <div class="about-value-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                                <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                                <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <h3>Qualität</h3>
+                        <p>Premium-Druck auf internationalen High-Tech-Maschinen. Lektorat von Profis. Design, das im Regal auffällt.</p>
+                    </div>
+                    
+                    <!-- Value Card 4 -->
+                    <div class="about-value-card">
+                        <div class="about-value-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="8" r="5"/>
+                                <path d="M20 21a8 8 0 1 0-16 0"/>
+                            </svg>
+                        </div>
+                        <h3>Partnerschaft</h3>
+                        <p>Du bist nicht Nummer 47 in einer Warteschlange. Persönliche Betreuung von Anfang bis Ende.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Section - Staggered Reveal -->
+        <section class="about-team" data-scroll-section>
+            <div class="about-team-container">
+                <div class="about-team-header" data-scroll data-scroll-speed="0.5">
+                    <span class="about-section-label">Das Team</span>
+                    <h2 class="about-section-title">
+                        Die Menschen<br>
+                        hinter DVAYD
+                    </h2>
+                    <p class="about-team-intro">
+                        Von Istanbul bis Bremen – ein internationales Team mit einer Mission:<br>
+                        Autoren den besten Weg in den Buchmarkt zu ebnen.
+                    </p>
+                </div>
+                
+                <div class="about-team-grid">
+                    
+                    <!-- Team Member 1 -->
+                    <div class="about-team-card" data-scroll data-scroll-speed="0.6">
+                        <div class="about-team-image" style="background-image: url('../assets/images/about/team-placeholder.jpg');"></div>
+                        <div class="about-team-info">
+                            <h3>David Yalcin</h3>
+                            <span class="about-team-role">Gründer & CEO</span>
+                            <p>Brückenbauer zwischen Istanbul und Bremen. Verantwortlich für Strategie und Vision.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="about-team-card" data-scroll data-scroll-speed="0.8">
+                        <div class="about-team-image" style="background-image: url('../assets/images/about/team-placeholder.jpg');"></div>
+                        <div class="about-team-info">
+                            <h3>Sarah Schmidt</h3>
+                            <span class="about-team-role">Lektoratsleitung</span>
+                            <p>Germanistin mit 15 Jahren Erfahrung. Macht aus guten Texten großartige Bücher.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="about-team-card" data-scroll data-scroll-speed="1">
+                        <div class="about-team-image" style="background-image: url('../assets/images/about/team-placeholder.jpg');"></div>
+                        <div class="about-team-info">
+                            <h3>Mehmet Özkan</h3>
+                            <span class="about-team-role">Produktionsleiter</span>
+                            <p>Koordiniert die Druckproduktion in Istanbul. Garantiert Premium-Qualität.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 4 -->
+                    <div class="about-team-card" data-scroll data-scroll-speed="0.7">
+                        <div class="about-team-image" style="background-image: url('../assets/images/about/team-placeholder.jpg');"></div>
+                        <div class="about-team-info">
+                            <h3>Lisa Weber</h3>
+                            <span class="about-team-role">Autorenbetreuung</span>
+                            <p>Erste Ansprechpartnerin für alle Fragen. Begleitet dich durch jeden Schritt.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- Location Section - Dual Map Parallax -->
+        <section class="about-locations" data-scroll-section>
+            <div class="about-locations-header" data-scroll data-scroll-speed="0.5">
+                <span class="about-section-label">Standorte</span>
+                <h2 class="about-section-title">
+                    Zwei Städte.<br>
+                    Eine Mission.
+                </h2>
+            </div>
+            
+            <div class="about-locations-grid">
+                
+                <!-- Istanbul -->
+                <div class="about-location-card" data-scroll data-scroll-speed="0.8">
+                    <div class="about-location-image" style="background-image: url('../assets/images/about/istanbul.jpg');">
+                        <div class="about-location-overlay">
+                            <h3>Istanbul</h3>
+                            <span class="about-location-label">Der Motor</span>
+                        </div>
+                    </div>
+                    <div class="about-location-content">
+                        <p>
+                            Hier entsteht dein Buch. Unsere Partnerschaften mit internationalen 
+                            High-Tech-Druckereien ermöglichen Premium-Qualität zu Konditionen, 
+                            die in Deutschland undenkbar wären.
+                        </p>
+                        <ul class="about-location-features">
+                            <li>✓ Modernste Drucktechnologie</li>
+                            <li>✓ ISO-zertifizierte Produktion</li>
+                            <li>✓ Express-Shipping nach Deutschland</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Bremen -->
+                <div class="about-location-card" data-scroll data-scroll-speed="1">
+                    <div class="about-location-image" style="background-image: url('../assets/images/about/bremen.jpg');">
+                        <div class="about-location-overlay">
+                            <h3>Bremen</h3>
+                            <span class="about-location-label">Das Netzwerk</span>
+                        </div>
+                    </div>
+                    <div class="about-location-content">
+                        <p>
+                            Hier sichern wir deinen Marktzugang. Unser Team in Bremen vergibt 
+                            die ISBN, schaltet dein Buch für den Handel frei und steht dir 
+                            persönlich zur Seite.
+                        </p>
+                        <ul class="about-location-features">
+                            <li>✓ Deutsche ISBN-Vergabe</li>
+                            <li>✓ Listing bei Amazon & Buchhandel</li>
+                            <li>✓ Persönliche Betreuung auf Deutsch</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        
+        <!-- CTA Section - Final -->
+        <section class="about-cta" data-scroll-section>
+            <div class="about-cta-content" data-scroll data-scroll-speed="0.5">
+                <h2>Bereit, deine Geschichte zu erzählen?</h2>
+                <p>
+                    Lass uns gemeinsam herausfinden, wie wir dein Buch zum Erfolg machen können.<br>
+                    Kostenlose Erstberatung. Keine Verpflichtung. Nur ehrliche Expertise.
+                </p>
+                <div class="about-cta-buttons">
+                    <button class="about-cta-btn about-cta-primary" id="aboutContactBtn">
+                        Kostenloses Gespräch vereinbaren
+                    </button>
+                    <a href="/de/konfigurator-page.html" class="about-cta-btn about-cta-secondary">
+                        Paket konfigurieren
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- Contact Popup -->
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-popup">
+            <button class="contact-close" type="button" aria-label="Schließen">✕</button>
+            <div class="contact-header">
+                <h2>Kontakt aufnehmen</h2>
+                <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
+            </div>
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" name="vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname *</label>
+                        <input type="text" name="nachname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>E-Mail *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" name="telefon">
+                </div>
+                <div class="form-group">
+                    <label>Nachricht</label>
+                    <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Absenden</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script type="module" src="../assets/js/main.js"></script>
+    <script src="../assets/js/about-page-optimized.js"></script>
+    
+    <!-- Contact Popup Script -->
+    <script>
+        const aboutContactBtn = document.getElementById('aboutContactBtn');
+        const contactOverlay = document.getElementById('contactOverlay');
+        const contactClose = contactOverlay?.querySelector('.contact-close');
+        
+        aboutContactBtn?.addEventListener('click', () => {
+            contactOverlay.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        contactClose?.addEventListener('click', () => {
+            contactOverlay.classList.remove('is-open');
+            document.body.style.overflow = '';
+        });
+        
+        contactOverlay?.addEventListener('click', (e) => {
+            if (e.target === contactOverlay) {
+                contactOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && contactOverlay?.classList.contains('is-open')) {
+                contactOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+    
+</body>
+</html>
