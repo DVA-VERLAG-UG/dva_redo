@@ -552,6 +552,135 @@ html[data-theme="dim"] .btn-clear-config:hover {
 }
 
 /* ==========================================
+   INLINE PACKAGE CONTACT FORM
+   ========================================== */
+
+.package-contact-form {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(176, 141, 87, 0.15);
+    animation: slideDown 0.3s ease;
+}
+
+html[data-theme="dim"] .package-contact-form {
+    border-top-color: rgba(176, 141, 87, 0.2);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.quick-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quick-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-form-input,
+.quick-form-textarea {
+    padding: 10px 12px;
+    border: 1.5px solid rgba(176, 141, 87, 0.2);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    background: rgba(255, 255, 255, 0.5);
+    color: #2C3E50;
+    transition: all 0.3s ease;
+}
+
+html[data-theme="dim"] .quick-form-input,
+html[data-theme="dim"] .quick-form-textarea {
+    border-color: rgba(176, 141, 87, 0.25);
+    background: rgba(176, 141, 87, 0.05);
+    color: #f5f3f0;
+}
+
+.quick-form-input:focus,
+.quick-form-textarea:focus {
+    outline: none;
+    border-color: #B08D57;
+    background: rgba(176, 141, 87, 0.08);
+    box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.1);
+}
+
+.quick-form-input::placeholder,
+.quick-form-textarea::placeholder {
+    color: rgba(44, 62, 80, 0.5);
+}
+
+html[data-theme="dim"] .quick-form-input::placeholder,
+html[data-theme="dim"] .quick-form-textarea::placeholder {
+    color: rgba(176, 141, 87, 0.5);
+}
+
+.quick-form-textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.btn-quick-submit {
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #B08D57, #d4b07a);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(176, 141, 87, 0.3);
+}
+
+.btn-quick-submit:hover {
+    background: linear-gradient(135deg, #d4b07a, #B08D57);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(176, 141, 87, 0.4);
+}
+
+.btn-quick-submit:active {
+    transform: translateY(0);
+}
+
+/* Success State */
+.package-contact-form.success {
+    text-align: center;
+    padding: 20px;
+}
+
+.package-contact-form.success::before {
+    content: '✓';
+    display: block;
+    font-size: 2.5rem;
+    color: #B08D57;
+    margin-bottom: 12px;
+}
+
+.success-message-inline {
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    color: rgba(44, 62, 80, 0.7);
+    line-height: 1.5;
+}
+
+html[data-theme="dim"] .success-message-inline {
+    color: rgba(245, 242, 237, 0.7);
+}
+
+/* ==========================================
    RESPONSIVE
    ========================================== */
 

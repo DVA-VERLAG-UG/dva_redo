@@ -1,5 +1,6 @@
 /* ==========================================
    KONFIGURATOR POPUP (BOOK STYLE)
+   Royal Bronze Theme
    ========================================== */
 
 .konfig-overlay {
@@ -10,6 +11,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     z-index: 10000;
     display: flex;
     align-items: center;
@@ -28,11 +30,11 @@
 .konfig-book {
     position: relative;
     width: 90%;
-    max-width: 1100px;
-    height: 700px; /* FIXED HEIGHT - no more jumping! */
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+    max-width: 1200px;
+    height: 750px;
+    background: #f5f3f0;
+    border-radius: 20px;
+    box-shadow: 0 24px 80px rgba(176, 141, 87, 0.4);
     transform: scale(0.9);
     transition: transform 0.3s ease;
     overflow: hidden;
@@ -41,33 +43,34 @@
 }
 
 html[data-theme="dim"] .konfig-book {
-    background: #1e293b;
+    background: #2C3E50;
 }
 
 .konfig-overlay.is-open .konfig-book {
     transform: scale(1);
 }
 
-/* Progress Bar */
+/* Progress Bar - Bronze */
 .konfig-progress {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 4px;
-    background: rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.15);
     z-index: 10;
 }
 
 html[data-theme="dim"] .konfig-progress {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(176, 141, 87, 0.2);
 }
 
 .konfig-progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, #7c3aed, #a78bfa);
+    background: linear-gradient(90deg, #B08D57, #d4b07a);
     transition: width 0.3s ease;
     width: 0%;
+    box-shadow: 0 0 10px rgba(176, 141, 87, 0.5);
 }
 
 .konfig-progress-text {
@@ -76,14 +79,15 @@ html[data-theme="dim"] .konfig-progress {
     right: 60px;
     font-size: 12px;
     font-weight: 600;
-    color: rgba(15, 23, 42, 0.6);
+    font-family: 'Georgia', serif;
+    color: rgba(44, 62, 80, 0.6);
 }
 
 html[data-theme="dim"] .konfig-progress-text {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(176, 141, 87, 0.7);
 }
 
-/* Close Button */
+/* Close Button - Bronze */
 .konfig-close {
     position: absolute;
     top: 16px;
@@ -91,7 +95,7 @@ html[data-theme="dim"] .konfig-progress-text {
     width: 40px;
     height: 40px;
     border: none;
-    background: rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.15);
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
@@ -100,60 +104,63 @@ html[data-theme="dim"] .konfig-progress-text {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000;
+    color: #2C3E50;
 }
 
 html[data-theme="dim"] .konfig-close {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: rgba(176, 141, 87, 0.2);
+    color: #B08D57;
 }
 
 .konfig-close:hover {
     background: rgba(220, 38, 38, 0.2);
     color: #dc2626;
+    transform: rotate(90deg);
 }
 
 /* Book Pages Layout - FIXED HEIGHT */
 .konfig-pages {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: calc(700px - 4px); /* Full height minus progress bar */
+    height: calc(750px - 4px);
     padding-top: 50px;
     position: relative;
     overflow: hidden;
 }
 
-/* Left Page - Shows answered questions */
+/* Left Page - Bronze Accent */
 .konfig-page-left {
     padding: 40px;
-    background: rgba(139, 92, 246, 0.05);
-    border-right: 2px solid rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.08);
+    border-right: 2px solid rgba(176, 141, 87, 0.2);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 }
 
 html[data-theme="dim"] .konfig-page-left {
-    background: rgba(139, 92, 246, 0.1);
-    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(176, 141, 87, 0.12);
+    border-right: 2px solid rgba(176, 141, 87, 0.25);
 }
 
 .konfig-page-left h2 {
+    font-family: 'Playfair Display', 'Georgia', serif;
     font-size: 1.75rem;
     font-weight: 900;
-    color: #7c3aed;
+    color: #B08D57;
     margin: 0 0 16px;
 }
 
 .konfig-page-left p {
+    font-family: 'Georgia', serif;
     font-size: 0.95rem;
-    color: rgba(15, 23, 42, 0.7);
+    color: rgba(44, 62, 80, 0.7);
     line-height: 1.6;
     margin-bottom: 24px;
 }
 
 html[data-theme="dim"] .konfig-page-left p {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(245, 242, 237, 0.7);
 }
 
 /* Answered Questions on Left */
@@ -165,11 +172,11 @@ html[data-theme="dim"] .konfig-page-left p {
 .answered-item {
     margin-bottom: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    border-bottom: 1px solid rgba(176, 141, 87, 0.15);
 }
 
 html[data-theme="dim"] .answered-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(176, 141, 87, 0.2);
 }
 
 .answered-item:last-child {
@@ -177,39 +184,46 @@ html[data-theme="dim"] .answered-item {
 }
 
 .answered-title {
+    font-family: 'Georgia', serif;
     font-size: 0.85rem;
     font-weight: 700;
-    color: #7c3aed;
+    color: #B08D57;
     margin: 0 0 8px;
 }
 
 html[data-theme="dim"] .answered-title {
-    color: #a78bfa;
+    color: #d4b07a;
 }
 
 .answered-value {
+    font-family: 'Georgia', serif;
     font-size: 0.8rem;
-    color: rgba(15, 23, 42, 0.6);
+    color: rgba(44, 62, 80, 0.6);
     line-height: 1.4;
 }
 
 html[data-theme="dim"] .answered-value {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(245, 242, 237, 0.6);
 }
 
-/* Right Page - Current Question - FIXED HEIGHT */
+/* Right Page - Current Question */
 .konfig-page-right {
     padding: 40px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    background: #f5f3f0;
+}
+
+html[data-theme="dim"] .konfig-page-right {
+    background: #2C3E50;
 }
 
 /* Questions Container - FIXED HEIGHT */
 .konfig-questions {
     position: relative;
     flex: 1;
-    min-height: 500px; /* Prevents jumping */
+    min-height: 550px;
 }
 
 .question-slide {
@@ -236,34 +250,56 @@ html[data-theme="dim"] .answered-value {
 }
 
 .question-title {
-    font-size: 1.5rem;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 1.75rem;
     font-weight: 700;
-    color: #000;
+    color: #2C3E50;
     margin: 0 0 8px;
 }
 
 html[data-theme="dim"] .question-title {
-    color: #fff;
+    color: #B08D57;
 }
 
 .question-subtitle {
+    font-family: 'Georgia', serif;
     font-size: 0.9rem;
-    color: rgba(15, 23, 42, 0.6);
+    color: rgba(44, 62, 80, 0.6);
     margin: 0 0 24px;
+    font-style: italic;
 }
 
 html[data-theme="dim"] .question-subtitle {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(176, 141, 87, 0.7);
 }
 
-/* Options */
+/* Options - Bronze Theme */
 .question-options {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-height: 380px;
+    max-height: 420px;
     overflow-y: auto;
     padding-right: 8px;
+}
+
+/* Custom Scrollbar - Bronze */
+.question-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.question-options::-webkit-scrollbar-track {
+    background: rgba(176, 141, 87, 0.1);
+    border-radius: 10px;
+}
+
+.question-options::-webkit-scrollbar-thumb {
+    background: rgba(176, 141, 87, 0.3);
+    border-radius: 10px;
+}
+
+.question-options::-webkit-scrollbar-thumb:hover {
+    background: #B08D57;
 }
 
 .option-item {
@@ -271,21 +307,26 @@ html[data-theme="dim"] .question-subtitle {
     align-items: flex-start;
     gap: 12px;
     padding: 16px;
-    background: rgba(15, 23, 42, 0.03);
-    border: 2px solid rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.05);
+    border: 2px solid rgba(176, 141, 87, 0.15);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 html[data-theme="dim"] .option-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(176, 141, 87, 0.08);
+    border: 2px solid rgba(176, 141, 87, 0.2);
 }
 
 .option-item:hover {
-    background: rgba(139, 92, 246, 0.05);
-    border-color: rgba(139, 92, 246, 0.3);
+    background: rgba(176, 141, 87, 0.12);
+    border-color: #B08D57;
+    transform: translateX(4px);
+}
+
+html[data-theme="dim"] .option-item:hover {
+    background: rgba(176, 141, 87, 0.15);
 }
 
 .option-item.disabled {
@@ -301,8 +342,9 @@ html[data-theme="dim"] .option-item {
     right: 12px;
     font-size: 11px;
     font-weight: 700;
-    color: #7c3aed;
-    background: rgba(139, 92, 246, 0.1);
+    font-family: 'Georgia', serif;
+    color: #B08D57;
+    background: rgba(176, 141, 87, 0.15);
     padding: 4px 8px;
     border-radius: 4px;
 }
@@ -312,46 +354,74 @@ html[data-theme="dim"] .option-item {
     width: 20px;
     height: 20px;
     margin-top: 2px;
+    cursor: pointer;
+    accent-color: #B08D57;
 }
 
 .option-label {
     flex: 1;
+    font-family: 'Georgia', serif;
     font-size: 0.95rem;
-    color: #000;
+    color: #2C3E50;
     font-weight: 500;
 }
 
 html[data-theme="dim"] .option-label {
-    color: #fff;
+    color: #f5f3f0;
 }
 
-/* File Upload */
+.option-label strong {
+    color: #2C3E50;
+    font-weight: 700;
+}
+
+html[data-theme="dim"] .option-label strong {
+    color: #B08D57;
+}
+
+.option-label small {
+    color: rgba(44, 62, 80, 0.6);
+    font-size: 0.85rem;
+}
+
+html[data-theme="dim"] .option-label small {
+    color: rgba(176, 141, 87, 0.7);
+}
+
+/* File Upload - Bronze */
 .upload-area {
     margin-top: 12px;
     padding: 24px;
-    border: 2px dashed rgba(139, 92, 246, 0.3);
+    border: 2px dashed rgba(176, 141, 87, 0.3);
     border-radius: 12px;
     text-align: center;
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(176, 141, 87, 0.05);
+}
+
+html[data-theme="dim"] .upload-area {
+    background: rgba(176, 141, 87, 0.08);
+    border-color: rgba(176, 141, 87, 0.4);
 }
 
 .upload-label {
+    font-family: 'Georgia', serif;
     font-weight: 600;
-    color: #7c3aed;
+    color: #B08D57;
     margin-bottom: 8px;
 }
 
 .upload-subtext {
+    font-family: 'Georgia', serif;
     font-size: 0.85rem;
-    color: rgba(15, 23, 42, 0.6);
+    color: rgba(44, 62, 80, 0.6);
     margin-bottom: 12px;
 }
 
 html[data-theme="dim"] .upload-subtext {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(176, 141, 87, 0.7);
 }
 
-/* Navigation Buttons */
+/* Navigation Buttons - Bronze */
 .konfig-navigation {
     margin-top: auto;
     padding-top: 24px;
@@ -359,18 +429,19 @@ html[data-theme="dim"] .upload-subtext {
 
 .btn-nav {
     padding: 12px 24px;
-    border: 2px solid rgba(15, 23, 42, 0.2);
+    border: 2px solid rgba(176, 141, 87, 0.3);
     background: transparent;
     border-radius: 10px;
+    font-family: 'Georgia', serif;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #000;
+    color: #2C3E50;
 }
 
 html[data-theme="dim"] .btn-nav {
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    border-color: rgba(176, 141, 87, 0.4);
+    color: #B08D57;
 }
 
 .btn-nav:disabled {
@@ -379,29 +450,33 @@ html[data-theme="dim"] .btn-nav {
 }
 
 .btn-nav:not(:disabled):hover {
-    background: rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(176, 141, 87, 0.15);
+    border-color: #B08D57;
 }
 
 .btn-next {
-    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    background: linear-gradient(135deg, #B08D57, #d4b07a);
     color: white;
     border: none;
     width: 100%;
-    padding: 16px;
+    padding: 18px;
     margin-top: 24px;
     border-radius: 12px;
+    font-family: 'Georgia', serif;
     font-weight: 700;
+    font-size: 1.05rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(176, 141, 87, 0.3);
 }
 
 .btn-next:hover {
+    background: linear-gradient(135deg, #d4b07a, #B08D57);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 12px 32px rgba(176, 141, 87, 0.5);
 }
 
-/* Contact Form */
+/* Contact Form - Bronze */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -421,37 +496,41 @@ html[data-theme="dim"] .btn-nav {
 }
 
 .form-label {
+    font-family: 'Georgia', serif;
     font-weight: 600;
     font-size: 0.9rem;
-    color: #000;
+    color: #2C3E50;
 }
 
 html[data-theme="dim"] .form-label {
-    color: #fff;
+    color: #B08D57;
 }
 
 .form-input,
 .form-textarea {
     padding: 12px;
-    border: 2px solid rgba(15, 23, 42, 0.1);
+    border: 2px solid rgba(176, 141, 87, 0.2);
     border-radius: 8px;
     font-size: 0.95rem;
+    font-family: 'Georgia', serif;
     background: rgba(255, 255, 255, 0.5);
+    color: #2C3E50;
     transition: all 0.3s ease;
 }
 
 html[data-theme="dim"] .form-input,
 html[data-theme="dim"] .form-textarea {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
+    border-color: rgba(176, 141, 87, 0.3);
+    background: rgba(176, 141, 87, 0.08);
+    color: #f5f3f0;
 }
 
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
-    border-color: rgba(139, 92, 246, 0.5);
-    background: rgba(139, 92, 246, 0.05);
+    border-color: #B08D57;
+    background: rgba(176, 141, 87, 0.1);
+    box-shadow: 0 0 0 3px rgba(176, 141, 87, 0.15);
 }
 
 .form-textarea {
@@ -459,39 +538,65 @@ html[data-theme="dim"] .form-textarea {
     resize: vertical;
 }
 
-/* Success Message */
+/* Success Message - Bronze */
 .success-message {
     text-align: center;
-    padding: 40px;
+    padding: 60px 40px;
 }
 
 .success-icon {
-    font-size: 4rem;
-    margin-bottom: 16px;
+    font-size: 5rem;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #B08D57, #d4b07a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .success-title {
-    font-size: 1.75rem;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 2rem;
     font-weight: 700;
-    color: #10b981;
-    margin: 0 0 12px;
+    color: #B08D57;
+    margin: 0 0 16px;
 }
 
 .success-text {
-    font-size: 1rem;
-    color: rgba(15, 23, 42, 0.7);
-    line-height: 1.6;
+    font-family: 'Georgia', serif;
+    font-size: 1.05rem;
+    color: rgba(44, 62, 80, 0.7);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 html[data-theme="dim"] .success-text {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(245, 242, 237, 0.7);
 }
 
-/* Responsive */
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .konfig-book {
+        height: 85vh;
+    }
+    
+    .konfig-pages {
+        height: calc(85vh - 4px);
+    }
+    
+    .question-options {
+        max-height: 350px;
+    }
+}
+
 @media (max-width: 768px) {
     .konfig-book {
         width: 95%;
         height: 90vh;
+        border-radius: 12px;
     }
     
     .konfig-pages {
@@ -504,10 +609,76 @@ html[data-theme="dim"] .success-text {
     }
     
     .konfig-page-right {
-        padding: 24px;
+        padding: 24px 20px;
+    }
+    
+    .question-title {
+        font-size: 1.5rem;
+    }
+    
+    .question-options {
+        max-height: 400px;
     }
     
     .form-row {
         grid-template-columns: 1fr;
     }
+    
+    .konfig-progress-text {
+        right: 50px;
+        font-size: 11px;
+    }
 }
+
+@media (max-width: 480px) {
+    .konfig-book {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .konfig-pages {
+        height: calc(100vh - 4px);
+    }
+    
+    .konfig-page-right {
+        padding: 20px 16px;
+    }
+    
+    .question-title {
+        font-size: 1.3rem;
+    }
+    
+    .option-item {
+        padding: 12px;
+    }
+    
+    .btn-next {
+        padding: 16px;
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================
+   FARBPALETTE
+   ========================================== 
+   
+   🎨 ROYAL BRONZE THEME:
+   
+   Primary Colors:
+   - Deep Blue:      #2C3E50 (Text, Buttons Light)
+   - Bronze:         #B08D57 (Accents, Progress, Titles Dark)
+   - Light Bronze:   #d4b07a (Gradients, Hovers)
+   - Background:     #f5f3f0 (Light) / #2C3E50 (Dark)
+   
+   Accents:
+   - Options:        rgba(176, 141, 87, 0.05-0.15)
+   - Borders:        rgba(176, 141, 87, 0.15-0.3)
+   - Progress Bar:   #B08D57 → #d4b07a gradient
+   - Success:        #B08D57
+   
+   🔤 TYPOGRAPHY:
+   Headings:         Playfair Display, Georgia
+   Body:             Georgia, Times New Roman
+   
+   ========================================== */

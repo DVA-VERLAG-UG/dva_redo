@@ -247,9 +247,28 @@
                         </div>
                     </div>
                     <div class="package-footer">
-                        <button class="btn-configure btn-configure-secondary">
+                        <button class="btn-configure btn-configure-secondary" data-package="starter">
                             Paket wählen
                         </button>
+                        
+                        <!-- Inline Contact Form (Hidden by default) -->
+                        <div class="package-contact-form" id="starterContactForm" style="display: none;">
+                            <form class="quick-contact-form" data-package-name="Buch veröffentlichen Starter">
+                                <input type="hidden" name="form-name" value="package-selection">
+                                <input type="hidden" name="package" value="Buch veröffentlichen Starter">
+                                
+                                <div class="quick-form-group">
+                                    <input type="text" name="name" class="quick-form-input" placeholder="Name *" required>
+                                </div>
+                                <div class="quick-form-group">
+                                    <input type="email" name="email" class="quick-form-input" placeholder="E-Mail *" required>
+                                </div>
+                                <div class="quick-form-group">
+                                    <textarea name="message" class="quick-form-textarea" placeholder="Kurze Nachricht (optional)" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn-quick-submit">Anfrage senden</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 
@@ -318,9 +337,28 @@
                         </div>
                     </div>
                     <div class="package-footer">
-                        <button class="btn-configure btn-configure-secondary">
+                        <button class="btn-configure btn-configure-secondary" data-package="deluxe">
                             Paket wählen
                         </button>
+                        
+                        <!-- Inline Contact Form (Hidden by default) -->
+                        <div class="package-contact-form" id="deluxeContactForm" style="display: none;">
+                            <form class="quick-contact-form" data-package-name="Verlagspaket Deluxe">
+                                <input type="hidden" name="form-name" value="package-selection">
+                                <input type="hidden" name="package" value="Verlagspaket Deluxe">
+                                
+                                <div class="quick-form-group">
+                                    <input type="text" name="name" class="quick-form-input" placeholder="Name *" required>
+                                </div>
+                                <div class="quick-form-group">
+                                    <input type="email" name="email" class="quick-form-input" placeholder="E-Mail *" required>
+                                </div>
+                                <div class="quick-form-group">
+                                    <textarea name="message" class="quick-form-textarea" placeholder="Kurze Nachricht (optional)" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn-quick-submit">Anfrage senden</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 
@@ -336,7 +374,7 @@
         <div class="konfig-book">
             <div class="konfig-progress">
                 <div class="konfig-progress-bar" id="progressBar"></div>
-                <span class="konfig-progress-text" id="progressText">Schritt 1 von 6</span>
+                <span class="konfig-progress-text" id="progressText">Schritt 1 von 8</span>
             </div>
             <button class="konfig-close" id="closeConfigBtn">✕</button>
             <div class="konfig-pages">
@@ -353,6 +391,14 @@
             </div>
         </div>
     </div>
+    
+    <!-- Hidden Netlify Form for Package Selection -->
+    <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="package" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <textarea name="message"></textarea>
+    </form>
     
     <!-- Scripts -->
     <script type="module">

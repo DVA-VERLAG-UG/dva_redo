@@ -1,68 +1,92 @@
 // konfigurator-page.js - Configurator logic with book-style popup
 
-// Configuration modules
-const MODULES = [ 
+// Configuration modules - Neue Themen-Struktur
+const MODULES = [
     {
-        id: 'module1',
-        title: 'Wo wollen Sie gelesen werden?',
-        subtitle: 'Veröffentlichung & Markt',
+        id: 'thema1',
+        title: 'Start & Projekt-Setup',
+        subtitle: 'Klarheit, Plan, saubere Abwicklung',
         options: [
-            { id: 'digital_global', label: 'Digital Global (E-Book)', description: 'Amazon Kindle, Apple, Tolino' },
-            { id: 'print_de_eu', label: 'Print Deutschland & EU', description: 'Buchhandel, VLB, Amazon.de' },
-            { id: 'print_tr_export', label: 'Print Türkei / Export', description: 'D&R, Idefix, Trendyol' },
-            { id: 'print_tr_de_import', label: 'Print Türkei ➝ Deutschland / Import', description: 'POD in DE für TR-Titel' }
+            { id: 'eu_profi_check', label: 'EU-Profi-Check (Audit)', description: 'Marktfähigkeit prüfen & klare To-dos' },
+            { id: 'projekt_roadmap', label: 'Projekt-Roadmap (EU)', description: 'Zeitplan: Text → Design → Produktion → Release' },
+            { id: 'projektmanagement', label: 'Projektmanagement / Begleitung', description: 'Deadlines, Freigaben, Kommunikation' },
+            { id: 'intake_tr_eu', label: 'Intake Türkei → EU (nur Route C)', description: 'Check von Rechten/Quelldaten/Dateien' },
+            { id: 'eu_tr_koordination', label: 'EU + TR Koordination (nur Route B)', description: 'Release-Plan für zwei Märkte' }
         ]
     },
     {
-        id: 'module2',
-        title: 'Wobei benötigen Sie Unterstützung?',
-        subtitle: 'Text & Qualität',
+        id: 'thema2',
+        title: 'Text-Qualität',
+        subtitle: 'Ein Text, der professionell wirkt',
         options: [
-            { id: 'korrektorat', label: 'Korrektur / Lektorat', description: 'Rechtschreibung & Stil' },
-            { id: 'lektorat', label: 'Intensiv-Lektorat', description: 'Inhalt & Stil' },
-            { id: 'translate_de_tr', label: 'Übersetzung: DE ➝ TR' },
-            { id: 'translate_tr_de', label: 'Übersetzung: TR ➝ DE' },
-            { id: 'translate_en', label: 'Übersetzung: Englisch' },
-            { id: 'klappentext', label: 'Klappentext-Erstellung' },
-            { id: 'ai_check', label: 'Kostenloser DVA AI-Check', description: 'Lade deine ersten 10 Seiten hoch', upload: true }
+            { id: 'korrektorat', label: 'Korrektorat', description: 'Rechtschreibung/Grammatik/Zeichensetzung' },
+            { id: 'stil_lektorat', label: 'Stil-Lektorat', description: 'Flow, Ton, Rhythmus' },
+            { id: 'struktur_lektorat', label: 'Struktur-/Inhaltslektorat', description: 'Aufbau, Logik, Dramaturgie' },
+            { id: 'konsistenz_check', label: 'Konsistenz-Check', description: 'Namen, Timeline, Fakten, Wiederholungen' },
+            { id: 'final_qa', label: 'Final QA / Son Okuma (Vier-Augen)', description: 'Letzte Kontrolle vor Produktion' }
         ]
     },
     {
-        id: 'module3',
-        title: 'Wie soll Ihr Buch aussehen?',
-        subtitle: 'Design & Format',
+        id: 'thema3',
+        title: 'Buchdesign',
+        subtitle: 'Außen verkauft. Innen fühlt sich nach Verlag an',
         options: [
-            { id: 'cover_design', label: 'Cover Design', description: 'Premium oder Template' },
-            { id: 'cover_lokalisierung', label: 'Cover Lokalisierung' },
-            { id: 'satz', label: 'Satz (Buchlayout)', description: 'Print & eBook' },
-            { id: 'ebook_konvertierung', label: 'eBook-Konvertierung (ePUB)', description: 'Professionell' },
-            { id: 'hardcover', label: 'Hardcover Ausstattung' },
-            { id: 'ebook_barrierefrei', label: 'Barrierefreies E-Book' }
+            { id: 'coverdesign_print', label: 'Coverdesign (Print)', description: 'Front + Rücken + Rückseite' },
+            { id: 'cover_varianten', label: 'Cover-Varianten (A/B)', description: '2–3 Alternativen zum Vergleichen' },
+            { id: 'innensatz', label: 'Innensatz / Layout (Print)', description: 'Buchsatz, Kapitelstruktur, Seitenbild' },
+            { id: 'typografie', label: 'Typografie & Stilset', description: 'Schriften & Regeln passend zum Genre' },
+            { id: 'illustration', label: 'Illustration / Grafiken (optional)', description: 'Individuelle Assets' }
         ]
     },
     {
-        id: 'module4',
-        title: 'Wie bauen wir Reichweite auf?',
-        subtitle: 'Marketing & Distribution',
+        id: 'thema4',
+        title: 'Print-Spezifikation & Produktion',
+        subtitle: 'Print, der hochwertig aussieht und technisch sauber läuft',
         options: [
-            { id: 'distribution', label: 'Distribution', description: 'Amazon KDP + Aggregator' },
-            { id: 'marketing', label: 'Marketing', description: 'Launch-Kampagne' },
-            { id: 'amazon_ads', label: 'Amazon Ads (EU)' },
-            { id: 'social_ads', label: 'Social Media Ads', description: 'Diaspora Fokus' },
-            { id: 'presse_de', label: 'Pressearbeit / Blogger DE' },
-            { id: 'marktplatz_tr', label: 'Marktplatz Ads Türkei', description: 'Trendyol/Hepsiburada' }
+            { id: 'hardcover_softcover', label: 'Hardcover / Softcover', description: 'Bindung: Premium vs. klassisch' },
+            { id: 'formatwahl', label: 'Formatwahl', description: 'Passend zu Genre, Lesbarkeit und Kosten' },
+            { id: 'farbe_sw', label: 'S/W / Farbe / Mix', description: 'Optimierung: Qualität & Druckkosten' },
+            { id: 'papier_veredelung', label: 'Papier & Veredelung (matt/glanz)', description: 'Haptik + Optik' },
+            { id: 'proof', label: 'Proof / Musterexemplar', description: 'Vorabdruck zur Freigabe' },
+            { id: 'print_tuev', label: 'Print-TÜV (Preflight)', description: 'Technik-Check: Beschnitt, Auflösung, Farbraum' }
         ]
     },
     {
-        id: 'module5',
-        title: 'Mehr als nur ein Buch.',
-        subtitle: 'Vision & Services',
+        id: 'thema5',
+        title: 'E-Book & digitale Formate',
+        subtitle: 'Fehlerfrei auf Geräten & Shops',
         options: [
-            { id: 'isbn', label: 'ISBN', description: 'Eigen oder Verlag' },
-            { id: 'print', label: 'Print-Veröffentlichung' },
-            { id: 'rechte', label: 'Rechte', description: '100% beim Autor' },
-            { id: 'fulfillment', label: 'Fulfillment & Lagerung', description: 'Nur DACH' },
-            { id: 'stipendium', label: 'Bewerbung: "Brückenbauer"-Stipendium' }
+            { id: 'ebook_quick', label: 'E-Book Quick-Publish (Entry)', description: 'Schnellstart: 1 Datei, 1 Revision' },
+            { id: 'epub', label: 'EPUB-Erstellung', description: 'Sauberer Export für gängige Reader/Shops' },
+            { id: 'kindle', label: 'Kindle-Format', description: 'Optimiert fürs Kindle-Ökosystem' },
+            { id: 'ebook_qa', label: 'E-Book QA / Fix', description: 'Fehler finden und reparieren' },
+            { id: 'ebook_quality', label: 'E-Book Quality Upgrade', description: 'Premium-Optimierung' },
+            { id: 'audiobook', label: 'Audiobook (Coming soon)', description: 'In Vorbereitung', disabled: true }
+        ]
+    },
+    {
+        id: 'thema6',
+        title: 'Findbarkeit & Lokalisierung',
+        subtitle: 'Inhalt bleibt türkisch – EU kann\'s finden & verstehen',
+        options: [
+            { id: 'de_en_beschreibung', label: 'DE/EN Produktbeschreibung (Shop-ready)', description: 'Verkaufstext für EU-Leser' },
+            { id: 'de_en_keywords', label: 'DE/EN Keywords & Kategorien', description: 'Suchlogik & Auffindbarkeit' },
+            { id: 'klappentext_opt', label: 'Klappentext-Optimierung (TR)', description: 'Schärfer, klarer, verkaufsstärker' },
+            { id: 'uebersetzung', label: 'Übersetzung (optional)', description: 'Neue Sprache veröffentlichen' },
+            { id: 'lokalisierung', label: 'Lokalisierung (optional)', description: 'Kultureller Feinschliff' }
+        ]
+    },
+    {
+        id: 'thema7',
+        title: 'Release, Vertrieb & Marketing',
+        subtitle: 'Sichtbarkeit + Verfügbarkeit + sauberer Launch',
+        options: [
+            { id: 'eu_shop_listing', label: 'EU-Shop Listing & Metadaten (Shop-ready)', description: 'Titel/Untertitel/Beschreibung/Bilder' },
+            { id: 'distribution_eu', label: 'Distribution EU (Shop + Versand)', description: 'Versand- und Abwicklungsmodell' },
+            { id: 'libri_handel', label: 'Libri / Handel-Readiness (Premium)', description: 'Buchhandel-Bestellbarkeit' },
+            { id: 'marketing_kampagne', label: 'Marketing-Impact Kampagne', description: 'Zielgruppe, Creatives, Kanäle' },
+            { id: 'review_launch', label: 'Review-Launch System (ethisch)', description: 'Leserfeedback aufbauen (ARC/Reader-Liste)' },
+            { id: 'eu_tr_distribution', label: 'EU + TR Distribution Add-on (nur Route B)', description: 'Zweiter Markt als Upgrade' }
         ]
     }
 ];
@@ -95,6 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadConfigurationFromLocalStorage();
     
     renderQuestion();
+    
+    // Setup Package Selection Buttons
+    setupPackageSelectionButtons();
 });
 
 function openConfigurator() {
@@ -114,7 +141,7 @@ function closeConfigurator() {
 }
 
 function updateProgress() {
-    const totalSteps = MODULES.length + 1; // +1 for contact form
+    const totalSteps = MODULES.length + 1; // 7 Themen + 1 Kontaktformular = 8 Schritte
     const progress = ((currentStep + 1) / totalSteps) * 100;
     
     const progressBar = document.getElementById('progressBar');
@@ -569,4 +596,129 @@ function addClearButton() {
     };
     
     display.appendChild(clearBtn);
+}
+
+// ==========================================
+// PACKAGE SELECTION (Starter & Deluxe)
+// ==========================================
+
+function setupPackageSelectionButtons() {
+    // Get all "Paket wählen" buttons
+    const packageButtons = document.querySelectorAll('.btn-configure-secondary');
+    
+    packageButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const packageType = button.getAttribute('data-package');
+            togglePackageContactForm(packageType);
+        });
+    });
+    
+    // Setup form submissions
+    const quickForms = document.querySelectorAll('.quick-contact-form');
+    quickForms.forEach(form => {
+        form.addEventListener('submit', handleQuickFormSubmit);
+    });
+}
+
+function togglePackageContactForm(packageType) {
+    const formId = packageType + 'ContactForm';
+    const form = document.getElementById(formId);
+    const button = document.querySelector(`[data-package="${packageType}"]`);
+    
+    if (!form) return;
+    
+    // Toggle visibility
+    if (form.style.display === 'none') {
+        // Close other forms first
+        document.querySelectorAll('.package-contact-form').forEach(f => {
+            f.style.display = 'none';
+        });
+        
+        // Reset all buttons
+        document.querySelectorAll('.btn-configure-secondary').forEach(btn => {
+            btn.textContent = 'Paket wählen';
+        });
+        
+        // Open this form
+        form.style.display = 'block';
+        button.textContent = 'Abbrechen';
+        
+        // Scroll to form
+        setTimeout(() => {
+            form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+    } else {
+        // Close this form
+        form.style.display = 'none';
+        button.textContent = 'Paket wählen';
+    }
+}
+
+async function handleQuickFormSubmit(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const packageName = form.getAttribute('data-package-name');
+    const formData = new FormData(form);
+    const submitButton = form.querySelector('.btn-quick-submit');
+    const originalText = submitButton.textContent;
+    
+    // Show loading state
+    submitButton.textContent = 'Wird gesendet...';
+    submitButton.disabled = true;
+    
+    try {
+        // Prepare data for Netlify
+        const data = new URLSearchParams();
+        data.append('form-name', 'package-selection');
+        data.append('package', packageName);
+        data.append('name', formData.get('name'));
+        data.append('email', formData.get('email'));
+        data.append('message', formData.get('message') || '');
+        
+        // Submit to Netlify
+        await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: data.toString()
+        });
+        
+        // Show success message
+        const formContainer = form.closest('.package-contact-form');
+        formContainer.classList.add('success');
+        formContainer.innerHTML = `
+            <p class="success-message-inline">
+                <strong>Vielen Dank!</strong><br>
+                Ihre Anfrage für das Paket "${packageName}" wurde erfolgreich versendet. 
+                Wir melden uns in Kürze bei Ihnen.
+            </p>
+        `;
+        
+        // Reset after 5 seconds
+        setTimeout(() => {
+            formContainer.style.display = 'none';
+            formContainer.classList.remove('success');
+            formContainer.innerHTML = form.outerHTML;
+            
+            // Re-attach event listener
+            const newForm = formContainer.querySelector('.quick-contact-form');
+            if (newForm) {
+                newForm.addEventListener('submit', handleQuickFormSubmit);
+            }
+            
+            // Reset button text
+            const button = document.querySelector(`[data-package]`);
+            if (button) button.textContent = 'Paket wählen';
+        }, 5000);
+        
+    } catch (error) {
+        console.error('Submission error:', error);
+        submitButton.textContent = 'Fehler - Bitte erneut versuchen';
+        
+        setTimeout(() => {
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }, 3000);
+    }
 }
