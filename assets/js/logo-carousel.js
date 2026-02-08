@@ -14,7 +14,7 @@ export function initLogoCarousel() {
 
   // Logo dataa
   const logos = [
-    { name: 'Amazon', file: '../assets/images/index/logos/amazon.png' },
+    { name: 'Amazon', file: 'assets/images/index/logos/amazon.png' },
     { name: 'Google Books', file: '../assets/images/index/logos/google-books.png' },
     { name: 'Thalia', file: '../assets/images/index/logos/thalia.png' },
     { name: 'Hugendubel', file: '../assets/images/index/logos/hugendubel.png' },
