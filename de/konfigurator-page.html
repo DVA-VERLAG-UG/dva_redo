@@ -22,12 +22,19 @@
     <link rel="stylesheet" href="/assets/css/background.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/floating-logo.css">
     <link rel="stylesheet" href="/assets/css/konfigurator-page.css">
     <link rel="stylesheet" href="/assets/css/konfigurator-popup.css">
 </head>
 <body>
     
-    <!-- Header (Direct HTML) -->
+    <!-- Floating Logo -->
+    <a href="/de/" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <span class="floating-brand-name">DVAYD Publishing</span>
+    </a>
+    
+    <!-- Header -->
     <header class="site-header" id="site-header">
         <div class="header-inner">
             
@@ -195,7 +202,7 @@
         <section class="konfig-packages">
             <div class="konfig-container">
                 
-                <!-- Starter Package -->
+                <!-- 1. STARTER PACKAGE (LINKS) -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>Buch veröffentlichen Starter</h3>
@@ -239,11 +246,35 @@
                             <span class="package-value">100% beim Autor</span>
                         </div>
                     </div>
+                    <div class="package-footer">
+                        <button class="btn-configure btn-configure-secondary">
+                            Paket wählen
+                        </button>
+                    </div>
                 </div>
                 
-                <!-- Deluxe Package -->
-                <div class="package-card package-featured">
+                <!-- 2. INDIVIDUELLE KONFIGURATION (MITTE) - EMPFOHLEN -->
+                <div class="package-card package-custom">
                     <div class="package-badge">Empfohlen</div>
+                    <div class="package-header">
+                        <h3>Individuelle Konfiguration</h3>
+                        <p class="package-subtitle">Stelle dir dein perfektes Paket zusammen</p>
+                    </div>
+                    <div class="package-body">
+                        <div id="custom-config-display" class="custom-config-empty">
+                            <p class="empty-message">Noch keine Services ausgewählt</p>
+                            <p class="empty-hint">Klicke auf "Jetzt konfigurieren" um zu starten</p>
+                        </div>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn-configure" id="openConfigBtn">
+                            Jetzt konfigurieren →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 3. DELUXE PACKAGE (RECHTS) -->
+                <div class="package-card">
                     <div class="package-header">
                         <h3>Verlagspaket Deluxe</h3>
                         <p class="package-subtitle">Anspruchsvolle Projekte, Premium-Launch</p>
@@ -286,23 +317,9 @@
                             <span class="package-value">100% beim Autor</span>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Custom Configuration -->
-                <div class="package-card package-custom">
-                    <div class="package-header">
-                        <h3>Individuelle Konfiguration</h3>
-                        <p class="package-subtitle">Stelle dir dein perfektes Paket zusammen</p>
-                    </div>
-                    <div class="package-body">
-                        <div id="custom-config-display" class="custom-config-empty">
-                            <p class="empty-message">Noch keine Services ausgewählt</p>
-                            <p class="empty-hint">Klicke auf "Jetzt konfigurieren" um zu starten</p>
-                        </div>
-                    </div>
                     <div class="package-footer">
-                        <button class="btn-configure" id="openConfigBtn">
-                            Jetzt konfigurieren →
+                        <button class="btn-configure btn-configure-secondary">
+                            Paket wählen
                         </button>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 // konfigurator-page.js - Configurator logic with book-style popup
 
 // Configuration modules
-const MODULES = [
+const MODULES = [ 
     {
         id: 'module1',
         title: 'Wo wollen Sie gelesen werden?',
@@ -18,8 +18,8 @@ const MODULES = [
         title: 'Wobei benötigen Sie Unterstützung?',
         subtitle: 'Text & Qualität',
         options: [
-            { id: 'korrektorat', label: 'Korrektorat', description: 'Rechtschreibung' },
-            { id: 'lektorat', label: 'Lektorat', description: 'Inhalt & Stil' },
+            { id: 'korrektorat', label: 'Korrektur / Lektorat', description: 'Rechtschreibung & Stil' },
+            { id: 'lektorat', label: 'Intensiv-Lektorat', description: 'Inhalt & Stil' },
             { id: 'translate_de_tr', label: 'Übersetzung: DE ➝ TR' },
             { id: 'translate_tr_de', label: 'Übersetzung: TR ➝ DE' },
             { id: 'translate_en', label: 'Übersetzung: Englisch' },
@@ -32,11 +32,10 @@ const MODULES = [
         title: 'Wie soll Ihr Buch aussehen?',
         subtitle: 'Design & Format',
         options: [
-            { id: 'cover_profi', label: 'Cover Design: Profi-Paket' },
-            { id: 'cover_template', label: 'Cover Design: Template' },
+            { id: 'cover_design', label: 'Cover Design', description: 'Premium oder Template' },
             { id: 'cover_lokalisierung', label: 'Cover Lokalisierung' },
-            { id: 'satz_roman', label: 'Buchsatz: Roman (Text)' },
-            { id: 'satz_sachbuch', label: 'Buchsatz: Sachbuch (Visual)' },
+            { id: 'satz', label: 'Satz (Buchlayout)', description: 'Print & eBook' },
+            { id: 'ebook_konvertierung', label: 'eBook-Konvertierung (ePUB)', description: 'Professionell' },
             { id: 'hardcover', label: 'Hardcover Ausstattung' },
             { id: 'ebook_barrierefrei', label: 'Barrierefreies E-Book' }
         ]
@@ -44,25 +43,26 @@ const MODULES = [
     {
         id: 'module4',
         title: 'Wie bauen wir Reichweite auf?',
-        subtitle: 'Marketing',
+        subtitle: 'Marketing & Distribution',
         options: [
+            { id: 'distribution', label: 'Distribution', description: 'Amazon KDP + Aggregator' },
+            { id: 'marketing', label: 'Marketing', description: 'Launch-Kampagne' },
             { id: 'amazon_ads', label: 'Amazon Ads (EU)' },
             { id: 'social_ads', label: 'Social Media Ads', description: 'Diaspora Fokus' },
             { id: 'presse_de', label: 'Pressearbeit / Blogger DE' },
-            { id: 'marktplatz_tr', label: 'Marktplatz Ads Türkei', description: 'Trendyol/Hepsiburada' },
-            { id: 'buchhandel_tr', label: 'Buchhandels-Push Türkei', description: 'Kitapyurdu' },
-            { id: 'influencer_tr', label: 'Influencer Seeding TR', disabled: true }
+            { id: 'marktplatz_tr', label: 'Marktplatz Ads Türkei', description: 'Trendyol/Hepsiburada' }
         ]
     },
     {
         id: 'module5',
         title: 'Mehr als nur ein Buch.',
-        subtitle: 'Vision',
+        subtitle: 'Vision & Services',
         options: [
+            { id: 'isbn', label: 'ISBN', description: 'Eigen oder Verlag' },
+            { id: 'print', label: 'Print-Veröffentlichung' },
+            { id: 'rechte', label: 'Rechte', description: '100% beim Autor' },
             { id: 'fulfillment', label: 'Fulfillment & Lagerung', description: 'Nur DACH' },
-            { id: 'stipendium', label: 'Bewerbung: "Brückenbauer"-Stipendium' },
-            { id: 'netflix_pitch', label: 'Netflix / TV Scouting Pitch', disabled: true },
-            { id: 'ai_audiobook', label: 'AI-Audiobook Produktion', disabled: true }
+            { id: 'stipendium', label: 'Bewerbung: "Brückenbauer"-Stipendium' }
         ]
     }
 ];
@@ -78,43 +78,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevBtn');
     const overlay = document.getElementById('configOverlay');
     
-    openBtn.addEventListener('click', openConfigurator);
-    closeBtn.addEventListener('click', closeConfigurator);
-    prevBtn.addEventListener('click', goToPrevious);
+    if (openBtn) openBtn.addEventListener('click', openConfigurator);
+    if (closeBtn) closeBtn.addEventListener('click', closeConfigurator);
+    if (prevBtn) prevBtn.addEventListener('click', goToPrevious);
     
     // Close on overlay click
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-            closeConfigurator();
-        }
-    });
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeConfigurator();
+            }
+        });
+    }
+    
+    // Lade gespeicherte Konfiguration
+    loadConfigurationFromLocalStorage();
     
     renderQuestion();
 });
 
 function openConfigurator() {
-    document.getElementById('configOverlay').classList.add('is-open');
-    document.body.style.overflow = 'hidden';
+    const overlay = document.getElementById('configOverlay');
+    if (overlay) {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeConfigurator() {
-    document.getElementById('configOverlay').classList.remove('is-open');
-    document.body.style.overflow = '';
+    const overlay = document.getElementById('configOverlay');
+    if (overlay) {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
 }
 
 function updateProgress() {
     const totalSteps = MODULES.length + 1; // +1 for contact form
     const progress = ((currentStep + 1) / totalSteps) * 100;
     
-    document.getElementById('progressBar').style.width = progress + '%';
-    document.getElementById('progressText').textContent = `Schritt ${currentStep + 1} von ${totalSteps}`;
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    
+    if (progressBar) progressBar.style.width = progress + '%';
+    if (progressText) progressText.textContent = `Schritt ${currentStep + 1} von ${totalSteps}`;
     
     // Update prev button
-    document.getElementById('prevBtn').disabled = currentStep === 0;
+    const prevBtn = document.getElementById('prevBtn');
+    if (prevBtn) prevBtn.disabled = currentStep === 0;
 }
 
 function renderQuestion() {
     const container = document.getElementById('questionsContainer');
+    if (!container) return;
     
     // Clear previous
     container.innerHTML = '';
@@ -137,12 +153,14 @@ function renderQuestion() {
     
     // Animate in
     setTimeout(() => {
-        container.querySelector('.question-slide').classList.add('active');
+        const slide = container.querySelector('.question-slide');
+        if (slide) slide.classList.add('active');
     }, 50);
 }
 
 function updateAnsweredQuestions() {
     const leftPage = document.getElementById('leftPage');
+    if (!leftPage) return;
     
     // Build answered questions list
     let answeredHTML = '';
@@ -193,7 +211,8 @@ function updateAnsweredQuestions() {
     }
     
     // Re-attach event listener
-    document.getElementById('prevBtn').addEventListener('click', goToPrevious);
+    const prevBtn = document.getElementById('prevBtn');
+    if (prevBtn) prevBtn.addEventListener('click', goToPrevious);
 }
 
 function createModuleSlide(module) {
@@ -251,7 +270,8 @@ function createModuleSlide(module) {
         checkbox.addEventListener('change', handleOptionChange);
     });
     
-    slide.querySelector('#nextBtn').addEventListener('click', goToNext);
+    const nextBtn = slide.querySelector('#nextBtn');
+    if (nextBtn) nextBtn.addEventListener('click', goToNext);
     
     // File upload
     const fileInput = slide.querySelector('#fileUpload');
@@ -308,7 +328,7 @@ function createContactSlide() {
     `;
     
     const form = slide.querySelector('#contactForm');
-    form.addEventListener('submit', handleSubmit);
+    if (form) form.addEventListener('submit', handleSubmit);
     
     return slide;
 }
@@ -326,6 +346,9 @@ function handleOptionChange(e) {
     } else {
         selectedOptions[moduleId] = selectedOptions[moduleId].filter(id => id !== optionId);
     }
+    
+    // Update custom config display
+    updateCustomConfigDisplay();
 }
 
 function handleFileUpload(e) {
@@ -334,8 +357,10 @@ function handleFileUpload(e) {
 
 function goToNext() {
     const currentSlide = document.querySelector('.question-slide.active');
-    currentSlide.classList.remove('active');
-    currentSlide.classList.add('prev');
+    if (currentSlide) {
+        currentSlide.classList.remove('active');
+        currentSlide.classList.add('prev');
+    }
     
     currentStep++;
     
@@ -348,7 +373,7 @@ function goToPrevious() {
     if (currentStep === 0) return;
     
     const currentSlide = document.querySelector('.question-slide.active');
-    currentSlide.classList.remove('active');
+    if (currentSlide) currentSlide.classList.remove('active');
     
     currentStep--;
     
@@ -362,7 +387,8 @@ async function handleSubmit(e) {
     
     // Prepare configuration data
     const configData = JSON.stringify(selectedOptions, null, 2);
-    document.getElementById('configData').value = configData;
+    const configDataInput = document.getElementById('configData');
+    if (configDataInput) configDataInput.value = configData;
     
     // Submit via Netlify Forms
     const form = e.target;
@@ -376,11 +402,13 @@ async function handleSubmit(e) {
         });
         
         showSuccessMessage();
-        updateCustomConfig();
+        
+        // WICHTIG: Update Custom Config Display (Services bleiben sichtbar)
+        updateCustomConfigDisplay();
         
         setTimeout(() => {
             closeConfigurator();
-            resetConfigurator();
+            // NICHT resetConfigurator() aufrufen - Auswahl bleibt erhalten!
         }, 3000);
         
     } catch (error) {
@@ -391,6 +419,8 @@ async function handleSubmit(e) {
 
 function showSuccessMessage() {
     const container = document.getElementById('questionsContainer');
+    if (!container) return;
+    
     container.innerHTML = `
         <div class="question-slide active">
             <div class="success-message">
@@ -405,8 +435,9 @@ function showSuccessMessage() {
     `;
 }
 
-function updateCustomConfig() {
+function updateCustomConfigDisplay() {
     const display = document.getElementById('custom-config-display');
+    if (!display) return;
     
     let html = '';
     let count = 0;
@@ -414,15 +445,17 @@ function updateCustomConfig() {
     Object.entries(selectedOptions).forEach(([moduleId, options]) => {
         options.forEach(optionId => {
             const module = MODULES.find(m => m.id === moduleId);
-            const option = module.options.find(o => o.id === optionId);
+            const option = module?.options.find(o => o.id === optionId);
             
-            html += `
-                <div class="config-item-row">
-                    <span class="config-item-label">${option.label}</span>
-                    <span class="config-item-value">✓ Ausgewählt</span>
-                </div>
-            `;
-            count++;
+            if (option) {
+                html += `
+                    <div class="config-item-row">
+                        <span class="config-item-label">${option.label}</span>
+                        <span class="config-item-value">✓ Ausgewählt</span>
+                    </div>
+                `;
+                count++;
+            }
         });
     });
     
@@ -433,14 +466,107 @@ function updateCustomConfig() {
             <p class="empty-hint">Klicke auf "Jetzt konfigurieren" um zu starten</p>
         `;
     } else {
-        display.className = '';
+        display.className = 'custom-config-filled';
         display.innerHTML = html;
+        
+        // Optional: Füge "Auswahl löschen" Button hinzu
+        // Kommentiere diese Zeile aus, wenn du den Button NICHT willst
+        addClearButton();
+    }
+    
+    // Highlight matching services in other packages
+    highlightMatchingServices();
+    
+    // WICHTIG: Speichere die Auswahl in localStorage, damit sie persistent bleibt
+    saveConfigurationToLocalStorage();
+}
+
+// Speichere Konfiguration in localStorage
+function saveConfigurationToLocalStorage() {
+    try {
+        localStorage.setItem('dvayd_custom_config', JSON.stringify(selectedOptions));
+    } catch (e) {
+        console.error('Could not save configuration:', e);
     }
 }
 
+// Lade Konfiguration aus localStorage beim Start
+function loadConfigurationFromLocalStorage() {
+    try {
+        const saved = localStorage.getItem('dvayd_custom_config');
+        if (saved) {
+            selectedOptions = JSON.parse(saved);
+            updateCustomConfigDisplay();
+        }
+    } catch (e) {
+        console.error('Could not load configuration:', e);
+    }
+}
+
+function highlightMatchingServices() {
+    const allRows = document.querySelectorAll('.package-row');
+    
+    allRows.forEach(row => {
+        const label = row.querySelector('.package-label');
+        if (!label) return;
+        
+        const serviceName = label.textContent.trim();
+        
+        // Check if any selected option matches this service
+        let isMatched = false;
+        Object.values(selectedOptions).forEach(options => {
+            options.forEach(optionId => {
+                MODULES.forEach(module => {
+                    const option = module.options.find(o => o.id === optionId);
+                    if (option && option.label === serviceName) {
+                        isMatched = true;
+                    }
+                });
+            });
+        });
+        
+        if (isMatched) {
+            row.classList.add('service-highlighted');
+        } else {
+            row.classList.remove('service-highlighted');
+        }
+    });
+}
+
+// Reset Konfiguration (nur wenn explizit gewünscht - z.B. durch "Reset" Button)
 function resetConfigurator() {
     currentStep = 0;
     selectedOptions = {};
     uploadedFile = null;
+    
+    // Lösche aus localStorage
+    try {
+        localStorage.removeItem('dvayd_custom_config');
+    } catch (e) {
+        console.error('Could not clear configuration:', e);
+    }
+    
     renderQuestion();
+    updateCustomConfigDisplay();
+}
+
+// Optional: Füge einen "Auswahl löschen" Button hinzu
+function addClearButton() {
+    const display = document.getElementById('custom-config-display');
+    if (!display || display.classList.contains('custom-config-empty')) return;
+    
+    // Prüfe ob Button schon existiert
+    if (document.getElementById('clearConfigBtn')) return;
+    
+    const clearBtn = document.createElement('button');
+    clearBtn.id = 'clearConfigBtn';
+    clearBtn.className = 'btn-clear-config';
+    clearBtn.textContent = 'Auswahl löschen';
+    clearBtn.onclick = () => {
+        if (confirm('Möchten Sie wirklich alle ausgewählten Services löschen?')) {
+            resetConfigurator();
+        }
+    };
+    
+    display.appendChild(clearBtn);
 }
