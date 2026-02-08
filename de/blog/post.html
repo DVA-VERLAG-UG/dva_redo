@@ -27,11 +27,19 @@
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/background.css">
     <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/floating-logo.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/contact-popup.css">
     <link rel="stylesheet" href="../../assets/css/blog-post.css">
     <link rel="stylesheet" href="../../assets/css/cursor-follower.css">
 </head>
 <body>
+    
+    <!-- Floating Logo -->
+    <a href="/de/" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <span class="floating-brand-name">DVAYD Publishing</span>
+    </a>
     
     <!-- Header -->
     <div id="header-placeholder"></div>
@@ -59,6 +67,59 @@
     
     <!-- Footer -->
     <div id="footer-placeholder"></div>
+    
+    <!-- Contact Popup -->
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-popup">
+            <button class="contact-close" type="button" aria-label="Schließen">✕</button>
+            
+            <div class="contact-header">
+                <h2>Kontakt aufnehmen</h2>
+                <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
+            </div>
+            
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" name="vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname *</label>
+                        <input type="text" name="nachname" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>E-Mail *</label>
+                    <input type="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" name="telefon">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nachricht</label>
+                    <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit">Absenden</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Hidden Netlify Form -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname" />
+        <input type="text" name="nachname" />
+        <input type="email" name="email" />
+        <input type="tel" name="telefon" />
+        <textarea name="nachricht"></textarea>
+    </form>
     
     <!-- JavaScript -->
     <script type="module" src="../../assets/js/main.js"></script>
@@ -196,6 +257,63 @@
             } catch(err) {
                 console.error(err);
                 els.state.textContent = "Fehler beim Laden des Beitrags. Prüfe: (1) Sheet ist 'Published', (2) Header-Zeile heißt slug,title,excerpt,content,date,author,cover,tags.";
+            }
+        })();
+    </script>
+    
+    <!-- Footer Contact Popup Setup -->
+    <script>
+        // Wait for footer to load, then setup contact popup
+        (async function() {
+            // Wait for footer
+            await new Promise(resolve => {
+                const checkFooter = setInterval(() => {
+                    if (document.querySelector('.footer-talk-btn')) {
+                        clearInterval(checkFooter);
+                        resolve();
+                    }
+                }, 100);
+            });
+            
+            // Setup contact popup
+            const contactOverlay = document.getElementById('contactOverlay');
+            const footerButtons = [
+                document.getElementById('footerConfigBtn'),
+                document.getElementById('footerContactBtn'),
+                document.getElementById('footerConfiguratorBtn')
+            ].filter(Boolean);
+            
+            if (contactOverlay && footerButtons.length > 0) {
+                footerButtons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        contactOverlay.classList.add('is-open');
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+                
+                const closeBtn = contactOverlay.querySelector('.contact-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        contactOverlay.classList.remove('is-open');
+                        document.body.style.overflow = '';
+                    });
+                }
+                
+                contactOverlay.addEventListener('click', (e) => {
+                    if (e.target === contactOverlay) {
+                        contactOverlay.classList.remove('is-open');
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && contactOverlay.classList.contains('is-open')) {
+                        contactOverlay.classList.remove('is-open');
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                console.log(`✅ ${footerButtons.length} footer button(s) connected to contact popup`);
             }
         })();
     </script>
