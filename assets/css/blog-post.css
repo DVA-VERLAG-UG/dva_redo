@@ -1,5 +1,5 @@
 /* ==========================================
-   BLOG POST PAGE STYLES
+   BLOG POST PAGE STYLES - Royal Bronze Theme
    ========================================== */
 
 :root {
@@ -19,47 +19,50 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: #000;
-    background: rgba(15, 23, 42, 0.05);
-    border: 1px solid rgba(15, 23, 42, 0.1);
+    color: #2C3E50;
+    background: rgba(176, 141, 87, 0.08);
+    border: 1px solid rgba(176, 141, 87, 0.2);
     padding: 10px 16px;
     border-radius: 10px;
     margin-bottom: 24px;
     transition: all 0.3s ease;
     font-weight: 600;
+    font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-back {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #B08D57;
+    background: rgba(176, 141, 87, 0.1);
+    border: 1px solid rgba(176, 141, 87, 0.25);
 }
 
 .post-back:hover {
     transform: translateY(-2px);
-    background: rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.5);
+    background: rgba(176, 141, 87, 0.15);
+    border-color: #B08D57;
+    color: #B08D57;
 }
 
 html[data-theme="dim"] .post-back:hover {
-    background: rgba(139, 92, 246, 0.15);
+    background: rgba(176, 141, 87, 0.2);
+    color: #d4b07a;
 }
 
 /* Hero Card */
 .post-hero {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.05);
+    border: 1px solid rgba(176, 141, 87, 0.15);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(176, 141, 87, 0.1);
     backdrop-filter: blur(20px);
     margin-bottom: 24px;
 }
 
 html[data-theme="dim"] .post-hero {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(176, 141, 87, 0.08);
+    border: 1px solid rgba(176, 141, 87, 0.2);
+    box-shadow: 0 8px 32px rgba(176, 141, 87, 0.15);
 }
 
 .post-cover {
@@ -67,11 +70,11 @@ html[data-theme="dim"] .post-hero {
     aspect-ratio: 16/9;
     object-fit: cover;
     display: none;
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba(176, 141, 87, 0.08);
 }
 
 html[data-theme="dim"] .post-cover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(176, 141, 87, 0.12);
 }
 
 .post-head {
@@ -83,12 +86,13 @@ html[data-theme="dim"] .post-cover {
     font-size: clamp(2rem, 4vw, 3rem);
     line-height: 1.15;
     letter-spacing: -0.02em;
-    color: #000;
+    color: #2C3E50;
     font-weight: 900;
+    font-family: 'Playfair Display', 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-title {
-    color: #fff;
+    color: #B08D57;
 }
 
 .post-meta {
@@ -97,58 +101,62 @@ html[data-theme="dim"] .post-title {
     gap: 12px;
     flex-wrap: wrap;
     align-items: center;
-    color: rgba(15, 23, 42, 0.6);
+    color: rgba(44, 62, 80, 0.6);
     font-size: 14px;
+    font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-meta {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(176, 141, 87, 0.8);
 }
 
 .post-pill {
-    border: 1px solid rgba(139, 92, 246, 0.3);
+    border: 1px solid rgba(176, 141, 87, 0.3);
     padding: 4px 10px;
     border-radius: 999px;
-    background: rgba(139, 92, 246, 0.1);
-    color: #7c3aed;
+    background: rgba(176, 141, 87, 0.1);
+    color: #8a6d3f;
     font-size: 12px;
     font-weight: 600;
+    font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-pill {
-    border: 1px solid rgba(139, 92, 246, 0.4);
-    background: rgba(139, 92, 246, 0.15);
-    color: #a78bfa;
+    border: 1px solid rgba(176, 141, 87, 0.4);
+    background: rgba(176, 141, 87, 0.15);
+    color: #B08D57;
 }
 
 /* Content Body */
 .post-body {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.05);
+    border: 1px solid rgba(176, 141, 87, 0.15);
     border-radius: 16px;
     padding: 32px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 32px rgba(176, 141, 87, 0.1);
     backdrop-filter: blur(20px);
     line-height: 1.7;
+    font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-body {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(176, 141, 87, 0.08);
+    border: 1px solid rgba(176, 141, 87, 0.2);
+    box-shadow: 0 8px 32px rgba(176, 141, 87, 0.15);
 }
 
 .post-body h2,
 .post-body h3 {
     margin: 32px 0 16px;
     line-height: 1.3;
-    color: #000;
+    color: #2C3E50;
     font-weight: 700;
+    font-family: 'Playfair Display', 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-body h2,
 html[data-theme="dim"] .post-body h3 {
-    color: #fff;
+    color: #B08D57;
 }
 
 .post-body h2 {
@@ -163,14 +171,14 @@ html[data-theme="dim"] .post-body h3 {
 .post-body ul,
 .post-body ol {
     margin: 0 0 16px;
-    color: rgba(15, 23, 42, 0.8);
+    color: rgba(44, 62, 80, 0.8);
     font-size: 1.05rem;
 }
 
 html[data-theme="dim"] .post-body p,
 html[data-theme="dim"] .post-body ul,
 html[data-theme="dim"] .post-body ol {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(245, 242, 237, 0.85);
 }
 
 .post-body ul,
@@ -183,40 +191,40 @@ html[data-theme="dim"] .post-body ol {
 }
 
 .post-body a {
-    color: #7c3aed;
+    color: #B08D57;
     text-decoration: underline;
     text-underline-offset: 3px;
     transition: color 0.3s ease;
 }
 
 html[data-theme="dim"] .post-body a {
-    color: #a78bfa;
+    color: #B08D57;
 }
 
 .post-body a:hover {
-    color: #6d28d9;
+    color: #8a6d3f;
 }
 
 html[data-theme="dim"] .post-body a:hover {
-    color: #c4b5fd;
+    color: #d4b07a;
 }
 
 .post-body code {
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(176, 141, 87, 0.1);
     padding: 2px 6px;
     border-radius: 4px;
     font-size: 0.9em;
-    color: #7c3aed;
+    color: #8a6d3f;
 }
 
 html[data-theme="dim"] .post-body code {
-    background: rgba(139, 92, 246, 0.2);
-    color: #a78bfa;
+    background: rgba(176, 141, 87, 0.2);
+    color: #B08D57;
 }
 
 .post-body pre {
-    background: rgba(15, 23, 42, 0.05);
-    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: rgba(176, 141, 87, 0.05);
+    border: 1px solid rgba(176, 141, 87, 0.15);
     padding: 16px;
     border-radius: 8px;
     overflow-x: auto;
@@ -224,8 +232,8 @@ html[data-theme="dim"] .post-body code {
 }
 
 html[data-theme="dim"] .post-body pre {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(176, 141, 87, 0.1);
+    border: 1px solid rgba(176, 141, 87, 0.2);
 }
 
 .post-body pre code {
@@ -242,34 +250,34 @@ html[data-theme="dim"] .post-body pre {
 }
 
 .post-body blockquote {
-    border-left: 4px solid rgba(139, 92, 246, 0.5);
+    border-left: 4px solid #B08D57;
     margin: 24px 0;
     padding: 16px 24px;
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(176, 141, 87, 0.08);
     border-radius: 0 8px 8px 0;
 }
 
 html[data-theme="dim"] .post-body blockquote {
-    background: rgba(139, 92, 246, 0.1);
+    background: rgba(176, 141, 87, 0.12);
 }
 
 .post-body hr {
     border: none;
-    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    border-top: 1px solid rgba(176, 141, 87, 0.2);
     margin: 32px 0;
 }
 
 html[data-theme="dim"] .post-body hr {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(176, 141, 87, 0.25);
 }
 
 .post-body strong {
     font-weight: 700;
-    color: #000;
+    color: #2C3E50;
 }
 
 html[data-theme="dim"] .post-body strong {
-    color: #fff;
+    color: #f5f2ed;
 }
 
 .post-body em {
@@ -281,15 +289,16 @@ html[data-theme="dim"] .post-body strong {
     margin: 24px 0;
     padding: 16px;
     border-radius: 12px;
-    border: 1px dashed rgba(15, 23, 42, 0.2);
-    color: rgba(15, 23, 42, 0.7);
-    background: rgba(15, 23, 42, 0.05);
+    border: 1px dashed rgba(176, 141, 87, 0.3);
+    color: rgba(44, 62, 80, 0.7);
+    background: rgba(176, 141, 87, 0.05);
+    font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .post-state {
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed rgba(176, 141, 87, 0.4);
+    color: rgba(245, 242, 237, 0.7);
+    background: rgba(176, 141, 87, 0.08);
 }
 
 /* ==========================================
