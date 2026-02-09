@@ -35,9 +35,38 @@
     <!-- Cursor Follower entfernt für bessere Performance -->
 </head>
 <body class="no-curtain">
+
+    <style>
+    /* CRITICAL: Block curtain completely on this page */
+    body.no-curtain::before,
+    body.no-curtain::after,
+    body.no-curtain .curtain,
+    body.no-curtain .curtain-left,
+    body.no-curtain .curtain-right,
+    body.no-curtain .curtain-text,
+    body.no-curtain .curtain-word,
+    body.no-curtain .curtain-content,
+    body.no-curtain [class*="curtain"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+    body.no-curtain .curtain *,
+    body.no-curtain [class*="curtain"] * {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    </style>
+    
     
     <!-- Floating Logo -->
-    <a href="../de/index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+    <a href="index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
         <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
@@ -328,7 +357,7 @@
                     <button class="about-cta-btn about-cta-primary" id="aboutContactBtn">
                         Kostenloses Gespräch vereinbaren
                     </button>
-                    <a href="/de/konfigurator-page.html" class="about-cta-btn about-cta-secondary">
+                    <a href="konfigurator-page.html" class="about-cta-btn about-cta-secondary">
                         Paket konfigurieren
                     </a>
                 </div>

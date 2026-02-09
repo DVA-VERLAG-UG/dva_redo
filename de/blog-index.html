@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Blogpost | DVAYD Publishing</title>
-    <meta name="description" content="Blogpost von DVAYD Publishing.">
+    <title>Blog | DVAYD Publishing</title>
+    <meta name="description" content="Blog – Beiträge, Updates und Insights von DVAYD Publishing.">
+    <link rel="canonical" href="https://yoursite.com/de/blog/">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../../assets/images/favicon.png">
-    <link rel="apple-touch-icon" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="../../assets/images/branding/favicon.png">
+    <link rel="apple-touch-icon" href="../../assets/images/branding/favicon.png">
     
     <!-- Apply theme immediately -->
     <script>
@@ -30,14 +31,43 @@
     <link rel="stylesheet" href="../../assets/css/floating-logo.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
     <link rel="stylesheet" href="../../assets/css/contact-popup.css">
-    <link rel="stylesheet" href="../../assets/css/blog-post.css">
+    <link rel="stylesheet" href="../../assets/css/blog-list.css">
     <link rel="stylesheet" href="../../assets/css/cursor-follower.css">
 </head>
-<body>
+<body class="no-curtain">
+
+    <style>
+    /* CRITICAL: Block curtain completely on this page */
+    body.no-curtain::before,
+    body.no-curtain::after,
+    body.no-curtain .curtain,
+    body.no-curtain .curtain-left,
+    body.no-curtain .curtain-right,
+    body.no-curtain .curtain-text,
+    body.no-curtain .curtain-word,
+    body.no-curtain .curtain-content,
+    body.no-curtain [class*="curtain"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+    body.no-curtain .curtain *,
+    body.no-curtain [class*="curtain"] * {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    </style>
+    
     
     <!-- Floating Logo -->
-    <a href="../de/index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
-        <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+    <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
     
@@ -46,22 +76,24 @@
     
     <!-- Main Content -->
     <main>
-        <section class="post-wrap">
-            <a class="post-back" href="blog-index.html">
-                <span aria-hidden="true">←</span> Zurück zum Blog
-            </a>
+        <section class="blog-wrap">
+            <div class="blog-hero">
+                <h1 class="blog-title">Blog</h1>
+                <p class="blog-sub">
+                    Neue Beiträge erscheinen automatisch, sobald sie im Google Sheet hinzugefügt werden.
+                </p>
+            </div>
             
-            <div id="state" class="post-state">Lade Beitrag …</div>
+            <div class="blog-controls">
+                <input id="q" class="blog-input" type="search" placeholder="Suchen (Titel / Teaser / Tags) …" autocomplete="off">
+                <select id="tag" class="blog-select">
+                    <option value="">Alle Tags</option>
+                </select>
+                <div id="count" class="blog-count"></div>
+            </div>
             
-            <article id="article" class="post-hero" style="display:none;">
-                <img id="cover" class="post-cover" alt="">
-                <div class="post-head">
-                    <h1 id="title" class="post-title"></h1>
-                    <div id="meta" class="post-meta"></div>
-                </div>
-            </article>
-            
-            <section id="content" class="post-body" style="display:none;"></section>
+            <div id="state" class="blog-state">Lade Beiträge …</div>
+            <section id="grid" class="blog-grid" aria-live="polite"></section>
         </section>
     </main>
     
@@ -124,20 +156,19 @@
     <!-- JavaScript -->
     <script type="module" src="../../assets/js/main.js"></script>
     
-    <!-- Post Script -->
+    <!-- Blog Script -->
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?output=csv";
         
-        const slug = new URLSearchParams(location.search).get("slug");
-        
         const els = {
+            q: document.getElementById("q"),
+            tag: document.getElementById("tag"),
+            count: document.getElementById("count"),
             state: document.getElementById("state"),
-            article: document.getElementById("article"),
-            cover: document.getElementById("cover"),
-            title: document.getElementById("title"),
-            meta: document.getElementById("meta"),
-            content: document.getElementById("content"),
+            grid: document.getElementById("grid"),
         };
+        
+        let ALL = [];
         
         function esc(str) {
             return String(str ?? "").replace(/[&<>"']/g, m => ({
@@ -180,50 +211,81 @@
             return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
         }
         
-        function setMetaDescription(desc) {
-            let m = document.querySelector('meta[name="description"]');
-            if(!m) {
-                m = document.createElement("meta");
-                m.setAttribute("name", "description");
-                document.head.appendChild(m);
-            }
-            m.setAttribute("content", desc);
+        function fillTagDropdown(posts) {
+            const tags = new Set();
+            posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
+            const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b, "de"));
+            
+            els.tag.innerHTML = 
+                `<option value="">Alle Tags</option>` +
+                sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
         }
         
-        function renderPost(p) {
-            document.title = `${p.title} | DVAYD Blog`;
-            setMetaDescription(p.excerpt || "Blogpost von DVAYD Publishing.");
-            
-            els.title.textContent = p.title;
-            
-            const metaBits = [];
-            if(p.date) metaBits.push(`<span>${esc(p.date)}</span>`);
-            if(p.author) metaBits.push(`<span>·</span><span>${esc(p.author)}</span>`);
-            (p.tags || []).forEach(t => metaBits.push(`<span class="post-pill">${esc(t)}</span>`));
-            els.meta.innerHTML = metaBits.join(" ");
-            
-            if(p.cover) {
-                els.cover.src = p.cover;
-                els.cover.alt = p.title;
-                els.cover.style.display = "block";
-            }
-            
-            // content is treated as HTML (trusted)
-            els.content.innerHTML = p.content || "";
-            
-            els.state.style.display = "none";
-            els.article.style.display = "block";
-            els.content.style.display = "block";
-        }
-        
-        (async function init() {
-            if(!slug) {
-                els.state.textContent = "Kein Beitrag gewählt. Bitte gehe zurück zur Blog-Übersicht.";
+        function render(posts) {
+            if(!posts.length) {
+                els.grid.innerHTML = "";
+                els.state.textContent = "Keine Beiträge gefunden.";
+                els.state.style.display = "block";
+                els.count.textContent = "";
                 return;
             }
             
+            els.state.style.display = "none";
+            els.count.textContent = `${posts.length} Beitrag${posts.length === 1 ? "" : "e"}`;
+            
+            els.grid.innerHTML = posts.map(p => `
+                <article class="blog-card">
+                    ${p.cover
+                        ? `<img class="blog-cover" src="${esc(p.cover)}" alt="${esc(p.title)}">`
+                        : `<div class="blog-cover" aria-hidden="true"></div>`
+                    }
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            ${p.date ? `<span>${esc(p.date)}</span>` : ``}
+                            ${p.author ? `<span>·</span><span>${esc(p.author)}</span>` : ``}
+                            ${p.tags?.[0]
+                                ? `<span class="blog-pill" title="${esc(p.tags.join(", "))}">
+                                    ${esc(p.tags[0])}${p.tags.length>1 ? " +" + (p.tags.length-1) : ""}
+                                </span>`
+                                : ``
+                            }
+                        </div>
+                        
+                        <h2 class="blog-h2">${esc(p.title)}</h2>
+                        <p class="blog-excerpt">${esc(p.excerpt || "")}</p>
+                        
+                        <div class="blog-row">
+                            <a class="blog-btn" href="post.html?slug=${encodeURIComponent(p.slug)}">
+                                Lesen <span aria-hidden="true">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            `).join("");
+        }
+        
+        function applyFilters() {
+            const q = norm(els.q.value);
+            const tag = els.tag.value;
+            
+            let out = ALL;
+            
+            if(tag) {
+                out = out.filter(p => (p.tags || []).includes(tag));
+            }
+            if(q) {
+                out = out.filter(p => {
+                    const hay = norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" "));
+                    return hay.includes(q);
+                });
+            }
+            
+            render(out);
+        }
+        
+        (async function init() {
             try {
-                els.state.textContent = "Lade Beitrag …";
+                els.state.textContent = "Lade Beiträge …";
                 
                 const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
                 const csv = await res.text();
@@ -235,28 +297,29 @@
                 const idx = (name) => header.indexOf(norm(name));
                 
                 const posts = rows.slice(1).map(r => ({
-                    slug:    r[idx("slug")] || "",
-                    title:   r[idx("title")] || "",
-                    excerpt: r[idx("excerpt")] || "",
-                    content: r[idx("content")] || "",
-                    date:    r[idx("date")] || "",
-                    author:  r[idx("author")] || "",
-                    cover:   r[idx("cover")] || "",
-                    tags:    splitTags(r[idx("tags")] || ""),
+                    slug:   r[idx("slug")] || "",
+                    title:  r[idx("title")] || "",
+                    excerpt:r[idx("excerpt")] || r[idx("content")] || "",
+                    date:   r[idx("date")] || "",
+                    author: r[idx("author")] || "",
+                    cover:  r[idx("cover")] || "",
+                    tags:   splitTags(r[idx("tags")] || ""),
                 })).filter(p => p.slug && p.title);
                 
-                const post = posts.find(p => p.slug === slug);
+                posts.sort((a,b) => (b.date || "").localeCompare(a.date || ""));
                 
-                if(!post) {
-                    els.state.textContent = "Beitrag nicht gefunden. Prüfe den slug in der URL und im Sheet.";
-                    return;
-                }
+                ALL = posts;
+                fillTagDropdown(ALL);
+                render(ALL);
                 
-                renderPost(post);
+                els.q.addEventListener("input", applyFilters);
+                els.tag.addEventListener("change", applyFilters);
                 
             } catch(err) {
                 console.error(err);
-                els.state.textContent = "Fehler beim Laden des Beitrags. Prüfe: (1) Sheet ist 'Published', (2) Header-Zeile heißt slug,title,excerpt,content,date,author,cover,tags.";
+                els.grid.innerHTML = "";
+                els.state.style.display = "block";
+                els.state.textContent = "Fehler beim Laden der Beiträge. Prüfe: (1) Sheet ist 'Published', (2) Header heißt slug,title,excerpt,content,date,author,cover,tags.";
             }
         })();
     </script>

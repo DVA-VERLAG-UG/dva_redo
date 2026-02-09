@@ -33,12 +33,41 @@
     <link rel="stylesheet" href="../assets/css/contact-page.css">
 </head>
 <body class="no-curtain">
+
+    <style>
+    /* CRITICAL: Block curtain completely on this page */
+    body.no-curtain::before,
+    body.no-curtain::after,
+    body.no-curtain .curtain,
+    body.no-curtain .curtain-left,
+    body.no-curtain .curtain-right,
+    body.no-curtain .curtain-text,
+    body.no-curtain .curtain-word,
+    body.no-curtain .curtain-content,
+    body.no-curtain [class*="curtain"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+    body.no-curtain .curtain *,
+    body.no-curtain [class*="curtain"] * {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    </style>
+    
     
     <!-- Particle Canvas for Floating Book Pages Background -->
     <canvas id="particle-canvas"></canvas>
     
     <!-- Floating Logo -->
-    <a href="../de/index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+    <a href="index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
         <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
@@ -113,7 +142,7 @@
                         <div class="form-privacy">
                             <label class="form-checkbox">
                                 <input type="checkbox" name="datenschutz" required>
-                                <span>Ich habe die <a href="/de/datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie.</span>
+                                <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen und akzeptiere sie.</span>
                             </label>
                         </div>
                         
@@ -132,7 +161,7 @@
                         <!-- CTA Links -->
                         <div class="form-cta-links">
                             <span class="form-cta-text">Oder:</span>
-                            <a href="/de/konfigurator-page.html" class="form-cta-link">
+                            <a href="konfigurator-page.html" class="form-cta-link">
                                 Paket konfigurieren
                             </a>
                             <span class="form-cta-divider">·</span>
