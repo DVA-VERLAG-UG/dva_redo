@@ -603,13 +603,16 @@ function addClearButton() {
 // ==========================================
 
 function setupPackageSelectionButtons() {
-    // Get all "Paket wählen" buttons
-    const packageButtons = document.querySelectorAll('.btn-configure-secondary');
+    // Get all "Paket wählen" buttons (correct class!)
+    const packageButtons = document.querySelectorAll('.btn-configure-underline[data-package]');
+    
+    console.log(`📦 Found ${packageButtons.length} package selection buttons`);
     
     packageButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const packageType = button.getAttribute('data-package');
+            console.log(`🎯 Package button clicked: ${packageType}`);
             togglePackageContactForm(packageType);
         });
     });
@@ -624,25 +627,32 @@ function setupPackageSelectionButtons() {
 function togglePackageContactForm(packageType) {
     const formId = packageType + 'ContactForm';
     const form = document.getElementById(formId);
-    const button = document.querySelector(`[data-package="${packageType}"]`);
+    const button = document.querySelector(`.btn-configure-underline[data-package="${packageType}"]`);
     
-    if (!form) return;
+    console.log(`🔄 Toggling form: ${formId}`, { form, button });
+    
+    if (!form) {
+        console.error(`❌ Form not found: ${formId}`);
+        return;
+    }
     
     // Toggle visibility
-    if (form.style.display === 'none') {
+    if (form.style.display === 'none' || form.style.display === '') {
         // Close other forms first
         document.querySelectorAll('.package-contact-form').forEach(f => {
             f.style.display = 'none';
         });
         
         // Reset all buttons
-        document.querySelectorAll('.btn-configure-secondary').forEach(btn => {
+        document.querySelectorAll('.btn-configure-underline[data-package]').forEach(btn => {
             btn.textContent = 'Paket wählen';
         });
         
         // Open this form
         form.style.display = 'block';
-        button.textContent = 'Abbrechen';
+        if (button) button.textContent = 'Abbrechen';
+        
+        console.log(`✅ Form opened: ${formId}`);
         
         // Scroll to form
         setTimeout(() => {
@@ -651,7 +661,8 @@ function togglePackageContactForm(packageType) {
     } else {
         // Close this form
         form.style.display = 'none';
-        button.textContent = 'Paket wählen';
+        if (button) button.textContent = 'Paket wählen';
+        console.log(`✅ Form closed: ${formId}`);
     }
 }
 
