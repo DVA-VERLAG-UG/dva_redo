@@ -1,151 +1,184 @@
-<header class="header" id="mainHeader">
-    <div class="header-container">
-        <!-- Logo -->
-        <a href="index.html" class="header-logo">
-            <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Publishing" class="header-logo-img">
-        </a>
-        
-        <!-- Desktop Navigation -->
-        <nav class="header-nav">
-            <a href="index.html" class="header-link">Startseite</a>
-            <a href="ueber-uns.html" class="header-link">Über uns</a>
-            <a href="projekte.html" class="header-link">Projekte</a>
-            <a href="konfigurator-page.html" class="header-link">Konfigurator</a>
-            <a href="kontakt.html" class="header-link">Kontakt</a>
-            <a href="blog-index.html" class="header-link">Blog</a>
-        </nav>
-        
-        <!-- Right Side Actions -->
-        <div class="header-actions">
-            <!-- Theme Toggle -->
-            <button class="header-theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                <svg class="theme-icon theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-                <svg class="theme-icon theme-icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-            </button>
-            
-            <!-- Mobile Menu Toggle -->
-            <button class="header-menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                <span class="menu-icon"></span>
-                <span class="menu-icon"></span>
-                <span class="menu-icon"></span>
-            </button>
-        </div>
-    </div>
+<header class="site-header" id="site-header">
+  <div class="header-inner">
     
-    <!-- Mobile Drawer -->
-    <div class="header-drawer" id="mobileDrawer">
-        <nav class="drawer-nav">
-            <a href="index.html" class="drawer-link">Startseite</a>
-            <a href="ueber-uns.html" class="drawer-link">Über uns</a>
-            <a href="projekte.html" class="drawer-link">Projekte</a>
-            <a href="konfigurator-page.html" class="drawer-link">Konfigurator</a>
-            <a href="kontakt.html" class="drawer-link">Kontakt</a>
-            <a href="blog-index.html" class="drawer-link">Blog</a>
-        </nav>
+    <!-- Logo/Brand -->
+    <a href="index.html" class="brand" aria-label="DVAYD Publishing Home">
+      <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="brand-logo">
+      <span class="brand-name">DVAYD Publishing</span>
+    </a>
+
+    <!-- Right Side: Search, Theme, Languages, Menu -->
+    <div class="header-right">
+      
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <form class="search-form" role="search">
+          <input 
+            type="search" 
+            class="search-input" 
+            placeholder="Suchbegriff eingeben" 
+            aria-label="Suche"
+            id="headerSearchInput"
+          >
+          <button type="submit" class="search-btn" aria-label="Suchen">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+          
+          <!-- Search Results Dropdown -->
+          <div class="search-dropdown" id="searchDropdown"></div>
+        </form>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme umschalten">
+        <span class="theme-icon theme-icon-moon">🌙</span>
+        <span class="theme-icon theme-icon-sun">☀️</span>
+      </button>
+
+      <!-- Language Switcher (Desktop) -->
+      <div class="lang-switcher">
+        <a href="#" data-lang="de" class="lang-link is-active">DE</a>
+        <span class="lang-sep">|</span>
+        <a href="#" data-lang="en" class="lang-link">EN</a>
+        <span class="lang-sep">|</span>
+        <a href="#" data-lang="tr" class="lang-link">TR</a>
+        <span class="lang-sep">|</span>
+        <a href="#" data-lang="fr" class="lang-link">FR</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü" aria-expanded="false">
+        <span class="menu-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
     </div>
+  </div>
 </header>
 
-<!-- Overlay for mobile menu -->
-<div class="header-overlay" id="menuOverlay"></div>
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
+<!-- Mobile Menu Drawer -->
+<aside class="menu-drawer" id="menuDrawer">
+  <div class="drawer-header">
+    <h2 class="drawer-title">Menü</h2>
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Schließen">✕</button>
+  </div>
+  
+  <nav class="drawer-nav">
+    <a href="index.html" class="drawer-link">Startseite</a>
+    <a href="ueber-uns.html" class="drawer-link">Über uns</a>
+    <a href="projekte.html" class="drawer-link">Projekte</a>
+    <a href="konfigurator-page.html" class="drawer-link">Konfigurator</a>
+    <a href="kontakt.html" class="drawer-link">Kontakt</a>
+    <a href="blog/blog-index.html" class="drawer-link">Blog</a>
+  </nav>
+</aside>
+
+<!-- Header JavaScript -->
 <script>
 (function() {
-    // Highlight active link based on current page
-    const currentPath = window.location.pathname;
-    const allLinks = document.querySelectorAll('.header-link, .drawer-link');
-    
-    allLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (currentPath.endsWith(href) || 
-            (href === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('/de/')))) {
-            link.classList.add('is-active');
-        }
+  'use strict';
+  
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dim' ? 'light' : 'dim';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('dvayd_theme', newTheme);
     });
+  }
+  
+  // Mobile Menu
+  const menuToggle = document.getElementById('menuToggle');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuDrawer = document.getElementById('menuDrawer');
+  const drawerClose = document.getElementById('drawerClose');
+  
+  function openMenu() {
+    if (menuOverlay) menuOverlay.classList.add('is-open');
+    if (menuDrawer) menuDrawer.classList.add('is-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMenu() {
+    if (menuOverlay) menuOverlay.classList.remove('is-open');
+    if (menuDrawer) menuDrawer.classList.remove('is-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  
+  if (menuToggle) menuToggle.addEventListener('click', openMenu);
+  if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+  if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+  
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuDrawer?.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+  
+  // Header scroll behavior
+  let lastScroll = 0;
+  const header = document.getElementById('site-header');
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
     
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('themeToggle');
-    const currentTheme = localStorage.getItem('dvayd_theme') || 'light';
-    
-    if (currentTheme === 'dim') {
-        document.documentElement.setAttribute('data-theme', 'dim');
+    if (currentScroll > 100) {
+      header?.classList.add('is-scrolled');
+    } else {
+      header?.classList.remove('is-scrolled');
     }
     
-    themeToggle?.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const newTheme = current === 'dim' ? 'light' : 'dim';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('dvayd_theme', newTheme);
-    });
-    
-    // Mobile menu functionality
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const header = document.getElementById('mainHeader');
-    
-    function openMenu() {
-        mobileDrawer.classList.add('is-open');
-        menuOverlay.classList.add('is-visible');
-        menuToggle.classList.add('is-active');
-        document.body.style.overflow = 'hidden';
+    if (currentScroll > lastScroll && currentScroll > 200) {
+      header?.classList.add('is-hidden');
+    } else {
+      header?.classList.remove('is-hidden');
     }
     
-    function closeMenu() {
-        mobileDrawer.classList.remove('is-open');
-        menuOverlay.classList.remove('is-visible');
-        menuToggle.classList.remove('is-active');
-        document.body.style.overflow = '';
+    lastScroll = currentScroll;
+  }, { passive: true });
+  
+  // Search functionality (basic)
+  const searchInput = document.getElementById('headerSearchInput');
+  const searchForm = document.querySelector('.search-form');
+  const searchDropdown = document.getElementById('searchDropdown');
+  
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput?.value.trim();
+      if (query) {
+        // Redirect to blog search or search page
+        window.location.href = `blog/?s=${encodeURIComponent(query)}`;
+      }
+    });
+  }
+  
+  // Active link highlighting
+  const currentPath = window.location.pathname;
+  const drawerLinks = document.querySelectorAll('.drawer-link');
+  
+  drawerLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (currentPath.includes(href) && href !== 'index.html') {
+      link.classList.add('is-active');
+    } else if (currentPath.endsWith('/') && href === 'index.html') {
+      link.classList.add('is-active');
     }
-    
-    menuToggle?.addEventListener('click', () => {
-        if (mobileDrawer.classList.contains('is-open')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    });
-    
-    menuOverlay?.addEventListener('click', closeMenu);
-    
-    // Close menu on ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileDrawer?.classList.contains('is-open')) {
-            closeMenu();
-        }
-    });
-    
-    // Scroll behavior
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            header.classList.add('is-scrolled');
-        } else {
-            header.classList.remove('is-scrolled');
-        }
-        
-        if (currentScroll > lastScroll && currentScroll > 200) {
-            header.classList.add('is-hidden');
-        } else {
-            header.classList.remove('is-hidden');
-        }
-        
-        lastScroll = currentScroll;
-    });
-    
-    console.log('✅ Header initialized');
+  });
+  
+  console.log('✅ Header initialized');
 })();
 </script>
