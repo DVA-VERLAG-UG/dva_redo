@@ -2,7 +2,7 @@
   <div class="header-inner">
     
     <!-- Logo/Brand -->
-    <a href="/" class="brand" aria-label="DVAYD Publishing Home">
+    <a href="index.html" class="brand" aria-label="DVAYD Publishing Home">
       <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="brand-logo">
       <span class="brand-name">DVAYD Publishing</span>
     </a>
@@ -40,7 +40,7 @@
 
       <!-- Language Switcher (Desktop) -->
       <div class="lang-switcher">
-        <a href="#" data-lang="de" class="lang-link">DE</a>
+        <a href="#" data-lang="de" class="lang-link is-active">DE</a>
         <span class="lang-sep">|</span>
         <a href="#" data-lang="en" class="lang-link">EN</a>
         <span class="lang-sep">|</span>
@@ -72,11 +72,113 @@
   </div>
   
   <nav class="drawer-nav">
-    <a href="/de/" class="drawer-link">Startseite</a>
-    <a href="/de/ueber-uns.html" class="drawer-link">Über uns</a>
-    <a href="/de/projekte.html" class="drawer-link">Projekte</a>
-    <a href="/de/konfigurator-page.html" class="drawer-link">Konfigurator</a>
-    <a href="/de/kontakt.html" class="drawer-link">Kontakt</a>
-    <a href="/de/blog/blog-index.html" class="drawer-link">Blog</a>
+    <a href="index.html" class="drawer-link">Startseite</a>
+    <a href="ueber-uns.html" class="drawer-link">Über uns</a>
+    <a href="projekte.html" class="drawer-link">Projekte</a>
+    <a href="konfigurator-page.html" class="drawer-link">Konfigurator</a>
+    <a href="kontakt.html" class="drawer-link">Kontakt</a>
+    <a href="blog/" class="drawer-link">Blog</a>
   </nav>
 </aside>
+
+<!-- Header JavaScript -->
+<script>
+(function() {
+  'use strict';
+  
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dim' ? 'light' : 'dim';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('dvayd_theme', newTheme);
+    });
+  }
+  
+  // Mobile Menu
+  const menuToggle = document.getElementById('menuToggle');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuDrawer = document.getElementById('menuDrawer');
+  const drawerClose = document.getElementById('drawerClose');
+  
+  function openMenu() {
+    if (menuOverlay) menuOverlay.classList.add('is-open');
+    if (menuDrawer) menuDrawer.classList.add('is-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeMenu() {
+    if (menuOverlay) menuOverlay.classList.remove('is-open');
+    if (menuDrawer) menuDrawer.classList.remove('is-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  
+  if (menuToggle) menuToggle.addEventListener('click', openMenu);
+  if (drawerClose) drawerClose.addEventListener('click', closeMenu);
+  if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
+  
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuDrawer?.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+  
+  // Header scroll behavior
+  let lastScroll = 0;
+  const header = document.getElementById('site-header');
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+      header?.classList.add('is-scrolled');
+    } else {
+      header?.classList.remove('is-scrolled');
+    }
+    
+    if (currentScroll > lastScroll && currentScroll > 200) {
+      header?.classList.add('is-hidden');
+    } else {
+      header?.classList.remove('is-hidden');
+    }
+    
+    lastScroll = currentScroll;
+  }, { passive: true });
+  
+  // Search functionality (basic)
+  const searchInput = document.getElementById('headerSearchInput');
+  const searchForm = document.querySelector('.search-form');
+  const searchDropdown = document.getElementById('searchDropdown');
+  
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const query = searchInput?.value.trim();
+      if (query) {
+        // Redirect to blog search or search page
+        window.location.href = `blog/?s=${encodeURIComponent(query)}`;
+      }
+    });
+  }
+  
+  // Active link highlighting
+  const currentPath = window.location.pathname;
+  const drawerLinks = document.querySelectorAll('.drawer-link');
+  
+  drawerLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (currentPath.includes(href) && href !== 'index.html') {
+      link.classList.add('is-active');
+    } else if (currentPath.endsWith('/') && href === 'index.html') {
+      link.classList.add('is-active');
+    }
+  });
+  
+  console.log('✅ Header initialized');
+})();
+</script>
