@@ -773,13 +773,48 @@ html[data-theme="dim"] .about-cta-secondary {
 }
 
 /* ==========================================
-   CURSOR FIX
+   CURSOR FIX - UNIVERSAL
    ========================================== */
+
+/* ALL interactive elements */
+a,
+a:hover,
+a:active,
+button,
+button:hover,
+button:active,
+[onclick],
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  cursor: pointer !important;
+}
+
+/* Specific about page elements */
 .about-cta-btn,
 .about-team-card,
 .about-value-card,
-.about-location-card {
+.about-location-card,
+.about-hero-scroll-indicator,
+.floating-brand,
+.brand {
   cursor: pointer !important;
+}
+
+/* Text inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+textarea {
+  cursor: text !important;
+}
+
+/* Default cursor for body */
+body {
+  cursor: auto !important;
 }
 
 /* ==========================================

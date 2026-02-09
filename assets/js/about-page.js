@@ -243,6 +243,9 @@
   }
   
   function runInit() {
+    // Force cursor fix first (CRITICAL)
+    forceCursorFix();
+    
     // Initialize in order of importance
     initScrollReveal();       // CSS-based, lightweight
     initCounterAnimations();  // Only runs when visible
@@ -258,6 +261,63 @@
     }
     
     console.log('🎉 About Page Ready (Optimized)');
+  }
+  
+  // ==========================================
+  // FORCE CURSOR FIX (Nuclear Option)
+  // ==========================================
+  
+  function forceCursorFix() {
+    // Add CSS override
+    const style = document.createElement('style');
+    style.textContent = `
+      /* NUCLEAR CURSOR FIX */
+      a, a:hover,
+      button, button:hover,
+      [onclick], [role="button"],
+      .about-cta-btn,
+      .about-team-card,
+      .about-value-card,
+      .about-location-card,
+      .floating-brand,
+      .brand,
+      .contact-close,
+      .form-submit,
+      .theme-toggle,
+      .menu-toggle {
+        cursor: pointer !important;
+      }
+      
+      body {
+        cursor: auto !important;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        cursor: text !important;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Also force via JavaScript
+    setTimeout(() => {
+      const interactiveSelectors = [
+        'a', 'button', '[onclick]', '[role="button"]',
+        '.about-cta-btn', '.about-team-card', '.about-value-card',
+        '.about-location-card', '.floating-brand', '.brand'
+      ];
+      
+      interactiveSelectors.forEach(selector => {
+        try {
+          document.querySelectorAll(selector).forEach(el => {
+            el.style.cursor = 'pointer';
+          });
+        } catch(e) {}
+      });
+      
+      console.log('✅ Cursor fix forced');
+    }, 100);
   }
   
   init();
