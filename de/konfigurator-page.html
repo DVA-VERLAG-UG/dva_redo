@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konfigurator | DVAYD Publishing</title>
     
-<!-- Für Seiten in /de/ (kontakt.html, ueber-uns.html, index.html) -->
-<link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
-<link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
     
     <script>
         (function() {
@@ -29,156 +29,19 @@
     <link rel="stylesheet" href="../assets/css/konfigurator-popup.css">
     <link rel="stylesheet" href="../assets/css/contact-popup.css">
 </head>
-<body>
+<body class="no-curtain">
+    
+    <!-- Particle Canvas for Background -->
+    <canvas id="particle-canvas"></canvas>
     
     <!-- Floating Logo -->
-    <a href="/de/" class="floating-brand" aria-label="DVAYD Publishing Home">
-        <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+    <a href="index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
     
-    <!-- Header -->
-    <header class="site-header" id="site-header">
-        <div class="header-inner">
-            
-            <!-- Logo/Brand -->
-            <a href="/de/index.html" class="brand" aria-label="DVAYD Publishing Home">
-                <img src="/assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="brand-logo">
-                <span class="brand-name">DVAYD Publishing</span>
-            </a>
-
-            <!-- Right Side: Search, Theme, Languages, Menu -->
-            <div class="header-right">
-                
-                <!-- Search Bar -->
-                <div class="search-wrapper">
-                    <form class="search-form" role="search">
-                        <input 
-                            type="search" 
-                            class="search-input" 
-                            placeholder="Suchbegriff eingeben" 
-                            aria-label="Suche"
-                            id="headerSearchInput"
-                        >
-                        <button type="submit" class="search-btn" aria-label="Suchen">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="11" cy="11" r="8"></circle>
-                                <path d="m21 21-4.35-4.35"></path>
-                            </svg>
-                        </button>
-                        <div class="search-dropdown" id="searchDropdown"></div>
-                    </form>
-                </div>
-
-                <!-- Theme Toggle -->
-                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme umschalten">
-                    <span class="theme-icon theme-icon-moon">🌙</span>
-                    <span class="theme-icon theme-icon-sun">☀️</span>
-                </button>
-
-                <!-- Language Switcher -->
-                <div class="lang-switcher">
-                    <a href="#" data-lang="de" class="lang-link is-active">DE</a>
-                    <span class="lang-sep">|</span>
-                    <a href="#" data-lang="en" class="lang-link">EN</a>
-                    <span class="lang-sep">|</span>
-                    <a href="#" data-lang="tr" class="lang-link">TR</a>
-                    <span class="lang-sep">|</span>
-                    <a href="#" data-lang="fr" class="lang-link">FR</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü" aria-expanded="false">
-                    <span class="menu-icon">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay"></div>
-
-    <!-- Mobile Menu Drawer -->
-    <aside class="menu-drawer" id="menuDrawer">
-        <div class="drawer-header">
-            <h2 class="drawer-title">Menü</h2>
-            <button class="drawer-close" id="drawerClose" type="button" aria-label="Schließen">✕</button>
-        </div>
-        
-        <nav class="drawer-nav">
-            <a href="/de/index.html" class="drawer-link">Startseite</a>
-            <a href="/de/ueber-uns.html" class="drawer-link">Über uns</a>
-            <a href="/de/projekte.html" class="drawer-link">Projekte</a>
-            <a href="/de/pakete.html" class="drawer-link">Pakete</a>
-            <a href="/de/konfig.html" class="drawer-link">Konfigurator</a>
-            <a href="/de/blog/" class="drawer-link">Blog</a>
-            <a href="/de/kontakt.html" class="drawer-link">Kontakt</a>
-        </nav>
-    </aside>
-    
-    <script>
-        // Header functionality
-        (function() {
-            // Theme Toggle
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', () => {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dim' ? 'light' : 'dim';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('dvayd_theme', newTheme);
-                });
-            }
-            
-            // Mobile Menu
-            const menuToggle = document.getElementById('menuToggle');
-            const menuOverlay = document.getElementById('menuOverlay');
-            const menuDrawer = document.getElementById('menuDrawer');
-            const drawerClose = document.getElementById('drawerClose');
-            
-            function openMenu() {
-                if (menuOverlay) menuOverlay.classList.add('is-open');
-                if (menuDrawer) menuDrawer.classList.add('is-open');
-                if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
-            }
-            
-            function closeMenu() {
-                if (menuOverlay) menuOverlay.classList.remove('is-open');
-                if (menuDrawer) menuDrawer.classList.remove('is-open');
-                if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
-            }
-            
-            if (menuToggle) menuToggle.addEventListener('click', openMenu);
-            if (drawerClose) drawerClose.addEventListener('click', closeMenu);
-            if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-            
-            // Header scroll behavior
-            let lastScroll = 0;
-            const header = document.getElementById('site-header');
-            
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                
-                if (currentScroll > 100) {
-                    header?.classList.add('is-scrolled');
-                } else {
-                    header?.classList.remove('is-scrolled');
-                }
-                
-                if (currentScroll > lastScroll && currentScroll > 200) {
-                    header?.classList.add('is-hidden');
-                } else {
-                    header?.classList.remove('is-hidden');
-                }
-                
-                lastScroll = currentScroll;
-            }, { passive: true });
-        })();
-    </script>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
     
     <!-- Hero -->
     <section class="konfig-hero">
@@ -189,7 +52,6 @@
                 Services starten ab 49 €. Wähle ein Paket oder stelle dir deine individuelle Lösung zusammen.
             </p>
             
-            <!-- CTA Button wie auf Index -->
             <div class="konfig-hero-cta">
                 <button class="konfig-hero-cta-btn" id="heroContactBtn">
                     Kontakt aufnehmen
@@ -212,7 +74,7 @@
         <section class="konfig-packages">
             <div class="konfig-container">
                 
-                <!-- 1. STARTER PACKAGE (LINKS) -->
+                <!-- STARTER PACKAGE -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>Buch veröffentlichen Starter</h3>
@@ -257,16 +119,11 @@
                         </div>
                     </div>
                     <div class="package-footer">
-                        <button class="btn-configure-underline" data-package="starter">
-                            Paket wählen
-                        </button>
-                        
-                        <!-- Inline Contact Form (Hidden by default) -->
+                        <button class="btn-configure-underline" data-package="starter">Paket wählen</button>
                         <div class="package-contact-form" id="starterContactForm" style="display: none;">
                             <form class="quick-contact-form" data-package-name="Buch veröffentlichen Starter">
                                 <input type="hidden" name="form-name" value="package-selection">
                                 <input type="hidden" name="package" value="Buch veröffentlichen Starter">
-                                
                                 <div class="quick-form-group">
                                     <input type="text" name="name" class="quick-form-input" placeholder="Name *" required>
                                 </div>
@@ -282,21 +139,16 @@
                     </div>
                 </div>
                 
-                <!-- 2. INDIVIDUELLE KONFIGURATION (MITTE) - EMPFOHLEN -->
+                <!-- CUSTOM PACKAGE -->
                 <div class="package-card package-custom">
                     <div class="package-badge">Empfohlen</div>
                     <div class="package-header">
                         <h3>Individuelle Konfiguration</h3>
                         <p class="package-subtitle">Stelle dir dein perfektes Paket zusammen</p>
                     </div>
-                    
-                    <!-- CTA Button OBEN (vor dem Body) -->
                     <div class="package-cta-top">
-                        <button class="btn-configure btn-configure-primary" id="openConfigBtn">
-                            Jetzt konfigurieren →
-                        </button>
+                        <button class="btn-configure btn-configure-primary" id="openConfigBtn">Jetzt konfigurieren →</button>
                     </div>
-                    
                     <div class="package-body">
                         <div id="custom-config-display" class="custom-config-empty">
                             <p class="empty-message">Noch keine Services ausgewählt</p>
@@ -305,7 +157,7 @@
                     </div>
                 </div>
                 
-                <!-- 3. DELUXE PACKAGE (RECHTS) -->
+                <!-- DELUXE PACKAGE -->
                 <div class="package-card">
                     <div class="package-header">
                         <h3>Verlagspaket Deluxe</h3>
@@ -350,16 +202,11 @@
                         </div>
                     </div>
                     <div class="package-footer">
-                        <button class="btn-configure-underline" data-package="deluxe">
-                            Paket wählen
-                        </button>
-                        
-                        <!-- Inline Contact Form (Hidden by default) -->
+                        <button class="btn-configure-underline" data-package="deluxe">Paket wählen</button>
                         <div class="package-contact-form" id="deluxeContactForm" style="display: none;">
                             <form class="quick-contact-form" data-package-name="Verlagspaket Deluxe">
                                 <input type="hidden" name="form-name" value="package-selection">
                                 <input type="hidden" name="package" value="Verlagspaket Deluxe">
-                                
                                 <div class="quick-form-group">
                                     <input type="text" name="name" class="quick-form-input" placeholder="Name *" required>
                                 </div>
@@ -405,27 +252,16 @@
         </div>
     </div>
     
-    <!-- Hidden Netlify Form for Package Selection -->
-    <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="package" />
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <textarea name="message"></textarea>
-    </form>
-    
-    <!-- Contact Popup (for Footer Button) -->
+    <!-- Contact Popup -->
     <div class="contact-overlay" id="contactOverlay">
         <div class="contact-popup">
             <button class="contact-close" type="button" aria-label="Schließen">✕</button>
-            
             <div class="contact-header">
                 <h2>Kontakt aufnehmen</h2>
                 <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
             </div>
-            
             <form class="contact-form" name="contact" method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" value="contact">
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label>Vorname *</label>
@@ -436,28 +272,30 @@
                         <input type="text" name="nachname" required>
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label>E-Mail *</label>
                     <input type="email" name="email" required>
                 </div>
-                
                 <div class="form-group">
                     <label>Telefon</label>
                     <input type="tel" name="telefon">
                 </div>
-                
                 <div class="form-group">
                     <label>Nachricht</label>
                     <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
                 </div>
-                
                 <button type="submit" class="form-submit">Absenden</button>
             </form>
         </div>
     </div>
     
-    <!-- Hidden Netlify Form for Contact -->
+    <!-- Hidden Netlify Forms -->
+    <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="package" />
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <textarea name="message"></textarea>
+    </form>
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="vorname" />
         <input type="text" name="nachname" />
@@ -467,90 +305,50 @@
     </form>
     
     <!-- Scripts -->
-    <script type="module">
-        // Load footer
-        (async function() {
-            const placeholder = document.getElementById('footer-placeholder');
-            if (placeholder) {
-                try {
-                    const response = await fetch('/components/footer.html');
-                    const html = await response.text();
-                    placeholder.innerHTML = html;
-                    
-                    // WICHTIG: Nach dem Footer-Laden, Contact Popup Buttons verbinden
-                    setTimeout(() => {
-                        setupFooterContactPopup();
-                    }, 100);
-                } catch (error) {
-                    console.error('Footer loading failed:', error);
-                }
-            }
-        })();
-        
-        // Setup Footer Contact Popup - Direkt nach Footer geladen wurde
-        function setupFooterContactPopup() {
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/konfigurator-page.js"></script>
+    
+    <!-- Background Script -->
+    <script>
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            const script = document.createElement('script');
+            script.src = '../assets/js/background.js';
+            script.onerror = () => console.log('Background script skipped');
+            document.head.appendChild(script);
+        });
+    </script>
+    
+    <!-- Contact Popup Setup -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
             const contactOverlay = document.getElementById('contactOverlay');
-            const footerButtons = [
-                document.getElementById('footerConfigBtn'),
-                document.getElementById('footerContactBtn'),
-                document.getElementById('footerConfiguratorBtn')
-            ].filter(Boolean);
+            const heroBtn = document.getElementById('heroContactBtn');
+            const closeBtn = contactOverlay?.querySelector('.contact-close');
             
-            // WICHTIG: Auch Hero Contact Button hinzufügen
-            const heroContactBtn = document.getElementById('heroContactBtn');
-            if (heroContactBtn) {
-                footerButtons.push(heroContactBtn);
-            }
-            
-            if (!contactOverlay) {
-                console.warn('⚠️ Contact overlay not found on konfig page');
-                return;
-            }
-            
-            if (footerButtons.length === 0) {
-                console.warn('⚠️ No footer buttons found');
-                return;
-            }
-            
-            // Open popup
-            footerButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
+            if (heroBtn && contactOverlay) {
+                heroBtn.addEventListener('click', () => {
                     contactOverlay.classList.add('is-open');
                     document.body.style.overflow = 'hidden';
-                    console.log('✅ Contact popup opened');
                 });
-            });
+            }
             
-            // Close popup
-            const closeBtn = contactOverlay.querySelector('.contact-close');
-            if (closeBtn) {
+            if (closeBtn && contactOverlay) {
                 closeBtn.addEventListener('click', () => {
                     contactOverlay.classList.remove('is-open');
                     document.body.style.overflow = '';
                 });
             }
             
-            // Close on overlay click
-            contactOverlay.addEventListener('click', (e) => {
+            contactOverlay?.addEventListener('click', (e) => {
                 if (e.target === contactOverlay) {
                     contactOverlay.classList.remove('is-open');
                     document.body.style.overflow = '';
                 }
             });
-            
-            // Close on ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && contactOverlay.classList.contains('is-open')) {
-                    contactOverlay.classList.remove('is-open');
-                    document.body.style.overflow = '';
-                }
-            });
-            
-            console.log(`✅ ${footerButtons.length} contact button(s) connected to popup`);
-        }
+        });
     </script>
     
-    <script type="module" src="/assets/js/konfigurator-page.js"></script>
-    
 </body>
-</html> 
+</html>
