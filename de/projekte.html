@@ -1,0 +1,217 @@
+<!DOCTYPE html> 
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Projekte | DVAYD Publishing</title>
+    <meta name="description" content="Erfolgreiche Buchprojekte von DVAYD Publishing – Von der Idee zum fertigen Buch.">
+    <link rel="canonical" href="https://yoursite.com/de/projekte.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
+    
+    <!-- Apply theme immediately -->
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('dvayd_theme');
+                if (theme === 'dim') {
+                    document.documentElement.setAttribute('data-theme', 'dim');
+                }
+            } catch(e) {}
+        })();
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/background.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/floating-logo.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/contact-popup.css">
+    <link rel="stylesheet" href="../assets/css/projekte.css">
+</head>
+<body class="no-curtain">
+    
+    <style>
+    /* CRITICAL: Block curtain completely on this page */
+    body.no-curtain::before,
+    body.no-curtain::after,
+    body.no-curtain .curtain,
+    body.no-curtain .curtain-left,
+    body.no-curtain .curtain-right,
+    body.no-curtain .curtain-text,
+    body.no-curtain .curtain-word,
+    body.no-curtain .curtain-content,
+    body.no-curtain [class*="curtain"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+    body.no-curtain .curtain *,
+    body.no-curtain [class*="curtain"] * {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    </style>
+    
+    <!-- Particle Canvas for Background -->
+    <canvas id="particle-canvas"></canvas>
+    
+    <!-- Floating Logo -->
+    <a href="index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <span class="floating-brand-name">DVAYD Publishing</span>
+    </a>
+    
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+    
+    <!-- Main Content -->
+    <main class="projekte-main">
+        
+        <!-- Hero Section -->
+        <section class="projekte-hero">
+            <div class="projekte-hero-content">
+                <div class="projekte-hero-kicker">Unsere Erfolge</div>
+                <h1 class="projekte-hero-title">
+                    220+ Autoren.<br>
+                    220+ Geschichten.<br>
+                    Ein gemeinsamer Erfolg.
+                </h1>
+                <p class="projekte-hero-subtitle">
+                    Von Romanen über Fachbücher bis zu Biografien – entdecke die Vielfalt unserer veröffentlichten Werke.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Filter Section -->
+        <section class="projekte-filter-section">
+            <div class="projekte-container">
+                <div class="projekte-filters">
+                    <button class="filter-btn active" data-filter="all">Alle Projekte</button>
+                    <button class="filter-btn" data-filter="roman">Romane</button>
+                    <button class="filter-btn" data-filter="fachbuch">Fachbücher</button>
+                    <button class="filter-btn" data-filter="biografie">Biografien</button>
+                    <button class="filter-btn" data-filter="kinderbuch">Kinderbücher</button>
+                    <button class="filter-btn" data-filter="lyrik">Lyrik</button>
+                </div>
+                
+                <div class="projekte-count">
+                    <span id="projectCount">12</span> Projekte
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Grid -->
+        <section class="projekte-grid-section">
+            <div class="projekte-container">
+                <div class="projekte-grid" id="projectsGrid">
+                    
+                    <!-- Project Cards will be generated here -->
+                    <!-- Example structure for 12 books -->
+                    
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="projekte-cta-section">
+            <div class="projekte-cta-content">
+                <h2>Dein Buch könnte das nächste sein.</h2>
+                <p>
+                    Lass uns gemeinsam deine Geschichte zum Leben erwecken.<br>
+                    Kostenlose Erstberatung. Transparente Preise. Professionelle Umsetzung.
+                </p>
+                <button class="projekte-cta-btn" id="projekteCTABtn">
+                    Jetzt anfragen
+                </button>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <!-- Project Modal -->
+    <div class="projekt-modal" id="projektModal">
+        <div class="projekt-modal-overlay"></div>
+        <div class="projekt-modal-content">
+            <button class="projekt-modal-close">✕</button>
+            <div class="projekt-modal-body" id="modalBody">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact Popup -->
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-popup">
+            <button class="contact-close" type="button" aria-label="Schließen">✕</button>
+            
+            <div class="contact-header">
+                <h2>Kontakt aufnehmen</h2>
+                <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
+            </div>
+            
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Vorname *</label>
+                        <input type="text" name="vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname *</label>
+                        <input type="text" name="nachname" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>E-Mail *</label>
+                    <input type="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Telefon</label>
+                    <input type="tel" name="telefon">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nachricht</label>
+                    <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit">Absenden</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script type="module" src="../assets/js/main.js"></script>
+    <script src="../assets/js/projekte.js"></script>
+    
+    <!-- Background Script -->
+    <script>
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            const script = document.createElement('script');
+            script.src = '../assets/js/background.js';
+            script.onerror = () => console.log('Background script skipped');
+            document.head.appendChild(script);
+        });
+    </script>
+    
+</body>
+</html>
