@@ -11,7 +11,7 @@ export function initLogoCarousel() {
     console.error('Logo carousel track not found');
     return;
   }
-
+ 
   // Logo dataa
   const logos = [
     { name: 'Amazon', file: 'amazon.png' },
