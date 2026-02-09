@@ -1,9 +1,9 @@
-// logo-carousel.js - FIXED with unique selectors
+// logo-carousel.js - FIXED paths for both local and GitHub Pages
 
 export function initLogoCarousel() {
   const section = document.querySelector('.logo-carousel-section');
   if (!section) return;
-
+ 
   const track = section.querySelector('.logo-carousel-track');
   const header = section.querySelector('.logo-carousel-header');
   
@@ -12,7 +12,7 @@ export function initLogoCarousel() {
     return;
   }
  
-  // Logo dataa
+  // Logo data
   const logos = [
     { name: 'Amazon', file: 'amazon.png' },
     { name: 'Google Books', file: 'google-books.png' },
@@ -21,9 +21,19 @@ export function initLogoCarousel() {
     { name: 'Kobo', file: 'kobo.png' }
   ];
 
-  // Detect base path for GitHub Pages vs local
+  // Detect current path and build correct base path
+  const currentPath = window.location.pathname;
   const isGitHubPages = window.location.hostname.includes('github.io');
-  const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
+  
+  // Build correct path based on environment
+  let imagePath;
+  if (isGitHubPages) {
+    // GitHub Pages: /dva_redo/de/index.html → /dva_redo/assets/images/...
+    imagePath = '/dva_redo/assets/images/index/logos/';
+  } else {
+    // Local: /de/index.html → ../assets/images/...
+    imagePath = '../assets/images/index/logos/';
+  }
 
   // Duplicate logos for seamless loop
   const allLogos = [...logos, ...logos];
@@ -31,15 +41,16 @@ export function initLogoCarousel() {
   // Create logo elements
   allLogos.forEach(logo => {
     const logoItem = document.createElement('div');
-    logoItem.className = 'logo-carousel-item'; // Changed from 'logo-item'
+    logoItem.className = 'logo-carousel-item';
     
     const img = document.createElement('img');
-    img.src = `${BASE_PATH}/../assets/images/index/logos/${logo.file}`;
+    img.src = `${imagePath}${logo.file}`;
     img.alt = logo.name;
     img.loading = 'lazy';
     
     // Fallback if image doesn't load
     img.onerror = () => {
+      console.error(`Failed to load logo: ${img.src}`);
       logoItem.innerHTML = `<span style="font-size: 1.5rem; font-weight: 700; opacity: 0.5;">${logo.name}</span>`;
     };
     
@@ -57,7 +68,7 @@ export function initLogoCarousel() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('logo-visible'); // Changed from 'visible'
+          entry.target.classList.add('logo-visible');
         }
       });
     }, observerOptions);
@@ -66,4 +77,5 @@ export function initLogoCarousel() {
   }
 
   console.log('✅ Logo carousel initialized');
+  console.log('Image path:', imagePath);
 }
