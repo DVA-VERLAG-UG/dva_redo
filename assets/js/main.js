@@ -87,8 +87,13 @@ async function loadFooter() {
 async function init() {
   console.log('🚀 Starting initialization...');
 
-  // Curtain first (safe)
-  safeInit('Curtain', initCurtain);
+  // Curtain ONLY on index page (check if body has no-curtain class)
+  if (!document.body.classList.contains('no-curtain')) {
+    console.log('🎭 Loading curtain (index page detected)...');
+    safeInit('Curtain', initCurtain);
+  } else {
+    console.log('⏭️ Skipping curtain (no-curtain class found)');
+  }
 
   // Apply stored theme immediately to prevent flash (safe)
   console.log('1️⃣ Applying stored theme...');
