@@ -9,7 +9,7 @@ export function initNews() {
 
   const FALLBACK = [
     {
-      href: "/de/blog/",
+      href: "blog-index.html", 
       tag: "Update",
       date: "Gerade eben",
       cover:
@@ -104,7 +104,7 @@ export function initNews() {
     setCtaLink(cta, href);
   }
 
-  async function loadLatest3() {
+  async function loadLatest4() {
     console.log("🔗 Fetching CSV:", SHEET_CSV_URL);
 
     const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
@@ -146,11 +146,11 @@ export function initNews() {
     console.log("🧩 Parsed posts:", posts.length);
 
     posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-    const latest = posts.slice(0, 3);
+    const latest = posts.slice(0, 4);
     if (!latest.length) return FALLBACK;
 
     return latest.map((p) => ({
-      href: `/de/blog/post.html?slug=${encodeURIComponent(p.slug)}`,
+      href: `post.html?slug=${encodeURIComponent(p.slug)}`,
       tag: p.tags?.[0] || "Update",
       date: p.date || "",
       cover: p.cover || "",
@@ -159,19 +159,19 @@ export function initNews() {
     }));
   }
 
-  // placeholders first
-  const starter = [...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 3);
+  // placeholders first (4 cards now)
+  const starter = [...FALLBACK, ...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 4);
   starter.forEach((it, i) => applyRow(i, it));
 
-  loadLatest3()
+  loadLatest4()
     .then((items) => {
       console.log("✅ Using items:", items);
-      const list = [...items, ...FALLBACK, ...FALLBACK].slice(0, 3);
+      const list = [...items, ...FALLBACK, ...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 4);
       list.forEach((it, i) => applyRow(i, it));
     })
     .catch((err) => {
       console.error("❌ News load failed:", err);
-      const list = [...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 3);
+      const list = [...FALLBACK, ...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 4);
       list.forEach((it, i) => applyRow(i, it));
     });
 }

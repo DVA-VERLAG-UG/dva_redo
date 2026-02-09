@@ -1,56 +1,44 @@
 /* ==========================================
-   NEWS/UPDATES SECTION - DIAGONAL LAYOUT
-   Royal Bronze Theme
+   NEWS/UPDATES SECTION - CARD STACK REVEAL
+   Royal Bronze Theme - Fullscreen Cards
    ========================================== */
 
 .news-section {
   position: relative;
-  padding: 150px 20px 200px;
+  padding: 0;
   background: transparent;
-  overflow: hidden;
-  min-height: 100vh;
+  overflow: visible;
+  /* No min-height - let content determine height */
 }
 
-/* Background Image - HUGE "NEWS" PNG with 3D Effect */
-.news-section::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: clamp(2000px, 90vw, 3000px);
-  height: clamp(400px, 35vw, 1000px);
-  background-image: url('../images/index/news_weiss.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.42;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.05))
-          drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.03))
-          drop-shadow(6px 6px 12px rgba(0, 0, 0, 0.02)); 
-}
-
-html[data-theme="dim"] .news-section::before {
-  background-image: url('../images/index/news_schwarz.png');
-}
+/* NO background image */
 
 .news-container {
-  max-width: 1400px;
-  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
 /* ==========================================
-   SECTION HEADER
+   SECTION HEADER - Sticky with limit
    ========================================== */
 
 .news-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   text-align: center;
-  margin-bottom: 100px;
+  padding: 100px 20px 60px;
+  background: var(--bg-primary);
+  margin-bottom: 0;
+}
+
+/* Ensure solid background */
+.news-header::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: var(--bg-primary);
+  z-index: -1;
 }
 
 .news-kicker {
@@ -70,7 +58,7 @@ html[data-theme="dim"] .news-kicker {
 /* Clickable Title */
 .news-title {
   font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
   line-height: 1.1;
   color: #2C3E50;
@@ -86,7 +74,6 @@ html[data-theme="dim"] .news-title {
   color: #B08D57;
 }
 
-/* Underline effect on hover - Bronze */
 .news-title::after {
   content: '';
   position: absolute;
@@ -130,7 +117,6 @@ html[data-theme="dim"] .news-subtitle {
   display: flex;
   gap: 32px;
   justify-content: center;
-  margin-bottom: 80px;
   flex-wrap: wrap;
 }
 
@@ -190,37 +176,93 @@ html[data-theme="dim"] .news-cta-secondary:hover {
 }
 
 /* ==========================================
-   NEWS GRID - DIAGONAL LAYOUT
+   CARD STACK CONTAINER
    ========================================== */
 
 .news-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-  max-width: 1200px;
-  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  padding-top: 60px; /* PADDING zwischen Header und Karten */
+}
+
+/* Card Wrapper - creates scroll space */
+.news-card-wrapper {
+  height: 100vh; /* Full viewport height für Stack-Effekt */
+  position: relative;
+  margin-bottom: 0;
+}
+
+/* Last wrapper - just tall enough to position card, then section ends */
+.news-card-wrapper:last-child {
+  height: 100vh; /* Normal height - section ends, header scrolls away! */
+  margin-bottom: 0;
 }
 
 /* ==========================================
-   NEWS CARD - Bronze Theme
+   NEWS CARD - FULLSCREEN STACKING
    ========================================== */
 
 .news-card {
+  position: sticky;
+  top: 340px; /* UNTER Header (280px) + Padding (60px) */
+  left: 0;
+  right: 0;
+  height: calc(100vh - 360px); /* Leave room for header */
+  max-height: 700px;
   display: grid;
-  grid-template-columns: 380px 1fr;
-  height: 280px;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
   background: rgba(176, 141, 87, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(176, 141, 87, 0.15);
-  border-radius: 20px;
   overflow: hidden;
   text-decoration: none;
-  position: relative;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 
     0 8px 32px rgba(176, 141, 87, 0.1),
     inset 0 1px 0 rgba(176, 141, 87, 0.1);
+  
+  /* Spacing on large screens */
+  max-width: 1600px;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+
+/* Stacking z-index - each card ABOVE the previous (4 cards total) */
+.news-card-wrapper:nth-child(1) .news-card {
+  z-index: 10;
+}
+
+.news-card-wrapper:nth-child(2) .news-card {
+  z-index: 20;
+}
+
+.news-card-wrapper:nth-child(3) .news-card {
+  z-index: 30;
+}
+
+.news-card-wrapper:nth-child(4) .news-card {
+  z-index: 40;
+}
+
+/* Last card - stays UNDER header, but higher than others */
+.news-card-wrapper:last-child .news-card {
+  top: 120px; /* Close to header but NO overlap! */
+  z-index: 40; /* Below header's 100 */
+}
+
+/* Add spacing on large screens */
+@media (min-width: 1400px) {
+  .news-card {
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 24px; /* Bigger radius on large screens */
+  }
+  
+  .news-grid {
+    padding: 0 40px;
+  }
 }
 
 html[data-theme="dim"] .news-card {
@@ -231,25 +273,8 @@ html[data-theme="dim"] .news-card {
     inset 0 1px 0 rgba(176, 141, 87, 0.12);
 }
 
-/* Card Positions - DIAGONAL */
-.news-card:nth-child(1) {
-  align-self: flex-start;
-  max-width: 900px;
-}
-
-.news-card:nth-child(2) {
-  align-self: center;
-  max-width: 900px;
-}
-
-.news-card:nth-child(3) {
-  align-self: flex-end;
-  max-width: 900px;
-}
-
 /* Hover State */
 .news-card:hover {
-  transform: translateY(-8px);
   background: rgba(176, 141, 87, 0.1);
   border-color: #B08D57;
   box-shadow: 
@@ -259,14 +284,13 @@ html[data-theme="dim"] .news-card {
 
 html[data-theme="dim"] .news-card:hover {
   background: rgba(176, 141, 87, 0.12);
-  border-color: #B08D57;
   box-shadow: 
     0 16px 48px rgba(176, 141, 87, 0.3),
     inset 0 1px 0 rgba(176, 141, 87, 0.18);
 }
 
 /* ==========================================
-   CARD IMAGE - WITH GRADIENT FADE
+   CARD IMAGE - Left Side, Full Height
    ========================================== */
 
 .news-card-image {
@@ -277,17 +301,16 @@ html[data-theme="dim"] .news-card:hover {
   position: relative;
 }
 
-/* Gradient Fade Overlay */
+/* Gradient Fade Overlay - Right Edge */
 .news-card-image::after {
   content: '';
   position: absolute;
   top: 0;
   right: 0;
-  width: 100px;
+  width: 120px;
   height: 100%;
   background: linear-gradient(90deg, 
     rgba(176, 141, 87, 0) 0%,
-    rgba(176, 141, 87, 0.05) 50%,
     rgba(176, 141, 87, 0.05) 100%
   );
   pointer-events: none;
@@ -296,20 +319,19 @@ html[data-theme="dim"] .news-card:hover {
 html[data-theme="dim"] .news-card-image::after {
   background: linear-gradient(90deg, 
     rgba(176, 141, 87, 0) 0%,
-    rgba(176, 141, 87, 0.08) 50%,
     rgba(176, 141, 87, 0.08) 100%
   );
 }
 
 /* ==========================================
-   CARD CONTENT
+   CARD CONTENT - Right Side
    ========================================== */
 
 .news-card-content {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 36px 40px 36px 20px;
+  gap: 20px;
+  padding: clamp(40px, 8vh, 100px) clamp(40px, 5vw, 80px);
   justify-content: center;
   position: relative;
   z-index: 1;
@@ -318,8 +340,8 @@ html[data-theme="dim"] .news-card-image::after {
 .news-card-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.75rem;
+  gap: 16px;
+  font-size: 0.85rem;
   font-family: 'Georgia', serif;
   color: rgba(44, 62, 80, 0.6);
 }
@@ -335,10 +357,10 @@ html[data-theme="dim"] .news-card-meta {
 }
 
 .news-card-tag {
-  padding: 4px 10px;
+  padding: 6px 14px;
   background: rgba(176, 141, 87, 0.1);
-  border-radius: 6px;
-  font-size: 0.7rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
   font-weight: 700;
   color: #B08D57;
   text-transform: uppercase;
@@ -352,15 +374,11 @@ html[data-theme="dim"] .news-card-tag {
 
 .news-card-title {
   font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.2;
   color: #2C3E50;
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 html[data-theme="dim"] .news-card-title {
@@ -369,13 +387,10 @@ html[data-theme="dim"] .news-card-title {
 
 .news-card-text {
   font-family: 'Georgia', serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.7;
   color: rgba(44, 62, 80, 0.7);
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  max-width: 600px;
 }
 
 html[data-theme="dim"] .news-card-text {
@@ -385,12 +400,12 @@ html[data-theme="dim"] .news-card-text {
 .news-card-cta {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
+  gap: 12px;
+  font-size: 1.1rem;
   font-weight: 600;
   font-family: 'Georgia', serif;
   color: #B08D57;
-  margin-top: 4px;
+  margin-top: 16px;
   transition: gap 0.3s ease;
 }
 
@@ -399,44 +414,35 @@ html[data-theme="dim"] .news-card-cta {
 }
 
 .news-card:hover .news-card-cta {
-  gap: 12px;
+  gap: 16px;
 }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE - MOBILE
    ========================================== */
-
-@media (max-width: 1024px) {
-  .news-section::before {
-    width: clamp(1000px, 65vw, 1500px);
-    height: clamp(350px, 22vw, 550px);
-  }
-
-  .news-card {
-    grid-template-columns: 300px 1fr;
-    height: 250px;
-  }
-
-  .news-card:nth-child(1),
-  .news-card:nth-child(2),
-  .news-card:nth-child(3) {
-    align-self: stretch;
-    max-width: 100%;
-  }
-
-  .news-grid {
-    gap: 50px;
-  }
-}
 
 @media (max-width: 768px) {
   .news-section {
-    padding: 100px 20px;
+    min-height: auto;
   }
 
-  .news-section::before {
-    width: clamp(800px, 90vw, 1000px);
-    height: clamp(280px, 30vw, 350px);
+  .news-header {
+    padding: 80px 20px 40px;
+    top: 0;
+  }
+
+  .news-grid {
+    padding-top: 40px; /* Padding on mobile too */
+  }
+
+  .news-card-wrapper {
+    height: 100vh; /* Full viewport for stacking */
+    margin-bottom: 0;
+  }
+
+  /* Last wrapper on mobile */
+  .news-card-wrapper:last-child {
+    height: 100vh; /* Normal height on mobile too */
   }
 
   .news-title {
@@ -445,21 +451,40 @@ html[data-theme="dim"] .news-card-cta {
 
   .news-cta-buttons {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    gap: 20px;
   }
 
+  .news-cta-btn,
+  .news-cta-primary,
+  .news-cta-secondary {
+    font-size: 1.2rem;
+  }
+
+  /* Stack vertically on mobile */
   .news-card {
     grid-template-columns: 1fr;
-    height: auto;
+    grid-template-rows: 35vh auto;
+    border-radius: 16px;
+    height: 70vh; /* Same as desktop percentage */
+    max-height: none;
+    top: 240px; /* Below mobile header + padding */
+  }
+
+  /* Last card on mobile - below header */
+  .news-card-wrapper:last-child .news-card {
+    top: 100px; /* Below mobile header */
+    z-index: 40; /* Below header */
   }
 
   .news-card-image {
-    height: 200px;
+    height: 100%;
   }
 
+  /* Gradient from bottom instead of right */
   .news-card-image::after {
     width: 100%;
-    height: 80px;
+    height: 100px;
     top: auto;
     bottom: 0;
     right: 0;
@@ -477,67 +502,42 @@ html[data-theme="dim"] .news-card-cta {
   }
 
   .news-card-content {
-    padding: 24px;
+    padding: 32px 24px;
   }
 
-  .news-grid {
-    gap: 30px;
+  .news-card-title {
+    font-size: 1.8rem;
+  }
+
+  .news-card-text {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .news-section::before {
-    width: 600px;
-    height: 200px;
+  .news-card {
+    grid-template-rows: 35vh auto;
   }
 
-  .news-title {
-    font-size: 2rem;
-  }
-
-  .news-card-image {
-    height: 160px;
+  .news-card-content {
+    padding: 24px 20px;
   }
 
   .news-card-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
 /* ==========================================
-   FARBPALETTE
-   ========================================== 
-   
-   🎨 ROYAL BRONZE THEME COLORS:
-   
-   Cards Background:
-   - Light: rgba(176, 141, 87, 0.05)
-   - Dark:  rgba(176, 141, 87, 0.08)
-   - Hover Light: rgba(176, 141, 87, 0.1)
-   - Hover Dark:  rgba(176, 141, 87, 0.12)
-   
-   Borders:
-   - Default: rgba(176, 141, 87, 0.15-0.2)
-   - Hover:   #B08D57
-   
-   Typography:
-   - Title Light: #2C3E50
-   - Title Dark:  #B08D57
-   - Body Light:  rgba(44, 62, 80, 0.7)
-   - Body Dark:   rgba(245, 242, 237, 0.7)
-   
-   Accents:
-   - CTA:  #B08D57
-   - Tag:  #B08D57 → #d4b07a (Dark)
-   
-   🔤 TYPOGRAPHY:
-   Headings:  Playfair Display, Georgia
-   Body:      Georgia, Times New Roman
-   
-   💫 EFFECTS:
-   - Backdrop Blur: 20px
-   - Shadow: Bronze rgba(176, 141, 87, ...)
-   - Gradient Fade on Images
-   - Diagonal Layout (flex-start, center, flex-end)
-   
+   SCROLL SNAP (Optional - for smoother effect)
    ========================================== */
+
+@media (min-width: 769px) {
+  .news-section {
+    scroll-snap-type: y proximity;
+  }
+
+  .news-card {
+    scroll-snap-align: start;
+  }
+}
