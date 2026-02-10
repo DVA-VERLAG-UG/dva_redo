@@ -88,7 +88,7 @@ html[data-theme="dim"] .process-subtitle {
   aspect-ratio: 3 / 2;
   z-index: -1;
   pointer-events: none;
-  background-image: url("../images/index/process/schwarz/background_book.png");
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -96,7 +96,7 @@ html[data-theme="dim"] .process-subtitle {
 }
 
 html[data-theme="dim"] .timeline-book-bg{
-  background-image: url("../images/index/process/weiss/background_book.png");
+
   opacity: 0.15;
 }
 
