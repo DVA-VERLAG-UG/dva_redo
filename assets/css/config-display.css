@@ -1,0 +1,101 @@
+/* Konfigurations-Anzeige im Container */
+.config-summary {
+  padding: 16px;
+}
+
+.config-count {
+  font-family: 'Georgia', serif;
+  font-size: 14px;
+  color: #B08D57;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+}
+
+.config-count strong {
+  font-weight: 700;
+}
+
+.config-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.config-cat h4 {
+  font-family: 'Georgia', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #B08D57;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.config-cat ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.config-cat li {
+  font-family: 'Georgia', serif;
+  font-size: 12px;
+  color: rgba(44, 62, 80, 0.7);
+  padding-left: 12px;
+  position: relative;
+}
+
+.config-cat li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #B08D57;
+  font-size: 10px;
+}
+
+.btn-edit-config {
+  width: 100%;
+  padding: 10px 16px;
+  background: rgba(176, 141, 87, 0.1);
+  border: 1.5px solid rgba(176, 141, 87, 0.3);
+  border-radius: 8px;
+  font-family: 'Georgia', serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #B08D57;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-edit-config:hover {
+  background: rgba(176, 141, 87, 0.15);
+  border-color: #B08D57;
+}
+
+html[data-theme="dim"] .config-count {
+  color: #d4b07a;
+  border-bottom-color: rgba(176, 141, 87, 0.25);
+}
+
+html[data-theme="dim"] .config-cat h4 {
+  color: #d4b07a;
+}
+
+html[data-theme="dim"] .config-cat li {
+  color: rgba(245, 242, 237, 0.7);
+}
+
+html[data-theme="dim"] .config-cat li::before {
+  color: #d4b07a;
+}
+
+html[data-theme="dim"] .btn-edit-config {
+  background: rgba(176, 141, 87, 0.15);
+  border-color: rgba(176, 141, 87, 0.4);
+  color: #d4b07a;
+}

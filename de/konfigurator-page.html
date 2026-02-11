@@ -26,8 +26,9 @@
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/floating-logo.css">
     <link rel="stylesheet" href="../assets/css/konfigurator-page.css">
-    <link rel="stylesheet" href="../assets/css/konfigurator-popup.css">
     <link rel="stylesheet" href="../assets/css/contact-popup.css">
+    <link rel="stylesheet" href="../assets/css/flipbook-popup.css">
+    <!-- ✅ config-display.css ENTFERNT - jetzt in flipbook-popup.css enthalten -->
 </head>
 <body class="no-curtain">
 
@@ -258,29 +259,6 @@
     <!-- Footer -->
     <div id="footer-placeholder"></div>
     
-    <!-- Configurator Popup -->
-    <div class="konfig-overlay" id="configOverlay">
-        <div class="konfig-book">
-            <div class="konfig-progress">
-                <div class="konfig-progress-bar" id="progressBar"></div>
-                <span class="konfig-progress-text" id="progressText">Schritt 1 von 8</span>
-            </div>
-            <button class="konfig-close" id="closeConfigBtn">✕</button>
-            <div class="konfig-pages">
-                <div class="konfig-page konfig-page-left" id="leftPage">
-                    <h2>Jetzt anfragen</h2>
-                    <p>Beantworte ein paar Fragen und wir erstellen dir ein maßgeschneidertes Angebot.</p>
-                    <div class="konfig-navigation">
-                        <button class="btn-nav btn-prev" id="prevBtn" disabled>← Zurück</button>
-                    </div>
-                </div>
-                <div class="konfig-page konfig-page-right">
-                    <div class="konfig-questions" id="questionsContainer"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Contact Popup -->
     <div class="contact-overlay" id="contactOverlay">
         <div class="contact-popup">
@@ -332,6 +310,30 @@
         <input type="tel" name="telefon" />
         <textarea name="nachricht"></textarea>
     </form>
+    <!-- Hidden Netlify Forms -->
+<form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="package" />
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <textarea name="message"></textarea>
+</form>
+
+<!-- ✅ NEU: Buchkonfigurator Form -->
+<form name="buchkonfigurator" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="telefon" />
+    <textarea name="nachricht"></textarea>
+    <textarea name="konfiguration"></textarea>
+</form>
+
+<form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname" />
+    <input type="text" name="nachname" />
+    <input type="email" name="email" />
+    <input type="tel" name="telefon" />
+    <textarea name="nachricht"></textarea>
+</form>
     
     <!-- Scripts -->
     <script type="module" src="../assets/js/main.js"></script>
@@ -377,6 +379,14 @@
                 }
             });
         });
+    </script>
+
+    <!-- Flipbook Popup JS -->
+    <script src="../assets/js/flipbook-popup.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        FlipbookPopup.init('#openConfigBtn');
+      });
     </script>
     
 </body>
