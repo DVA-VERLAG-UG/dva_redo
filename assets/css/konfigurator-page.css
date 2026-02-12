@@ -139,7 +139,7 @@ html[data-theme="dim"] .konfig-trust-ticker {
    ========================================== */
 
 .konfig-packages {
-    padding: 0 20px 40px; /* Von 100px auf 40px reduziert */
+    padding: 0 20px 40px;
 }
 
 .konfig-container {
@@ -154,43 +154,43 @@ html[data-theme="dim"] .konfig-trust-ticker {
 /* ==========================================
    PACKAGE CARD - Bronze Theme
    ========================================== */
-
 .package-card {
-    background: rgba(176, 141, 87, 0.05);
-    border: 1px solid rgba(176, 141, 87, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(176, 141, 87, 0.2);
     border-radius: 20px;
-    overflow: visible; /* Badge nicht abschneiden */
+    overflow: visible;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
-    position: relative; /* Für absolute Badge */
+    position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
-        0 8px 32px rgba(176, 141, 87, 0.1),
-        inset 0 1px 0 rgba(176, 141, 87, 0.08);
+        0 4px 20px rgba(176, 141, 87, 0.08),
+        inset 0 1px 0 rgba(176, 141, 87, 0.05);
 }
 
 html[data-theme="dim"] .package-card {
-    background: rgba(176, 141, 87, 0.08);
-    border: 1px solid rgba(176, 141, 87, 0.2);
+    background: rgba(40, 45, 50, 0.85);
+    border: 1px solid rgba(176, 141, 87, 0.25);
     box-shadow: 
-        0 8px 32px rgba(176, 141, 87, 0.15),
-        inset 0 1px 0 rgba(176, 141, 87, 0.12);
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(176, 141, 87, 0.1);
 }
 
 .package-card:hover {
     transform: translateY(-4px);
-    border-color: #B08D57;
+    border-color: rgba(176, 141, 87, 0.4);
     box-shadow: 
-        0 12px 48px rgba(176, 141, 87, 0.2),
-        inset 0 1px 0 rgba(176, 141, 87, 0.15);
+        0 8px 32px rgba(176, 141, 87, 0.15),
+        inset 0 1px 0 rgba(176, 141, 87, 0.1);
 }
 
 html[data-theme="dim"] .package-card:hover {
+    border-color: rgba(176, 141, 87, 0.4);
     box-shadow: 
-        0 12px 48px rgba(176, 141, 87, 0.25),
-        inset 0 1px 0 rgba(176, 141, 87, 0.18);
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
 /* ==========================================
@@ -214,29 +214,37 @@ html[data-theme="dim"] .package-card:hover {
 .package-card:nth-child(2) {
     position: relative;
     border-width: 2px;
-    border-color: #B08D57;
-    background: rgba(176, 141, 87, 0.12);
+    border-color: rgba(176, 141, 87, 0.5);
+    background: rgba(255, 255, 255, 1);
     box-shadow: 
-        0 0 50px rgba(176, 141, 87, 0.3),
-        0 20px 80px rgba(176, 141, 87, 0.2),
-        inset 0 1px 0 rgba(176, 141, 87, 0.2);
+        0 0 30px rgba(176, 141, 87, 0.2),
+        0 12px 40px rgba(176, 141, 87, 0.15),
+        inset 0 1px 0 rgba(176, 141, 87, 0.1);
     opacity: 1 !important;
 }
 
 html[data-theme="dim"] .package-card:nth-child(2) {
-    background: rgba(176, 141, 87, 0.18);
+    background: rgba(45, 50, 55, 0.95);
+    border-color: rgba(176, 141, 87, 0.4);
     box-shadow: 
-        0 0 60px rgba(176, 141, 87, 0.4),
-        0 20px 80px rgba(176, 141, 87, 0.25),
-        inset 0 1px 0 rgba(176, 141, 87, 0.25);
+        0 0 20px rgba(176, 141, 87, 0.15),
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(176, 141, 87, 0.1);
 }
 
 .package-card:nth-child(2):hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
-        0 0 70px rgba(176, 141, 87, 0.5),
-        0 28px 100px rgba(176, 141, 87, 0.3),
-        inset 0 1px 0 rgba(176, 141, 87, 0.25);
+        0 0 40px rgba(176, 141, 87, 0.25),
+        0 16px 60px rgba(176, 141, 87, 0.2),
+        inset 0 1px 0 rgba(176, 141, 87, 0.15);
+}
+
+html[data-theme="dim"] .package-card:nth-child(2):hover {
+    box-shadow: 
+        0 0 25px rgba(176, 141, 87, 0.2),
+        0 16px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
 /* ==========================================
@@ -284,13 +292,13 @@ html[data-theme="dim"] .package-header {
     font-family: 'Playfair Display', 'Georgia', serif;
     font-size: 1.35rem;
     font-weight: 700;
-    color: #2C3E50;
+    color: #1a2530;
     margin: 0 0 8px;
     line-height: 1.3;
 }
 
 html[data-theme="dim"] .package-header h3 {
-    color: #B08D57;
+    color: #d4b07a;
 }
 
 /* Custom config title - larger */
@@ -302,13 +310,13 @@ html[data-theme="dim"] .package-header h3 {
 .package-subtitle {
     font-family: 'Georgia', serif;
     font-size: 0.85rem;
-    color: rgba(44, 62, 80, 0.6);
+    color: rgba(26, 37, 48, 0.75);
     margin: 0;
     line-height: 1.4;
 }
 
 html[data-theme="dim"] .package-subtitle {
-    color: rgba(176, 141, 87, 0.7);
+    color: rgba(212, 176, 122, 0.85);
 }
 
 .package-card:nth-child(2) .package-subtitle {
@@ -322,8 +330,8 @@ html[data-theme="dim"] .package-subtitle {
 .package-body {
     padding: 20px;
     flex: 1;
-    overflow: auto; /* Scrollbar wenn Content zu lang */
-    border-radius: 0 0 20px 20px; /* Runde Ecken unten */
+    overflow: auto;
+    border-radius: 0 0 20px 20px;
 }
 
 /* Custom config body - larger */
@@ -353,25 +361,25 @@ html[data-theme="dim"] .package-row {
     font-family: 'Georgia', serif;
     font-weight: 600;
     font-size: 0.78rem;
-    color: #2C3E50;
+    color: #1a2530;
     flex-shrink: 0;
     line-height: 1.3;
 }
 
 html[data-theme="dim"] .package-label {
-    color: #B08D57;
+    color: #d4b07a;
 }
 
 .package-value {
     font-family: 'Georgia', serif;
     font-size: 0.72rem;
-    color: rgba(44, 62, 80, 0.7);
+    color: rgba(26, 37, 48, 0.7);
     text-align: right;
     line-height: 1.3;
 }
 
 html[data-theme="dim"] .package-value {
-    color: rgba(245, 242, 237, 0.7);
+    color: rgba(212, 176, 122, 0.8);
 }
 
 /* ==========================================
@@ -391,24 +399,24 @@ html[data-theme="dim"] .package-value {
 .empty-message {
     font-family: 'Playfair Display', 'Georgia', serif;
     font-size: 1.4rem;
-    color: rgba(44, 62, 80, 0.6);
+    color: rgba(26, 37, 48, 0.7);
     font-weight: 700;
     margin: 0 0 12px;
 }
 
 html[data-theme="dim"] .empty-message {
-    color: rgba(176, 141, 87, 0.8);
+    color: rgba(212, 176, 122, 0.9);
 }
 
 .empty-hint {
     font-family: 'Georgia', serif;
     font-size: 0.95rem;
-    color: rgba(44, 62, 80, 0.45);
+    color: rgba(26, 37, 48, 0.6);
     margin: 0;
 }
 
 html[data-theme="dim"] .empty-hint {
-    color: rgba(176, 141, 87, 0.6);
+    color: rgba(212, 176, 122, 0.7);
 }
 
 .config-item-row {
@@ -431,22 +439,22 @@ html[data-theme="dim"] .config-item-row {
     font-family: 'Georgia', serif;
     font-weight: 600;
     font-size: 1rem;
-    color: #2C3E50;
+    color: #1a2530;
 }
 
 html[data-theme="dim"] .config-item-label {
-    color: #B08D57;
+    color: #d4b07a;
 }
 
 .config-item-value {
     font-family: 'Georgia', serif;
     font-size: 0.95rem;
-    color: rgba(44, 62, 80, 0.7);
+    color: rgba(26, 37, 48, 0.7);
     text-align: right;
 }
 
 html[data-theme="dim"] .config-item-value {
-    color: rgba(245, 242, 237, 0.7);
+    color: rgba(212, 176, 122, 0.8);
 }
 
 /* ==========================================
@@ -616,8 +624,107 @@ html[data-theme="dim"] .service-highlighted .package-label {
     color: #d4b07a;
 }
 
+/* ==========================================
+   CUSTOM CONFIG FILLED - Komplett Zentriert
+   ========================================== */
+
 .custom-config-filled {
-    padding: 20px;
+    padding: 32px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Service Counter */
+.custom-config-filled > p:first-child,
+.custom-config-filled .service-count {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #B08D57;
+    text-align: center;
+    margin: 0 0 32px 0;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(176, 141, 87, 0.2);
+    width: 100%;
+}
+
+html[data-theme="dim"] .custom-config-filled > p:first-child,
+html[data-theme="dim"] .custom-config-filled .service-count {
+    color: #d4b07a;
+    border-bottom-color: rgba(176, 141, 87, 0.25);
+}
+
+/* Kategorie-Überschriften */
+.custom-config-filled h4 {
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #B08D57;
+    margin: 24px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+    text-align: center;
+    width: 100%;
+}
+
+html[data-theme="dim"] .custom-config-filled h4 {
+    color: #d4b07a;
+    border-bottom-color: rgba(176, 141, 87, 0.25);
+}
+
+/* Service Listen Container */
+.custom-config-filled ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+/* Service Items */
+.custom-config-filled li {
+    font-family: 'Georgia', serif;
+    font-size: 0.92rem;
+    color: #1a2530;
+    padding: 8px 16px;
+    background: rgba(176, 141, 87, 0.08);
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+html[data-theme="dim"] .custom-config-filled li {
+    color: #d4b07a;
+    background: rgba(176, 141, 87, 0.12);
+}
+
+.custom-config-filled li:hover {
+    background: rgba(176, 141, 87, 0.15);
+    transform: translateX(4px);
+}
+
+html[data-theme="dim"] .custom-config-filled li:hover {
+    background: rgba(176, 141, 87, 0.18);
+}
+
+.custom-config-filled li::before {
+    content: '✓';
+    color: #B08D57;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+html[data-theme="dim"] .custom-config-filled li::before {
+    color: #d4b07a;
 }
 
 /* Optional Clear Button */
@@ -800,15 +907,15 @@ html[data-theme="dim"] .success-message-inline {
     
     /* Mobile Reihenfolge: Custom Config zuerst */
     .package-card:nth-child(1) {
-        order: 2; /* Starter nach unten */
+        order: 2;
     }
     
     .package-card:nth-child(2) {
-        order: 1; /* Custom Config nach oben */
+        order: 1;
     }
     
     .package-card:nth-child(3) {
-        order: 3; /* Deluxe ganz unten */
+        order: 3;
     }
 }
 
@@ -818,7 +925,7 @@ html[data-theme="dim"] .success-message-inline {
     }
     
     .konfig-packages {
-        padding: 0 16px 40px; /* Von 80px auf 40px reduziert */
+        padding: 0 16px 40px;
     }
     
     .package-body {
@@ -848,7 +955,6 @@ html[data-theme="dim"] .success-message-inline {
         font-size: 0.9rem;
     }
     
-    /* Prominent CTA on Mobile */
     .package-card:nth-child(2) .btn-configure {
         padding: 22px 40px;
         font-size: 1.3rem;
