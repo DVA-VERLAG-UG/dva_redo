@@ -21,6 +21,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  overflow: visible !important; /* ✅ NEU */
 }
 
 .flipbook-overlay.is-open {
@@ -33,10 +34,10 @@
   width: 95%;
   max-width: 1240px;
   height: auto;
-  background: transparent; /* ✅ TRANSPARENT statt white */
-  border-radius: 0; /* ✅ Keine Rundung */
-  overflow: visible; /* ✅ Buch-Schatten sichtbar */
-  box-shadow: none; /* ✅ Kein Container-Schatten */
+  background: transparent;
+  border-radius: 0;
+  overflow: visible !important; /* ✅ GEÄNDERT von visible zu visible !important */
+  box-shadow: none;
   transform: scale(0.95);
   transition: transform 0.3s ease;
 }
@@ -46,7 +47,7 @@
 }
 
 .flipbook-close {
-  position: fixed; /* ✅ Fixed statt absolute */
+  position: fixed;
   top: 20px;
   right: 20px;
   z-index: 100001;
@@ -62,7 +63,6 @@
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .flipbook-close:hover {
@@ -76,6 +76,7 @@
   border: none;
   background: transparent;
   display: block;
+  overflow: visible !important; /* ✅ NEU */
 }
 
 @media (max-width: 1200px) {
