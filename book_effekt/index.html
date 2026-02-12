@@ -324,31 +324,60 @@
     .btn-submit:hover{opacity:.9;transform:translateY(-1px)}
 
     /* ══════════════════ NAV BAR ══════════════════ */
-    .nav-bar{display:flex;align-items:center;gap:18px}
-    .nav-btn{
-      padding:9px 26px;border-radius:7px;
-      font-family:'Lato',sans-serif;font-size:12.5px;font-weight:700;letter-spacing:.04em;
-      cursor:pointer;border:2px solid rgba(184,150,110,0.4);
-      background:transparent;color:var(--text-l);
-      transition:all .18s;
-    }
-    .nav-btn:hover{border-color:var(--gold);color:var(--gold)}
-    .nav-btn.primary{
-      background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
-      border-color:var(--gold-d);color:white;
-      box-shadow:0 4px 14px rgba(138,106,72,0.3);
-    }
-    .nav-btn.primary:hover{opacity:.9}
-    .nav-btn:disabled{opacity:.28;pointer-events:none}
-
-    .dots-wrap{display:flex;align-items:center;gap:6px}
-    .ndot{
-      width:7px;height:7px;border-radius:50%;
-      background:rgba(184,150,110,0.28);
-      border:1.5px solid rgba(184,150,110,0.4);
-      transition:all .2s;cursor:default;
-    }
-    .ndot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.4)}
+/* ══════════════════ NAV BAR ══════════════════ */
+.nav-bar{display:flex;align-items:center;gap:18px}
+.nav-btn{
+  padding:11px 28px;
+  border-radius:6px;
+  font-family:'Lato',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  cursor:pointer;
+  border:2px solid var(--gold);
+  background:transparent;
+  color:var(--gold);
+  transition:all .25s ease;
+  position:relative;
+  overflow:hidden;
+}
+.nav-btn::before{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
+  transition:left .3s ease;
+  z-index:-1;
+}
+.nav-btn:hover{
+  color:white;
+  border-color:var(--gold-d);
+  box-shadow:0 6px 20px rgba(184,150,110,0.4);
+}
+.nav-btn:hover::before{
+  left:0;
+}
+.nav-btn.primary{
+  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
+  border-color:var(--gold-d);
+  color:white;
+  box-shadow:0 4px 16px rgba(138,106,72,0.35);
+}
+.nav-btn.primary::before{
+  background:linear-gradient(135deg,var(--gold-l) 0%,var(--gold) 100%);
+}
+.nav-btn.primary:hover{
+  box-shadow:0 8px 24px rgba(184,150,110,0.5);
+  transform:translateY(-1px);
+}
+.nav-btn:disabled{
+  opacity:.3;
+  pointer-events:none;
+  border-color:rgba(184,150,110,0.2);
+  color:rgba(122,106,86,0.4);
+}
 
     /* ══════════════════ PAGE NUMBERS ══════════════════ */
     .pnum{
