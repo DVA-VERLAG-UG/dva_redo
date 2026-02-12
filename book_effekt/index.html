@@ -808,7 +808,7 @@
       </div>
     </div>
 
-    <!-- ── SPREAD 5: THEMA 7 + PLATZHALTER ── pages 9+10 -->
+  <!-- ── SPREAD 5: THEMA 7 + LEER ── pages 7+8 -->
     <div>
       <div class="q-page">
         <div class="q-head">
@@ -863,23 +863,10 @@
         <span class="pnum left">7</span>
       </div>
     </div>
-    <div>
-      <div class="page-sep"></div>
-      <!-- Right side: teaser for summary -->
-      <div class="q-page right-tint" style="justify-content:center;align-items:center;text-align:center;padding:44px 36px;gap:20px;display:flex;flex-direction:column;">
-        <div style="font-size:44px;opacity:0.25;color:var(--gold);">✦</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text);font-weight:600;">Fast fertig!</h3>
-        <p style="font-family:'Lato',sans-serif;font-size:13px;color:var(--text-l);line-height:1.7;max-width:220px;">
-          Alle 7 Themen bearbeitet. Klicke auf <em>„Weiter"</em> um zur Zusammenfassung zu gelangen und deine Konfiguration zu senden.
-        </p>
-        <div style="width:40px;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0.5;"></div>
-        <p style="font-family:'Lato',sans-serif;font-size:11px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;">Seite 8 von 9</p>
-        <span class="pnum right">8</span>
-      </div>
-    </div>
 
- <!-- ── SPREAD 6: ZUSAMMENFASSUNG + KONTAKT ── pages 11+12 -->
- <div>
+
+    <!-- ── SPREAD 6: ZUSAMMENFASSUNG + KONTAKT ── pages 9+10 -->
+    <div>
       <div class="sum-page">
         <div class="sum-head">
           <span class="badge">Zusammenfassung</span>
@@ -925,10 +912,23 @@
           </form>
         </div>
         
-        <span class="pnum right">10</span>
+<span class="pnum right">9</span>
       </div>
     </div>
 
+    <!-- ── BACK COVER ── page 10 -->
+    <div class="hard">
+      <div class="cover-l" style="background:linear-gradient(160deg,#2c2416 0%,#1a1410 60%,#0d0a08 100%) !important;">
+        <div style="margin-bottom:32px;">
+          <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Verlag" style="width:180px;height:auto;filter:brightness(0) invert(1);opacity:0.9;">
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:0.08em;text-transform:uppercase;">
+          DVAYD Verlag
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /#flipbook -->
 </div><!-- /.book-wrap -->
 
 <!-- ════════════ NAV BAR ════════════ -->
@@ -1139,31 +1139,37 @@ function buildSummary(){
     formData.append('nachricht', contactData.nachricht);
     formData.append('konfiguration', JSON.stringify(export_data, null, 2));
     
-    fetch('/', {
-      method: 'POST',
-      body: new URLSearchParams(formData)
-    })
-    .then(() => {
-      // ✅ An Parent senden
-      if(window.parent && window.parent !== window){
-        window.parent.postMessage({
-          type: 'selectionUpdate',
-          selections: export_data
-        }, '*');
-        
+fetch('/', {
+  method: 'POST',
+  body: new URLSearchParams(formData)
+})
+.then(() => {
+  // ✅ 1. Zur letzten Seite blättern
+  $('#flipbook').turn('page', $('#flipbook').turn('pages'));
+  
+  // ✅ 2. Nach Animation (1 Sekunde) Parent benachrichtigen
+  setTimeout(() => {
+    if(window.parent && window.parent !== window){
+      window.parent.postMessage({
+        type: 'selectionUpdate',
+        selections: export_data
+      }, '*');
+      
+      // ✅ 3. Popup schließen nach weiteren 800ms
+      setTimeout(() => {
         window.parent.postMessage({
           type: 'closePopup'
         }, '*');
-      }
-      
-      alert('✓ Vielen Dank! Wir melden uns in Kürze bei Ihnen.');
-      
-      // Reset
-      answers = {};
-      sessionStorage.removeItem('buchkonfig');
-      document.querySelectorAll('.opt.selected').forEach(e => e.classList.remove('selected'));
-      
-    })
+      }, 800);
+    }
+  }, 1000);
+  
+  // Reset
+  answers = {};
+  sessionStorage.removeItem('buchkonfig');
+  document.querySelectorAll('.opt.selected').forEach(e => e.classList.remove('selected'));
+  
+})
     .catch(err => {
       console.error('Fehler:', err);
       alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
