@@ -1315,14 +1315,13 @@ function buildSummary(){
     });
   }
 
-  /* ─── INIT ──────────────────────────────────────── */
+/* ─── INIT ──────────────────────────────────────── */
   loadAnswers();
+  
   document.addEventListener('DOMContentLoaded',()=>{
-    Object.keys(answers).forEach(q=>{
-      answers[q].forEach(v=>{
-        document.querySelectorAll(`.opt[data-q="${q}"][data-val="${v}"]`).forEach(el=>{
-          el.classList.add('selected');
-      document.addEventListener('DOMContentLoaded',()=>{
+    console.log('📘 Flipbook loaded');
+    
+    // Restore selections
     Object.keys(answers).forEach(q=>{
       answers[q].forEach(v=>{
         document.querySelectorAll(`.opt[data-q="${q}"][data-val="${v}"]`).forEach(el=>{
@@ -1331,27 +1330,29 @@ function buildSummary(){
       });
     });
     
-    // ✅ NEU: Inline Form Listener
+    // ✅ Inline Form Listener
     const inlineForm = document.getElementById('inline-contact-form');
     if(inlineForm){
+      console.log('✅ Form listener attached');
       inlineForm.addEventListener('submit', handleInlineSubmit);
+    } else {
+      console.log('❌ Form not found!');
     }
   });
-        });
-      });
-    });
-  });
 
- $(document).ready(function(){
-  $('#flipbook').turn({
-    width:1040, height:600,
-    autoCenter:false, /* ✅ FALSE - Buch bleibt fixiert */
-    gradients:true, acceleration:true, duration:650,
-    when:{ turned: function(){ afterTurn(); } }
+  $(document).ready(function(){
+    $('#flipbook').turn({
+      width:1040, 
+      height:600,
+      autoCenter:false,
+      gradients:true, 
+      acceleration:true, 
+      duration:650,
+      when:{ turned: function(){ afterTurn(); } }
+    });
+    buildDots();
+    afterTurn();
   });
-  buildDots();
-  afterTurn();
-});
 </script>
 </body>
 </html>
