@@ -256,6 +256,7 @@
     .opt:hover .info-icon{background:rgba(184,150,110,0.35)}
 
  /* ── TOOLTIP (positioned outside, to the right) ── */
+/* ── TOOLTIP ── */
 .tooltip{
   position:fixed;
   z-index:9999;
@@ -274,6 +275,75 @@
               transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 30px rgba(138, 106, 72, 0.2), 
               0 4px 12px rgba(138, 106, 72, 0.1);
+}
+
+/* ✅ DESKTOP: Rechte/Linke Seite */
+@media (min-width: 769px) {
+  .tooltip.right-side{
+    transform: translateX(-10px) scale(0.95);
+  }
+  .tooltip.right-side.show{
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  .tooltip.right-side::before{
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: -8px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid #faf7f2;
+    filter: drop-shadow(-1px 0 1px rgba(184, 150, 110, 0.2));
+  }
+
+  .tooltip.left-side{
+    transform: translateX(10px) scale(0.95);
+  }
+  .tooltip.left-side.show{
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  .tooltip.left-side::before{
+    content: '';
+    position: absolute;
+    top: 16px;
+    right: -8px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #faf7f2;
+    filter: drop-shadow(1px 0 1px rgba(184, 150, 110, 0.2));
+  }
+}
+
+/* ✅ MOBILE: Immer OBERHALB */
+@media (max-width: 768px) {
+  .tooltip {
+    width: calc(100vw - 40px);
+    max-width: 280px;
+  }
+  
+  .tooltip.show {
+    opacity: 1;
+  }
+  
+  .tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #faf7f2;
+    filter: drop-shadow(0 1px 1px rgba(184, 150, 110, 0.2));
+  }
+  
+  /* Entferne die Seitenklassen auf Mobile */
+  .tooltip.right-side::before,
+  .tooltip.left-side::before {
+    display: none;
+  }
 }
 
 /* Rechte Seite (Standard) */
@@ -1161,6 +1231,7 @@ function showTipInstant(el) {
 }
 
 // ✅ Tooltip anzeigen (zentrale Funktion)
+// ✅ Tooltip anzeigen (zentrale Funktion)
 function displayTooltip(el) {
   const tip = el.dataset.tip;
   if (!tip) return;
@@ -1168,30 +1239,50 @@ function displayTooltip(el) {
   tt.textContent = tip;
   
   const rect = el.getBoundingClientRect();
-  const bookRect = document.getElementById('flipbook').getBoundingClientRect();
-  const bookCenter = bookRect.left + bookRect.width / 2;
+  const isMobile = window.innerWidth <= 768;
   
-  const isLeftPage = rect.left < bookCenter;
-  
-  let leftPos, topPos;
-  
-  if (isLeftPage) {
-    // ✅ Linke Seite → Tooltip RECHTS vom Element
-    leftPos = rect.right + 14;
-    tt.classList.remove('left-side');
-    tt.classList.add('right-side');
+  if (isMobile) {
+    // ✅ MOBILE: Tooltip OBERHALB des Elements
+    const leftPos = Math.max(20, Math.min(window.innerWidth - 300, rect.left + rect.width / 2 - 140));
+    const topPos = rect.top - 10;
+    
+    tt.style.left = leftPos + 'px';
+    tt.style.top = topPos + 'px';
+    tt.style.transform = 'translateY(-100%)';
+    tt.classList.remove('left-side', 'right-side');
+    
+    // ✅ Auto-Hide nach 2 Sekunden
+    clearTimeout(window.tooltipAutoHide);
+    window.tooltipAutoHide = setTimeout(() => {
+      tt.classList.remove('show');
+    }, 2000);
+    
   } else {
-    // ✅ Rechte Seite → Tooltip LINKS vom Element
-    leftPos = rect.left - 220;
-    tt.classList.add('left-side');
-    tt.classList.remove('right-side');
+    // ✅ DESKTOP: Seitlich (wie bisher)
+    const bookRect = document.getElementById('flipbook').getBoundingClientRect();
+    const bookCenter = bookRect.left + bookRect.width / 2;
+    const isLeftPage = rect.left < bookCenter;
+    
+    let leftPos, topPos;
+    
+    if (isLeftPage) {
+      leftPos = rect.right + 14;
+      tt.classList.remove('left-side');
+      tt.classList.add('right-side');
+    } else {
+      leftPos = rect.left - 220;
+      tt.classList.add('left-side');
+      tt.classList.remove('right-side');
+    }
+    
+    topPos = rect.top + rect.height / 2 - 20;
+    topPos = Math.max(10, Math.min(window.innerHeight - 120, topPos));
+    
+    tt.style.left = leftPos + 'px';
+    tt.style.top = topPos + 'px';
+    tt.style.transform = '';
   }
   
-  topPos = rect.top + rect.height / 2 - 20;
-  topPos = Math.max(10, Math.min(window.innerHeight - 120, topPos));
-  
-  tt.style.left = leftPos + 'px';
-  tt.style.top = topPos + 'px';
   tt.classList.add('show');
 }
 
