@@ -1507,7 +1507,6 @@ fetch('/', {
    ═══════════════════════════════════════════════════════════ */
 
 // Am Ende der index.html, ERSETZE das $(document).ready mit:
-
 $(document).ready(function(){
   const isMobile = window.innerWidth <= 768;
   
@@ -1523,10 +1522,19 @@ $(document).ready(function(){
       gradients: false, // Keine Schatten auf Mobile
       when: { 
         turned: function(){ 
-          afterTurn(); 
+          afterTurn();
+          // ✅ Entferne Spine/Crease auf Mobile
+          $('.spine-line').hide();
+          $('.page-sep').hide();
+          $('.book-wrap').css('filter', 'none');
         } 
       }
     });
+    
+    // ✅ Sofort beim Laden entfernen
+    $('.spine-line').hide();
+    $('.page-sep').hide();
+    $('.book-wrap').css('filter', 'none');
     
     // ✅ Touch Swipe Support
     let touchStartX = 0;
