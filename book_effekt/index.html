@@ -364,7 +364,7 @@
   letter-spacing:0.1em; /* ✅ Mehr Spacing */
   color:var(--gold);
   margin-bottom:6px; /* ✅ Mehr Abstand */
-  font-weight:700; /* ✅ Fetter */
+  font-weight:700; /* ✅ Fetter */ 
   padding-bottom:4px; /* ✅ NEU */
   border-bottom:1px solid rgba(184,150,110,0.2); /* ✅ NEU: Trennlinie */
 }
@@ -1502,19 +1502,70 @@ fetch('/', {
     }
   });
 
-  $(document).ready(function(){
+ /* ═══════════════════════════════════════════════════════════
+   MOBILE FLIPBOOK - Einzelne Seiten statt Spreads
+   ═══════════════════════════════════════════════════════════ */
+
+// Am Ende der index.html, ERSETZE das $(document).ready mit:
+
+$(document).ready(function(){
+  const isMobile = window.innerWidth <= 768;
+  
+  if(isMobile) {
+    // ✅ MOBILE: Einzelne Seiten, swipe-fähig
     $('#flipbook').turn({
-      width:1040, 
-      height:600,
-      autoCenter:false,
-      gradients:true, 
-      acceleration:true, 
-      duration:650,
-      when:{ turned: function(){ afterTurn(); } }
+      width: window.innerWidth - 20,
+      height: window.innerHeight - 140, // Platz für Navigation
+      display: 'single', // ✅ WICHTIG: Einzelne Seiten
+      autoCenter: true,
+      acceleration: true,
+      duration: 400, // Schneller
+      gradients: false, // Keine Schatten auf Mobile
+      when: { 
+        turned: function(){ 
+          afterTurn(); 
+        } 
+      }
     });
-    buildDots();
-    afterTurn();
-  });
+    
+    // ✅ Touch Swipe Support
+    let touchStartX = 0;
+    const flipbook = document.getElementById('flipbook');
+    
+    flipbook.addEventListener('touchstart', function(e) {
+      touchStartX = e.touches[0].clientX;
+    });
+    
+    flipbook.addEventListener('touchend', function(e) {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = touchStartX - touchEndX;
+      
+      if(Math.abs(diff) > 50) { // Mindestens 50px swipe
+        if(diff > 0) {
+          goNext(); // Swipe links → vorwärts
+        } else {
+          goBack(); // Swipe rechts → rückwärts
+        }
+      }
+    });
+    
+  } else {
+    // ✅ DESKTOP: Spreads (wie bisher)
+    $('#flipbook').turn({
+      width: 1040, 
+      height: 600,
+      display: 'double', // Spreads
+      autoCenter: false,
+      gradients: true, 
+      acceleration: true, 
+      duration: 650,
+      when: { turned: function(){ afterTurn(); } }
+    });
+  }
+  
+  buildDots();
+  afterTurn();
+});
 </script>
 </body>
 </html>

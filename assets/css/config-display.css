@@ -74,7 +74,7 @@
 
 .btn-edit-config:hover {
   background: rgba(176, 141, 87, 0.15);
-  border-color: #B08D57;
+  border-color: #B08D57; 
 }
 
 html[data-theme="dim"] .config-count {
