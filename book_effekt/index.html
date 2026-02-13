@@ -1300,9 +1300,13 @@ function hideTip() {
   function currentSpread(){
     return Math.ceil($('#flipbook').turn('page')/2);
   }
-  function goNext(){
+function goNext(){
     const s=currentSpread();
-    if(s===5) buildSummary();
+    if(s===5) {
+      setTimeout(() => {
+        buildSummary();
+      }, 100);
+    }
     if(s<TOTAL_SPREADS){ $('#flipbook').turn('next'); afterTurn(); }
   }
   function goBack(){
@@ -1310,13 +1314,22 @@ function hideTip() {
   }
 
   /* ─── AFTER EVERY TURN ──────────────────────────── */
+/* ─── AFTER EVERY TURN ──────────────────────────── */
 function afterTurn(){
     const s=currentSpread();
     document.getElementById('btn-prev').disabled=(s<=1);
     const bn=document.getElementById('btn-next');
-    if(s>=TOTAL_SPREADS){ bn.textContent='—'; bn.disabled=true; } // ✅ Geändert
+    if(s>=TOTAL_SPREADS){ bn.textContent='—'; bn.disabled=true; }
     else { bn.textContent='Weiter →'; bn.disabled=false; }
-    updateDots(s)
+    
+    // ✅ NEU: Summary mit kleinem Delay bauen
+    if(s === 6) {
+      setTimeout(() => {
+        buildSummary();
+      }, 100);
+    }
+    
+    updateDots(s);
   }
 
   /* ─── SUMMARY ───────────────────────────────────── */
