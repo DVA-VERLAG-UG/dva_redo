@@ -650,11 +650,7 @@ html[data-theme="dim"] .service-highlighted .package-label {
     width: 100%;
 }
 
-html[data-theme="dim"] .custom-config-filled > p:first-child,
-html[data-theme="dim"] .custom-config-filled .service-count {
-    color: #d4b07a;
-    border-bottom-color: rgba(176, 141, 87, 0.25);
-}
+
 
 /* Kategorie-Überschriften */
 .custom-config-filled h4 {
@@ -671,10 +667,6 @@ html[data-theme="dim"] .custom-config-filled .service-count {
     width: 100%;
 }
 
-html[data-theme="dim"] .custom-config-filled h4 {
-    color: #d4b07a;
-    border-bottom-color: rgba(176, 141, 87, 0.25);
-}
 
 /* Service Listen Container */
 .custom-config-filled ul {
@@ -702,10 +694,6 @@ html[data-theme="dim"] .custom-config-filled h4 {
     transition: all 0.2s ease;
 }
 
-html[data-theme="dim"] .custom-config-filled li {
-    color: #d4b07a;
-    background: rgba(176, 141, 87, 0.12);
-}
 
 .custom-config-filled li:hover {
     background: rgba(176, 141, 87, 0.15);
@@ -722,10 +710,26 @@ html[data-theme="dim"] .custom-config-filled li:hover {
     font-weight: 700;
     font-size: 0.9rem;
 }
+html[data-theme="dim"] .custom-config-filled > p:first-child,
+html[data-theme="dim"] .custom-config-filled .service-count {
+    color: #ffffff;
+    border-bottom-color: rgba(176, 141, 87, 0.25);
+}
+
+html[data-theme="dim"] .custom-config-filled h4 {
+    color: #e8d4b0; /* Gleiche Farbe wie Paket-Titel */
+    border-bottom-color: rgba(176, 141, 87, 0.25);
+}
+
+html[data-theme="dim"] .custom-config-filled li {
+    color: #ffffff;
+    background: rgba(176, 141, 87, 0.12);
+}
 
 html[data-theme="dim"] .custom-config-filled li::before {
-    color: #d4b07a;
+    color: #e8d4b0;
 }
+
 
 /* Optional Clear Button */
 .btn-clear-config {
@@ -887,6 +891,52 @@ html[data-theme="dim"] .quick-form-textarea::placeholder {
 
 html[data-theme="dim"] .success-message-inline {
     color: rgba(245, 242, 237, 0.7);
+}
+
+/* ==========================================
+   SIDE PACKAGES - Verbessertes Styling
+   ========================================== */
+
+/* Titel in den Seitenpaketen */
+.package-card:nth-child(1) .package-header h3,
+.package-card:nth-child(3) .package-header h3 {
+    color: #B08D57;
+}
+
+html[data-theme="dim"] .package-card:nth-child(1) .package-header h3,
+html[data-theme="dim"] .package-card:nth-child(3) .package-header h3 {
+    color: #e8d4b0;
+}
+
+/* Subtitle */
+.package-card:nth-child(1) .package-subtitle,
+.package-card:nth-child(3) .package-subtitle {
+    color: rgba(176, 141, 87, 0.8);
+}
+
+html[data-theme="dim"] .package-card:nth-child(1) .package-subtitle,
+html[data-theme="dim"] .package-card:nth-child(3) .package-subtitle {
+    color: rgba(232, 212, 176, 0.7);
+}
+
+/* Labels - Gleiche Farbe wie Kategorien in der Mitte */
+html[data-theme="dim"] .package-label {
+    color: #e8d4b0; /* Wie "START & PROJEKT-SETUP" */
+}
+
+/* Values - Weißer Text */
+html[data-theme="dim"] .package-value {
+    color: #ffffff; /* Komplett weiß */
+}
+
+/* "Paket wählen" Button */
+html[data-theme="dim"] .btn-configure-underline {
+    color: #e8d4b0;
+}
+
+html[data-theme="dim"] .btn-configure-underline:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
 }
 
 /* ==========================================
