@@ -240,33 +240,64 @@ html[data-theme="dim"] .form-message.error {
     color: #fca5a5;
 }
 
-/* Responsive */
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
 @media (max-width: 640px) {
+    /* Popup nimmt fast den ganzen Screen ein, 
+       aber mit Scroll damit nichts abgeschnitten wird */
     .contact-popup {
-        padding: 32px 24px;
+        padding: 24px 18px;
+        width: 95%;
+        max-height: 85vh;
+        border-radius: 12px;
     }
-    
-    .form-row {
-        grid-template-columns: 1fr;
+
+    .contact-header {
+        margin-bottom: 20px;
     }
-    
+
     .contact-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+    }
+
+    .contact-header p {
+        font-size: 0.85rem;
+    }
+
+    .contact-form {
+        gap: 14px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr; /* untereinander auf Mobile */
+    }
+
+    .form-group label {
+        font-size: 0.82rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 0.88rem;
+    }
+
+    .form-group textarea {
+        min-height: 90px; /* kürzer auf Mobile */
+    }
+
+    .form-submit {
+        padding: 13px 20px;
+        font-size: 0.92rem;
+    }
+
+    .contact-close {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+        top: 12px;
+        right: 12px;
     }
 }
-
-/* ==========================================
-   FARBPALETTE
-   ========================================== 
-   
-   🎨 PRIMARY COLORS:
-   Bronze/Gold:     #B08D57 (Buttons, Akzente, Links)
-   Deep Blue:       #2C3E50 (Text, Rahmen)
-   Cream:           #faf8f5 (Light Mode Background)
-   Dark Blue:       #2C3E50 (Dark Mode Background)
-   
-   🎯 HOVER STATES:
-   Bronze Hover:    #8a6d3f (Dunkleres Bronze)
-   Light Bronze:    #d4b07a (Helleres Bronze für Dark Mode)
-   
-   ========================================== */ 
