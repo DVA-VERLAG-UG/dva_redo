@@ -435,8 +435,12 @@ input[disabled],
    
    ========================================== 
 
-   * {
+* {
   outline: 1px solid red;
+}
+
+*:has(> *) {
+  outline: 1px solid blue;
 }
 
 */

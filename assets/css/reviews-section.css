@@ -14,7 +14,6 @@
   margin: 0 auto;
 }
 
-/* Section Header - Left Aligned */
 .reviews-header {
   text-align: left;
   margin-bottom: 60px;
@@ -38,14 +37,9 @@
   margin-bottom: 12px;
 }
 
-html[data-theme="dim"] .reviews-kicker {
-  color: #B08D57;
-}
+html[data-theme="dim"] .reviews-kicker { color: #B08D57; }
 
-/* Hide counter for cleaner look */
-.reviews-counter {
-  display: none;
-}
+.reviews-counter { display: none; }
 
 .reviews-title {
   font-family: 'Playfair Display', 'Georgia', serif;
@@ -57,9 +51,7 @@ html[data-theme="dim"] .reviews-kicker {
   line-height: 1.1;
 }
 
-html[data-theme="dim"] .reviews-title {
-  color: #B08D57;
-}
+html[data-theme="dim"] .reviews-title { color: #B08D57; }
 
 .reviews-subtitle {
   font-family: 'Georgia', serif;
@@ -70,15 +62,9 @@ html[data-theme="dim"] .reviews-title {
   margin: 0;
 }
 
-html[data-theme="dim"] .reviews-subtitle {
-  color: rgba(245, 242, 237, 0.7);
-}
+html[data-theme="dim"] .reviews-subtitle { color: rgba(245, 242, 237, 0.7); }
+.reviews-description { display: none; }
 
-.reviews-description {
-  display: none;
-}
-
-/* Cards Wrapper - Horizontal Scroll Container */
 .reviews-stack-wrapper {
   position: relative;
   max-width: 100%;
@@ -87,7 +73,6 @@ html[data-theme="dim"] .reviews-subtitle {
   overflow: hidden;
 }
 
-/* Cards Track - Horizontal Scroller */
 .reviews-stack {
   display: flex;
   gap: 30px;
@@ -95,35 +80,28 @@ html[data-theme="dim"] .reviews-subtitle {
   overflow-y: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   padding: 20px 0;
   min-height: 350px;
 }
 
-/* Hide scrollbar Webkit */
-.reviews-stack::-webkit-scrollbar {
-  display: none;
-}
+.reviews-stack::-webkit-scrollbar { display: none; }
 
-/* Individual Review Cards - Bronze Theme */
 .review-card {
-  flex: 0 0 calc(50% - 15px); /* 2 cards visible */
+  flex: 0 0 calc(50% - 15px);
   min-width: calc(50% - 15px);
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  
   background: rgba(176, 141, 87, 0.05);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(176, 141, 87, 0.15);
   border-radius: 20px;
   padding: 36px;
-  
   box-shadow: 
     0 8px 32px rgba(176, 141, 87, 0.12),
     inset 0 1px 0 rgba(176, 141, 87, 0.1);
-  
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: block;
@@ -138,17 +116,8 @@ html[data-theme="dim"] .review-card {
     inset 0 1px 0 rgba(176, 141, 87, 0.12);
 }
 
-/* All cards are always visible in the scroll track */
-#reviewCard1,
-#reviewCard2,
-#reviewCard3,
-#reviewCard4,
-#reviewCard5,
-#reviewCard6,
-#reviewCard7,
-#reviewCard8,
-#reviewCard9,
-#reviewCard10 {
+#reviewCard1, #reviewCard2, #reviewCard3, #reviewCard4, #reviewCard5,
+#reviewCard6, #reviewCard7, #reviewCard8, #reviewCard9, #reviewCard10 {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
@@ -175,7 +144,6 @@ html[data-theme="dim"] .review-card:hover {
     inset 0 1px 0 rgba(176, 141, 87, 0.18) !important;
 }
 
-/* Card Content */
 .review-top {
   display: flex;
   align-items: center;
@@ -215,20 +183,15 @@ html[data-theme="dim"] .review-card:hover {
   margin-bottom: 2px;
 }
 
-html[data-theme="dim"] .review-author-info h3 {
-  color: #B08D57;
-}
+html[data-theme="dim"] .review-author-info h3 { color: #B08D57; }
 
 .review-book-title {
   font-family: 'Georgia', serif;
   font-size: 0.8rem;
   color: rgba(44, 62, 80, 0.6);
-  font-style: normal;
 }
 
-html[data-theme="dim"] .review-book-title {
-  color: rgba(176, 141, 87, 0.7);
-}
+html[data-theme="dim"] .review-book-title { color: rgba(176, 141, 87, 0.7); }
 
 .review-stars {
   display: flex;
@@ -250,9 +213,7 @@ html[data-theme="dim"] .review-book-title {
   overflow: hidden;
 }
 
-html[data-theme="dim"] .review-text {
-  color: rgba(245, 242, 237, 0.8);
-}
+html[data-theme="dim"] .review-text { color: rgba(245, 242, 237, 0.8); }
 
 .review-meta {
   display: flex;
@@ -296,7 +257,7 @@ html[data-theme="dim"] .review-badge {
   background: currentColor;
 }
 
-/* Navigation with Progress Bar */
+/* Navigation */
 .reviews-nav {
   display: flex;
   justify-content: space-between;
@@ -305,7 +266,6 @@ html[data-theme="dim"] .review-badge {
   gap: 30px;
 }
 
-/* Dot Indicator - Below Cards */
 .reviews-dots {
   display: flex;
   gap: 8px;
@@ -335,13 +295,8 @@ html[data-theme="dim"] .review-badge {
   box-shadow: 0 0 10px rgba(176, 141, 87, 0.5);
 }
 
-html[data-theme="dim"] .reviews-dot {
-  background: rgba(176, 141, 87, 0.25);
-}
-
-html[data-theme="dim"] .reviews-dot:hover {
-  background: rgba(176, 141, 87, 0.45);
-}
+html[data-theme="dim"] .reviews-dot { background: rgba(176, 141, 87, 0.25); }
+html[data-theme="dim"] .reviews-dot:hover { background: rgba(176, 141, 87, 0.45); }
 
 .reviews-nav-btn {
   width: 48px;
@@ -376,7 +331,6 @@ html[data-theme="dim"] .reviews-nav-btn {
   cursor: not-allowed;
 }
 
-/* Progress Bar - Bronze */
 .reviews-progress {
   flex: 1;
   display: flex;
@@ -394,9 +348,7 @@ html[data-theme="dim"] .reviews-nav-btn {
   position: relative;
 }
 
-html[data-theme="dim"] .reviews-progress-bar {
-  background: rgba(176, 141, 87, 0.25);
-}
+html[data-theme="dim"] .reviews-progress-bar { background: rgba(176, 141, 87, 0.25); }
 
 .reviews-progress-fill {
   height: 100%;
@@ -417,9 +369,7 @@ html[data-theme="dim"] .reviews-progress-bar {
   text-align: right;
 }
 
-html[data-theme="dim"] .reviews-progress-text {
-  color: rgba(176, 141, 87, 0.8);
-}
+html[data-theme="dim"] .reviews-progress-text { color: rgba(176, 141, 87, 0.8); }
 
 /* ==========================================
    RESPONSIVE
@@ -434,25 +384,42 @@ html[data-theme="dim"] .reviews-progress-text {
 @media (max-width: 768px) {
   .reviews-section {
     padding: 80px 20px;
+    overflow: hidden; /* ← FIX */
   }
 
-  .reviews-title {
-    font-size: 2.2rem;
+  .reviews-stack-wrapper {
+    overflow: hidden; /* ← FIX */
   }
 
+  /* Cards: volle Breite, kein Overflow */
   .review-card {
+    flex: 0 0 calc(100vw - 40px); /* ← FIX: viewport width minus padding */
+    min-width: calc(100vw - 40px);
     padding: 28px;
   }
 
+  /* ── NAV FIX: progress bar oben, buttons nebeneinander unten ── */
   .reviews-nav {
-    flex-direction: column;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 32px;
   }
 
+  /* Progress bar: volle Breite, ganz oben */
   .reviews-progress {
+    order: 1;
+    flex: 0 0 100%;
     width: 100%;
-    order: -1;
     margin-left: 0;
+  }
+
+  /* Beide Buttons: nebeneinander, gleich groß */
+  .reviews-nav-btn {
+    order: 2;
+    flex: 1;
+    width: auto;
+    height: 48px;
+    border-radius: 14px;
   }
 }
 
@@ -465,26 +432,13 @@ html[data-theme="dim"] .reviews-progress-text {
     font-size: 0.9rem;
     -webkit-line-clamp: 5;
   }
-  
+
   .review-top {
     flex-wrap: wrap;
   }
-  
+
   .review-stars {
     width: 100%;
     margin-top: 8px;
   }
 }
-
-/* ==========================================
-   FARBPALETTE
-   ========================================== 
-   
-   🎨 COLORS:
-   Cards:           rgba(176, 141, 87, 0.05-0.12)
-   Borders:         rgba(176, 141, 87, 0.15-0.2)
-   Avatar:          #B08D57 → #d4b07a Gradient
-   Stars:           #B08D57
-   Progress:        #B08D57 → #d4b07a
-   
-   ========================================== */
