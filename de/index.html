@@ -406,14 +406,36 @@
             </div>
         </section>
         
-        <!-- News/Updates Section - Updated CTAs -->
+  <!-- ============================================================
+     NEWS SECTION FIX
+     
+     ÄNDERUNGEN:
+     1. Jede .news-card ist jetzt in einem .news-card-wrapper div
+        → Erzeugt den nötigen Scroll-Raum für das sticky-Stacking
+     2. Die .news-card liegt als direktes Kind des Wrappers
+        → CSS .news-card-wrapper:nth-child(n) .news-card greift jetzt korrekt
+     
+     NUR diesen <section>-Block in deiner index.html ersetzen.
+     ============================================================ -->
+
+<!-- ============================================================
+     NEWS SECTION - KARTEN VERSCHWINDEN HINTER ÜBERSCHRIFT
+     
+     STRUKTUR-ÄNDERUNG:
+     - .news-header bekommt z-index: 100 → liegt ÜBER den Karten
+     - .news-cards-clip-area clips die Karten von oben (overflow: hidden
+       würde sticky brechen, daher nutzen wir clip-path via JS-gestütztem
+       padding-top Trick NICHT – stattdessen: Header hat soliden BG
+       und liegt einfach mit höherem z-index über den Karten.
+       Die Karten haben z-index 1–4, scrollen unter den Header.
+     ============================================================ -->
+
 <section class="news-section">
     <div class="news-container"> 
         
-        <!-- Header with Clickable Title -->
+        <!-- Header – sticky, z-index ÜBER den Karten -->
         <div class="news-header">
             
-            <!-- Clickable Title with Hover Effect -->
             <h2 class="news-title" onclick="window.location.href='blog/blog-index.html'">
                 Neuigkeiten von DVAYD.
             </h2>
@@ -422,7 +444,6 @@
                 Kurze Updates, neue Artikel und wichtige Hinweise – kompakt auf einer Karte.
             </p>
             
-            <!-- Updated CTAs - Underlined Style -->
             <div class="news-cta-buttons">
                 <a href="blog/blog-index.html" class="news-cta-btn news-cta-primary">
                     Alle Updates ansehen
@@ -437,66 +458,77 @@
                     </svg>
                 </a>
             </div>
+
+            <!-- ✅ NEU: Schlitz-Linie am unteren Rand des Headers -->
+            <div class="news-header-slot"></div>
         </div>
         
-        <!-- News Grid -->
+        <!-- News Grid – Karten starten UNTERHALB des Headers -->
         <div class="news-grid">
             
             <!-- Post 1 -->
-            <a href="#" class="news-card" id="lp1Link">
-                <div class="news-card-image" id="lp1Img" role="img"></div>
-                <div class="news-card-content">
-                    <div class="news-card-meta">
-                        <span class="news-card-date" id="lp1Date">2026-01-20</span>
-                        <span class="news-card-tag" id="lp1Tag">Update</span>
+            <div class="news-card-wrapper">
+                <a href="#" class="news-card" id="lp1Link">
+                    <div class="news-card-image" id="lp1Img" role="img"></div>
+                    <div class="news-card-content">
+                        <div class="news-card-meta">
+                            <span class="news-card-date" id="lp1Date">2026-01-20</span>
+                            <span class="news-card-tag" id="lp1Tag">Update</span>
+                        </div>
+                        <h3 class="news-card-title" id="lp1Title">Wird geladen...</h3>
+                        <p class="news-card-text" id="lp1Text">Bitte warten...</p>
+                        <span class="news-card-cta" id="lp1Cta">View Case →</span>
                     </div>
-                    <h3 class="news-card-title" id="lp1Title">Wird geladen...</h3>
-                    <p class="news-card-text" id="lp1Text">Bitte warten...</p>
-                    <span class="news-card-cta" id="lp1Cta">View Case →</span>
-                </div>
-            </a>
+                </a>
+            </div>
             
             <!-- Post 2 -->
-            <a href="#" class="news-card" id="lp2Link">
-                <div class="news-card-image" id="lp2Img" role="img"></div>
-                <div class="news-card-content">
-                    <div class="news-card-meta">
-                        <span class="news-card-date" id="lp2Date">2026-01-18</span>
-                        <span class="news-card-tag" id="lp2Tag">Update</span>
+            <div class="news-card-wrapper">
+                <a href="#" class="news-card" id="lp2Link">
+                    <div class="news-card-image" id="lp2Img" role="img"></div>
+                    <div class="news-card-content">
+                        <div class="news-card-meta">
+                            <span class="news-card-date" id="lp2Date">2026-01-18</span>
+                            <span class="news-card-tag" id="lp2Tag">Update</span>
+                        </div>
+                        <h3 class="news-card-title" id="lp2Title">Wird geladen...</h3>
+                        <p class="news-card-text" id="lp2Text">Bitte warten...</p>
+                        <span class="news-card-cta" id="lp2Cta">View Case →</span>
                     </div>
-                    <h3 class="news-card-title" id="lp2Title">Wird geladen...</h3>
-                    <p class="news-card-text" id="lp2Text">Bitte warten...</p>
-                    <span class="news-card-cta" id="lp2Cta">View Case →</span>
-                </div>
-            </a>
+                </a>
+            </div>
             
             <!-- Post 3 -->
-            <a href="#" class="news-card" id="lp3Link">
-                <div class="news-card-image" id="lp3Img" role="img"></div>
-                <div class="news-card-content">
-                    <div class="news-card-meta">
-                        <span class="news-card-date" id="lp3Date">2026-01-15</span>
-                        <span class="news-card-tag" id="lp3Tag">Update</span>
+            <div class="news-card-wrapper">
+                <a href="#" class="news-card" id="lp3Link">
+                    <div class="news-card-image" id="lp3Img" role="img"></div>
+                    <div class="news-card-content">
+                        <div class="news-card-meta">
+                            <span class="news-card-date" id="lp3Date">2026-01-15</span>
+                            <span class="news-card-tag" id="lp3Tag">Update</span>
+                        </div>
+                        <h3 class="news-card-title" id="lp3Title">Wird geladen...</h3>
+                        <p class="news-card-text" id="lp3Text">Bitte warten...</p>
+                        <span class="news-card-cta" id="lp3Cta">View Case →</span>
                     </div>
-                    <h3 class="news-card-title" id="lp3Title">Wird geladen...</h3>
-                    <p class="news-card-text" id="lp3Text">Bitte warten...</p>
-                    <span class="news-card-cta" id="lp3Cta">View Case →</span>
-                </div>
-            </a>
-
-             <!-- Post 4 -->
-            <a href="#" class="news-card" id="lp4Link">
-                <div class="news-card-image" id="lp4Img" role="img"></div>
-                <div class="news-card-content">
-                    <div class="news-card-meta">
-                        <span class="news-card-date" id="lp4Date">2026-01-15</span>
-                        <span class="news-card-tag" id="lp4Tag">Update</span>
+                </a>
+            </div>
+            
+            <!-- Post 4 -->
+            <div class="news-card-wrapper">
+                <a href="#" class="news-card" id="lp4Link">
+                    <div class="news-card-image" id="lp4Img" role="img"></div>
+                    <div class="news-card-content">
+                        <div class="news-card-meta">
+                            <span class="news-card-date" id="lp4Date">2026-01-15</span>
+                            <span class="news-card-tag" id="lp4Tag">Update</span>
+                        </div>
+                        <h3 class="news-card-title" id="lp4Title">Wird geladen...</h3>
+                        <p class="news-card-text" id="lp4Text">Bitte warten...</p>
+                        <span class="news-card-cta" id="lp4Cta">View Case →</span>
                     </div>
-                    <h3 class="news-card-title" id="lp4Title">Wird geladen...</h3>
-                    <p class="news-card-text" id="lp4Text">Bitte warten...</p>
-                    <span class="news-card-cta" id="lp4Cta">View Case →</span>
-                </div>
-            </a>
+                </a>
+            </div>
             
         </div>
         
