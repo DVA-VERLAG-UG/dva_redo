@@ -78,7 +78,6 @@
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
 }
 
-/* Visible state when Panel 3 is in view */
 .scroll-panel:nth-child(3).panel-visible .panel-title,
 .scroll-panel:nth-child(3).panel-visible .panel-description {
   opacity: 1;
@@ -94,7 +93,6 @@
    PANEL CONTENT
    ========================================== */
 
-/* Image Container */
 .panel-image {
   flex: 1;
   height: 100%;
@@ -120,7 +118,6 @@
   transform: scale(1.05);
 }
 
-/* Text Container - Overlaps image */
 .panel-text {
   flex: 1;
   display: flex;
@@ -132,30 +129,25 @@
   will-change: transform;
 }
 
-/* Text left - overlaps image on right */
 .text-left .panel-text {
   margin-right: -120px;
   padding-right: 120px;
 }
 
-/* Text right - overlaps image on left */
 .text-right .panel-text {
   margin-left: -120px;
   padding-left: 120px;
 }
 
-/* Parallax effect on text - moves slower */
 .scroll-panel[data-parallax] .panel-text {
   transform: translateX(0);
   transition: transform 0.1s linear;
 }
 
-/* Large Panel Text - More compact */
 .scroll-panel-large .panel-text {
   gap: 20px;
 }
 
-/* Regular Title - Bronze Theme */
 .panel-title {
   font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 4rem;
@@ -173,7 +165,6 @@
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover - Farbe ändert sich zu Bronze */
 .panel-title:hover {
   background: linear-gradient(135deg, #B08D57, #d4b07a);
   -webkit-background-clip: text;
@@ -199,7 +190,6 @@ html[data-theme="dim"] .panel-title:hover {
   text-shadow: 0 8px 24px rgba(176, 141, 87, 0.6);
 }
 
-/* Description */
 .panel-description {
   font-family: 'Georgia', serif;
   font-size: 1.4rem;
@@ -214,7 +204,6 @@ html[data-theme="dim"] .panel-description {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Glass Info Box - Bronze Theme */
 .panel-info {
   padding: 28px;
   background: rgba(176, 141, 87, 0.08);
@@ -262,7 +251,6 @@ html[data-theme="dim"] .panel-info-text {
   color: rgba(245, 242, 237, 0.75);
 }
 
-/* CTA Button in Panel - Bronze Style */
 .panel-buttons {
   display: flex;
   justify-content: center;
@@ -316,7 +304,6 @@ html[data-theme="dim"] .panel-btn:hover {
    RESPONSIVE
    ========================================== */
 
-/* Tablet */
 @media (max-width: 1024px) {
   .scroll-panel {
     width: 85vw;
@@ -332,59 +319,120 @@ html[data-theme="dim"] .panel-btn:hover {
   }
 }
 
-/* Mobile - Switch to Vertical Stacking */
+/* ==========================================
+   MOBILE - Vertical stacking + parallax overlay
+   ⚠️ DESKTOP UNTOUCHED above this breakpoint
+   ========================================== */
 @media (max-width: 768px) {
+  /* Wrapper: no more fixed height, normal flow */
   .horizontal-scroll-wrapper {
     height: auto;
+    overflow: visible;
   }
 
   .horizontal-scroll-container {
     position: relative;
     height: auto;
+    width: 100%;          /* ← FIX: kein 100vw mehr, verhindert overflow */
     overflow: visible;
   }
 
   .horizontal-scroll-track {
     flex-direction: column;
-    gap: 60px;
+    gap: 48px;
     padding: 60px 20px;
-    transform: none !important;
+    transform: none !important; /* disable JS transform on mobile */
+    width: 100%;
   }
 
+  /* Each panel: full width, image + text stacked */
   .scroll-panel {
     width: 100%;
     height: auto;
     flex-direction: column !important;
-    gap: 32px;
+    gap: 0;
+    position: relative;
+    border-radius: 20px;
+    overflow: visible; /* allow text card to overlap */
   }
 
   .scroll-panel.text-right {
     flex-direction: column !important;
   }
 
+  /* Image always on top visually */
   .panel-image {
     width: 100%;
-    height: 400px;
+    height: 340px;
+    border-radius: 20px;
+    flex: none;
+    order: 1; /* image first */
   }
 
+  /* Text card slides under/over image from bottom */
   .panel-text {
-    width: 100%;
+    order: 2; /* text second */
+    width: calc(100% - 32px);
+    flex: none;
+    margin-top: -60px;  /* overlap bottom of image */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 24px 20px;
+    gap: 14px;
+    border-radius: 16px;
+    position: relative;
+    z-index: 2;
+
+    background: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    border: 1px solid rgba(176, 141, 87, 0.2);
+    box-shadow:
+      0 12px 40px rgba(44, 62, 80, 0.12),
+      inset 0 1px 0 rgba(176, 141, 87, 0.1);
+
+    will-change: transform, opacity;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .panel-title-large {
-    font-size: 4rem;
+  html[data-theme="dim"] .panel-text {
+    background: rgba(36, 52, 66, 0.95);
+    border-color: rgba(176, 141, 87, 0.25);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(176, 141, 87, 0.12);
+  }
+
+  /* Visible state triggered by JS IntersectionObserver */
+  .scroll-panel.mobile-visible .panel-text {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Reset ALL desktop overlapping margins */
+  .text-left .panel-text,
+  .text-right .panel-text {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 20px;
+    padding-left: 20px;
   }
 
   .panel-title {
-    font-size: 2rem;
+    font-size: 1.9rem;
   }
 
   .panel-description {
     font-size: 1rem;
+    line-height: 1.65;
   }
 
   .panel-info {
-    padding: 24px;
+    padding: 20px;
+    margin-top: 8px;
   }
 
   .panel-buttons {
@@ -392,22 +440,59 @@ html[data-theme="dim"] .panel-btn:hover {
   }
 
   .panel-btn {
-    width: 100%;
+    font-size: 1.1rem;
     justify-content: center;
+  }
+
+  /* Panel 3 text-only: no image, no overlap, always visible */
+  .scroll-panel-text-only {
+    overflow: visible;
+    border-radius: 0;
+    gap: 0;
+  }
+
+  .scroll-panel-text-only .panel-image {
+    display: none; /* no image in text-only panel */
+  }
+
+  .scroll-panel-text-only .panel-text,
+  .scroll-panel-text-only .panel-text-full {
+    order: 1;
+    width: 100%;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 20px 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  html[data-theme="dim"] .scroll-panel-text-only .panel-text,
+  html[data-theme="dim"] .scroll-panel-text-only .panel-text-full {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 }
 
 @media (max-width: 480px) {
-  .panel-title-large {
-    font-size: 3rem;
-  }
-
   .panel-title {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
 
   .panel-image {
-    height: 300px;
+    height: 280px;
+  }
+
+  .panel-text {
+    margin-top: -80px;
+    padding: 22px 18px;
   }
 }
 

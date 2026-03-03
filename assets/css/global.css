@@ -433,4 +433,10 @@ input[disabled],
    - Alle Farben exakt nach Bild-Palette
    - CURSOR FIX: Alle Links und Buttons haben cursor: pointer !important
    
-   ========================================== */
+   ========================================== 
+
+   * {
+  outline: 1px solid red;
+}
+
+*/

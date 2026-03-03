@@ -17,7 +17,7 @@
         // Main horizontal scroll
         const maxScroll = track.scrollWidth - window.innerWidth;
         const scrollAmount = clampedProgress * maxScroll;
-        
+         
         // Apply main scroll
         track.style.transform = `translateX(-${scrollAmount}px)`;
         
