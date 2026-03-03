@@ -252,29 +252,20 @@ body {
 
 @media (max-width: 768px) {
   .dv-footer {
-    /* Sanfter Fade auch auf Mobile */
     mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(0, 0, 0, 0.08) 10%,
-      rgba(0, 0, 0, 0.2) 18%,
-      rgba(0, 0, 0, 0.35) 28%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(0, 0, 0, 0.75) 55%,
-      rgba(0, 0, 0, 0.9) 65%,
-      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 0.5) 5%,
+      rgba(0, 0, 0, 0.85) 10%,
+      rgba(0, 0, 0, 1) 15%,
       rgba(0, 0, 0, 1) 100%
     );
     -webkit-mask-image: linear-gradient(
       to bottom,
       transparent 0%,
-      rgba(0, 0, 0, 0.08) 10%,
-      rgba(0, 0, 0, 0.2) 18%,
-      rgba(0, 0, 0, 0.35) 28%,
-      rgba(0, 0, 0, 0.55) 40%,
-      rgba(0, 0, 0, 0.75) 55%,
-      rgba(0, 0, 0, 0.9) 65%,
-      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 0.5) 5%,
+      rgba(0, 0, 0, 0.85) 10%,
+      rgba(0, 0, 0, 1) 15%,
       rgba(0, 0, 0, 1) 100%
     );
   }
