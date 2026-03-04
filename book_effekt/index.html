@@ -24,15 +24,12 @@
    body{
       display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
       background: transparent !important;
-      /* Gradients entfernt für Popup-Nutzung */
     }
 
-    /* ══════════════════ BOOK WRAPPER (spine effect) ══════════════════ */
     .book-wrap{
       position:relative;
       filter: drop-shadow(0 32px 60px rgba(44,36,22,0.38)) drop-shadow(0 8px 16px rgba(44,36,22,0.2));
     }
-    /* Left page shadow / depth */
     .book-wrap::before{
       content:'';
       position:absolute;
@@ -43,7 +40,6 @@
       z-index:10;
       border-radius:2px 0 0 2px;
     }
-    /* Right page shadow */
     .book-wrap::after{
       content:'';
       position:absolute;
@@ -53,7 +49,6 @@
       pointer-events:none;
       z-index:10;
     }
-    /* Spine glow in the middle */
     .spine-line{
       position:absolute;
       top:0; bottom:0;
@@ -70,11 +65,9 @@
       z-index:20;
     }
 
-    /* ══════════════════ FLIPBOOK ══════════════════ */
     #flipbook{width:1040px;height:600px}
     #flipbook .page{background:var(--page);overflow:hidden}
 
-    /* page texture */
     #flipbook .page::before{
       content:'';
       position:absolute;inset:0;
@@ -85,7 +78,6 @@
     }
     #flipbook .page>*{position:relative;z-index:1}
 
-    /* ══════════════════ HARD COVERS ══════════════════ */
     .cover-l{
       height:100%;
       display:flex;flex-direction:column;justify-content:center;align-items:center;
@@ -101,35 +93,13 @@
         rgba(255,255,255,0.018) 28px,rgba(255,255,255,0.018) 29px
       );
     }
-    .cover-l .c-ornament{
-      font-size:28px;opacity:0.35;margin-bottom:4px;color:#f5c97a;
-    }
-    .cover-l h1{
-      font-family:'Playfair Display',serif;font-size:28px;font-weight:700;
-      color:#fff;line-height:1.25;position:relative;
-    }
-    .cover-l .c-rule{
-      width:50px;height:1.5px;
-      background:linear-gradient(to right,transparent,rgba(245,201,122,0.7),transparent);
-      margin:4px auto;
-    }
-    .cover-l small{
-      font-family:'Lato',sans-serif;font-size:12px;font-style:italic;
-      color:rgba(255,255,255,0.6);letter-spacing:0.06em;position:relative;
-    }
-    .cover-l .c-steps{
-      margin-top:20px;display:flex;flex-direction:column;gap:6px;
-      width:100%;max-width:200px;position:relative;
-    }
-    .c-steps span{
-      font-family:'Lato',sans-serif;font-size:11px;
-      color:rgba(255,255,255,0.55);
-      padding:5px 10px;
-      border:1px solid rgba(255,255,255,0.15);
-      border-radius:20px;
-    }
+    .cover-l .c-ornament{font-size:28px;opacity:0.35;margin-bottom:4px;color:#f5c97a;}
+    .cover-l h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;line-height:1.25;position:relative;}
+    .cover-l .c-rule{width:50px;height:1.5px;background:linear-gradient(to right,transparent,rgba(245,201,122,0.7),transparent);margin:4px auto;}
+    .cover-l small{font-family:'Lato',sans-serif;font-size:12px;font-style:italic;color:rgba(255,255,255,0.6);letter-spacing:0.06em;position:relative;}
+    .cover-l .c-steps{margin-top:20px;display:flex;flex-direction:column;gap:6px;width:100%;max-width:200px;position:relative;}
+    .c-steps span{font-family:'Lato',sans-serif;font-size:11px;color:rgba(255,255,255,0.55);padding:5px 10px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;}
 
-    /* right side of cover spread */
     .cover-r{
       height:100%;
       display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
@@ -137,517 +107,120 @@
       padding:52px 46px;
       position:relative;
     }
-    .cover-r::after{
-      content:'';position:absolute;bottom:0;right:0;
-      width:180px;height:180px;
-      background:radial-gradient(circle,rgba(184,150,110,0.12) 0%,transparent 70%);
-    }
-    .cover-r .cr-label{
-      font-family:'Lato',sans-serif;font-size:10px;text-transform:uppercase;
-      letter-spacing:0.14em;color:var(--gold);margin-bottom:16px;
-    }
-    .cover-r h2{
-      font-family:'Playfair Display',serif;font-size:26px;font-weight:700;
-      color:var(--text);line-height:1.3;margin-bottom:18px;
-    }
-    .cover-r .cr-line{
-      width:44px;height:2px;
-      background:linear-gradient(to right,var(--gold),transparent);
-      margin-bottom:18px;opacity:0.6;
-    }
-    .cover-r p{
-      font-family:'Lato',sans-serif;font-size:13px;
-      color:var(--text-l);line-height:1.75;max-width:240px;
-    }
+    .cover-r::after{content:'';position:absolute;bottom:0;right:0;width:180px;height:180px;background:radial-gradient(circle,rgba(184,150,110,0.12) 0%,transparent 70%);}
+    .cover-r .cr-label{font-family:'Lato',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:16px;}
+    .cover-r h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:18px;}
+    .cover-r .cr-line{width:44px;height:2px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:18px;opacity:0.6;}
+    .cover-r p{font-family:'Lato',sans-serif;font-size:13px;color:var(--text-l);line-height:1.75;max-width:240px;}
 
-    /* ══════════════════ QUESTION PAGES ══════════════════ */
-    .q-page{
-      display:flex;flex-direction:column;height:100%;overflow:hidden;
-      background:var(--page);
-    }
-    /* alternating subtle tint for right pages */
+    .q-page{display:flex;flex-direction:column;height:100%;overflow:hidden;background:var(--page);}
     .q-page.right-tint{background:var(--page2);}
 
-    .q-head{
-      padding:20px 26px 13px;
-      border-bottom:1px solid var(--border);
-      flex-shrink:0;
-      background:linear-gradient(180deg,rgba(245,240,232,0.9) 0%,transparent 100%);
-    }
-    .badge{
-      display:inline-block;
-      font-family:'Lato',sans-serif;font-size:9.5px;
-      text-transform:uppercase;letter-spacing:0.13em;
-      color:var(--gold-d);background:rgba(184,150,110,0.12);
-      padding:2.5px 9px;border-radius:12px;margin-bottom:7px;
-    }
-    .q-head h3{
-      font-family:'Playfair Display',serif;font-size:18px;font-weight:600;
-      color:var(--text);margin-bottom:1px;
-    }
-    .q-head .sub{
-      font-family:'Lato',sans-serif;font-size:10.5px;
-      color:var(--text-l);font-style:italic;
-    }
+    .q-head{padding:20px 26px 13px;border-bottom:1px solid var(--border);flex-shrink:0;background:linear-gradient(180deg,rgba(245,240,232,0.9) 0%,transparent 100%);}
+    .badge{display:inline-block;font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold-d);background:rgba(184,150,110,0.12);padding:2.5px 9px;border-radius:12px;margin-bottom:7px;}
+    .q-head h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:1px;}
+    .q-head .sub{font-family:'Lato',sans-serif;font-size:10.5px;color:var(--text-l);font-style:italic;}
 
-    .q-opts{
-      flex:1;overflow-y:auto;
-      padding:11px 18px 8px;
-      display:flex;flex-direction:column;gap:6px;
-    }
+    .q-opts{flex:1;overflow-y:auto;padding:11px 18px 8px;display:flex;flex-direction:column;gap:6px;}
     .q-opts::-webkit-scrollbar{width:3px}
     .q-opts::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-    /* ══════════════════ OPTION ITEM ══════════════════ */
     .opt-wrap{position:relative}
-
-    .opt{
-      display:flex;align-items:flex-start;gap:10px;
-      padding:9px 11px;
-      border:1.5px solid var(--border);border-radius:6px;
-      cursor:pointer;
-      transition:border-color .14s,background .14s,transform .1s;
-      background:rgba(255,255,255,0.55);
-      user-select:none;
-      position:relative;
-    }
+    .opt{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border:1.5px solid var(--border);border-radius:6px;cursor:pointer;transition:border-color .14s,background .14s,transform .1s;background:rgba(255,255,255,0.55);user-select:none;position:relative;}
     .opt:hover{border-color:var(--gold-l);background:rgba(255,255,255,0.85);transform:translateX(2px)}
     .opt.selected{border-color:var(--gold);background:var(--sel);}
-    .opt.selected::before{
-      content:'';position:absolute;left:0;top:10%;bottom:10%;
-      width:3px;border-radius:0 2px 2px 0;
-      background:var(--gold);
-    }
+    .opt.selected::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:3px;border-radius:0 2px 2px 0;background:var(--gold);}
 
-    .chk{
-      width:16px;height:16px;
-      border:2px solid #c8b89a;border-radius:3px;
-      flex-shrink:0;margin-top:1px;
-      display:flex;align-items:center;justify-content:center;
-      transition:background .14s,border-color .14s;background:white;
-    }
+    .chk{width:16px;height:16px;border:2px solid #c8b89a;border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:background .14s,border-color .14s;background:white;}
     .opt.selected .chk{background:var(--gold);border-color:var(--gold)}
     .chk svg{display:none}
     .opt.selected .chk svg{display:block}
 
-    .opt-text strong{
-      display:block;font-family:'Lato',sans-serif;font-size:12.5px;
-      font-weight:700;color:var(--text);margin-bottom:1px;
-    }
-    .opt-text span{
-      font-family:'Lato',sans-serif;font-size:10.5px;
-      color:var(--text-l);line-height:1.4;
-    }
+    .opt-text strong{display:block;font-family:'Lato',sans-serif;font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:1px;}
+    .opt-text span{font-family:'Lato',sans-serif;font-size:10.5px;color:var(--text-l);line-height:1.4;}
 
-    /* ── INFO ICON ── */
-/* ── INFO ICON ── */
-.info-icon{
-  margin-left:auto;flex-shrink:0;margin-top:1px;
-  width:16px;height:16px;border-radius:50%;
-  background:rgba(184,150,110,0.18);
-  border:1px solid rgba(184,150,110,0.4);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Lato',sans-serif;font-size:9px;font-weight:700;
-  color:var(--gold-d);
-  cursor:pointer; /* ✅ NEU: Zeigt Klickbarkeit */
-  transition:background .15s;
-  flex-shrink:0;
-}
+    .info-icon{margin-left:auto;flex-shrink:0;margin-top:1px;width:16px;height:16px;border-radius:50%;background:rgba(184,150,110,0.18);border:1px solid rgba(184,150,110,0.4);display:flex;align-items:center;justify-content:center;font-family:'Lato',sans-serif;font-size:9px;font-weight:700;color:var(--gold-d);cursor:pointer;transition:background .15s;flex-shrink:0;}
     .opt:hover .info-icon{background:rgba(184,150,110,0.35)}
 
- /* ── TOOLTIP (positioned outside, to the right) ── */
-/* ── TOOLTIP ── */
-.tooltip{
-  position:fixed;
-  z-index:9999;
-  width:220px;
-  background: linear-gradient(135deg, #faf7f2 0%, #f5f0e8 100%);
-  color: #2c2416;
-  font-family:'Lato',sans-serif;
-  font-size:11.5px;
-  line-height:1.6;
-  padding:12px 15px;
-  border-radius:10px;
-  border: 1.5px solid rgba(184, 150, 110, 0.4);
-  pointer-events:none;
-  opacity:0;
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
-              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 10px 30px rgba(138, 106, 72, 0.2), 
-              0 4px 12px rgba(138, 106, 72, 0.1);
-}
+    .tooltip{position:fixed;z-index:9999;width:220px;background:linear-gradient(135deg,#faf7f2 0%,#f5f0e8 100%);color:#2c2416;font-family:'Lato',sans-serif;font-size:11.5px;line-height:1.6;padding:12px 15px;border-radius:10px;border:1.5px solid rgba(184,150,110,0.4);pointer-events:none;opacity:0;transition:opacity 0.35s cubic-bezier(0.4,0,0.2,1),transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:0 10px 30px rgba(138,106,72,0.2),0 4px 12px rgba(138,106,72,0.1);}
 
-/* ✅ DESKTOP: Rechte/Linke Seite */
-@media (min-width: 769px) {
-  .tooltip.right-side{
-    transform: translateX(-10px) scale(0.95);
-  }
-  .tooltip.right-side.show{
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-  .tooltip.right-side::before{
-    content: '';
-    position: absolute;
-    top: 16px;
-    left: -8px;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid #faf7f2;
-    filter: drop-shadow(-1px 0 1px rgba(184, 150, 110, 0.2));
-  }
-
-  .tooltip.left-side{
-    transform: translateX(10px) scale(0.95);
-  }
-  .tooltip.left-side.show{
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-  .tooltip.left-side::before{
-    content: '';
-    position: absolute;
-    top: 16px;
-    right: -8px;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-left: 8px solid #faf7f2;
-    filter: drop-shadow(1px 0 1px rgba(184, 150, 110, 0.2));
-  }
-}
-
-/* ✅ MOBILE: Immer OBERHALB */
-@media (max-width: 768px) {
-  .tooltip {
-    width: calc(100vw - 40px);
-    max-width: 280px;
-  }
-  
-  .tooltip.show {
-    opacity: 1;
-  }
-  
-  .tooltip::before {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid #faf7f2;
-    filter: drop-shadow(0 1px 1px rgba(184, 150, 110, 0.2));
-  }
-  
-  /* Entferne die Seitenklassen auf Mobile */
-  .tooltip.right-side::before,
-  .tooltip.left-side::before {
-    display: none;
-  }
-}
-
-/* Rechte Seite (Standard) */
-.tooltip.right-side{
-  transform: translateX(-10px) scale(0.95);
-}
-.tooltip.right-side.show{
-  opacity: 1;
-  transform: translateX(0) scale(1);
-}
-.tooltip.right-side::before{
-  content: '';
-  position: absolute;
-  top: 16px;
-  left: -8px;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-right: 8px solid #faf7f2;
-  filter: drop-shadow(-1px 0 1px rgba(184, 150, 110, 0.2));
-}
-
-/* Linke Seite */
-.tooltip.left-side{
-  transform: translateX(10px) scale(0.95);
-}
-.tooltip.left-side.show{
-  opacity: 1;
-  transform: translateX(0) scale(1);
-}
-.tooltip.left-side::before{
-  content: '';
-  position: absolute;
-  top: 16px;
-  right: -8px;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  border-left: 8px solid #faf7f2;
-  filter: drop-shadow(1px 0 1px rgba(184, 150, 110, 0.2));
-}
-
-    /* ══════════════════ SPINE BETWEEN PAGES ══════════════════ */
-    .page-sep{
-      position:absolute;top:4%;bottom:4%;left:0;
-      width:1px;
-      background:linear-gradient(to bottom,transparent,var(--border) 20%,var(--border) 80%,transparent);
-      pointer-events:none;z-index:5;
+    @media (min-width:769px){
+      .tooltip.right-side{transform:translateX(-10px) scale(0.95);}
+      .tooltip.right-side.show{opacity:1;transform:translateX(0) scale(1);}
+      .tooltip.right-side::before{content:'';position:absolute;top:16px;left:-8px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-right:8px solid #faf7f2;filter:drop-shadow(-1px 0 1px rgba(184,150,110,0.2));}
+      .tooltip.left-side{transform:translateX(10px) scale(0.95);}
+      .tooltip.left-side.show{opacity:1;transform:translateX(0) scale(1);}
+      .tooltip.left-side::before{content:'';position:absolute;top:16px;right:-8px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:8px solid #faf7f2;filter:drop-shadow(1px 0 1px rgba(184,150,110,0.2));}
+    }
+    @media (max-width:768px){
+      .tooltip{width:calc(100vw - 40px);max-width:280px;}
+      .tooltip.show{opacity:1;}
+      .tooltip::before{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #faf7f2;filter:drop-shadow(0 1px 1px rgba(184,150,110,0.2));}
+      .tooltip.right-side::before,.tooltip.left-side::before{display:none;}
     }
 
-   /* ══════════════════ SUMMARY ══════════════════ */
-.sum-page{display:flex;flex-direction:column;height:100%;overflow:hidden}
+    .page-sep{position:absolute;top:4%;bottom:4%;left:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border) 20%,var(--border) 80%,transparent);pointer-events:none;z-index:5;}
 
-.sum-head{
-  padding:20px 26px 13px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
-}
+    .sum-page{display:flex;flex-direction:column;height:100%;overflow:hidden}
+    .sum-head{padding:20px 26px 13px;border-bottom:1px solid var(--border);flex-shrink:0;}
+    .sum-head h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);}
+    .sum-head .sub{font-family:'Lato',sans-serif;font-size:10.5px;color:var(--text-l);font-style:italic;}
 
-.sum-head h3{
-  font-family:'Playfair Display',serif;
-  font-size:18px;
-  font-weight:600;
-  color:var(--text);
-}
+    .sum-body{flex:1;overflow-y:auto;padding:16px 20px 8px;display:flex;flex-direction:column;gap:14px;}
+    .sum-body::-webkit-scrollbar{width:3px}
+    .sum-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-.sum-head .sub{
-  font-family:'Lato',sans-serif;
-  font-size:10.5px;
-  color:var(--text-l);
-  font-style:italic;
-}
+    .sum-item h5{font-family:'Lato',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-weight:700;padding-bottom:4px;border-bottom:1px solid rgba(184,150,110,0.2);}
+    .sum-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .sum-tag{font-family:'Lato',sans-serif;font-size:11px;background:rgba(255,255,255,0.7);border:1px solid var(--border);border-radius:4px;padding:4px 10px;color:var(--text);line-height:1.4;}
+    .sum-tag.empty{color:var(--text-l);font-style:italic;background:rgba(245,240,232,0.4);}
 
-.sum-body{
-  flex:1;
-  overflow-y:auto;
-  padding:16px 20px 8px; /* ✅ Mehr Padding */
-  display:flex;
-  flex-direction:column;
-  gap:14px; /* ✅ Mehr Abstand zwischen Kategorien */
-}
-
-.sum-body::-webkit-scrollbar{width:3px}
-.sum-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-
-.sum-item h5{
-  font-family:'Lato',sans-serif;
-  font-size:10px; /* ✅ Etwas größer */
-  text-transform:uppercase;
-  letter-spacing:0.1em; /* ✅ Mehr Spacing */
-  color:var(--gold);
-  margin-bottom:6px; /* ✅ Mehr Abstand */
-  font-weight:700; /* ✅ Fetter */ 
-  padding-bottom:4px; /* ✅ NEU */
-  border-bottom:1px solid rgba(184,150,110,0.2); /* ✅ NEU: Trennlinie */
-}
-
-.sum-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px; /* ✅ Mehr Abstand zwischen Tags */
-}
-
-.sum-tag{
-  font-family:'Lato',sans-serif;
-  font-size:11px; /* ✅ Größer */
-  background:rgba(255,255,255,0.7); /* ✅ Hellerer Hintergrund */
-  border:1px solid var(--border);
-  border-radius:4px; /* ✅ Weniger rund */
-  padding:4px 10px; /* ✅ Mehr Padding */
-  color:var(--text);
-  line-height:1.4; /* ✅ NEU: Bessere Lesbarkeit */
-}
-
-.sum-tag.empty{
-  color:var(--text-l);
-  font-style:italic;
-  background:rgba(245,240,232,0.4); /* ✅ Anderer Hintergrund */
-}
-    .btn-submit{
-      width:100%;padding:12px;margin-top:2px;
-      background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
-      color:white;border:none;border-radius:7px;
-      font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
-      letter-spacing:0.05em;cursor:pointer;
-      transition:opacity .18s,transform .12s;
-      box-shadow:0 4px 14px rgba(138,106,72,0.35);
-    }
+    .btn-submit{width:100%;padding:12px;margin-top:2px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);color:white;border:none;border-radius:7px;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.05em;cursor:pointer;transition:opacity .18s,transform .12s;box-shadow:0 4px 14px rgba(138,106,72,0.35);}
     .btn-submit:hover{opacity:.9;transform:translateY(-1px)}
 
+    .nav-bar{display:flex;align-items:center;gap:18px}
+    .nav-btn{padding:11px 28px;border-radius:6px;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:2px solid var(--gold);background:transparent;color:var(--gold);transition:all .25s ease;position:relative;overflow:hidden;}
+    .nav-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);transition:left .3s ease;z-index:-1;}
+    .nav-btn:hover{color:white;border-color:var(--gold-d);box-shadow:0 6px 20px rgba(184,150,110,0.4);}
+    .nav-btn:hover::before{left:0;}
+    .nav-btn:disabled{opacity:.3;pointer-events:none;border-color:rgba(184,150,110,0.2);color:rgba(122,106,86,0.4);}
 
-/* ══════════════════ NAV BAR ══════════════════ */
-.nav-bar{display:flex;align-items:center;gap:18px}
-.nav-btn{
-  padding:11px 28px;
-  border-radius:6px;
-  font-family:'Lato',sans-serif;
-  font-size:13px;
-  font-weight:600;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  cursor:pointer;
-  border:2px solid var(--gold);
-  background:transparent;
-  color:var(--gold);
-  transition:all .25s ease;
-  position:relative;
-  overflow:hidden;
-}
-.nav-btn::before{
-  content:'';
-  position:absolute;
-  top:0;left:-100%;
-  width:100%;height:100%;
-  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
-  transition:left .3s ease;
-  z-index:-1;
-}
-.nav-btn:hover{
-  color:white;
-  border-color:var(--gold-d);
-  box-shadow:0 6px 20px rgba(184,150,110,0.4);
-}
-.nav-btn:hover::before{
-  left:0;
-}
-.nav-btn.primary{
-  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
-  border-color:var(--gold-d);
-  color:white;
-  box-shadow:0 4px 16px rgba(138,106,72,0.35);
-}
-.nav-btn.primary::before{
-  background:linear-gradient(135deg,var(--gold-l) 0%,var(--gold) 100%);
-}
-.nav-btn.primary:hover{
-  box-shadow:0 8px 24px rgba(184,150,110,0.5);
-  transform:translateY(-1px);
-}
-.nav-btn:disabled{
-  opacity:.3;
-  pointer-events:none;
-  border-color:rgba(184,150,110,0.2);
-  color:rgba(122,106,86,0.4);
-}
-
-    /* ══════════════════ PAGE NUMBERS ══════════════════ */
-    .pnum{
-      position:absolute;bottom:8px;
-      font-family:'Lato',sans-serif;font-size:9px;
-      color:rgba(184,150,110,0.5);letter-spacing:0.08em;
-    }
+    .pnum{position:absolute;bottom:8px;font-family:'Lato',sans-serif;font-size:9px;color:rgba(184,150,110,0.5);letter-spacing:0.08em;}
     .pnum.left{left:14px}
     .pnum.right{right:14px}
 
-  /* ══════════════════ CONTACT OVERLAY ══════════════════ */
-  .overlay-bg{
-    position:fixed;inset:0;z-index:1000;
-    background:rgba(20,14,8,0.72);
-    backdrop-filter:blur(4px);
-    display:flex;align-items:center;justify-content:center;
-    opacity:0;pointer-events:none;
-    transition:opacity .25s;
-  }
-  .overlay-bg.open{opacity:1;pointer-events:all;}
+    .overlay-bg{position:fixed;inset:0;z-index:1000;background:rgba(20,14,8,0.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+    .overlay-bg.open{opacity:1;pointer-events:all;}
+    .contact-modal{width:540px;max-width:94vw;background:var(--page);border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(20,10,5,0.4);transform:translateY(18px) scale(0.97);transition:transform .25s;position:relative;}
+    .overlay-bg.open .contact-modal{transform:translateY(0) scale(1);}
+    .cm-header{background:linear-gradient(135deg,#a01e12 0%,#6e100a 100%);padding:26px 32px 20px;position:relative;}
+    .cm-header h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:3px;}
+    .cm-header p{font-family:'Lato',sans-serif;font-size:12px;color:rgba(255,255,255,0.65);}
+    .cm-close{position:absolute;top:16px;right:18px;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+    .cm-close:hover{background:rgba(255,255,255,0.28);}
+    .cm-body{padding:24px 32px 28px;display:flex;flex-direction:column;gap:14px;}
+    .cm-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .cm-field{display:flex;flex-direction:column;gap:5px;}
+    .cm-field label{font-family:'Lato',sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);font-weight:700;}
+    .cm-field label .opt-mark{color:var(--text-l);font-weight:400;text-transform:none;letter-spacing:0;font-size:10px;margin-left:3px;}
+    .cm-field input,.cm-field textarea{font-family:'Lato',sans-serif;font-size:13px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:6px;padding:9px 12px;transition:border-color .15s,background .15s;outline:none;resize:none;}
+    .cm-field input:focus,.cm-field textarea:focus{border-color:var(--gold);background:#fff;}
+    .cm-field input.err,.cm-field textarea.err{border-color:#c0392b;}
+    .cm-field .err-msg{font-family:'Lato',sans-serif;font-size:10px;color:#c0392b;display:none;}
+    .cm-field.has-err .err-msg{display:block;}
+    .cm-footer{padding:0 32px 24px;display:flex;align-items:center;gap:14px;}
+    .cm-submit{flex:1;padding:13px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);color:white;border:none;border-radius:7px;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:700;letter-spacing:.05em;cursor:pointer;transition:opacity .18s,transform .12s;box-shadow:0 4px 14px rgba(138,106,72,0.3);}
+    .cm-submit:hover{opacity:.9;transform:translateY(-1px);}
+    .cm-note{font-family:'Lato',sans-serif;font-size:10px;color:var(--text-l);line-height:1.5;max-width:140px;text-align:right;}
+    .contact-card{background:rgba(255,255,255,0.6);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-top:2px;}
+    .contact-card .cc-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--text);margin-bottom:4px;}
+    .contact-card .cc-row{font-family:'Lato',sans-serif;font-size:11.5px;color:var(--text-l);display:flex;gap:6px;align-items:center;margin-bottom:2px;}
+    .contact-card .cc-row span{color:var(--gold);font-size:11px;}
 
-  .contact-modal{
-    width:540px;max-width:94vw;
-    background:var(--page);
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 32px 80px rgba(20,10,5,0.4);
-    transform:translateY(18px) scale(0.97);
-    transition:transform .25s;
-    position:relative;
-  }
-  .overlay-bg.open .contact-modal{transform:translateY(0) scale(1);}
-
-  .cm-header{
-    background:linear-gradient(135deg,#a01e12 0%,#6e100a 100%);
-    padding:26px 32px 20px;
-    position:relative;
-  }
-  .cm-header h2{
-    font-family:'Playfair Display',serif;font-size:22px;
-    font-weight:700;color:#fff;margin-bottom:3px;
-  }
-  .cm-header p{
-    font-family:'Lato',sans-serif;font-size:12px;
-    color:rgba(255,255,255,0.65);
-  }
-  .cm-close{
-    position:absolute;top:16px;right:18px;
-    width:28px;height:28px;border-radius:50%;
-    background:rgba(255,255,255,0.15);border:none;
-    color:#fff;font-size:16px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:background .15s;
-  }
-  .cm-close:hover{background:rgba(255,255,255,0.28);}
-
-  .cm-body{padding:24px 32px 28px;display:flex;flex-direction:column;gap:14px;}
-
-  .cm-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-
-  .cm-field{display:flex;flex-direction:column;gap:5px;}
-  .cm-field label{
-    font-family:'Lato',sans-serif;font-size:10.5px;
-    text-transform:uppercase;letter-spacing:.1em;color:var(--gold-d);font-weight:700;
-  }
-  .cm-field label .opt-mark{
-    color:var(--text-l);font-weight:400;text-transform:none;letter-spacing:0;
-    font-size:10px;margin-left:3px;
-  }
-  .cm-field input,
-  .cm-field textarea{
-    font-family:'Lato',sans-serif;font-size:13px;color:var(--text);
-    background:rgba(255,255,255,0.7);
-    border:1.5px solid var(--border);border-radius:6px;
-    padding:9px 12px;
-    transition:border-color .15s,background .15s;
-    outline:none;resize:none;
-  }
-  .cm-field input:focus,
-  .cm-field textarea:focus{
-    border-color:var(--gold);background:#fff;
-  }
-  .cm-field input.err,
-  .cm-field textarea.err{border-color:#c0392b;}
-  .cm-field .err-msg{
-    font-family:'Lato',sans-serif;font-size:10px;color:#c0392b;display:none;
-  }
-  .cm-field.has-err .err-msg{display:block;}
-
-  .cm-footer{
-    padding:0 32px 24px;display:flex;align-items:center;gap:14px;
-  }
-  .cm-submit{
-    flex:1;padding:13px;
-    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);
-    color:white;border:none;border-radius:7px;
-    font-family:'Lato',sans-serif;font-size:13.5px;font-weight:700;
-    letter-spacing:.05em;cursor:pointer;
-    transition:opacity .18s,transform .12s;
-    box-shadow:0 4px 14px rgba(138,106,72,0.3);
-  }
-  .cm-submit:hover{opacity:.9;transform:translateY(-1px);}
-  .cm-note{
-    font-family:'Lato',sans-serif;font-size:10px;
-    color:var(--text-l);line-height:1.5;max-width:140px;text-align:right;
-  }
-
-  /* thanks-page contact card */
-  .contact-card{
-    background:rgba(255,255,255,0.6);
-    border:1px solid var(--border);border-radius:8px;
-    padding:12px 14px;margin-top:2px;
-  }
-  .contact-card .cc-name{
-    font-family:'Playfair Display',serif;font-size:15px;color:var(--text);margin-bottom:4px;
-  }
-  .contact-card .cc-row{
-    font-family:'Lato',sans-serif;font-size:11.5px;color:var(--text-l);
-    display:flex;gap:6px;align-items:center;margin-bottom:2px;
-  }
-  .contact-card .cc-row span{color:var(--gold);font-size:11px;}
+    /* ── NAV DOTS ── */
+    .dots-wrap{display:flex;gap:8px;align-items:center;}
+    .ndot{width:8px;height:8px;border-radius:50%;background:rgba(184,150,110,0.3);transition:all .2s;cursor:default;}
+    .ndot.active{background:var(--gold);transform:scale(1.2);}
   </style>
 </head>
 <body>
@@ -655,10 +228,9 @@
 <div class="book-wrap">
   <div class="spine-line"></div>
 
-  <!-- ════════════ FLIPBOOK ════════════ -->
   <div id="flipbook">
 
-<!-- ── SPREAD 1: COVER ── pages 1+2 -->
+    <!-- ── SPREAD 1: COVER ── pages 1+2 -->
     <div class="hard">
       <div class="cover-l" style="background:linear-gradient(135deg,#f5f0e8 0%,#e8dcc8 50%,#b8966e 100%) !important;">
         <div style="margin-bottom:24px;">
@@ -693,41 +265,11 @@
           <div class="sub">Klarheit, Plan, saubere Abwicklung</div>
         </div>
         <div class="q-opts" id="q1">
-          <div class="opt-wrap">
-            <div class="opt" data-q="1" data-val="EU-Profi-Check (Audit)" data-tip="Wir prüfen Marktfähigkeit & geben klare To-dos. Ergebnis: ehrlicher Fahrplan." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>EU-Profi-Check (Audit)</strong><span>Marktfähigkeit prüfen &amp; klare To-dos</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="1" data-val="Projekt-Roadmap (EU)" data-tip="Zeitplan mit Meilensteinen: Text → Design → Produktion → QA → Release." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Projekt-Roadmap (EU)</strong><span>Zeitplan: Text → Design → Produktion → Release</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="1" data-val="Projektmanagement / Begleitung" data-tip="Wir steuern Deadlines, Freigaben, Kommunikation – du hast einen klaren Ablauf." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Projektmanagement / Begleitung</strong><span>Deadlines, Freigaben, Kommunikation</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="1" data-val="Intake Türkei → EU (Route C)" data-tip="Check von Rechten/Quelldaten/Dateien + Umsetzbarkeit für EU." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Intake Türkei → EU (Route C)</strong><span>Check von Rechten/Quelldaten/Dateien</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="1" data-val="EU + TR Koordination (Route B)" data-tip="Ein Release-Plan für zwei Märkte – ohne Chaos." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>EU + TR Koordination (Route B)</strong><span>Abstimmung zwischen beiden Märkten</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="EU-Profi-Check (Audit)" data-tip="Wir prüfen Marktfähigkeit & geben klare To-dos. Ergebnis: ehrlicher Fahrplan." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>EU-Profi-Check (Audit)</strong><span>Marktfähigkeit prüfen &amp; klare To-dos</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Projekt-Roadmap (EU)" data-tip="Zeitplan mit Meilensteinen: Text → Design → Produktion → QA → Release." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Projekt-Roadmap (EU)</strong><span>Zeitplan: Text → Design → Produktion → Release</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Projektmanagement / Begleitung" data-tip="Wir steuern Deadlines, Freigaben, Kommunikation – du hast einen klaren Ablauf." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Projektmanagement / Begleitung</strong><span>Deadlines, Freigaben, Kommunikation</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Intake Türkei → EU (Route C)" data-tip="Check von Rechten/Quelldaten/Dateien + Umsetzbarkeit für EU." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Intake Türkei → EU (Route C)</strong><span>Check von Rechten/Quelldaten/Dateien</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="EU + TR Koordination (Route B)" data-tip="Ein Release-Plan für zwei Märkte – ohne Chaos." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>EU + TR Koordination (Route B)</strong><span>Abstimmung zwischen beiden Märkten</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum left">1</span>
       </div>
@@ -741,41 +283,11 @@
           <div class="sub">Ein Text, der professionell wirkt – nicht „selbstgemacht"</div>
         </div>
         <div class="q-opts" id="q2">
-          <div class="opt-wrap">
-            <div class="opt" data-q="2" data-val="Korrektorat" data-tip="Rechtschreibung/Grammatik/Zeichensetzung. Basis für Seriosität." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Korrektorat</strong><span>Rechtschreibung, Grammatik, Zeichensetzung</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="2" data-val="Stil-Lektorat" data-tip="Flow, Ton, Rhythmus – wir schärfen deinen Stil, ohne ihn zu zerstören." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Stil-Lektorat</strong><span>Flow, Ton, Rhythmus – Stil schärfen</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="2" data-val="Struktur-/Inhaltslektorat" data-tip="Aufbau, Logik, Dramaturgie/Argumentation – wir beheben echte Schwächen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Struktur-/Inhaltslektorat</strong><span>Aufbau, Logik, Dramaturgie</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="2" data-val="Konsistenz-Check" data-tip="Namen, Timeline, Fakten, Wiederholungen – alles muss stimmen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Konsistenz-Check</strong><span>Namen, Timeline, Fakten, Wiederholungen</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="2" data-val="Final QA / Son Okuma (Vier-Augen)" data-tip="Letzte Kontrolle vor Produktion – die Sicherheitsstufe." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Final QA / Son Okuma (Vier-Augen)</strong><span>Letzte Kontrolle vor Produktion</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Korrektorat" data-tip="Rechtschreibung/Grammatik/Zeichensetzung. Basis für Seriosität." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Korrektorat</strong><span>Rechtschreibung, Grammatik, Zeichensetzung</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Stil-Lektorat" data-tip="Flow, Ton, Rhythmus – wir schärfen deinen Stil, ohne ihn zu zerstören." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Stil-Lektorat</strong><span>Flow, Ton, Rhythmus – Stil schärfen</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Struktur-/Inhaltslektorat" data-tip="Aufbau, Logik, Dramaturgie/Argumentation – wir beheben echte Schwächen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Struktur-/Inhaltslektorat</strong><span>Aufbau, Logik, Dramaturgie</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Konsistenz-Check" data-tip="Namen, Timeline, Fakten, Wiederholungen – alles muss stimmen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Konsistenz-Check</strong><span>Namen, Timeline, Fakten, Wiederholungen</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Final QA / Son Okuma (Vier-Augen)" data-tip="Letzte Kontrolle vor Produktion – die Sicherheitsstufe." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Final QA / Son Okuma (Vier-Augen)</strong><span>Letzte Kontrolle vor Produktion</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum right">2</span>
       </div>
@@ -790,41 +302,11 @@
           <div class="sub">Außen verkauft. Innen fühlt sich nach Verlag an.</div>
         </div>
         <div class="q-opts" id="q3">
-          <div class="opt-wrap">
-            <div class="opt" data-q="3" data-val="Coverdesign (Print)" data-tip="Front + Rücken + Rückseite als stimmiges Gesamtbild." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Coverdesign (Print)</strong><span>Front + Rücken + Rückseite als Gesamtbild</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="3" data-val="Cover-Varianten (A/B)" data-tip="2–3 Alternativen zum Vergleichen – du wählst die stärkste Wirkung." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Cover-Varianten (A/B)</strong><span>2–3 Alternativen – du wählst die stärkste</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="3" data-val="Innensatz / Layout (Print)" data-tip="Buchsatz, Kapitelstruktur, Seitenbild – professioneller Look." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Innensatz / Layout (Print)</strong><span>Buchsatz, Kapitelstruktur, Seitenbild</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="3" data-val="Typografie & Stilset" data-tip="Schriften & Regeln passend zum Genre – einheitlicher Stil." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Typografie &amp; Stilset</strong><span>Schriften &amp; Regeln passend zum Genre</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="3" data-val="Illustration / Grafiken (optional)" data-tip="Individuelle Assets, wenn das Buch es wirklich braucht." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Illustration / Grafiken (optional)</strong><span>Individuelle Assets nach Bedarf</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Coverdesign (Print)" data-tip="Front + Rücken + Rückseite als stimmiges Gesamtbild." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Coverdesign (Print)</strong><span>Front + Rücken + Rückseite als Gesamtbild</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Cover-Varianten (A/B)" data-tip="2–3 Alternativen zum Vergleichen – du wählst die stärkste Wirkung." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Cover-Varianten (A/B)</strong><span>2–3 Alternativen – du wählst die stärkste</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Innensatz / Layout (Print)" data-tip="Buchsatz, Kapitelstruktur, Seitenbild – professioneller Look." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Innensatz / Layout (Print)</strong><span>Buchsatz, Kapitelstruktur, Seitenbild</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Typografie & Stilset" data-tip="Schriften & Regeln passend zum Genre – einheitlicher Stil." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Typografie &amp; Stilset</strong><span>Schriften &amp; Regeln passend zum Genre</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Illustration / Grafiken (optional)" data-tip="Individuelle Assets, wenn das Buch es wirklich braucht." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Illustration / Grafiken (optional)</strong><span>Individuelle Assets nach Bedarf</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum left">3</span>
       </div>
@@ -838,48 +320,12 @@
           <div class="sub">Print, der hochwertig aussieht und technisch sauber läuft</div>
         </div>
         <div class="q-opts" id="q4">
-          <div class="opt-wrap">
-            <div class="opt" data-q="4" data-val="Hardcover / Softcover" data-tip="Bindung wählen: Premium vs. klassisch." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Hardcover / Softcover</strong><span>Bindung wählen: Premium vs. klassisch</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="4" data-val="Formatwahl" data-tip="Passend zu Genre, Lesbarkeit und Kosten." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Formatwahl</strong><span>Passend zu Genre, Lesbarkeit und Kosten</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="4" data-val="S/W / Farbe / Mix" data-tip="Optimierung zwischen Qualität & Druckkosten." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>S/W / Farbe / Mix</strong><span>Optimierung zwischen Qualität &amp; Druckkosten</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="4" data-val="Papier & Veredelung" data-tip="Haptik + Optik – du entscheidest das Gefühl." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Papier &amp; Veredelung</strong><span>Haptik + Optik – matt, glanz u.a.</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="4" data-val="Proof / Musterexemplar" data-tip="Vorabdruck zur Freigabe, bevor es live geht." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Proof / Musterexemplar</strong><span>Vorabdruck zur Freigabe</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="4" data-val="Print-TÜV (Preflight)" data-tip="Technik-Check: Beschnitt, Auflösung, Farbraum – keine bösen Überraschungen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Print-TÜV (Preflight)</strong><span>Beschnitt, Auflösung, Farbraum prüfen</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Hardcover / Softcover" data-tip="Bindung wählen: Premium vs. klassisch." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Hardcover / Softcover</strong><span>Bindung wählen: Premium vs. klassisch</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Formatwahl" data-tip="Passend zu Genre, Lesbarkeit und Kosten." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Formatwahl</strong><span>Passend zu Genre, Lesbarkeit und Kosten</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="S/W / Farbe / Mix" data-tip="Optimierung zwischen Qualität & Druckkosten." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>S/W / Farbe / Mix</strong><span>Optimierung zwischen Qualität &amp; Druckkosten</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Papier & Veredelung" data-tip="Haptik + Optik – du entscheidest das Gefühl." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Papier &amp; Veredelung</strong><span>Haptik + Optik – matt, glanz u.a.</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Proof / Musterexemplar" data-tip="Vorabdruck zur Freigabe, bevor es live geht." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Proof / Musterexemplar</strong><span>Vorabdruck zur Freigabe</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Print-TÜV (Preflight)" data-tip="Technik-Check: Beschnitt, Auflösung, Farbraum – keine bösen Überraschungen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Print-TÜV (Preflight)</strong><span>Beschnitt, Auflösung, Farbraum prüfen</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum right">4</span>
       </div>
@@ -894,48 +340,12 @@
           <div class="sub">Fehlerfrei auf Geräten &amp; Shops</div>
         </div>
         <div class="q-opts" id="q5">
-          <div class="opt-wrap">
-            <div class="opt" data-q="5" data-val="E-Book Quick-Publish (Entry)" data-tip="Schnellstart: 1 Datei, 1 Revision, minimaler Support." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>E-Book Quick-Publish (Entry)</strong><span>Schnellstart: 1 Datei, 1 Revision</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="5" data-val="EPUB-Erstellung" data-tip="Sauberer Export für gängige Reader/Shops." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>EPUB-Erstellung</strong><span>Sauberer Export für Reader/Shops</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="5" data-val="Kindle-Format" data-tip="Optimiert fürs Kindle-Ökosystem." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Kindle-Format</strong><span>Optimiert fürs Kindle-Ökosystem</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="5" data-val="E-Book QA / Fix" data-tip="Wir finden Fehler und reparieren vorhandene Dateien." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>E-Book QA / Fix</strong><span>Fehler finden &amp; vorhandene Dateien reparieren</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="5" data-val="E-Book Quality Upgrade" data-tip="Premium-Optimierung: Darstellung + Metadaten + Struktur." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>E-Book Quality Upgrade</strong><span>Premium: Darstellung + Metadaten + Struktur</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="5" data-val="Audiobook (Coming soon)" data-tip="In Vorbereitung – noch nicht buchbar." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()" style="opacity:0.5;pointer-events:none;">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Audiobook</strong><span>Coming soon – noch nicht buchbar</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="E-Book Quick-Publish (Entry)" data-tip="Schnellstart: 1 Datei, 1 Revision, minimaler Support." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>E-Book Quick-Publish (Entry)</strong><span>Schnellstart: 1 Datei, 1 Revision</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="EPUB-Erstellung" data-tip="Sauberer Export für gängige Reader/Shops." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>EPUB-Erstellung</strong><span>Sauberer Export für Reader/Shops</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="Kindle-Format" data-tip="Optimiert fürs Kindle-Ökosystem." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Kindle-Format</strong><span>Optimiert fürs Kindle-Ökosystem</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="E-Book QA / Fix" data-tip="Wir finden Fehler und reparieren vorhandene Dateien." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>E-Book QA / Fix</strong><span>Fehler finden &amp; vorhandene Dateien reparieren</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="E-Book Quality Upgrade" data-tip="Premium-Optimierung: Darstellung + Metadaten + Struktur." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>E-Book Quality Upgrade</strong><span>Premium: Darstellung + Metadaten + Struktur</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="Audiobook (Coming soon)" data-tip="In Vorbereitung – noch nicht buchbar." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()" style="opacity:0.5;pointer-events:none;"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Audiobook</strong><span>Coming soon – noch nicht buchbar</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum left">5</span>
       </div>
@@ -949,47 +359,17 @@
           <div class="sub">Inhalt bleibt türkisch – aber EU kann's finden &amp; verstehen</div>
         </div>
         <div class="q-opts" id="q6">
-          <div class="opt-wrap">
-            <div class="opt" data-q="6" data-val="DE/EN Produktbeschreibung (Shop-ready)" data-tip="Verkaufstext, der EU-Leser abholt – ohne Vollübersetzung." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>DE/EN Produktbeschreibung (Shop-ready)</strong><span>Verkaufstext für EU-Leser</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="6" data-val="DE/EN Keywords & Kategorien" data-tip="Suchlogik & Auffindbarkeit – damit dein Buch gefunden wird." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>DE/EN Keywords &amp; Kategorien</strong><span>Suchlogik &amp; Auffindbarkeit</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="6" data-val="Klappentext-Optimierung (TR)" data-tip="Schärfer, klarer, verkaufsstärker." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Klappentext-Optimierung (TR)</strong><span>Schärfer, klarer, verkaufsstärker</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="6" data-val="Übersetzung (optional)" data-tip="Wenn du wirklich in einer neuen Sprache veröffentlichen willst." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Übersetzung (optional)</strong><span>Veröffentlichung in neuer Sprache</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="6" data-val="Lokalisierung (optional)" data-tip="Kultureller Feinschliff: Ton, Beispiele, Kontext." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Lokalisierung (optional)</strong><span>Kultureller Feinschliff: Ton, Beispiele</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="DE/EN Produktbeschreibung (Shop-ready)" data-tip="Verkaufstext, der EU-Leser abholt – ohne Vollübersetzung." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>DE/EN Produktbeschreibung (Shop-ready)</strong><span>Verkaufstext für EU-Leser</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="DE/EN Keywords & Kategorien" data-tip="Suchlogik & Auffindbarkeit – damit dein Buch gefunden wird." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>DE/EN Keywords &amp; Kategorien</strong><span>Suchlogik &amp; Auffindbarkeit</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Klappentext-Optimierung (TR)" data-tip="Schärfer, klarer, verkaufsstärker." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Klappentext-Optimierung (TR)</strong><span>Schärfer, klarer, verkaufsstärker</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Übersetzung (optional)" data-tip="Wenn du wirklich in einer neuen Sprache veröffentlichen willst." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Übersetzung (optional)</strong><span>Veröffentlichung in neuer Sprache</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Lokalisierung (optional)" data-tip="Kultureller Feinschliff: Ton, Beispiele, Kontext." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Lokalisierung (optional)</strong><span>Kultureller Feinschliff: Ton, Beispiele</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum right">6</span>
       </div>
     </div>
 
-  <!-- ── SPREAD 5: THEMA 7 + LEER ── pages 7+8 -->
+    <!-- ── SPREAD 5: THEMA 7 (links) + ZUSAMMENFASSUNG (rechts) ── pages 9+10 -->
     <div>
       <div class="q-page">
         <div class="q-head">
@@ -998,116 +378,63 @@
           <div class="sub">Sichtbarkeit + Verfügbarkeit + sauberer Launch</div>
         </div>
         <div class="q-opts" id="q7">
-          <div class="opt-wrap">
-            <div class="opt" data-q="7" data-val="EU-Shop Listing & Metadaten" data-tip="Titel/Untertitel/Beschreibung/Bilder/Basisdaten – sauber live gehen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>EU-Shop Listing &amp; Metadaten</strong><span>Sauber live gehen mit allen Basisdaten</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="7" data-val="Distribution EU (Shop + Versand)" data-tip="Versand- und Abwicklungsmodell nach Setup." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Distribution EU (Shop + Versand)</strong><span>Versand- &amp; Abwicklungsmodell</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="7" data-val="Libri / Handel-Readiness (Premium)" data-tip="Vorbereitung für Buchhandel-Bestellbarkeit (abhängig von Setup/Vertrag)." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Libri / Handel-Readiness (Premium)</strong><span>Buchhandel-Bestellbarkeit vorbereiten</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="7" data-val="Marketing-Impact Kampagne" data-tip="Kampagne durch euer Marketingteam (Zielgruppe, Creatives, Kanäle)." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Marketing-Impact Kampagne</strong><span>Zielgruppe, Creatives, Kanäle</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="7" data-val="Review-Launch System (ethisch)" data-tip="Leserfeedback aufbauen (ARC/Reader-Liste/Vorlagen/Follow-ups) – keine Manipulation." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>Review-Launch System (ethisch)</strong><span>ARC, Reader-Liste, Vorlagen, Follow-ups</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
-          <div class="opt-wrap">
-            <div class="opt" data-q="7" data-val="EU + TR Distribution Add-on (Route B)" data-tip="Zweiter Markt als Upgrade – eigener Release-Plan." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()">
-              <div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-              <div class="opt-text"><strong>EU + TR Distribution Add-on (Route B)</strong><span>Zweiter Markt als Upgrade</span></div>
-              <div class="info-icon" onclick="showTipInstant(this.parentElement); event.stopPropagation();">i</div>
-            </div>
-          </div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="EU-Shop Listing & Metadaten" data-tip="Titel/Untertitel/Beschreibung/Bilder/Basisdaten – sauber live gehen." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>EU-Shop Listing &amp; Metadaten</strong><span>Sauber live gehen mit allen Basisdaten</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Distribution EU (Shop + Versand)" data-tip="Versand- und Abwicklungsmodell nach Setup." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Distribution EU (Shop + Versand)</strong><span>Versand- &amp; Abwicklungsmodell</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Libri / Handel-Readiness (Premium)" data-tip="Vorbereitung für Buchhandel-Bestellbarkeit (abhängig von Setup/Vertrag)." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Libri / Handel-Readiness (Premium)</strong><span>Buchhandel-Bestellbarkeit vorbereiten</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Marketing-Impact Kampagne" data-tip="Kampagne durch euer Marketingteam (Zielgruppe, Creatives, Kanäle)." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Marketing-Impact Kampagne</strong><span>Zielgruppe, Creatives, Kanäle</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Review-Launch System (ethisch)" data-tip="Leserfeedback aufbauen (ARC/Reader-Liste/Vorlagen/Follow-ups) – keine Manipulation." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Review-Launch System (ethisch)</strong><span>ARC, Reader-Liste, Vorlagen, Follow-ups</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="EU + TR Distribution Add-on (Route B)" data-tip="Zweiter Markt als Upgrade – eigener Release-Plan." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>EU + TR Distribution Add-on (Route B)</strong><span>Zweiter Markt als Upgrade</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
         </div>
         <span class="pnum left">7</span>
       </div>
     </div>
-
+    <!-- ✅ RECHTS: Zusammenfassung (war vorher leer / separate Seite) -->
     <div>
-  <div class="page-sep"></div>
-  <div class="q-page right-tint" style="display:flex;align-items:center;justify-content:center;">
-    <div style="text-align:center;opacity:0.25;user-select:none;">
-      <div style="font-family:'Playfair Display',serif;font-size:40px;color:var(--gold);">✦</div>
-    </div>
-  </div>
-</div>
-
-
-    <!-- ── SPREAD 6: ZUSAMMENFASSUNG + KONTAKT ── pages 9+10 -->
-    <div>
-      <div class="sum-page">
+      <div class="page-sep"></div>
+      <div class="sum-page right-tint">
         <div class="sum-head">
           <span class="badge">Zusammenfassung</span>
           <h3>Ihre Konfiguration</h3>
           <div class="sub">Alle ausgewählten Services</div>
         </div>
         <div class="sum-body" id="sum-complete" style="font-size:10px;"></div>
-        <span class="pnum left">9</span>
+        <span class="pnum right">8</span>
       </div>
     </div>
+
+    <!-- ── SPREAD 6: KONTAKTFORMULAR (links) + BACK COVER (rechts) ── pages 11+12 -->
     <div>
-      <div class="page-sep"></div>
-      <div class="sum-page right-tint">
+      <div class="sum-page">
         <div class="sum-head">
           <span class="badge">Jetzt anfragen</span>
           <h3>Kontaktdaten</h3>
           <div class="sub">Wir erstellen Ihr Angebot</div>
         </div>
-        
         <div style="flex:1;overflow-y:auto;padding:12px 20px;">
           <form id="inline-contact-form" style="display:flex;flex-direction:column;gap:10px;">
             <div style="display:flex;flex-direction:column;gap:4px;">
               <label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">Name *</label>
               <input type="text" name="name" id="inline-name" required style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;">
             </div>
-            
             <div style="display:flex;flex-direction:column;gap:4px;">
               <label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">E-Mail *</label>
               <input type="email" name="email" id="inline-email" required style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;">
             </div>
-            
             <div style="display:flex;flex-direction:column;gap:4px;">
               <label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">Telefon <span style="color:var(--text-l);font-weight:400;text-transform:none;font-size:9px;">(optional)</span></label>
               <input type="tel" name="telefon" id="inline-tel" style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;">
             </div>
-            
             <div style="display:flex;flex-direction:column;gap:4px;">
               <label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">Nachricht <span style="color:var(--text-l);font-weight:400;text-transform:none;font-size:9px;">(optional)</span></label>
               <textarea name="nachricht" id="inline-msg" rows="3" style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;resize:none;"></textarea>
             </div>
-            
             <button type="submit" class="btn-submit" style="margin-top:8px;">Konfiguration senden →</button>
           </form>
         </div>
-        
-<span class="pnum right">9</span>
+        <span class="pnum left">9</span>
       </div>
     </div>
-
-    <!-- ── BACK COVER ── page 10 -->
-   <!-- ── BACK COVER ── page 10 -->
+    <!-- ✅ BACK COVER rechts -->
     <div class="hard">
       <div class="cover-l" style="background:linear-gradient(225deg,#b8966e 0%,#8a6a48 50%,#6b533a 100%) !important;">
         <div style="margin-bottom:32px;">
@@ -1122,17 +449,17 @@
   </div><!-- /#flipbook -->
 </div><!-- /.book-wrap -->
 
-<!-- ════════════ NAV BAR ════════════ -->
+<!-- NAV BAR -->
 <div class="nav-bar">
   <button class="nav-btn" id="btn-prev" onclick="goBack()">← Zurück</button>
   <div class="dots-wrap" id="nav-dots"></div>
   <button class="nav-btn" id="btn-next" onclick="goNext()">Weiter →</button>
 </div>
 
-<!-- ════════════ TOOLTIP (global, fixed) ════════════ -->
+<!-- TOOLTIP -->
 <div class="tooltip" id="tt"></div>
 
-<!-- ════════════ CONTACT OVERLAY ════════════ -->
+<!-- CONTACT OVERLAY (legacy, kept for compatibility) -->
 <div class="overlay-bg" id="overlay">
   <div class="contact-modal">
     <div class="cm-header">
@@ -1140,51 +467,20 @@
       <h2>Kontaktdaten hinterlassen</h2>
       <p>Wir erstellen Ihnen ein individuelles Angebot auf Basis Ihrer Konfiguration.</p>
     </div>
-
-    <!-- Netlify form – name="buchkonfigurator" aktiviert die Netlify-Integration -->
-    <form
-      id="contact-form"
-      name="buchkonfigurator"
-      method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-      onsubmit="handleSubmit(event)"
-    >
-      <!-- Netlify honeypot -->
+    <form id="contact-form" name="buchkonfigurator" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
       <p style="display:none"><input name="bot-field"/></p>
-
-      <!-- Hidden: alle Konfigurations-Daten -->
       <input type="hidden" name="konfiguration" id="hidden-konfig"/>
-
       <div class="cm-body">
         <div class="cm-row">
-          <div class="cm-field" id="f-name">
-            <label>Name <span class="opt-mark">*</span></label>
-            <input type="text" name="name" id="inp-name" placeholder="Ihr vollständiger Name" autocomplete="name"/>
-            <span class="err-msg">Bitte geben Sie Ihren Namen ein.</span>
-          </div>
-          <div class="cm-field" id="f-email">
-            <label>E-Mail <span class="opt-mark">*</span></label>
-            <input type="email" name="email" id="inp-email" placeholder="ihre@email.de" autocomplete="email"/>
-            <span class="err-msg">Bitte gültige E-Mail-Adresse eingeben.</span>
-          </div>
+          <div class="cm-field" id="f-name"><label>Name <span class="opt-mark">*</span></label><input type="text" name="name" id="inp-name" placeholder="Ihr vollständiger Name" autocomplete="name"/><span class="err-msg">Bitte geben Sie Ihren Namen ein.</span></div>
+          <div class="cm-field" id="f-email"><label>E-Mail <span class="opt-mark">*</span></label><input type="email" name="email" id="inp-email" placeholder="ihre@email.de" autocomplete="email"/><span class="err-msg">Bitte gültige E-Mail-Adresse eingeben.</span></div>
         </div>
         <div class="cm-row">
-          <div class="cm-field">
-            <label>Telefon <span class="opt-mark">(optional)</span></label>
-            <input type="tel" name="telefon" id="inp-tel" placeholder="+49 …" autocomplete="tel"/>
-          </div>
-          <div class="cm-field">
-            <label>Unternehmen <span class="opt-mark">(optional)</span></label>
-            <input type="text" name="unternehmen" id="inp-company" placeholder="Ihr Unternehmen" autocomplete="organization"/>
-          </div>
+          <div class="cm-field"><label>Telefon <span class="opt-mark">(optional)</span></label><input type="tel" name="telefon" id="inp-tel" placeholder="+49 …" autocomplete="tel"/></div>
+          <div class="cm-field"><label>Unternehmen <span class="opt-mark">(optional)</span></label><input type="text" name="unternehmen" id="inp-company" placeholder="Ihr Unternehmen" autocomplete="organization"/></div>
         </div>
-        <div class="cm-field">
-          <label>Nachricht <span class="opt-mark">(optional)</span></label>
-          <textarea name="nachricht" id="inp-msg" rows="3" placeholder="Haben Sie noch etwas hinzuzufügen?"></textarea>
-        </div>
+        <div class="cm-field"><label>Nachricht <span class="opt-mark">(optional)</span></label><textarea name="nachricht" id="inp-msg" rows="3" placeholder="Haben Sie noch etwas hinzuzufügen?"></textarea></div>
       </div>
-
       <div class="cm-footer">
         <button type="submit" class="cm-submit">KONFIGURATION SENDEN</button>
         <p class="cm-note">Wir melden uns innerhalb von 1–2 Werktagen.</p>
@@ -1196,7 +492,6 @@
 <script src="jquery.js"></script>
 <script src="turn.js"></script>
 <script>
-  /* ─── STATE ─────────────────────────────────────── */
   let answers = {};
   let contactData = {};
 
@@ -1207,7 +502,6 @@
     try{ sessionStorage.setItem('buchkonfig',JSON.stringify(answers)); }catch(e){}
   }
 
-  /* ─── TOGGLE ────────────────────────────────────── */
   function toggle(el){
     el.classList.toggle('selected');
     const q=el.dataset.q, v=el.dataset.val;
@@ -1217,142 +511,90 @@
     saveAnswers();
   }
 
-/* ─── TOOLTIP ───────────────────────────────────── */
-const tt = document.getElementById('tt');
-let ttHide;
-let ttShow; // ✅ NEU: für Delay
+  const tt = document.getElementById('tt');
+  let ttHide, ttShow;
 
-// ✅ Hover mit 1,5 Sekunden Delay
-function showTip(el) {
-  clearTimeout(ttHide);
-  clearTimeout(ttShow);
-  
-  ttShow = setTimeout(() => {
-    displayTooltip(el);
-  }, 1500); // 1,5 Sekunden
-}
-
-// ✅ Sofortiger Tooltip (für Click auf "i")
-function showTipInstant(el) {
-  clearTimeout(ttHide);
-  clearTimeout(ttShow);
-  displayTooltip(el);
-}
-
-// ✅ Tooltip anzeigen (zentrale Funktion)
-// ✅ Tooltip anzeigen (zentrale Funktion)
-function displayTooltip(el) {
-  const tip = el.dataset.tip;
-  if (!tip) return;
-  
-  tt.textContent = tip;
-  
-  const rect = el.getBoundingClientRect();
-  const isMobile = window.innerWidth <= 768;
-  
-  if (isMobile) {
-    // ✅ MOBILE: Tooltip OBERHALB des Elements
-    const leftPos = Math.max(20, Math.min(window.innerWidth - 300, rect.left + rect.width / 2 - 140));
-    const topPos = rect.top - 10;
-    
-    tt.style.left = leftPos + 'px';
-    tt.style.top = topPos + 'px';
-    tt.style.transform = 'translateY(-100%)';
-    tt.classList.remove('left-side', 'right-side');
-    
-    // ✅ Auto-Hide nach 2 Sekunden
-    clearTimeout(window.tooltipAutoHide);
-    window.tooltipAutoHide = setTimeout(() => {
-      tt.classList.remove('show');
-    }, 2000);
-    
-  } else {
-    // ✅ DESKTOP: Seitlich (wie bisher)
-    const bookRect = document.getElementById('flipbook').getBoundingClientRect();
-    const bookCenter = bookRect.left + bookRect.width / 2;
-    const isLeftPage = rect.left < bookCenter;
-    
-    let leftPos, topPos;
-    
-    if (isLeftPage) {
-      leftPos = rect.right + 14;
-      tt.classList.remove('left-side');
-      tt.classList.add('right-side');
-    } else {
-      leftPos = rect.left - 220;
-      tt.classList.add('left-side');
-      tt.classList.remove('right-side');
-    }
-    
-    topPos = rect.top + rect.height / 2 - 20;
-    topPos = Math.max(10, Math.min(window.innerHeight - 120, topPos));
-    
-    tt.style.left = leftPos + 'px';
-    tt.style.top = topPos + 'px';
-    tt.style.transform = '';
+  function showTip(el){
+    clearTimeout(ttHide); clearTimeout(ttShow);
+    ttShow = setTimeout(() => { displayTooltip(el); }, 1500);
   }
-  
-  tt.classList.add('show');
-}
+  function showTipInstant(el){
+    clearTimeout(ttHide); clearTimeout(ttShow);
+    displayTooltip(el);
+  }
+  function displayTooltip(el){
+    const tip = el.dataset.tip;
+    if(!tip) return;
+    tt.textContent = tip;
+    const rect = el.getBoundingClientRect();
+    const isMobile = window.innerWidth <= 768;
+    if(isMobile){
+      const leftPos = Math.max(20, Math.min(window.innerWidth - 300, rect.left + rect.width/2 - 140));
+      tt.style.left = leftPos + 'px';
+      tt.style.top = rect.top - 10 + 'px';
+      tt.style.transform = 'translateY(-100%)';
+      tt.classList.remove('left-side','right-side');
+      clearTimeout(window.tooltipAutoHide);
+      window.tooltipAutoHide = setTimeout(() => { tt.classList.remove('show'); }, 2000);
+    } else {
+      const bookRect = document.getElementById('flipbook').getBoundingClientRect();
+      const isLeftPage = rect.left < bookRect.left + bookRect.width/2;
+      let leftPos, topPos;
+      if(isLeftPage){
+        leftPos = rect.right + 14;
+        tt.classList.remove('left-side'); tt.classList.add('right-side');
+      } else {
+        leftPos = rect.left - 220;
+        tt.classList.add('left-side'); tt.classList.remove('right-side');
+      }
+      topPos = Math.max(10, Math.min(window.innerHeight - 120, rect.top + rect.height/2 - 20));
+      tt.style.left = leftPos + 'px';
+      tt.style.top = topPos + 'px';
+      tt.style.transform = '';
+    }
+    tt.classList.add('show');
+  }
+  function hideTip(){
+    clearTimeout(ttShow);
+    ttHide = setTimeout(() => { tt.classList.remove('show'); }, 80);
+  }
 
-// ✅ Tooltip verstecken
-function hideTip() {
-  clearTimeout(ttShow); // Cancel delayed show
-  ttHide = setTimeout(() => {
-    tt.classList.remove('show');
-  }, 80);
-}
-  /* ─── SPREAD HELPERS ────────────────────────────── */
-  // 1=cover  2=T1+2  3=T3+4  4=T5+6  5=T7+blank  6=summary  7=danke  8=backcover
+  // ── Spreads:
+  // 1=cover(hard+hard)  2=T1+T2  3=T3+T4  4=T5+T6  5=T7+Summary  6=Kontakt+Backcover
   const TOTAL_SPREADS = 6;
 
   function currentSpread(){
     return Math.ceil($('#flipbook').turn('page')/2);
   }
-function goNext(){
-    const s=currentSpread();
-    if(s===3) {
-      setTimeout(() => {
-      }, 100);
-    }
-    if(s<TOTAL_SPREADS){ $('#flipbook').turn('next'); afterTurn(); }
+  function goNext(){
+    const s = currentSpread();
+    if(s < TOTAL_SPREADS){ $('#flipbook').turn('next'); afterTurn(); }
   }
   function goBack(){
-    if(currentSpread()>1){ $('#flipbook').turn('previous'); afterTurn(); }
+    if(currentSpread() > 1){ $('#flipbook').turn('previous'); afterTurn(); }
   }
 
-/* ─── AFTER EVERY TURN ──────────────────────────── */
-function afterTurn(){
-    const s=currentSpread();
-    document.getElementById('btn-prev').disabled=(s<=1);
-    const bn=document.getElementById('btn-next');
-    if(s>=TOTAL_SPREADS){ bn.textContent='—'; bn.disabled=true; }
+  function afterTurn(){
+    const s = currentSpread();
+    document.getElementById('btn-prev').disabled = (s <= 1);
+    const bn = document.getElementById('btn-next');
+    if(s >= TOTAL_SPREADS){ bn.textContent='—'; bn.disabled=true; }
     else { bn.textContent='Weiter →'; bn.disabled=false; }
+    // Summary bei jedem Turn aktualisieren
     setTimeout(() => { buildSummary(); }, 100);
     updateDots(s);
-    // ✅ NEU: Summary mit kleinem Delay bauen
-    if(s === 6) {
-      setTimeout(() => {
-        buildSummary();
-      }, 100);
-    }
-    
-    updateDots(s);
   }
 
-  /* ─── SUMMARY ───────────────────────────────────── */
-  const qLabels={
+  const qLabels = {
     1:'Start & Projekt-Setup', 2:'Text-Qualität',
     3:'Buchdesign',            4:'Print-Spezifikation',
     5:'E-Book & digitale Formate', 6:'Findbarkeit & Lokalisierung',
     7:'Release, Vertrieb & Marketing'
   };
 
-function buildSummary(){
-    // ✅ Alle Themen auf EINER Seite
+  function buildSummary(){
     const el = document.getElementById('sum-complete');
     if(!el) return;
-    
     let h = '';
     [1,2,3,4,5,6,7].forEach(n => {
       const sel = answers[n] || [];
@@ -1364,103 +606,56 @@ function buildSummary(){
     el.innerHTML = h;
   }
 
-  /* ✅ INLINE CONTACT FORM HANDLER ──────────────────── */
   function handleInlineSubmit(e){
     e.preventDefault();
-    
     const nameEl = document.getElementById('inline-name');
     const emailEl = document.getElementById('inline-email');
-    
     if(!nameEl.value.trim() || !emailEl.value.trim()){
       alert('Bitte Name und E-Mail ausfüllen');
       return;
     }
-    
-    // Daten sammeln
-    const qLabels = {
-      1:'Start & Projekt-Setup', 2:'Text-Qualität',
-      3:'Buchdesign', 4:'Print-Spezifikation & Produktion',
-      5:'E-Book & digitale Formate', 6:'Findbarkeit & Lokalisierung',
-      7:'Release, Vertrieb & Marketing'
-    };
-    
     const export_data = {};
     Object.keys(answers).forEach(k => {
-      if(answers[k] && answers[k].length > 0) {
+      if(answers[k] && answers[k].length > 0){
         export_data[qLabels[k]] = answers[k];
       }
     });
-    
-    const contactData = {
+    const cd = {
       name: nameEl.value.trim(),
       email: emailEl.value.trim(),
       telefon: document.getElementById('inline-tel').value.trim(),
       nachricht: document.getElementById('inline-msg').value.trim()
     };
-    
-    // Netlify submission
     const formData = new FormData();
     formData.append('form-name', 'buchkonfigurator');
-    formData.append('name', contactData.name);
-    formData.append('email', contactData.email);
-    formData.append('telefon', contactData.telefon);
-    formData.append('nachricht', contactData.nachricht);
+    formData.append('name', cd.name);
+    formData.append('email', cd.email);
+    formData.append('telefon', cd.telefon);
+    formData.append('nachricht', cd.nachricht);
     formData.append('konfiguration', JSON.stringify(export_data, null, 2));
-    
-fetch('/', {
-  method: 'POST',
-  body: new URLSearchParams(formData)
-})
-.then(() => {
-  // ✅ 1. Zur letzten Seite blättern
-  $('#flipbook').turn('page', $('#flipbook').turn('pages'));
-  
-  // ✅ 2. Nach Animation (1 Sekunde) Parent benachrichtigen
-  setTimeout(() => {
-    if(window.parent && window.parent !== window){
-      window.parent.postMessage({
-        type: 'selectionUpdate',
-        selections: export_data
-      }, '*');
-      
-      // ✅ 3. Popup schließen nach weiteren 800ms
-      setTimeout(() => {
-        window.parent.postMessage({
-          type: 'closePopup'
-        }, '*');
-      }, 800);
-    }
-  }, 1000);
-  
-  // Reset
-  answers = {};
-  sessionStorage.removeItem('buchkonfig');
-  document.querySelectorAll('.opt.selected').forEach(e => e.classList.remove('selected'));
-  
-})
-    .catch(err => {
-      console.error('Fehler:', err);
-      alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
-    });
+
+    fetch('/', { method:'POST', body: new URLSearchParams(formData) })
+      .then(() => {
+        $('#flipbook').turn('page', $('#flipbook').turn('pages'));
+        setTimeout(() => {
+          if(window.parent && window.parent !== window){
+            window.parent.postMessage({ type:'selectionUpdate', selections:export_data }, '*');
+            setTimeout(() => {
+              window.parent.postMessage({ type:'closePopup' }, '*');
+            }, 800);
+          }
+        }, 1000);
+        answers = {};
+        sessionStorage.removeItem('buchkonfig');
+        document.querySelectorAll('.opt.selected').forEach(e => e.classList.remove('selected'));
+      })
+      .catch(err => {
+        console.error('Fehler:', err);
+        alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
+      });
   }
 
-
-  function fillBlock(id,qs){
-    const el=document.getElementById(id); if(!el) return;
-    let h='';
-    qs.forEach(n=>{
-      const sel=answers[n]||[];
-      h+=`<div class="sum-item"><h5>${qLabels[n]}</h5><div class="sum-tags">`;
-      if(!sel.length) h+=`<span class="sum-tag empty">Keine Auswahl</span>`;
-      else sel.forEach(v=>{ h+=`<span class="sum-tag">${v}</span>`; });
-      h+=`</div></div>`;
-    });
-    el.innerHTML=h;
-  }
-
-  /* ─── CONTACT OVERLAY ───────────────────────────── */
   function openContact(){
-    // Inject serialised answers into the hidden field
     const export_data={};
     Object.keys(answers).forEach(k=>{ export_data[qLabels[k]]=answers[k]; });
     document.getElementById('hidden-konfig').value=JSON.stringify(export_data,null,2);
@@ -1469,119 +664,44 @@ fetch('/', {
   function closeContact(){
     document.getElementById('overlay').classList.remove('open');
   }
-  // Close on backdrop click
   document.getElementById('overlay').addEventListener('click',function(e){
     if(e.target===this) closeContact();
   });
 
-  /* ─── FORM VALIDATION & SUBMIT ──────────────────── */
   function handleSubmit(e){
     e.preventDefault();
-    const nameEl  =document.getElementById('inp-name');
-    const emailEl =document.getElementById('inp-email');
+    const nameEl=document.getElementById('inp-name');
+    const emailEl=document.getElementById('inp-email');
     let valid=true;
-
-    // validate name
-    document.getElementById('f-name').classList.remove('has-err');
-    nameEl.classList.remove('err');
-    if(!nameEl.value.trim()){
-      document.getElementById('f-name').classList.add('has-err');
-      nameEl.classList.add('err'); valid=false;
-    }
-    // validate email
-    document.getElementById('f-email').classList.remove('has-err');
-    emailEl.classList.remove('err');
-    if(!emailEl.value.trim()||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)){
-      document.getElementById('f-email').classList.add('has-err');
-      emailEl.classList.add('err'); valid=false;
-    }
+    document.getElementById('f-name').classList.remove('has-err'); nameEl.classList.remove('err');
+    if(!nameEl.value.trim()){ document.getElementById('f-name').classList.add('has-err'); nameEl.classList.add('err'); valid=false; }
+    document.getElementById('f-email').classList.remove('has-err'); emailEl.classList.remove('err');
+    if(!emailEl.value.trim()||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)){ document.getElementById('f-email').classList.add('has-err'); emailEl.classList.add('err'); valid=false; }
     if(!valid) return;
-
-    // Store contact for thanks page
-    contactData = {
-      name:    nameEl.value.trim(),
-      email:   emailEl.value.trim(),
-      telefon: document.getElementById('inp-tel').value.trim(),
-      company: document.getElementById('inp-company').value.trim(),
-      msg:     document.getElementById('inp-msg').value.trim(),
-    };
-
-    // ── Netlify submission via fetch ──
+    contactData={ name:nameEl.value.trim(), email:emailEl.value.trim(), telefon:document.getElementById('inp-tel').value.trim(), company:document.getElementById('inp-company').value.trim(), msg:document.getElementById('inp-msg').value.trim() };
     const form=document.getElementById('contact-form');
     const formData=new FormData(form);
-
-    fetch('/', { method:'POST', body: new URLSearchParams(formData) })
-      .then(()=>{ onSubmitSuccess(); })
-      .catch(()=>{ onSubmitSuccess(); }); // show thanks even if fetch fails in dev
+    fetch('/',{method:'POST',body:new URLSearchParams(formData)}).then(()=>{onSubmitSuccess();}).catch(()=>{onSubmitSuccess();});
   }
 
   function onSubmitSuccess(){
     closeContact();
-    buildThanksPage();
-    // flip to thanks spread (spread 7 = pages 13-14)
-    $('#flipbook').turn('page',13);
-    afterTurn();
-    // cleanup
-    answers={};
-    sessionStorage.removeItem('buchkonfig');
+    answers={}; sessionStorage.removeItem('buchkonfig');
     document.querySelectorAll('.opt.selected').forEach(e=>e.classList.remove('selected'));
   }
 
-  /* ─── THANKS PAGE ───────────────────────────────── */
-  function buildThanksPage(){
-    // Left: konfiguration T1-4
-    const tl=document.getElementById('thanks-left'); if(tl) fillBlockRaw(tl,[1,2,3,4]);
-    // Right: T5-7 + contact card
-    const tr=document.getElementById('thanks-right'); if(!tr) return;
-    let h='';
-    // Config T5-7
-    [5,6,7].forEach(n=>{
-      const sel=answers[n]||[];
-      h+=`<div class="sum-item"><h5>${qLabels[n]}</h5><div class="sum-tags">`;
-      if(!sel.length) h+=`<span class="sum-tag empty">Keine Auswahl</span>`;
-      else sel.forEach(v=>{ h+=`<span class="sum-tag">${v}</span>`; });
-      h+=`</div></div>`;
-    });
-    // Contact card
-    h+=`<div class="sum-item" style="margin-top:6px;">
-      <h5>Ihre Kontaktdaten</h5>
-      <div class="contact-card">
-        <div class="cc-name">${esc(contactData.name)}</div>
-        <div class="cc-row"><span>✉</span>${esc(contactData.email)}</div>
-        ${contactData.telefon?`<div class="cc-row"><span>✆</span>${esc(contactData.telefon)}</div>`:''}
-        ${contactData.company?`<div class="cc-row"><span>🏢</span>${esc(contactData.company)}</div>`:''}
-        ${contactData.msg?`<div class="cc-row" style="align-items:flex-start;"><span>✎</span><em style="font-size:11px;">${esc(contactData.msg)}</em></div>`:''}
-      </div>
-    </div>`;
-    tr.innerHTML=h;
-  }
+  function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  function fillBlockRaw(el,qs){
-    let h='';
-    qs.forEach(n=>{
-      const sel=answers[n]||[];
-      h+=`<div class="sum-item"><h5>${qLabels[n]}</h5><div class="sum-tags">`;
-      if(!sel.length) h+=`<span class="sum-tag empty">Keine Auswahl</span>`;
-      else sel.forEach(v=>{ h+=`<span class="sum-tag">${v}</span>`; });
-      h+=`</div></div>`;
-    });
-    el.innerHTML=h;
-  }
-
-  function esc(s){
-    return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  /* ─── NAV DOTS ──────────────────────────────────── */
-  const DOT_LABELS=['Cover','T.1+2','T.3+4','T.5+6','T.7','—','Résumé'];
-
+  // DOT_LABELS: 6 Spreads
+  const DOT_LABELS=['Cover','T.1+2','T.3+4','T.5+6','T.7+Résumé','Kontakt'];
 
   function buildDots(){
     const w=document.getElementById('nav-dots');
     DOT_LABELS.forEach((_,i)=>{
       const d=document.createElement('div');
       d.className='ndot'+(i===0?' active':'');
-      d.title=DOT_LABELS[i]; w.appendChild(d);
+      d.title=DOT_LABELS[i];
+      w.appendChild(d);
     });
   }
   function updateDots(s){
@@ -1590,13 +710,9 @@ fetch('/', {
     });
   }
 
-/* ─── INIT ──────────────────────────────────────── */
   loadAnswers();
-  
+
   document.addEventListener('DOMContentLoaded',()=>{
-    console.log('📘 Flipbook loaded');
-    
-    // Restore selections
     Object.keys(answers).forEach(q=>{
       answers[q].forEach(v=>{
         document.querySelectorAll(`.opt[data-q="${q}"][data-val="${v}"]`).forEach(el=>{
@@ -1604,89 +720,45 @@ fetch('/', {
         });
       });
     });
-    
-    // ✅ Inline Form Listener
     const inlineForm = document.getElementById('inline-contact-form');
-    if(inlineForm){
-      console.log('✅ Form listener attached');
-      inlineForm.addEventListener('submit', handleInlineSubmit);
-    } else {
-      console.log('❌ Form not found!');
-    }
+    if(inlineForm){ inlineForm.addEventListener('submit', handleInlineSubmit); }
   });
 
- /* ═══════════════════════════════════════════════════════════
-   MOBILE FLIPBOOK - Einzelne Seiten statt Spreads
-   ═══════════════════════════════════════════════════════════ */
-
-// Am Ende der index.html, ERSETZE das $(document).ready mit:
-$(document).ready(function(){
-  const isMobile = window.innerWidth <= 768;
-  
-  if(isMobile) {
-    // ✅ MOBILE: Einzelne Seiten, swipe-fähig
-    $('#flipbook').turn({
-      width: window.innerWidth - 20,
-      height: window.innerHeight - 140, // Platz für Navigation
-      display: 'single', // ✅ WICHTIG: Einzelne Seiten
-      autoCenter: true,
-      acceleration: true,
-      duration: 400, // Schneller
-      gradients: false, // Keine Schatten auf Mobile
-      when: { 
-        turned: function(){ 
-          afterTurn();
-          // ✅ Entferne Spine/Crease auf Mobile
-          $('.spine-line').hide();
-          $('.page-sep').hide();
-          $('.book-wrap').css('filter', 'none');
-        } 
-      }
-    });
-    
-    // ✅ Sofort beim Laden entfernen
-    $('.spine-line').hide();
-    $('.page-sep').hide();
-    $('.book-wrap').css('filter', 'none');
-    
-    // ✅ Touch Swipe Support
-    let touchStartX = 0;
-    const flipbook = document.getElementById('flipbook');
-    
-    flipbook.addEventListener('touchstart', function(e) {
-      touchStartX = e.touches[0].clientX;
-    });
-    
-    flipbook.addEventListener('touchend', function(e) {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
-      
-      if(Math.abs(diff) > 50) { // Mindestens 50px swipe
-        if(diff > 0) {
-          goNext(); // Swipe links → vorwärts
-        } else {
-          goBack(); // Swipe rechts → rückwärts
-        }
-      }
-    });
-    
-  } else {
-    // ✅ DESKTOP: Spreads (wie bisher)
-    $('#flipbook').turn({
-      width: 1040, 
-      height: 600,
-      display: 'double', // Spreads
-      autoCenter: false,
-      gradients: true, 
-      acceleration: true, 
-      duration: 650,
-      when: { turned: function(){ afterTurn(); } }
-    });
-  }
-  
-  buildDots();
-  afterTurn();
-});
+  $(document).ready(function(){
+    const isMobile = window.innerWidth <= 768;
+    if(isMobile){
+      $('#flipbook').turn({
+        width: window.innerWidth - 20,
+        height: window.innerHeight - 140,
+        display: 'single',
+        autoCenter: true,
+        acceleration: true,
+        duration: 400,
+        gradients: false,
+        when: { turned: function(){ afterTurn(); $('.spine-line').hide(); $('.page-sep').hide(); $('.book-wrap').css('filter','none'); } }
+      });
+      $('.spine-line').hide(); $('.page-sep').hide(); $('.book-wrap').css('filter','none');
+      let touchStartX = 0;
+      const flipbook = document.getElementById('flipbook');
+      flipbook.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; });
+      flipbook.addEventListener('touchend', function(e){
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if(Math.abs(diff) > 50){ if(diff > 0) goNext(); else goBack(); }
+      });
+    } else {
+      $('#flipbook').turn({
+        width: 1040, height: 600,
+        display: 'double',
+        autoCenter: false,
+        gradients: true,
+        acceleration: true,
+        duration: 650,
+        when: { turned: function(){ afterTurn(); } }
+      });
+    }
+    buildDots();
+    afterTurn();
+  });
 </script>
 </body>
 </html>
