@@ -19,9 +19,9 @@
     font-size: 13px;
     color: rgba(176, 141, 87, 0.8);
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: uppercase; 
     letter-spacing: 1.5px;
-    margin-bottom: 16px;
+    margin-bottom: 16px; 
 }
 
 html[data-theme="dim"] .konfig-kicker {

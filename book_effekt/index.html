@@ -1045,6 +1045,15 @@
       </div>
     </div>
 
+    <div>
+  <div class="page-sep"></div>
+  <div class="q-page right-tint" style="display:flex;align-items:center;justify-content:center;">
+    <div style="text-align:center;opacity:0.25;user-select:none;">
+      <div style="font-family:'Playfair Display',serif;font-size:40px;color:var(--gold);">✦</div>
+    </div>
+  </div>
+</div>
+
 
     <!-- ── SPREAD 6: ZUSAMMENFASSUNG + KONTAKT ── pages 9+10 -->
     <div>
@@ -1304,7 +1313,6 @@ function goNext(){
     const s=currentSpread();
     if(s===3) {
       setTimeout(() => {
-        buildSummary();
       }, 100);
     }
     if(s<TOTAL_SPREADS){ $('#flipbook').turn('next'); afterTurn(); }
@@ -1313,7 +1321,6 @@ function goNext(){
     if(currentSpread()>1){ $('#flipbook').turn('previous'); afterTurn(); }
   }
 
-  /* ─── AFTER EVERY TURN ──────────────────────────── */
 /* ─── AFTER EVERY TURN ──────────────────────────── */
 function afterTurn(){
     const s=currentSpread();
@@ -1321,7 +1328,8 @@ function afterTurn(){
     const bn=document.getElementById('btn-next');
     if(s>=TOTAL_SPREADS){ bn.textContent='—'; bn.disabled=true; }
     else { bn.textContent='Weiter →'; bn.disabled=false; }
-    
+    setTimeout(() => { buildSummary(); }, 100);
+    updateDots(s);
     // ✅ NEU: Summary mit kleinem Delay bauen
     if(s === 6) {
       setTimeout(() => {
@@ -1565,7 +1573,8 @@ fetch('/', {
   }
 
   /* ─── NAV DOTS ──────────────────────────────────── */
-  const DOT_LABELS=['Cover','T.1+2','T.3+4','T.5+6','T.7','Résumé'];
+  const DOT_LABELS=['Cover','T.1+2','T.3+4','T.5+6','T.7','—','Résumé'];
+
 
   function buildDots(){
     const w=document.getElementById('nav-dots');
