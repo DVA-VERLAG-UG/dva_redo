@@ -226,6 +226,7 @@ html[data-theme="dim"] .package-card:hover {
         0 12px 40px rgba(176, 141, 87, 0.15),
         inset 0 1px 0 rgba(176, 141, 87, 0.1);
     opacity: 1 !important;
+    margin-top: 20px; /* Platz für Badge */
 }
 
 html[data-theme="dim"] .package-card:nth-child(2) {
@@ -251,21 +252,30 @@ html[data-theme="dim"] .package-card:nth-child(2) {
 
 .package-badge {
     position: absolute;
-    top: -14px;
+    top: -16px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #B08D57, #d4b07a);
+    background: linear-gradient(135deg, #B08D57, #d4b07a, #B08D57);
+    background-size: 200% auto;
     color: white;
-    padding: 8px 24px;
+    padding: 7px 28px;
     border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 800;
     font-family: 'Georgia', serif;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     z-index: 10;
-    box-shadow: 0 4px 16px rgba(176, 141, 87, 0.5);
+    box-shadow: 
+        0 4px 16px rgba(176, 141, 87, 0.5),
+        0 1px 0 rgba(255,255,255,0.3) inset;
     white-space: nowrap;
+    animation: badge-shine 3s linear infinite;
+}
+
+@keyframes badge-shine {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 /* ==========================================
@@ -845,9 +855,9 @@ html[data-theme="dim"] .package-card:nth-child(3) .package-subtitle { color: rgb
     .package-card:nth-child(2) .package-footer { padding: 16px; }
 
     .package-badge {
-        font-size: 11px;
-        padding: 6px 14px;
-        top: -12px;
+        font-size: 10px;
+        padding: 5px 16px;
+        top: -14px;
         white-space: nowrap;
     }
 
