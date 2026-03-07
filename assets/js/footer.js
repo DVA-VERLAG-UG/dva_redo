@@ -1,6 +1,4 @@
 // footer.js - Footer functionality
-// Simple inline script style - matches index.html behavior
-
 export function initFooter() {
   // Update year dynamically
   const yearElement = document.getElementById('footer-year');
@@ -13,68 +11,45 @@ export function initFooter() {
     `;
   }
 
-  // Setup footer contact buttons (simple approach)
-  setupFooterContactButtons();
-  
+  // Footer-Buttons verbinden — mit Retry falls contact-popup.js
+  // das Overlay noch nicht ins DOM injiziert hat
+  connectFooterButtons();
+
   console.log('✅ Footer initialized');
 }
 
-function setupFooterContactButtons() {
-  const contactOverlay = document.getElementById('contactOverlay');
-  const contactClose = document.querySelector('.contact-close');
-  
-  if (!contactOverlay) {
-    console.warn('⚠️ Contact overlay not found');
-    return;
-  }
-  
-  // Find all footer buttons that should open contact
-  const footerButtons = [
-    document.getElementById('footerConfigBtn'),
-    document.getElementById('footerContactBtn'),
-    document.getElementById('footerConfiguratorBtn')
-  ].filter(Boolean);
-  
-  if (footerButtons.length === 0) {
-    console.warn('⚠️ No footer buttons found');
-    return;
-  }
-  
-  // Add click handlers to all footer buttons
-  footerButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      contactOverlay.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
-      console.log('✅ Contact popup opened from footer');
-    });
-  });
-  
-  // Close button
-  if (contactClose) {
-    contactClose.addEventListener('click', () => {
-      contactOverlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-      console.log('✅ Contact popup closed');
-    });
-  }
-  
-  // Close on overlay click
-  contactOverlay.addEventListener('click', (e) => {
-    if (e.target === contactOverlay) {
-      contactOverlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-      console.log('✅ Contact popup closed (overlay)');
+function connectFooterButtons() {
+  const buttonIds = ['footerConfigBtn', 'footerContactBtn', 'footerConfiguratorBtn'];
+
+  function tryConnect(attempts = 0) {
+    const overlay = document.getElementById('contact-overlay');
+
+    if (!overlay) {
+      // contact-popup.js noch nicht fertig — nochmal in 100ms versuchen
+      if (attempts < 20) {
+        setTimeout(() => tryConnect(attempts + 1), 100);
+      } else {
+        console.warn('⚠️ contact-overlay nicht gefunden nach 2s');
+      }
+      return;
     }
-  });
-  
-  // Close on ESC key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && contactOverlay.classList.contains('is-open')) {
-      contactOverlay.classList.remove('is-open');
-      document.body.style.overflow = '';
-      console.log('✅ Contact popup closed (ESC)');
-    }
-  });
-  
-  console.log(`✅ ${footerButtons.length} footer button(s) connected to contact popup`);
+
+    const buttons = buttonIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // contact-popup.js public API nutzen falls verfügbar
+        if (window.ContactPopup) {
+          window.ContactPopup.open();
+        } else {
+          overlay.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    console.log(`✅ ${buttons.length} Footer-Button(s) mit Contact-Popup verbunden`);
+  }
+
+  tryConnect();
 }

@@ -1,127 +1,104 @@
 /* ==========================================
    CONTACT POPUP - Wiederverwendbar
-   Einbinden auf jeder Seite die das Formular braucht
+   Einbinden via footer.html auf jeder Seite
    ========================================== */
 
 (function(){
 
   // ── HTML INS DOM INJIZIEREN ──────────────────────────────
   function injectHTML(){
-    if(document.getElementById('contact-overlay')) return; // bereits vorhanden
+    if(document.getElementById('contact-overlay')) return;
 
     const html = `
-      <!-- Netlify Form Detection (hidden) -->
-      <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-        <input type="text"  name="name"/>
-        <input type="email" name="email"/>
-        <input type="tel"   name="telefon"/>
-        <input type="text"  name="betreff"/>
-        <textarea           name="nachricht"></textarea>
-      </form>
-
-      <!-- Popup Overlay -->
       <div class="contact-overlay" id="contact-overlay">
         <div class="contact-popup">
           <button class="contact-close" id="contact-close" aria-label="Schließen">✕</button>
-
           <div class="contact-header">
             <h2>Lass uns sprechen</h2>
             <p>Wir melden uns innerhalb von 24 Stunden bei dir.</p>
           </div>
-
           <form class="contact-form" id="contact-form" novalidate>
             <input type="hidden" name="form-name" value="contact"/>
-            <!-- Honeypot -->
             <input type="text" name="bot-field" style="display:none"/>
-
             <div class="form-row">
               <div class="form-group">
-                <label for="cf-name">Name *</label>
-                <input type="text" id="cf-name" name="name" placeholder="Dein Name" required/>
+                <label for="cpf-vorname">Vorname *</label>
+                <input type="text" id="cpf-vorname" name="vorname" placeholder="Dein Vorname" required/>
               </div>
               <div class="form-group">
-                <label for="cf-email">E-Mail *</label>
-                <input type="email" id="cf-email" name="email" placeholder="deine@email.de" required/>
+                <label for="cpf-nachname">Nachname *</label>
+                <input type="text" id="cpf-nachname" name="nachname" placeholder="Dein Nachname" required/>
               </div>
             </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="cf-telefon">Telefon <span style="font-weight:400;font-size:0.8em;opacity:0.6;">(optional)</span></label>
-                <input type="tel" id="cf-telefon" name="telefon" placeholder="+49 ..."/>
-              </div>
-              <div class="form-group">
-                <label for="cf-betreff">Betreff <span style="font-weight:400;font-size:0.8em;opacity:0.6;">(optional)</span></label>
-                <input type="text" id="cf-betreff" name="betreff" placeholder="Worum geht es?"/>
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="cf-nachricht">Nachricht *</label>
-              <textarea id="cf-nachricht" name="nachricht" placeholder="Erzähl uns von deinem Projekt..." required></textarea>
+              <label for="cpf-email">E-Mail *</label>
+              <input type="email" id="cpf-email" name="email" placeholder="deine@email.de" required/>
             </div>
-
-            <button type="submit" class="form-submit" id="cf-submit">Nachricht senden →</button>
-
-            <div class="form-message" id="cf-message" style="display:none;"></div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cpf-telefon">Telefon <span style="font-weight:400;font-size:0.8em;opacity:0.6;">(optional)</span></label>
+                <input type="tel" id="cpf-telefon" name="telefon" placeholder="+49 ..."/>
+              </div>
+              <div class="form-group">
+                <label for="cpf-betreff">Betreff <span style="font-weight:400;font-size:0.8em;opacity:0.6;">(optional)</span></label>
+                <input type="text" id="cpf-betreff" name="betreff" placeholder="Worum geht es?"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cpf-nachricht">Nachricht *</label>
+              <textarea id="cpf-nachricht" name="nachricht" placeholder="Erzähl uns von deinem Projekt..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="cpf-submit">Nachricht senden →</button>
+            <div class="form-message" id="cpf-message" style="display:none;"></div>
           </form>
         </div>
       </div>
     `;
-
     document.body.insertAdjacentHTML('beforeend', html);
   }
 
   // ── OPEN / CLOSE ─────────────────────────────────────────
   function openContact(){
     const overlay = document.getElementById('contact-overlay');
-    if(overlay) overlay.classList.add('is-open');
+    if(overlay){ overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
   }
-
   function closeContact(){
     const overlay = document.getElementById('contact-overlay');
-    if(overlay) overlay.classList.remove('is-open');
+    if(overlay){ overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
   }
 
   // ── FORM SUBMIT ──────────────────────────────────────────
   function handleSubmit(e){
     e.preventDefault();
+    const vorname   = document.getElementById('cpf-vorname');
+    const nachname  = document.getElementById('cpf-nachname');
+    const email     = document.getElementById('cpf-email');
+    const nachricht = document.getElementById('cpf-nachricht');
+    const submitBtn = document.getElementById('cpf-submit');
+    const msgBox    = document.getElementById('cpf-message');
 
-    const nameEl    = document.getElementById('cf-name');
-    const emailEl   = document.getElementById('cf-email');
-    const msgEl     = document.getElementById('cf-nachricht');
-    const submitBtn = document.getElementById('cf-submit');
-    const msgBox    = document.getElementById('cf-message');
-
-    // Validierung
     let valid = true;
-    [nameEl, emailEl, msgEl].forEach(el => {
+    [vorname, nachname, email, nachricht].forEach(el => {
       el.style.borderColor = '';
-      if(!el.value.trim()){
-        el.style.borderColor = '#c0392b';
-        valid = false;
-      }
+      if(!el.value.trim()){ el.style.borderColor = '#c0392b'; valid = false; }
     });
-    if(emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)){
-      emailEl.style.borderColor = '#c0392b';
-      valid = false;
+    if(email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
+      email.style.borderColor = '#c0392b'; valid = false;
     }
-    if(!valid){
-      showMessage('Bitte fülle alle Pflichtfelder korrekt aus.', 'error');
-      return;
-    }
+    if(!valid){ showMessage('Bitte fülle alle Pflichtfelder korrekt aus.', 'error'); return; }
 
-    // Submit
     submitBtn.disabled = true;
     submitBtn.textContent = 'Wird gesendet...';
+    msgBox.style.display = 'none';
 
     const params = new URLSearchParams();
     params.append('form-name', 'contact');
-    params.append('name',      nameEl.value.trim());
-    params.append('email',     emailEl.value.trim());
-    params.append('telefon',   document.getElementById('cf-telefon').value.trim());
-    params.append('betreff',   document.getElementById('cf-betreff').value.trim());
-    params.append('nachricht', msgEl.value.trim());
+    params.append('vorname',   vorname.value.trim());
+    params.append('nachname',  nachname.value.trim());
+    params.append('email',     email.value.trim());
+    params.append('telefon',   document.getElementById('cpf-telefon').value.trim());
+    params.append('betreff',   document.getElementById('cpf-betreff').value.trim());
+    params.append('nachricht', nachricht.value.trim());
 
     fetch('/', {
       method:  'POST',
@@ -145,48 +122,25 @@
   }
 
   function showMessage(text, type){
-    const box = document.getElementById('cf-message');
+    const box = document.getElementById('cpf-message');
     if(!box) return;
     box.textContent = text;
     box.className = 'form-message ' + type;
     box.style.display = 'block';
   }
 
-  // ── EVENT LISTENERS ──────────────────────────────────────
+  // ── EVENTS ───────────────────────────────────────────────
   function bindEvents(){
-    // Overlay-Close
-    const overlay = document.getElementById('contact-overlay');
-    overlay.addEventListener('click', function(e){
+    document.getElementById('contact-overlay').addEventListener('click', function(e){
       if(e.target === this) closeContact();
     });
-
-    // X-Button
     document.getElementById('contact-close').addEventListener('click', closeContact);
-
-    // ESC-Taste
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeContact();
-    });
-
-    // Form Submit
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeContact(); });
     document.getElementById('contact-form').addEventListener('submit', handleSubmit);
-
-    // Alle Trigger-Buttons auf der Seite verbinden
-    // Funktioniert für: id="footerConfigBtn", id="footerContactBtn",
-    // class="open-contact", data-action="contact" usw.
-    const triggers = document.querySelectorAll(
-      '#footerConfigBtn, #footerContactBtn, .open-contact, [data-action="contact"]'
-    );
-    triggers.forEach(btn => {
-      btn.addEventListener('click', openContact);
-    });
   }
 
   // ── INIT ─────────────────────────────────────────────────
-  function init(){
-    injectHTML();
-    bindEvents();
-  }
+  function init(){ injectHTML(); bindEvents(); }
 
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', init);
