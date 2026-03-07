@@ -1,13 +1,44 @@
 /* ==========================================
    CONTACT POPUP - Wiederverwendbar
-   Einbinden via footer.html auf jeder Seite
+   Lädt via footer.html auf jeder Seite.
+
+   Funktioniert in zwei Modi:
+   1. Seite hat eigenes Popup (#contactOverlay) → nutzt das
+   2. Seite hat kein Popup → injiziert eigenes (#contact-overlay)
    ========================================== */
 
 (function(){
 
-  // ── HTML INS DOM INJIZIEREN ──────────────────────────────
+  // ── WELCHES OVERLAY VERWENDEN? ───────────────────────────
+  // Unterstützt beide ID-Varianten (index.html = contactOverlay,
+  // andere Seiten = contact-overlay)
+  function getOverlay(){
+    return document.getElementById('contactOverlay') ||
+           document.getElementById('contact-overlay');
+  }
+
+  // ── OPEN / CLOSE ─────────────────────────────────────────
+  function openContact(){
+    const overlay = getOverlay();
+    if(overlay){ overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeContact(){
+    const overlay = getOverlay();
+    if(overlay){ overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+  }
+
+  // ── PUBLIC API — sofort verfügbar ────────────────────────
+  window.ContactPopup = {
+    open: function(){
+      if(!getOverlay()) init();
+      openContact();
+    },
+    close: closeContact
+  };
+
+  // ── HTML INS DOM INJIZIEREN (nur falls kein eigenes Popup) ─
   function injectHTML(){
-    if(document.getElementById('contact-overlay')) return;
+    if(getOverlay()) return; // Seite hat schon ein Popup → nichts tun
 
     const html = `
       <div class="contact-overlay" id="contact-overlay">
@@ -57,17 +88,32 @@
     document.body.insertAdjacentHTML('beforeend', html);
   }
 
-  // ── OPEN / CLOSE ─────────────────────────────────────────
-  function openContact(){
+  // ── EVENTS FÜR INJIZIERTEN POPUP ─────────────────────────
+  function bindInjectedEvents(){
     const overlay = document.getElementById('contact-overlay');
-    if(overlay){ overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
-  }
-  function closeContact(){
-    const overlay = document.getElementById('contact-overlay');
-    if(overlay){ overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+    if(!overlay) return;
+    overlay.addEventListener('click', function(e){ if(e.target === this) closeContact(); });
+    const closeBtn = document.getElementById('contact-close');
+    if(closeBtn) closeBtn.addEventListener('click', closeContact);
+    const form = document.getElementById('contact-form');
+    if(form) form.addEventListener('submit', handleSubmit);
   }
 
-  // ── FORM SUBMIT ──────────────────────────────────────────
+  // ── FOOTER BUTTONS VERBINDEN ─────────────────────────────
+  function bindFooterButtons(){
+    const ids = ['footerConfigBtn', 'footerContactBtn', 'footerConfiguratorBtn'];
+    ids.forEach(id => {
+      const btn = document.getElementById(id);
+      if(btn) btn.addEventListener('click', openContact);
+    });
+  }
+
+  // ── ESC KEY (global) ─────────────────────────────────────
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeContact();
+  });
+
+  // ── FORM SUBMIT (für injiziertes Popup) ──────────────────
   function handleSubmit(e){
     e.preventDefault();
     const vorname   = document.getElementById('cpf-vorname');
@@ -85,11 +131,10 @@
     if(email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
       email.style.borderColor = '#c0392b'; valid = false;
     }
-    if(!valid){ showMessage('Bitte fülle alle Pflichtfelder korrekt aus.', 'error'); return; }
+    if(!valid){ showMsg('Bitte fülle alle Pflichtfelder korrekt aus.', 'error'); return; }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Wird gesendet...';
-    msgBox.style.display = 'none';
 
     const params = new URLSearchParams();
     params.append('form-name', 'contact');
@@ -109,19 +154,18 @@
       if(!res.ok) throw new Error('HTTP ' + res.status);
       submitBtn.textContent = '✓ Gesendet!';
       submitBtn.style.background = '#4a7c59';
-      showMessage('Vielen Dank! Wir melden uns innerhalb von 24 Stunden.', 'success');
+      showMsg('Vielen Dank! Wir melden uns innerhalb von 24 Stunden.', 'success');
       document.getElementById('contact-form').reset();
       setTimeout(closeContact, 3000);
     })
     .catch(err => {
-      console.error('Contact form error:', err);
       submitBtn.disabled = false;
       submitBtn.textContent = 'Nachricht senden →';
-      showMessage('Fehler beim Senden. Bitte versuche es erneut.', 'error');
+      showMsg('Fehler beim Senden. Bitte versuche es erneut.', 'error');
     });
   }
 
-  function showMessage(text, type){
+  function showMsg(text, type){
     const box = document.getElementById('cpf-message');
     if(!box) return;
     box.textContent = text;
@@ -129,19 +173,12 @@
     box.style.display = 'block';
   }
 
-
-  // ── PUBLIC API — sofort verfügbar, noch vor init() ──────
-  // Damit onclick="ContactPopup.open()" funktioniert
-  window.ContactPopup = {
-    open: function(){
-      if(!document.getElementById('contact-overlay')) init();
-      openContact();
-    },
-    close: closeContact
-  };
-
   // ── INIT ─────────────────────────────────────────────────
-  function init(){ injectHTML(); bindEvents(); }
+  function init(){
+    injectHTML();        // nur falls kein eigenes Popup vorhanden
+    bindInjectedEvents();
+    bindFooterButtons();
+  }
 
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', init);
