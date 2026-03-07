@@ -149,6 +149,15 @@
 </head>
 <body>
 
+<!-- Hidden form for Netlify build-time detection -->
+<form name="buchkonfigurator" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name"/>
+  <input type="email" name="email"/>
+  <input type="tel" name="telefon"/>
+  <textarea name="nachricht"></textarea>
+  <input type="hidden" name="konfiguration"/>
+</form>
+
 <!-- Mobile Close Button -->
 <button id="mobile-close-btn"
   onclick="window.parent.postMessage({type:'closePopup'},'*')"
@@ -445,28 +454,44 @@
     const nameEl=document.getElementById('inline-name');
     const emailEl=document.getElementById('inline-email');
     if(!nameEl.value.trim()||!emailEl.value.trim()){alert('Bitte Name und E-Mail ausfüllen');return;}
+
+    const btn=e.target.querySelector('button[type="submit"]');
+    if(btn){btn.disabled=true;btn.textContent='Wird gesendet...';}
+
     const export_data={};
     Object.keys(answers).forEach(k=>{if(answers[k]&&answers[k].length>0){export_data[qLabels[k]]=answers[k];}});
-    const formData=new FormData();
-    formData.append('form-name','buchkonfigurator');
-    formData.append('name',nameEl.value.trim());
-    formData.append('email',emailEl.value.trim());
-    formData.append('telefon',document.getElementById('inline-tel').value.trim());
-    formData.append('nachricht',document.getElementById('inline-msg').value.trim());
-    formData.append('konfiguration',JSON.stringify(export_data,null,2));
-    fetch('/',{method:'POST',body:new URLSearchParams(formData)})
-      .then(()=>{
-        $('#flipbook').turn('page',$('#flipbook').turn('pages'));
-        setTimeout(()=>{
-          if(window.parent&&window.parent!==window){
-            window.parent.postMessage({type:'selectionUpdate',selections:export_data},'*');
-            setTimeout(()=>{window.parent.postMessage({type:'closePopup'},'*');},800);
-          }
-        },1000);
-        answers={};sessionStorage.removeItem('buchkonfig');
-        document.querySelectorAll('.opt.selected').forEach(e=>e.classList.remove('selected'));
-      })
-      .catch(err=>{console.error('Fehler:',err);alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');});
+
+    const params=new URLSearchParams();
+    params.append('form-name','buchkonfigurator');
+    params.append('name',nameEl.value.trim());
+    params.append('email',emailEl.value.trim());
+    params.append('telefon',document.getElementById('inline-tel').value.trim());
+    params.append('nachricht',document.getElementById('inline-msg').value.trim());
+    params.append('konfiguration',JSON.stringify(export_data,null,2));
+
+    fetch('/',{
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:params.toString()
+    })
+    .then(res=>{
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      // Zur letzten Seite drehen
+      $('#flipbook').turn('page',$('#flipbook').turn('pages'));
+      setTimeout(()=>{
+        if(window.parent&&window.parent!==window){
+          window.parent.postMessage({type:'selectionUpdate',selections:export_data},'*');
+          setTimeout(()=>{window.parent.postMessage({type:'closePopup'},'*');},800);
+        }
+      },1000);
+      answers={};sessionStorage.removeItem('buchkonfig');
+      document.querySelectorAll('.opt.selected').forEach(e=>e.classList.remove('selected'));
+    })
+    .catch(err=>{
+      console.error('Netlify submit error:',err);
+      if(btn){btn.disabled=false;btn.textContent='Konfiguration senden →';}
+      alert('Fehler beim Senden. Bitte versuchen Sie es erneut.');
+    });
   }
 
   function openContact(){
