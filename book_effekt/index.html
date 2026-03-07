@@ -536,7 +536,8 @@
         if(Math.abs(diff)>50){if(diff>0)goNext();else goBack();}
       });
     } else {
-      $('#flipbook').turn({width:1040,height:600,display:'double',autoCenter:false,gradients:true,acceleration:true,duration:650,when:{turned:function(){afterTurn();}}});
+      const deskH = Math.min(640, Math.round(window.innerHeight * 0.85));
+      $('#flipbook').turn({width:1040,height:deskH,display:'double',autoCenter:false,gradients:true,acceleration:true,duration:650,when:{turned:function(){afterTurn();}}});
     }
     buildDots();
     afterTurn();
