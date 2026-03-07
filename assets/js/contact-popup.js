@@ -129,15 +129,16 @@
     box.style.display = 'block';
   }
 
-  // ── EVENTS ───────────────────────────────────────────────
-  function bindEvents(){
-    document.getElementById('contact-overlay').addEventListener('click', function(e){
-      if(e.target === this) closeContact();
-    });
-    document.getElementById('contact-close').addEventListener('click', closeContact);
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeContact(); });
-    document.getElementById('contact-form').addEventListener('submit', handleSubmit);
-  }
+
+  // ── PUBLIC API — sofort verfügbar, noch vor init() ──────
+  // Damit onclick="ContactPopup.open()" funktioniert
+  window.ContactPopup = {
+    open: function(){
+      if(!document.getElementById('contact-overlay')) init();
+      openContact();
+    },
+    close: closeContact
+  };
 
   // ── INIT ─────────────────────────────────────────────────
   function init(){ injectHTML(); bindEvents(); }
@@ -147,8 +148,5 @@
   } else {
     init();
   }
-
-  // ── PUBLIC API ───────────────────────────────────────────
-  window.ContactPopup = { open: openContact, close: closeContact };
 
 })();
