@@ -461,13 +461,26 @@
     const export_data={};
     Object.keys(answers).forEach(k=>{if(answers[k]&&answers[k].length>0){export_data[qLabels[k]]=answers[k];}});
 
+    // Konfiguration als lesbaren Text formatieren
+    let konfig_text = '';
+    Object.keys(export_data).forEach(thema => {
+      const auswahl = export_data[thema];
+      if(auswahl && auswahl.length > 0){
+        konfig_text += `${thema}:\n`;
+        auswahl.forEach(item => { konfig_text += `  • ${item}\n`; });
+        konfig_text += '\n';
+      }
+    });
+    const total = Object.values(export_data).reduce((s,a)=>s+(a?a.length:0),0);
+    konfig_text = `Gesamte Auswahl: ${total} Leistung(en)\n${'─'.repeat(30)}\n\n` + konfig_text;
+
     const params=new URLSearchParams();
     params.append('form-name','buchkonfigurator');
     params.append('name',nameEl.value.trim());
     params.append('email',emailEl.value.trim());
     params.append('telefon',document.getElementById('inline-tel').value.trim());
     params.append('nachricht',document.getElementById('inline-msg').value.trim());
-    params.append('konfiguration',JSON.stringify(export_data,null,2));
+    params.append('konfiguration',konfig_text);
 
     fetch('/',{
       method:'POST',
