@@ -8,9 +8,14 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
     max-width: 100%;
     overflow-x: hidden;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: clip; /* clip statt hidden — blockiert nicht den vertikalen Scroll */
 }
 
 /* Hero Section */
