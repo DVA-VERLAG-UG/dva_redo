@@ -412,25 +412,26 @@
     </div>
 
     <script>
-        // ── Overlay öffnen / schließen ───────────────────────
-        function openContact() {
+        // ── Overlay öffnen / schließen ─────────────────────
+        // Als window.* exportiert damit footer.js darauf zugreifen kann
+        window.openContact = function() {
             document.getElementById('contactOverlay').classList.add('is-open');
             document.body.style.overflow = 'hidden';
-        }
-        function closeContact() {
+        };
+        window.closeContact = function() {
             document.getElementById('contactOverlay').classList.remove('is-open');
             document.body.style.overflow = '';
-        }
+        };
 
-        document.getElementById('contactBtn')?.addEventListener('click', openContact);
-        document.getElementById('processContactBtn')?.addEventListener('click', openContact);
-        document.getElementById('panelContactBtn')?.addEventListener('click', openContact);
-        document.getElementById('contactClose').addEventListener('click', closeContact);
+        document.getElementById('contactBtn')?.addEventListener('click', window.openContact);
+        document.getElementById('processContactBtn')?.addEventListener('click', window.openContact);
+        document.getElementById('panelContactBtn')?.addEventListener('click', window.openContact);
+        document.getElementById('contactClose').addEventListener('click', window.closeContact);
         document.getElementById('contactOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeContact();
+            if (e.target === this) window.closeContact();
         });
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeContact();
+            if (e.key === 'Escape') window.closeContact();
         });
 
         // ── Netlify AJAX Submit ──────────────────────────────
@@ -444,7 +445,6 @@
             const submitBtn = document.getElementById('cf-submit');
             const msgBox    = document.getElementById('cf-message');
 
-            // Validierung
             let valid = true;
             [vorname, nachname, email].forEach(el => {
                 el.style.borderColor = '';
@@ -485,7 +485,7 @@
                 msgBox.className = 'form-message success';
                 msgBox.style.display = 'block';
                 document.getElementById('contactForm').reset();
-                setTimeout(closeContact, 3000);
+                setTimeout(window.closeContact, 3000);
             })
             .catch(err => {
                 console.error('Contact form error:', err);
