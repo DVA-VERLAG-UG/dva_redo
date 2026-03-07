@@ -489,16 +489,25 @@
     })
     .then(res=>{
       if(!res.ok) throw new Error('HTTP '+res.status);
-      // Zur letzten Seite drehen
-      $('#flipbook').turn('page',$('#flipbook').turn('pages'));
+
+      // 1. Sofort selectionUpdate ans Parent senden (vor closePopup!)
+      if(window.parent&&window.parent!==window){
+        window.parent.postMessage({type:'selectionUpdate',selections:export_data},'*');
+      }
+
+      // 2. Answers zurücksetzen
+      answers={};sessionStorage.removeItem('buchkonfig');
+      document.querySelectorAll('.opt.selected').forEach(el=>el.classList.remove('selected'));
+
+      // 3. Button Feedback
+      if(btn){btn.textContent='✓ Gesendet!';btn.style.background='#4a7c59';}
+
+      // 4. Erst nach 1.5s schließen — fetch ist längst fertig
       setTimeout(()=>{
         if(window.parent&&window.parent!==window){
-          window.parent.postMessage({type:'selectionUpdate',selections:export_data},'*');
-          setTimeout(()=>{window.parent.postMessage({type:'closePopup'},'*');},800);
+          window.parent.postMessage({type:'closePopup'},'*');
         }
-      },1000);
-      answers={};sessionStorage.removeItem('buchkonfig');
-      document.querySelectorAll('.opt.selected').forEach(e=>e.classList.remove('selected'));
+      },1500);
     })
     .catch(err=>{
       console.error('Netlify submit error:',err);
