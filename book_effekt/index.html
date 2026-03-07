@@ -511,9 +511,7 @@
   $(document).ready(function(){
     const isMobile=window.innerWidth<=768;
     if(isMobile){
-      // Nav-Bar ist jetzt INSIDE book (absolute bottom) — Höhe ~56px
-      // Close-Button ist fixed:top:8px (Höhe ~42px)
-      const NAV_H = 56;
+      // iframe ist 100dvh, close-button ist fixed top:8px (Höhe ~42px)
       const CLOSE_H = 46;
       const flipH = window.innerHeight - CLOSE_H;
 
