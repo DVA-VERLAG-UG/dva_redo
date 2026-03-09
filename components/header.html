@@ -16,11 +16,12 @@
           <input 
             type="search" 
             class="search-input" 
-            placeholder="Suchbegriff eingeben" 
-            aria-label="Suche"
+            placeholder="Search…" 
+            aria-label="Search"
             id="headerSearchInput"
+            autocomplete="off"
           >
-          <button type="submit" class="search-btn" aria-label="Suchen">
+          <button type="submit" class="search-btn" aria-label="Search">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="11" cy="11" r="8"></circle>
               <path d="m21 21-4.35-4.35"></path>
@@ -33,24 +34,24 @@
       </div>
 
       <!-- Theme Toggle -->
-      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Theme umschalten">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
         <span class="theme-icon theme-icon-moon">🌙</span>
         <span class="theme-icon theme-icon-sun">☀️</span>
       </button>
 
       <!-- Language Switcher (Desktop) -->
       <div class="lang-switcher">
-        <a href="#" data-lang="de" class="lang-link is-active">DE</a>
+        <a href="/de/" data-lang="de" class="lang-link">DE</a>
         <span class="lang-sep">|</span>
-        <a href="#" data-lang="en" class="lang-link">EN</a>
+        <a href="/en/" data-lang="en" class="lang-link">EN</a>
         <span class="lang-sep">|</span>
-        <a href="#" data-lang="tr" class="lang-link">TR</a>
+        <a href="/tr/" data-lang="tr" class="lang-link">TR</a>
         <span class="lang-sep">|</span>
-        <a href="#" data-lang="fr" class="lang-link">FR</a>
+        <a href="/fr/" data-lang="fr" class="lang-link">FR</a>
       </div>
 
       <!-- Mobile Menu Button -->
-      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü" aria-expanded="false">
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false">
         <span class="menu-icon">
           <span></span>
           <span></span>
@@ -67,118 +68,144 @@
 <!-- Mobile Menu Drawer -->
 <aside class="menu-drawer" id="menuDrawer">
   <div class="drawer-header">
-    <h2 class="drawer-title">Menü</h2>
-    <button class="drawer-close" id="drawerClose" type="button" aria-label="Schließen">✕</button>
+    <h2 class="drawer-title" id="drawerTitle">Menu</h2>
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Close">✕</button>
   </div>
   
-  <nav class="drawer-nav">
-    <a href="index.html" class="drawer-link">Startseite</a>
-    <a href="ueber-uns.html" class="drawer-link">Über uns</a>
-    <a href="projekte.html" class="drawer-link">Projekte</a>
-    <a href="konfigurator-page.html" class="drawer-link">Konfigurator</a>
-    <a href="kontakt.html" class="drawer-link">Kontakt</a>
-    <a href="blog/blog-index.html" class="drawer-link">Blog</a>
+  <nav class="drawer-nav" id="drawerNav">
+    <!-- Links are injected dynamically by header.js based on language -->
   </nav>
 </aside>
 
-<!-- Header JavaScript -->
+<!-- Header JavaScript (inline — runs immediately after header is injected) -->
 <script>
 (function() {
   'use strict';
-  
-  // Theme Toggle
+
+  // ── Per-language nav links ────────────────────────────
+  const NAV = {
+    de: [
+      { href: '/de/',                     label: 'Startseite'   },
+      { href: '/de/ueber-uns.html',       label: 'Über uns'     },
+      { href: '/de/projekte.html',        label: 'Projekte'     },
+      { href: '/de/pakete.html',          label: 'Pakete'       },
+      { href: '/de/konfigurator-page.html', label: 'Konfigurator' },
+      { href: '/de/kontakt.html',         label: 'Kontakt'      },
+      { href: '/de/blog/',                label: 'Blog'         },
+    ],
+    en: [
+      { href: '/en/',                     label: 'Home'         },
+      { href: '/en/about.html',           label: 'About Us'     },
+      { href: '/en/projects.html',        label: 'Projects'     },
+      { href: '/en/packages.html',        label: 'Packages'     },
+      { href: '/en/configurator-page.html', label: 'Configurator' },
+      { href: '/en/contact.html',         label: 'Contact'      },
+      { href: '/en/blog/',                label: 'Blog'         },
+    ],
+    tr: [
+      { href: '/tr/',                     label: 'Ana Sayfa'    },
+      { href: '/tr/hakkimizda.html',      label: 'Hakkımızda'   },
+      { href: '/tr/projeler.html',        label: 'Projeler'     },
+      { href: '/tr/paketler.html',        label: 'Paketler'     },
+      { href: '/tr/yapilandirma.html',    label: 'Konfiguratör' },
+      { href: '/tr/iletisim.html',        label: 'İletişim'     },
+      { href: '/tr/blog/',                label: 'Blog'         },
+    ],
+    fr: [
+      { href: '/fr/',                     label: 'Accueil'      },
+      { href: '/fr/a-propos.html',        label: 'À propos'     },
+      { href: '/fr/projets.html',         label: 'Projets'      },
+      { href: '/fr/forfaits.html',        label: 'Forfaits'     },
+      { href: '/fr/configuration.html',   label: 'Configurateur'},
+      { href: '/fr/contact.html',         label: 'Contact'      },
+      { href: '/fr/blog/',                label: 'Blog'         },
+    ]
+  };
+
+  const DRAWER_TITLES = { de: 'Menü', en: 'Menu', tr: 'Menü', fr: 'Menu' };
+  const SEARCH_PLACEHOLDER = {
+    de: 'Suchbegriff eingeben',
+    en: 'Search…',
+    tr: 'Ara…',
+    fr: 'Rechercher…'
+  };
+
+  // Detect language from URL
+  function getLang() {
+    const p = window.location.pathname;
+    if (p.startsWith('/en/')) return 'en';
+    if (p.startsWith('/tr/')) return 'tr';
+    if (p.startsWith('/fr/')) return 'fr';
+    return 'de';
+  }
+
+  const lang = getLang();
+
+  // ── 1. Populate drawer nav ────────────────────────────
+  const drawerNav   = document.getElementById('drawerNav');
+  const drawerTitle = document.getElementById('drawerTitle');
+  const currentPath = window.location.pathname;
+
+  if (drawerTitle) drawerTitle.textContent = DRAWER_TITLES[lang] || 'Menu';
+
+  if (drawerNav) {
+    drawerNav.innerHTML = (NAV[lang] || NAV.de).map(item => {
+      const isActive = currentPath === item.href || currentPath.startsWith(item.href) && item.href !== '/' + lang + '/';
+      return `<a href="${item.href}" class="drawer-link${isActive ? ' is-active' : ''}">${item.label}</a>`;
+    }).join('');
+  }
+
+  // ── 2. Search placeholder per language ────────────────
+  const searchInput = document.getElementById('headerSearchInput');
+  if (searchInput) {
+    searchInput.placeholder = SEARCH_PLACEHOLDER[lang] || 'Search…';
+    searchInput.setAttribute('aria-label', SEARCH_PLACEHOLDER[lang] || 'Search');
+  }
+
+  // ── 3. Mark active language ───────────────────────────
+  document.querySelectorAll('[data-lang]').forEach(link => {
+    link.classList.toggle('is-active', link.getAttribute('data-lang') === lang);
+  });
+
+  // ── 4. Theme Toggle ───────────────────────────────────
   const themeToggle = document.getElementById('themeToggle');
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dim' ? 'light' : 'dim';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('dvayd_theme', newTheme);
+      const current = document.documentElement.getAttribute('data-theme');
+      const next    = current === 'dim' ? 'light' : 'dim';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('dvayd_theme', next);
     });
   }
-  
-  // Mobile Menu
-  const menuToggle = document.getElementById('menuToggle');
+
+  // ── 5. Mobile Menu ────────────────────────────────────
+  const menuToggle  = document.getElementById('menuToggle');
   const menuOverlay = document.getElementById('menuOverlay');
-  const menuDrawer = document.getElementById('menuDrawer');
+  const menuDrawer  = document.getElementById('menuDrawer');
   const drawerClose = document.getElementById('drawerClose');
-  
+
   function openMenu() {
-    if (menuOverlay) menuOverlay.classList.add('is-open');
-    if (menuDrawer) menuDrawer.classList.add('is-open');
-    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+    menuOverlay?.classList.add('is-open');
+    menuDrawer?.classList.add('is-open');
+    menuToggle?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    document.getElementById('site-header')?.classList.remove('is-hidden');
   }
-  
   function closeMenu() {
-    if (menuOverlay) menuOverlay.classList.remove('is-open');
-    if (menuDrawer) menuDrawer.classList.remove('is-open');
-    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    menuOverlay?.classList.remove('is-open');
+    menuDrawer?.classList.remove('is-open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
-  
-  if (menuToggle) menuToggle.addEventListener('click', openMenu);
-  if (drawerClose) drawerClose.addEventListener('click', closeMenu);
-  if (menuOverlay) menuOverlay.addEventListener('click', closeMenu);
-  
-  // Close on ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menuDrawer?.classList.contains('is-open')) {
-      closeMenu();
-    }
+
+  menuToggle?.addEventListener('click', () =>
+    menuToggle.getAttribute('aria-expanded') === 'true' ? closeMenu() : openMenu());
+  drawerClose?.addEventListener('click', closeMenu);
+  menuOverlay?.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menuDrawer?.classList.contains('is-open')) closeMenu();
   });
-  
-  // Header scroll behavior
-  let lastScroll = 0;
-  const header = document.getElementById('site-header');
-  
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-      header?.classList.add('is-scrolled');
-    } else {
-      header?.classList.remove('is-scrolled');
-    }
-    
-    if (currentScroll > lastScroll && currentScroll > 200) {
-      header?.classList.add('is-hidden');
-    } else {
-      header?.classList.remove('is-hidden');
-    }
-    
-    lastScroll = currentScroll;
-  }, { passive: true });
-  
-  // Search functionality (basic)
-  const searchInput = document.getElementById('headerSearchInput');
-  const searchForm = document.querySelector('.search-form');
-  const searchDropdown = document.getElementById('searchDropdown');
-  
-  if (searchForm) {
-    searchForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const query = searchInput?.value.trim();
-      if (query) {
-        // Redirect to blog search or search page
-        window.location.href = `blog/?s=${encodeURIComponent(query)}`;
-      }
-    });
-  }
-  
-  // Active link highlighting
-  const currentPath = window.location.pathname;
-  const drawerLinks = document.querySelectorAll('.drawer-link');
-  
-  drawerLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    if (currentPath.includes(href) && href !== 'index.html') {
-      link.classList.add('is-active');
-    } else if (currentPath.endsWith('/') && href === 'index.html') {
-      link.classList.add('is-active');
-    }
-  });
-  
-  console.log('✅ Header initialized');
+
+  console.log('✅ Header initialized (' + lang.toUpperCase() + ')');
 })();
 </script>

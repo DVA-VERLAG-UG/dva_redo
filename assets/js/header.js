@@ -130,7 +130,6 @@ function setupLanguageSwitcher() {
 // Cache
 let staticIndex  = null;   // aus search-index.json
 let blogCache    = null;   // aus Google Sheet
-let combinedIndex = null;  // merged, ready to search
 
 // ── 1. Static Index laden ─────────────────────────────────
 async function loadStaticIndex() {
@@ -179,7 +178,7 @@ async function loadBlogEntries() {
     blogCache = rows.slice(1).map(r => ({
       title:       r[idx('title')]   || '',
       description: r[idx('excerpt')] || r[idx('content')] || '',
-      url:         `/de/blog/post.html?slug=${encodeURIComponent(r[idx('slug')] || '')}`,
+      url:         '/' + getCurrentLanguage() + '/blog/post.html?slug=' + encodeURIComponent(r[idx('slug')] || ''),
       keywords:    (r[idx('tags')] || '').split(',').map(t => t.trim()).filter(Boolean),
       type:        'blog',
       date:        r[idx('date')] || '',
@@ -192,12 +191,12 @@ async function loadBlogEntries() {
 }
 
 // ── 3. Alles zusammenführen ───────────────────────────────
-async function getCombinedIndex() {
-  if (combinedIndex) return combinedIndex;
+// Rohdaten zusammenführen — gecacht damit Sheet nur 1x geladen wird
+async function getAllEntries() {
   const [pages, blog] = await Promise.all([loadStaticIndex(), loadBlogEntries()]);
-  combinedIndex = [...pages, ...blog];
-  return combinedIndex;
+  return [...pages, ...blog];
 }
+
 
 // ── 4. Scoring ────────────────────────────────────────────
 function score(entry, words) {
@@ -231,7 +230,7 @@ function findSection(entry, words) {
 function buildUrl(entry, query, section) {
   // Blog-Posts haben slug direkt in der URL, kein Anker nötig
   const base = entry.type === 'blog'
-    ? `/de/blog/post.html?slug=${encodeURIComponent(entry.slug)}&q=${encodeURIComponent(query)}`
+    ? '/' + getCurrentLanguage() + '/blog/post.html?slug=' + encodeURIComponent(entry.slug) + '&q=' + encodeURIComponent(query)
     : (() => {
         const u = new URL(entry.url, window.location.origin);
         u.searchParams.set('q', query);
@@ -304,7 +303,7 @@ function setupSearch() {
   if (!searchInput || !searchForm || !searchDropdown) return;
 
   // Index + Blog schon im Hintergrund laden
-  getCombinedIndex();
+  getAllEntries();
 
   let timer;
 
@@ -317,7 +316,7 @@ function setupSearch() {
     }
 
     const words  = query.toLowerCase().split(/\s+/).filter(Boolean);
-    const index  = await getCombinedIndex();
+    const index  = await getAllEntries();
 
     const results = index
       .map(entry => {
@@ -329,11 +328,16 @@ function setupSearch() {
       .slice(0, 8);
 
     if (!results.length) {
-      searchDropdown.innerHTML = `
-        <div class="search-result search-no-result">
-          <div class="search-result-title">Keine Ergebnisse für „${query}"</div>
-          <div class="search-result-excerpt">Versuch einen anderen Suchbegriff.</div>
-        </div>`;
+      const noResultMsg = {
+        de: ['Keine Ergebnisse für', 'Versuch einen anderen Suchbegriff.'],
+        en: ['No results for', 'Try a different search term.'],
+        tr: ['Sonuç bulunamadı:', 'Farklı bir arama terimi deneyin.'],
+        fr: ['Aucun résultat pour', 'Essayez un autre terme de recherche.']
+      }[getCurrentLanguage()] || ['No results for', 'Try a different search term.'];
+      searchDropdown.innerHTML = '<div class="search-result search-no-result">'
+        + '<div class="search-result-title">' + noResultMsg[0] + ' „' + query + '“</div>'
+        + '<div class="search-result-excerpt">' + noResultMsg[1] + '</div>'
+        + '</div>';
       searchDropdown.classList.add('is-open');
       return;
     }

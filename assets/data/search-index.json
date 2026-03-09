@@ -2,104 +2,615 @@
   {
     "title": "Startseite",
     "url": "/de/",
-    "description": "DVAYD Publishing – Mach dein Manuskript unsterblich. Gedruckt in Istanbul. Zertifiziert in Bremen. Gelesen auf der ganzen Welt.",
-    "keywords": ["publishing", "buch", "manuskript", "autoren", "veröffentlichen", "isbn"],
+    "description": "DVAYD Publishing – Mach dein Manuskript unsterblich. Gedruckt in Istanbul. Zertifiziert in Bremen.",
+    "keywords": [
+      "publishing",
+      "buch",
+      "manuskript",
+      "autoren",
+      "veröffentlichen",
+      "isbn"
+    ],
     "sections": [
-      { "id": "hero", "label": "Hero", "text": "Mach dein Manuskript unsterblich. Gedruckt in Istanbul. Zertifiziert in Bremen." },
-      { "id": "process-steps-section", "label": "Prozess", "text": "In 5 Schritten zum Buch. Manuskript-Check, Feinschliff, Design, Produktion, Marketing." },
-      { "id": "konfig-showcase", "label": "Konfigurator", "text": "Dein Paket in 2 Minuten. Transparente Preise. Keine Verpflichtung." },
-      { "id": "reviews-section", "label": "Bewertungen", "text": "Was unsere Autoren sagen. Erfolgsgeschichten aus der Praxis." },
-      { "id": "news-section", "label": "News", "text": "Neuigkeiten von DVAYD. Blog Updates." }
+      {
+        "id": "hero",
+        "label": "Hero",
+        "text": "Mach dein Manuskript unsterblich. Gedruckt in Istanbul. Zertifiziert in Bremen."
+      },
+      {
+        "id": "process-steps-section",
+        "label": "Prozess",
+        "text": "In 5 Schritten zum Buch. Manuskript-Check, Feinschliff, Design, Produktion, Marketing."
+      },
+      {
+        "id": "konfig-showcase",
+        "label": "Konfigurator",
+        "text": "Dein Paket in 2 Minuten. Transparente Preise. Keine Verpflichtung."
+      },
+      {
+        "id": "reviews-section",
+        "label": "Bewertungen",
+        "text": "Was unsere Autoren sagen. Erfolgsgeschichten aus der Praxis."
+      },
+      {
+        "id": "news-section",
+        "label": "News",
+        "text": "Neuigkeiten von DVAYD. Blog Updates."
+      }
     ]
   },
   {
     "title": "Über uns",
     "url": "/de/ueber-uns.html",
-    "description": "Über DVAYD Publishing – Unser Team, unsere Geschichte, unsere Mission.",
-    "keywords": ["über uns", "team", "geschichte", "mission", "istanbul", "bremen"]
+    "description": "Unser Team, unsere Geschichte, unsere Mission.",
+    "keywords": [
+      "über uns",
+      "team",
+      "geschichte",
+      "mission"
+    ]
   },
   {
     "title": "Projekte & Referenzen",
     "url": "/de/projekte.html",
-    "description": "Projekte und Referenzen von DVAYD Publishing – Bücher die wir veröffentlicht haben.",
-    "keywords": ["projekte", "referenzen", "bücher", "portfolio", "autoren"]
+    "description": "Bücher die wir veröffentlicht haben.",
+    "keywords": [
+      "projekte",
+      "referenzen",
+      "bücher",
+      "portfolio"
+    ]
   },
   {
     "title": "Pakete & Preise",
     "url": "/de/pakete.html",
-    "description": "Unsere Publishing-Pakete – Starter, Deluxe und individuelle Lösungen.",
-    "keywords": ["pakete", "preise", "kosten", "starter", "deluxe", "angebot"]
+    "description": "Starter, Deluxe und individuelle Lösungen.",
+    "keywords": [
+      "pakete",
+      "preise",
+      "kosten",
+      "starter",
+      "deluxe"
+    ]
   },
   {
     "title": "Konfigurator",
     "url": "/de/konfigurator-page.html",
-    "description": "Konfiguriere dein individuelles Publishing-Paket in 2 Minuten.",
-    "keywords": ["konfigurator", "paket", "konfigurieren", "individuell", "angebot", "lektorat", "cover"]
+    "description": "Konfiguriere dein Publishing-Paket in 2 Minuten.",
+    "keywords": [
+      "konfigurator",
+      "paket",
+      "lektorat",
+      "cover",
+      "isbn"
+    ]
   },
   {
     "title": "Kontakt",
     "url": "/de/kontakt.html",
-    "description": "Kontaktiere DVAYD Publishing – Wir melden uns innerhalb von 24 Stunden.",
-    "keywords": ["kontakt", "anfrage", "email", "telefon", "beratung", "gespräch"]
+    "description": "Kontaktiere DVAYD Publishing.",
+    "keywords": [
+      "kontakt",
+      "anfrage",
+      "email",
+      "beratung"
+    ]
   },
   {
     "title": "Blog",
     "url": "/de/blog/",
-    "description": "Blog von DVAYD Publishing – Tipps, Updates und Insights für Autoren.",
-    "keywords": ["blog", "artikel", "tipps", "news", "updates", "ratgeber"]
-  },
-  {
-    "title": "FAQ",
-    "url": "/de/faq/",
-    "description": "Häufig gestellte Fragen zu DVAYD Publishing.",
-    "keywords": ["faq", "fragen", "antworten", "hilfe", "info"]
-  },
-  {
-    "title": "Ablauf & Prozess",
-    "url": "/de/prozess/",
-    "description": "So funktioniert der Publishing-Prozess bei DVAYD – Schritt für Schritt.",
-    "keywords": ["ablauf", "prozess", "schritte", "wie funktioniert", "workflow"]
-  },
-  {
-    "title": "Manuskript-Check",
-    "url": "/de/konfigurator-page.html",
-    "description": "Kostenloser Manuskript-Check – Wir sichten dein Werk und geben klare nächste Schritte.",
-    "keywords": ["manuskript", "check", "sichten", "kostenlos", "beurteilung"]
+    "description": "Tipps, Updates und Insights für Autoren.",
+    "keywords": [
+      "blog",
+      "artikel",
+      "tipps",
+      "news"
+    ]
   },
   {
     "title": "Lektorat & Korrektorat",
     "url": "/de/konfigurator-page.html",
-    "description": "Professionelles Lektorat und Korrektorat – sauber, stilsicher, konsistent.",
-    "keywords": ["lektorat", "korrektorat", "korrektur", "text", "fehler", "stil"]
+    "description": "Professionelles Lektorat und Korrektorat.",
+    "keywords": [
+      "lektorat",
+      "korrektorat",
+      "korrektur",
+      "text"
+    ]
   },
   {
     "title": "Cover & Layout",
     "url": "/de/konfigurator-page.html",
-    "description": "Professionelles Cover-Design und Buchsatz – Made in Istanbul.",
-    "keywords": ["cover", "layout", "design", "buchsatz", "gestaltung", "grafik"]
+    "description": "Cover-Design und Buchsatz – Made in Istanbul.",
+    "keywords": [
+      "cover",
+      "layout",
+      "design",
+      "buchsatz"
+    ]
   },
   {
     "title": "ISBN & Listing",
     "url": "/de/konfigurator-page.html",
-    "description": "ISBN-Vergabe und Listing bei Amazon, Buchhandel und internationalen Plattformen.",
-    "keywords": ["isbn", "listing", "amazon", "buchhandel", "thalia", "distribution", "vertrieb"]
-  },
-  {
-    "title": "Marketing",
-    "url": "/de/konfigurator-page.html",
-    "description": "Marketing für dein Buch – Social Media, Werbung, Sichtbarkeit.",
-    "keywords": ["marketing", "werbung", "social media", "sichtbarkeit", "promotion"]
+    "description": "ISBN-Vergabe und Listing bei Amazon, Buchhandel.",
+    "keywords": [
+      "isbn",
+      "listing",
+      "amazon",
+      "thalia",
+      "distribution"
+    ]
   },
   {
     "title": "Datenschutz",
     "url": "/de/datenschutz.html",
-    "description": "Datenschutzerklärung von DVAYD Publishing.",
-    "keywords": ["datenschutz", "dsgvo", "privacy", "daten"]
+    "description": "Datenschutzerklärung.",
+    "keywords": [
+      "datenschutz",
+      "dsgvo",
+      "privacy"
+    ]
   },
   {
     "title": "Impressum",
     "url": "/de/impressum.html",
     "description": "Impressum von DVAYD Publishing.",
-    "keywords": ["impressum", "kontakt", "rechtliches", "anschrift"]
+    "keywords": [
+      "impressum",
+      "kontakt",
+      "rechtliches"
+    ]
+  },
+  {
+    "title": "Home",
+    "url": "/en/",
+    "description": "DVAYD Publishing – Make your manuscript immortal. Printed in Istanbul. Certified in Bremen.",
+    "keywords": [
+      "publishing",
+      "book",
+      "manuscript",
+      "authors",
+      "publish",
+      "isbn"
+    ],
+    "sections": [
+      {
+        "id": "hero",
+        "label": "Hero",
+        "text": "Make your manuscript immortal. Printed in Istanbul. Certified in Bremen."
+      },
+      {
+        "id": "process-steps-section",
+        "label": "Process",
+        "text": "5 steps to your book. Manuscript review, editing, design, production, marketing."
+      },
+      {
+        "id": "konfig-showcase",
+        "label": "Configurator",
+        "text": "Your package in 2 minutes. Transparent pricing. No commitment."
+      },
+      {
+        "id": "reviews-section",
+        "label": "Reviews",
+        "text": "What our authors say. Success stories from practice."
+      },
+      {
+        "id": "news-section",
+        "label": "News",
+        "text": "News from DVAYD. Blog updates."
+      }
+    ]
+  },
+  {
+    "title": "About Us",
+    "url": "/en/about.html",
+    "description": "Our team, our story, our mission.",
+    "keywords": [
+      "about",
+      "team",
+      "history",
+      "mission"
+    ]
+  },
+  {
+    "title": "Projects & References",
+    "url": "/en/projects.html",
+    "description": "Books we have published.",
+    "keywords": [
+      "projects",
+      "references",
+      "books",
+      "portfolio"
+    ]
+  },
+  {
+    "title": "Packages & Pricing",
+    "url": "/en/packages.html",
+    "description": "Starter, Deluxe and individual solutions.",
+    "keywords": [
+      "packages",
+      "pricing",
+      "cost",
+      "starter",
+      "deluxe"
+    ]
+  },
+  {
+    "title": "Configurator",
+    "url": "/en/configurator-page.html",
+    "description": "Configure your publishing package in 2 minutes.",
+    "keywords": [
+      "configurator",
+      "package",
+      "editing",
+      "cover",
+      "isbn"
+    ]
+  },
+  {
+    "title": "Contact",
+    "url": "/en/contact.html",
+    "description": "Contact DVAYD Publishing.",
+    "keywords": [
+      "contact",
+      "inquiry",
+      "email",
+      "consultation"
+    ]
+  },
+  {
+    "title": "Blog",
+    "url": "/en/blog/",
+    "description": "Tips, updates and insights for authors.",
+    "keywords": [
+      "blog",
+      "articles",
+      "tips",
+      "news"
+    ]
+  },
+  {
+    "title": "Editing & Proofreading",
+    "url": "/en/configurator-page.html",
+    "description": "Professional editing and proofreading.",
+    "keywords": [
+      "editing",
+      "proofreading",
+      "correction",
+      "text"
+    ]
+  },
+  {
+    "title": "Cover & Layout",
+    "url": "/en/configurator-page.html",
+    "description": "Cover design and typesetting – Made in Istanbul.",
+    "keywords": [
+      "cover",
+      "layout",
+      "design",
+      "typesetting"
+    ]
+  },
+  {
+    "title": "ISBN & Listing",
+    "url": "/en/configurator-page.html",
+    "description": "ISBN assignment and listing on Amazon, bookstores.",
+    "keywords": [
+      "isbn",
+      "listing",
+      "amazon",
+      "distribution"
+    ]
+  },
+  {
+    "title": "Privacy Policy",
+    "url": "/en/privacy.html",
+    "description": "Privacy policy.",
+    "keywords": [
+      "privacy",
+      "gdpr",
+      "data"
+    ]
+  },
+  {
+    "title": "Imprint",
+    "url": "/en/imprint.html",
+    "description": "Legal information.",
+    "keywords": [
+      "imprint",
+      "legal",
+      "contact"
+    ]
+  },
+  {
+    "title": "Ana Sayfa",
+    "url": "/tr/",
+    "description": "DVAYD Publishing – Yazmanı ölümsüzleştir. İstanbul'da basılır. Bremen'de sertifikalandırılır.",
+    "keywords": [
+      "yayıncılık",
+      "kitap",
+      "el yazması",
+      "yazarlar",
+      "yayımlamak",
+      "isbn"
+    ],
+    "sections": [
+      {
+        "id": "hero",
+        "label": "Hero",
+        "text": "Yazmanı ölümsüzleştir. İstanbul'da basılır. Bremen'de sertifikalandırılır."
+      },
+      {
+        "id": "process-steps-section",
+        "label": "Süreç",
+        "text": "Kitabına 5 adımda ulaş. El yazması incelemesi, düzenleme, tasarım, üretim, pazarlama."
+      },
+      {
+        "id": "konfig-showcase",
+        "label": "Konfiguratör",
+        "text": "Paketin 2 dakikada. Şeffaf fiyatlar. Yükümlülük yok."
+      },
+      {
+        "id": "reviews-section",
+        "label": "Yorumlar",
+        "text": "Yazarlarımız ne diyor. Uygulamadan başarı hikayeleri."
+      },
+      {
+        "id": "news-section",
+        "label": "Haberler",
+        "text": "DVAYD'dan haberler. Blog güncellemeleri."
+      }
+    ]
+  },
+  {
+    "title": "Hakkımızda",
+    "url": "/tr/hakkimizda.html",
+    "description": "Ekibimiz, hikayemiz, misyonumuz.",
+    "keywords": [
+      "hakkımızda",
+      "ekip",
+      "tarih",
+      "misyon"
+    ]
+  },
+  {
+    "title": "Projeler & Referanslar",
+    "url": "/tr/projeler.html",
+    "description": "Yayımladığımız kitaplar.",
+    "keywords": [
+      "projeler",
+      "referanslar",
+      "kitaplar",
+      "portföy"
+    ]
+  },
+  {
+    "title": "Paketler & Fiyatlar",
+    "url": "/tr/paketler.html",
+    "description": "Starter, Deluxe ve bireysel çözümler.",
+    "keywords": [
+      "paketler",
+      "fiyatlar",
+      "maliyet",
+      "starter",
+      "deluxe"
+    ]
+  },
+  {
+    "title": "Konfiguratör",
+    "url": "/tr/yapilandirma.html",
+    "description": "Yayın paketini 2 dakikada yapılandır.",
+    "keywords": [
+      "konfiguratör",
+      "paket",
+      "redaksiyon",
+      "kapak",
+      "isbn"
+    ]
+  },
+  {
+    "title": "İletişim",
+    "url": "/tr/iletisim.html",
+    "description": "DVAYD Publishing ile iletişime geç.",
+    "keywords": [
+      "iletişim",
+      "sorgu",
+      "e-posta",
+      "danışmanlık"
+    ]
+  },
+  {
+    "title": "Blog",
+    "url": "/tr/blog/",
+    "description": "Yazarlar için ipuçları, güncellemeler ve bilgiler.",
+    "keywords": [
+      "blog",
+      "makaleler",
+      "ipuçları",
+      "haberler"
+    ]
+  },
+  {
+    "title": "Düzenleme & Redaksiyon",
+    "url": "/tr/yapilandirma.html",
+    "description": "Profesyonel düzenleme ve redaksiyon.",
+    "keywords": [
+      "düzenleme",
+      "redaksiyon",
+      "düzeltme",
+      "metin"
+    ]
+  },
+  {
+    "title": "Kapak & Mizanpaj",
+    "url": "/tr/yapilandirma.html",
+    "description": "Kapak tasarımı ve dizgi – İstanbul'da üretildi.",
+    "keywords": [
+      "kapak",
+      "mizanpaj",
+      "tasarım",
+      "dizgi"
+    ]
+  },
+  {
+    "title": "ISBN & Listeleme",
+    "url": "/tr/yapilandirma.html",
+    "description": "ISBN ve Amazon'da listeleme.",
+    "keywords": [
+      "isbn",
+      "listeleme",
+      "amazon",
+      "dağıtım"
+    ]
+  },
+  {
+    "title": "Accueil",
+    "url": "/fr/",
+    "description": "DVAYD Publishing – Rendez votre manuscrit immortel. Imprimé à Istanbul. Certifié à Brême.",
+    "keywords": [
+      "édition",
+      "livre",
+      "manuscrit",
+      "auteurs",
+      "publier",
+      "isbn"
+    ],
+    "sections": [
+      {
+        "id": "hero",
+        "label": "Hero",
+        "text": "Rendez votre manuscrit immortel. Imprimé à Istanbul. Certifié à Brême."
+      },
+      {
+        "id": "process-steps-section",
+        "label": "Processus",
+        "text": "Votre livre en 5 étapes. Évaluation manuscrit, édition, design, production, marketing."
+      },
+      {
+        "id": "konfig-showcase",
+        "label": "Configurateur",
+        "text": "Votre forfait en 2 minutes. Tarifs transparents. Sans engagement."
+      },
+      {
+        "id": "reviews-section",
+        "label": "Avis",
+        "text": "Ce que disent nos auteurs. Histoires de succès de la pratique."
+      },
+      {
+        "id": "news-section",
+        "label": "Actualités",
+        "text": "Actualités de DVAYD. Mises à jour du blog."
+      }
+    ]
+  },
+  {
+    "title": "À propos",
+    "url": "/fr/a-propos.html",
+    "description": "Notre équipe, notre histoire, notre mission.",
+    "keywords": [
+      "à propos",
+      "équipe",
+      "histoire",
+      "mission"
+    ]
+  },
+  {
+    "title": "Projets & Références",
+    "url": "/fr/projets.html",
+    "description": "Livres que nous avons publiés.",
+    "keywords": [
+      "projets",
+      "références",
+      "livres",
+      "portfolio"
+    ]
+  },
+  {
+    "title": "Forfaits & Tarifs",
+    "url": "/fr/forfaits.html",
+    "description": "Starter, Deluxe et solutions individuelles.",
+    "keywords": [
+      "forfaits",
+      "tarifs",
+      "coût",
+      "starter",
+      "deluxe"
+    ]
+  },
+  {
+    "title": "Configurateur",
+    "url": "/fr/configuration.html",
+    "description": "Configurez votre forfait de publication en 2 minutes.",
+    "keywords": [
+      "configurateur",
+      "forfait",
+      "édition",
+      "couverture",
+      "isbn"
+    ]
+  },
+  {
+    "title": "Contact",
+    "url": "/fr/contact.html",
+    "description": "Contacter DVAYD Publishing.",
+    "keywords": [
+      "contact",
+      "demande",
+      "email",
+      "consultation"
+    ]
+  },
+  {
+    "title": "Blog",
+    "url": "/fr/blog/",
+    "description": "Conseils, mises à jour et insights pour les auteurs.",
+    "keywords": [
+      "blog",
+      "articles",
+      "conseils",
+      "actualités"
+    ]
+  },
+  {
+    "title": "Édition & Correction",
+    "url": "/fr/configuration.html",
+    "description": "Révision et correction professionnelles.",
+    "keywords": [
+      "édition",
+      "correction",
+      "révision",
+      "texte"
+    ]
+  },
+  {
+    "title": "Couverture & Mise en page",
+    "url": "/fr/configuration.html",
+    "description": "Conception de couverture et mise en page – Fabriqué à Istanbul.",
+    "keywords": [
+      "couverture",
+      "mise en page",
+      "design"
+    ]
+  },
+  {
+    "title": "ISBN & Référencement",
+    "url": "/fr/configuration.html",
+    "description": "Attribution ISBN et référencement sur Amazon.",
+    "keywords": [
+      "isbn",
+      "référencement",
+      "amazon",
+      "distribution"
+    ]
+  },
+  {
+    "title": "Politique de confidentialité",
+    "url": "/fr/confidentialite.html",
+    "description": "Politique de confidentialité.",
+    "keywords": [
+      "confidentialité",
+      "rgpd",
+      "données"
+    ]
   }
 ]
