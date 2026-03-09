@@ -387,10 +387,10 @@ html[data-theme="dim"] .news-card-cta { color: #d4b07a; }
   /* Cards on mobile */
   .news-card {
     grid-template-columns: 1fr;
-    grid-template-rows: 180px auto;
+    grid-template-rows: 140px auto;
     border-radius: 16px;
     height: auto;
-    min-height: 400px;
+    min-height: 320px;
     max-height: none;
     top: 300px; /* sticky stop point — increase to move lower */
   }
@@ -431,9 +431,10 @@ html[data-theme="dim"] .news-card-cta { color: #d4b07a; }
 }
 
 @media (max-width: 480px) {
-  .news-card { grid-template-rows: 35vw auto; }
-  .news-card-content { padding: 20px 16px; }
-  .news-card-title { font-size: 1.35rem; }
+  .news-card { grid-template-rows: 25vw auto; min-height: 280px; }
+  .news-card-content { padding: 16px 14px; gap: 8px; }
+  .news-card-title { font-size: 1.2rem; }
+  .news-card-text { font-size: 0.85rem; }
 }
 
 @media (min-width: 769px) {

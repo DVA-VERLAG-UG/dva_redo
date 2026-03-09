@@ -15,7 +15,6 @@ import { initReviews } from './reviews-section.js';
 import { initBridge } from './bridge-section.js';
 import { initNews } from './news-section.js';
 
-// Detect base path for GitHub Pages vs local
 const isGitHubPages = window.location.hostname.includes('github.io');
 const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
 
@@ -25,7 +24,6 @@ console.log('  - Is GitHub Pages:', isGitHubPages);
 console.log('  - BASE_PATH:', BASE_PATH || '(empty - local)');
 console.log('  - Full URL:', window.location.href);
 
-// ---- helper: never let one module crash the whole page
 function safeInit(name, fn) {
   try {
     fn();
@@ -33,6 +31,86 @@ function safeInit(name, fn) {
   } catch (err) {
     console.error(`❌ ${name} failed:`, err);
   }
+}
+
+// ── Nav data (mirrors header.html inline script) ──────────────────────────────
+const NAV = {
+  de: [
+    { href: '/de/',                       label: 'Startseite'    },
+    { href: '/de/ueber-uns.html',         label: 'Über uns'      },
+    { href: '/de/projekte.html',          label: 'Projekte'      },
+    { href: '/de/pakete.html',            label: 'Pakete'        },
+    { href: '/de/konfigurator-page.html', label: 'Konfigurator'  },
+    { href: '/de/kontakt.html',           label: 'Kontakt'       },
+    { href: '/de/blog/',                  label: 'Blog'          },
+  ],
+  en: [
+    { href: '/en/',                       label: 'Home'          },
+    { href: '/en/about.html',             label: 'About Us'      },
+    { href: '/en/projects.html',          label: 'Projects'      },
+    { href: '/en/packages.html',          label: 'Packages'      },
+    { href: '/en/configurator-page.html', label: 'Configurator'  },
+    { href: '/en/contact.html',           label: 'Contact'       },
+    { href: '/en/blog/',                  label: 'Blog'          },
+  ],
+  tr: [
+    { href: '/tr/',                       label: 'Ana Sayfa'     },
+    { href: '/tr/hakkimizda.html',        label: 'Hakkımızda'    },
+    { href: '/tr/projeler.html',          label: 'Projeler'      },
+    { href: '/tr/paketler.html',          label: 'Paketler'      },
+    { href: '/tr/yapilandirma.html',      label: 'Konfiguratör'  },
+    { href: '/tr/iletisim.html',          label: 'İletişim'      },
+    { href: '/tr/blog/',                  label: 'Blog'          },
+  ],
+  fr: [
+    { href: '/fr/',                       label: 'Accueil'       },
+    { href: '/fr/a-propos.html',          label: 'À propos'      },
+    { href: '/fr/projets.html',           label: 'Projets'       },
+    { href: '/fr/forfaits.html',          label: 'Forfaits'      },
+    { href: '/fr/configuration.html',     label: 'Configurateur' },
+    { href: '/fr/contact.html',           label: 'Contact'       },
+    { href: '/fr/blog/',                  label: 'Blog'          },
+  ]
+};
+
+const DRAWER_TITLES      = { de: 'Menü', en: 'Menu', tr: 'Menü', fr: 'Menu' };
+const SEARCH_PLACEHOLDER = { de: 'Suchbegriff eingeben', en: 'Search…', tr: 'Ara…', fr: 'Rechercher…' };
+
+function getHeaderLang() {
+  const p = window.location.pathname;
+  if (p.startsWith('/en/')) return 'en';
+  if (p.startsWith('/tr/')) return 'tr';
+  if (p.startsWith('/fr/')) return 'fr';
+  return 'de';
+}
+
+// Inject nav links, titles, placeholders — runs after header HTML is in the DOM
+function initHeaderContent() {
+  const lang        = getHeaderLang();
+  const currentPath = window.location.pathname;
+
+  const drawerNav   = document.getElementById('drawerNav');
+  const drawerTitle = document.getElementById('drawerTitle');
+  const searchInput = document.getElementById('headerSearchInput');
+
+  if (drawerTitle) drawerTitle.textContent = DRAWER_TITLES[lang] || 'Menu';
+
+  if (drawerNav) {
+    drawerNav.innerHTML = (NAV[lang] || NAV.de).map(item => {
+      const isActive = currentPath === item.href ||
+        (currentPath.startsWith(item.href) && item.href !== '/' + lang + '/');
+      return `<a href="${item.href}" class="drawer-link${isActive ? ' is-active' : ''}">${item.label}</a>`;
+    }).join('');
+  }
+
+  if (searchInput) {
+    searchInput.placeholder = SEARCH_PLACEHOLDER[lang] || 'Search…';
+    searchInput.setAttribute('aria-label', SEARCH_PLACEHOLDER[lang] || 'Search');
+  }
+
+  document.querySelectorAll('[data-lang]').forEach(link => {
+    link.classList.toggle('is-active', link.getAttribute('data-lang') === lang);
+  });
 }
 
 // Load header component
@@ -43,21 +121,17 @@ async function loadHeader() {
     return;
   }
 
-  console.log('📍 Header placeholder found');
-  console.log('🌐 BASE_PATH:', BASE_PATH);
-  console.log('🔗 Fetching:', `${BASE_PATH}/components/header.html`);
-
   try {
     const response = await fetch(`${BASE_PATH}/components/header.html`, { cache: 'no-store' });
-    console.log('📡 Fetch response:', response.status, response.statusText);
-
     if (!response.ok) throw new Error(`Failed to load header (${response.status})`);
 
     const html = await response.text();
-    console.log('✅ Header HTML loaded, length:', html.length);
     placeholder.innerHTML = html;
 
-    // Initialize header functionality after loading (safe)
+    // Populate drawer nav & language markers (inline scripts don't run via innerHTML)
+    initHeaderContent();
+
+    // Initialize scroll, menu toggle, search
     safeInit('Header', initHeader);
   } catch (error) {
     console.error('❌ Error loading header:', error);
@@ -75,8 +149,6 @@ async function loadFooter() {
 
     const html = await response.text();
     placeholder.innerHTML = html;
-
-    // Initialize footer functionality after loading (safe)
     safeInit('Footer', initFooter);
   } catch (error) {
     console.error('❌ Error loading footer:', error);
@@ -87,73 +159,35 @@ async function loadFooter() {
 async function init() {
   console.log('🚀 Starting initialization...');
 
-  // Curtain ONLY on index page (check if body has no-curtain class)
   if (!document.body.classList.contains('no-curtain')) {
-    console.log('🎭 Loading curtain (index page detected)...');
     safeInit('Curtain', initCurtain);
-  } else {
-    console.log('⏭️ Skipping curtain (no-curtain class found)');
   }
 
-  // Apply stored theme immediately to prevent flash (safe)
-  console.log('1️⃣ Applying stored theme...');
   try {
     const storedTheme = getStoredTheme();
     applyTheme(storedTheme);
-    console.log('✅ Theme applied:', storedTheme);
   } catch (e) {
     console.error('❌ Theme apply failed:', e);
   }
 
-  // Load components in parallel but don't die if one fails
-  console.log('2️⃣ Loading components...');
   await Promise.allSettled([loadHeader(), loadFooter()]);
 
-  // Initialize modules (each is isolated)
-  console.log('3️⃣ Setting up theme toggle...');
   safeInit('Theme Toggle', initTheme);
-
-  console.log('4️⃣ Initializing social bar...');
   safeInit('Social Bar', initSocialBar);
-
-  console.log('5️⃣ Initializing background particles...');
   safeInit('Background', initBackground);
-
-  console.log('6️⃣ Initializing carousel...');
   safeInit('Carousel', initCarousel);
-
-  console.log('7️⃣ Initializing konfigurator CTA...');
   safeInit('Konfigurator CTA', initKonfiguratorCTA);
-
-  console.log('8️⃣ Initializing horizontal scroll...');
   safeInit('Horizontal Scroll', initHorizontalScroll);
-
-  console.log('9️⃣ Initializing process steps...');
   safeInit('Process Steps', initProcessSteps);
-
-  console.log('🔟 Initializing logo carousel...');
   safeInit('Logo Carousel', initLogoCarousel);
-
-  console.log('1️⃣1️⃣ Initializing bridge...');
   safeInit('Bridge', initBridge);
-
-  console.log('1️⃣2️⃣ Initializing reviews...');
   safeInit('Reviews', initReviews);
-
-  console.log('1️⃣3️⃣ Initializing news...');
   safeInit('News', initNews);
 
-  // Note: Konfig Showcase Parallax & Stats Combined Parallax loaded separately via script tag
-  // This is because they are standalone vanilla JS modules (not ES6 modules)
-  console.log('ℹ️ Konfig Showcase Parallax loaded separately via script tag');
-  console.log('ℹ️ Stats Combined Parallax loaded separately via script tag');
-
-  // Mark page as ready
   document.documentElement.classList.add('page-loaded');
   console.log('✅ All initialization complete!');
 }
 
-// Start when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
