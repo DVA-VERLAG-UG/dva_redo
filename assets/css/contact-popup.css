@@ -241,63 +241,67 @@ html[data-theme="dim"] .form-message.error {
 }
 
 /* ==========================================
-   RESPONSIVE
+   MOBILE
    ========================================== */
-
 @media (max-width: 640px) {
-    /* Popup nimmt fast den ganzen Screen ein, 
-       aber mit Scroll damit nichts abgeschnitten wird */
     .contact-popup {
-        padding: 24px 18px;
-        width: 95%;
-        max-height: 85vh;
+        padding: 20px 14px;
+        width: 92%;
+        max-height: 80vh;
         border-radius: 12px;
     }
 
     .contact-header {
-        margin-bottom: 20px;
+        margin-bottom: 14px;
     }
 
     .contact-header h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        padding-right: 36px;
     }
 
     .contact-header p {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .contact-form {
-        gap: 14px;
+        gap: 10px;
     }
 
     .form-row {
-        grid-template-columns: 1fr; /* untereinander auf Mobile */
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .form-group {
+        gap: 4px;
     }
 
     .form-group label {
-        font-size: 0.82rem;
+        font-size: 0.78rem;
     }
 
     .form-group input,
     .form-group textarea {
-        padding: 10px;
-        font-size: 0.88rem;
+        padding: 8px 10px;
+        font-size: 16px; /* verhindert iOS auto-zoom */
     }
 
     .form-group textarea {
-        min-height: 90px; /* kürzer auf Mobile */
+        min-height: 70px;
     }
 
     .form-submit {
-        padding: 13px 20px;
-        font-size: 0.92rem;
+        padding: 11px 18px;
+        font-size: 0.88rem;
+        margin-top: 4px;
     }
 
     .contact-close {
-        width: 34px;
-        height: 34px;
-        font-size: 16px;
-        top: 12px;
-        right: 12px;
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        top: 10px;
+        right: 10px;
     }
 }
