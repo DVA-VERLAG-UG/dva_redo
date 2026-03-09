@@ -18,10 +18,10 @@ body {
   font-family: 'Georgia', 'Times New Roman', serif;
   line-height: 1.7;
   color: #2C3E50;
-  background: #f5f3f0; /* Exakt aus der Palette - helles Beige */
-  padding-top: 72px; /* Space for fixed header */
+  background: #f5f3f0;
+  padding-top: 72px;
   transition: color 0.3s ease, background 0.3s ease;
-  cursor: auto; /* ← DEFAULT CURSOR! */
+  cursor: auto;
 }
 
 /* Headings - Literary Feel */
@@ -38,17 +38,17 @@ h1 { font-size: 2.75rem; }
 h2 { font-size: 2.25rem; }
 h3 { font-size: 1.75rem; }
 
-/* Links - Bronze Accents + CURSOR FIX */
+/* Links */
 a {
   color: #B08D57;
   text-decoration: none;
   transition: color 0.2s ease;
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 a:hover {
   color: #8a6d3f;
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 /* Paragraphs */
@@ -70,14 +70,14 @@ section {
   padding: 60px 0;
 }
 
-/* Buttons - Bronze Style + CURSOR FIX */
+/* Buttons */
 .button {
   display: inline-block;
   padding: 12px 24px;
   border-radius: 8px;
   font-weight: 600;
   text-align: center;
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
   transition: all 0.3s ease;
   border: none;
   font-size: 16px;
@@ -86,39 +86,48 @@ section {
 }
 
 button {
-  cursor: pointer !important; /* ← FIXED! Für ALLE Buttons */
+  cursor: pointer !important;
 }
 
 button:hover {
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 .button-primary {
   background: linear-gradient(135deg, #B08D57, #8a6d3f);
   color: #ffffff;
   box-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 .button-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(176, 141, 87, 0.45);
   background: linear-gradient(135deg, #8a6d3f, #B08D57);
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 .button-secondary {
   background: rgba(44, 62, 80, 0.06);
   color: #2C3E50;
   border: 2px solid rgba(44, 62, 80, 0.15);
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 .button-secondary:hover {
   background: rgba(176, 141, 87, 0.08);
   border-color: #B08D57;
   color: #B08D57;
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
+}
+
+/* ==========================================
+   SOCIAL BAR — position: fixed guard
+   Stellt sicher dass keine andere Regel
+   die fixed position überschreibt
+   ========================================== */
+.social-bar {
+  position: fixed !important;
 }
 
 /* ==========================================
@@ -126,7 +135,7 @@ button:hover {
    ========================================== */
 html[data-theme="dim"] body {
   color: #f5f2ed;
-  background: #2C3E50; /* Exakt aus der Palette - Deep Blue */
+  background: #2C3E50;
 }
 
 html[data-theme="dim"] h1,
@@ -144,12 +153,12 @@ html[data-theme="dim"] p {
 
 html[data-theme="dim"] a {
   color: #B08D57;
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 html[data-theme="dim"] a:hover {
   color: #d4b07a;
-  cursor: pointer !important; /* ← FIXED! */
+  cursor: pointer !important;
 }
 
 html[data-theme="dim"] .button-primary {
@@ -332,47 +341,19 @@ html[data-theme="dim"] .cta {
 /* ==========================================
    UTILITY CLASSES
    ========================================== */
+.text-primary  { color: #2C3E50; }
+.text-accent   { color: #B08D57; }
+.bg-primary    { background: #2C3E50; }
+.bg-accent     { background: #B08D57; }
+.bg-light      { background: #f5f3f0; }
 
-/* Text Colors */
-.text-primary {
-  color: #2C3E50;
-}
-
-.text-accent {
-  color: #B08D57;
-}
-
-html[data-theme="dim"] .text-primary {
-  color: #f5f2ed;
-}
-
-html[data-theme="dim"] .text-accent {
-  color: #B08D57;
-}
-
-/* Background Colors */
-.bg-primary {
-  background: #2C3E50;
-}
-
-.bg-accent {
-  background: #B08D57;
-}
-
-.bg-light {
-  background: #f5f3f0; /* Exakt aus Palette */
-}
-
-html[data-theme="dim"] .bg-light {
-  background: rgba(176, 141, 87, 0.05);
-}
+html[data-theme="dim"] .text-primary { color: #f5f2ed; }
+html[data-theme="dim"] .text-accent  { color: #B08D57; }
+html[data-theme="dim"] .bg-light     { background: rgba(176, 141, 87, 0.05); }
 
 /* ==========================================
    CURSOR FIX - UNIVERSAL
-   Überschreibt alle fehlenden cursor Styles
    ========================================== */
-
-/* ALL interactive elements */
 a,
 a:hover,
 a:active,
@@ -390,7 +371,6 @@ label[for] {
   cursor: pointer !important;
 }
 
-/* Text inputs */
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -401,7 +381,6 @@ textarea {
   cursor: text !important;
 }
 
-/* Disabled elements */
 button:disabled,
 button[disabled],
 input:disabled,
@@ -411,36 +390,11 @@ input[disabled],
 }
 
 /* ==========================================
-   EXAKTE FARBPALETTE - GLOBAL.CSS
-   ========================================== 
-   
-   🎨 PRIMARY COLORS (EXAKT):
-   Deep Blue:       #2C3E50 (Text Light Mode, BG Dark Mode)
-   Bronze/Gold:     #B08D57 (Akzente, Links, Buttons, Headings Dark Mode)
-   Cream/Beige:     #f5f3f0 (Light Mode Background - EXAKT)
-   
-   🎯 SECONDARY:
-   Dark Bronze:     #8a6d3f (Hover States)
-   Light Bronze:    #d4b07a (Dark Mode Highlights)
-   
-   🔤 TYPOGRAPHY:
-   Body:            Georgia, Times New Roman
-   Headings:        Playfair Display, Georgia
-   
-   💡 WICHTIG:
-   - Light Mode BG: #f5f3f0 (aus Palette, nicht #faf8f5)
-   - Dark Mode BG:  #2C3E50 (aus Palette)
-   - Alle Farben exakt nach Bild-Palette
-   - CURSOR FIX: Alle Links und Buttons haben cursor: pointer !important
-   
-   ========================================== 
-
-* {
-  outline: 1px solid red;
-}
-
-*:has(> *) {
-  outline: 1px solid blue;
-}
-
-*/
+   FARBPALETTE REFERENZ
+   ==========================================
+   Deep Blue:    #2C3E50
+   Bronze/Gold:  #B08D57
+   Dark Bronze:  #8a6d3f
+   Light Bronze: #d4b07a
+   Cream/Beige:  #f5f3f0
+   ========================================== */

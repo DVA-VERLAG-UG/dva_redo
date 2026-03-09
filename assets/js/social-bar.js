@@ -26,84 +26,130 @@ const SOCIAL_LINKS = {
   }
 };
 
-// Create social bar HTML
+// Language routes
+const ROUTES = {
+  de: { home: '/de/', about: '/de/ueber-uns.html', contact: '/de/kontakt.html', projects: '/de/projekte.html', packages: '/de/pakete.html', config: '/de/konfigurator-page.html' },
+  en: { home: '/en/', about: '/en/about.html',      contact: '/en/contact.html', projects: '/en/projects.html', packages: '/en/packages.html', config: '/en/configurator-page.html' },
+  tr: { home: '/tr/', about: '/tr/hakkimizda.html', contact: '/tr/iletisim.html', projects: '/tr/projeler.html', packages: '/tr/paketler.html', config: '/tr/yapilandirma.html' },
+  fr: { home: '/fr/', about: '/fr/a-propos.html',   contact: '/fr/contact.html', projects: '/fr/projets.html',  packages: '/fr/forfaits.html',  config: '/fr/configuration.html' },
+};
+
+function getCurrentLang() {
+  const p = window.location.pathname;
+  if (p.startsWith('/en/')) return 'en';
+  if (p.startsWith('/tr/')) return 'tr';
+  if (p.startsWith('/fr/')) return 'fr';
+  return 'de';
+}
+
+function getCurrentPageKey() {
+  const path = window.location.pathname;
+  const lang = getCurrentLang();
+  for (const [key, route] of Object.entries(ROUTES[lang])) {
+    if (path === route || path.startsWith(route)) return key;
+  }
+  return 'home';
+}
+
+function getLangHref(targetLang) {
+  const key = getCurrentPageKey();
+  return ROUTES[targetLang]?.[key] || ROUTES[targetLang]?.home || '/';
+}
+
+// ── Build HTML ────────────────────────────────────────────
 function createSocialBar() {
-  const socialLinks = Object.entries(SOCIAL_LINKS)
-    .map(([key, { href, label, icon }]) => `
-      <a href="${href}" target="_blank" rel="noopener noreferrer" 
+  const lang = getCurrentLang();
+
+  const socialLinksHTML = Object.entries(SOCIAL_LINKS)
+    .map(([, { href, label, icon }]) => `
+      <a href="${href}" target="_blank" rel="noopener noreferrer"
          class="social-link" aria-label="${label}" title="${label}">
         ${icon}
-      </a>
-    `)
+      </a>`)
     .join('');
-  
+
+  const globeIcon = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </svg>`;
+
+  const langOptionsHTML = ['de', 'en', 'tr', 'fr'].map(l => `
+    <a href="${getLangHref(l)}"
+       class="sb-lang-option${l === lang ? ' is-active' : ''}"
+       role="menuitem">
+      ${l.toUpperCase()}
+    </a>`).join('');
+
   return `
     <div class="social-bar" id="socialBar">
       <div class="social-label">FOLLOW</div>
-      ${socialLinks}
-    </div>
-  `;
+      ${socialLinksHTML}
+      <div class="sb-lang-wrapper" id="sbLangWrapper">
+        <button class="sb-lang-btn" id="sbLangBtn" aria-label="Select language" aria-expanded="false">
+          ${globeIcon}
+        </button>
+        <div class="sb-lang-popup" id="sbLangPopup" role="menu">
+          ${langOptionsHTML}
+        </div>
+      </div>
+    </div>`;
 }
 
-// Initialize social bar
+// ── Init ──────────────────────────────────────────────────
 export function initSocialBar() {
-  // Check if social bar already exists
   if (document.getElementById('socialBar')) return;
-  
-  // Create and insert social bar
+
   const wrapper = document.createElement('div');
   wrapper.innerHTML = createSocialBar();
   document.body.appendChild(wrapper.firstElementChild);
-  
-  // Setup scroll behavior for mobile
-  setupMobileScrollBehavior();
+
+  setupLangButton();
+  setupScrollBehavior();
 }
 
-// Hide/show social bar on mobile when scrolling
-function setupMobileScrollBehavior() {
-  const socialBar = document.getElementById('socialBar');
-  if (!socialBar) return;
-  
-  // Only apply scroll behavior on mobile
-  if (window.innerWidth > 768) return;
-  
-  let lastScrollY = window.scrollY;
+// ── Lang button ───────────────────────────────────────────
+function setupLangButton() {
+  const btn   = document.getElementById('sbLangBtn');
+  const popup = document.getElementById('sbLangPopup');
+  if (!btn || !popup) return;
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = popup.classList.toggle('is-open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  document.addEventListener('click', e => {
+    if (!document.getElementById('sbLangWrapper')?.contains(e.target)) {
+      popup.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+// ── Scroll behavior ───────────────────────────────────────
+function setupScrollBehavior() {
+  const bar = document.getElementById('socialBar');
+  if (!bar) return;
+
+  let lastY   = window.scrollY;
   let ticking = false;
-  
-  function updateSocialBarOnScroll() {
-    const currentScrollY = window.scrollY;
-    
-    // Show at top
-    if (currentScrollY < 10) {
-      socialBar.classList.remove('is-hidden');
-      lastScrollY = currentScrollY;
-      return;
-    }
-    
-    // Hide when scrolling down, show when scrolling up
-    const delta = currentScrollY - lastScrollY;
-    
-    if (Math.abs(delta) < 5) {
-      ticking = false;
-      return;
-    }
-    
-    if (delta > 0) {
-      // Scrolling down
-      socialBar.classList.add('is-hidden');
+
+  function update() {
+    const y = window.scrollY;
+    if (y < 10) {
+      bar.classList.remove('is-hidden');
+    } else if (y > lastY) {
+      bar.classList.add('is-hidden');
     } else {
-      // Scrolling up
-      socialBar.classList.remove('is-hidden');
+      bar.classList.remove('is-hidden');
     }
-    
-    lastScrollY = currentScrollY;
+    lastY   = y;
     ticking = false;
   }
-  
+
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateSocialBarOnScroll);
-      ticking = true;
-    }
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
   }, { passive: true });
 }
