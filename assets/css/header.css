@@ -586,3 +586,115 @@ html[data-theme="dim"] .drawer-link:hover {
    Accent:               #B08D57 (Bronze)
    
    ========================================== */
+
+   /* ==========================================
+   SEARCH DROPDOWN — KEYBOARD + EMPTY STATE
+   ========================================== */
+
+.search-result.is-focused {
+  background: rgba(176, 141, 87, 0.15);
+  outline: none;
+}
+
+html[data-theme="dim"] .search-result.is-focused {
+  background: rgba(176, 141, 87, 0.2);
+}
+
+.search-no-result .search-result-title {
+  color: rgba(44, 62, 80, 0.7);
+  font-weight: 500;
+}
+
+html[data-theme="dim"] .search-no-result .search-result-title {
+  color: rgba(245, 242, 237, 0.6);
+}
+
+/* ==========================================
+   SEARCH — BADGES, FOCUS, EMPTY STATE
+   ========================================== */
+
+/* Inline-Treffer im Dropdown-Titel */
+.sh-match {
+  color: #B08D57;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Blog / Abschnitt Badges */
+.sr-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 99px;
+  vertical-align: middle;
+  margin-left: 6px;
+  font-family: 'Georgia', serif;
+}
+
+.sr-badge--blog {
+  background: rgba(176, 141, 87, 0.15);
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  color: #8a6d3f;
+}
+
+.sr-badge--section {
+  background: rgba(44, 62, 80, 0.08);
+  border: 1px solid rgba(44, 62, 80, 0.15);
+  color: rgba(44, 62, 80, 0.7);
+}
+
+html[data-theme="dim"] .sr-badge--blog {
+  background: rgba(176, 141, 87, 0.2);
+  border-color: rgba(176, 141, 87, 0.4);
+  color: #B08D57;
+}
+
+html[data-theme="dim"] .sr-badge--section {
+  background: rgba(245, 242, 237, 0.08);
+  border-color: rgba(245, 242, 237, 0.15);
+  color: rgba(245, 242, 237, 0.6);
+}
+
+/* Keyboard-Fokus */
+.search-result.is-focused {
+  background: rgba(176, 141, 87, 0.12);
+  outline: none;
+}
+
+html[data-theme="dim"] .search-result.is-focused {
+  background: rgba(176, 141, 87, 0.2);
+}
+
+/* Kein Ergebnis */
+.search-no-result {
+  cursor: default;
+  pointer-events: none;
+}
+
+.search-no-result .search-result-title {
+  color: rgba(44, 62, 80, 0.6);
+  font-weight: 500;
+}
+
+html[data-theme="dim"] .search-no-result .search-result-title {
+  color: rgba(245, 242, 237, 0.5);
+}
+
+/* ── Datum in Blog-Snippets ── */
+.sr-meta-date {
+  font-size: 11px;
+  color: rgba(44, 62, 80, 0.5);
+  font-family: 'Georgia', serif;
+}
+
+html[data-theme="dim"] .sr-meta-date {
+  color: rgba(245, 242, 237, 0.45);
+}
+
+/* Snippet-Text: etwas mehr Platz für zwei Zeilen */
+.search-result-excerpt {
+  line-height: 1.5;
+  max-height: 3em;
+  overflow: hidden;
+}
