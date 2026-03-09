@@ -1,12 +1,6 @@
 /* ==========================================
    NEWS/UPDATES SECTION - CARD STACK REVEAL
    Royal Bronze Theme
-   
-   WARUM DER EFFEKT JETZT FUNKTIONIERT:
-   backdrop-filter auf .news-card erzeugt einen eigenen Stacking Context
-   der z-index komplett ignoriert – egal wie hoch der Header-z-index ist.
-   Lösung: backdrop-filter entfernt, solider Hintergrund stattdessen.
-   Header z-index:100 > Karten z-index:1-4 → Karten verschwinden korrekt.
    ========================================== */
 
 .news-section {
@@ -23,32 +17,22 @@
 
 /* ==========================================
    SECTION HEADER
-   z-index: 100 → liegt ÜBER allen Karten (1–4)
    ========================================== */
 
 .news-header {
   position: sticky;
   top: 0;
-  /* Muss ÜBER body::before (z-index:2), body::after (z-index:2),
-     #particle-canvas (z-index:1) UND über den Karten (z-index:1-4) liegen */
   z-index: 100;
   text-align: center;
   padding: 100px 20px 60px;
-
-  /* Exakte Farben aus background.css – gleicher Gradient wie body */
   background: linear-gradient(180deg, #faf8f5 0%, #f5f2ed 60%, #f0ece5 100%);
-
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
 }
 
 html[data-theme="dim"] .news-header {
-  /* Exakte Farben aus background.css dark mode */
   background: linear-gradient(180deg, #2C3E50 0%, #243442 60%, #1a2631 100%);
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
-
-
-
 
 /* ==========================================
    TYPOGRAPHY
@@ -82,9 +66,7 @@ html[data-theme="dim"] .news-kicker {
   transition: all 0.3s ease;
 }
 
-html[data-theme="dim"] .news-title {
-  color: #B08D57;
-}
+html[data-theme="dim"] .news-title { color: #B08D57; }
 
 .news-title::after {
   content: '';
@@ -147,9 +129,7 @@ html[data-theme="dim"] .news-subtitle {
 
 html[data-theme="dim"] .news-cta-btn,
 html[data-theme="dim"] .news-cta-primary,
-html[data-theme="dim"] .news-cta-secondary {
-  color: #B08D57;
-}
+html[data-theme="dim"] .news-cta-secondary { color: #B08D57; }
 
 .news-cta-btn:hover,
 .news-cta-primary:hover,
@@ -181,16 +161,16 @@ html[data-theme="dim"] .news-cta-secondary:hover {
 .news-grid {
   position: relative;
   width: 100%;
-  padding-top: 0;
 }
 
 /* ==========================================
    CARD WRAPPER
-   Gibt der Karte den Scroll-Raum zum Stapeln
+   Controls scroll travel between cards.
+   Larger = more breathing room between cards.
    ========================================== */
 
 .news-card-wrapper {
-  height: calc(100vh - 80px);
+  height: 80vh;
   position: relative;
 }
 
@@ -198,16 +178,14 @@ html[data-theme="dim"] .news-cta-secondary:hover {
   margin-top: 80px;
 }
 
+/* Last card: just enough room to fully clear the section.
+   No more giant empty gap after the final card. */
 .news-card-wrapper:last-child {
-  height: calc(100vh + 500px);
+  height: calc(100vh + 80px);
 }
 
 /* ==========================================
    NEWS CARD
-   
-   KRITISCH: KEIN backdrop-filter!
-   backdrop-filter erzeugt einen Stacking Context der z-index bricht.
-   Stattdessen: solider Hintergrund → Header z-index:100 greift korrekt.
    ========================================== */
 
 .news-card {
@@ -220,13 +198,10 @@ html[data-theme="dim"] .news-cta-secondary:hover {
   grid-template-columns: 1fr 1fr;
   gap: 0;
 
-  /* Solider Hintergrund statt backdrop-filter */
   background: #ffffff;
-
   border: 1px solid rgba(176, 141, 87, 0.2);
   overflow: hidden;
   text-decoration: none;
-  /* Nur border/shadow transitionen – transform läuft via JS rAF */
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
   box-shadow:
     0 8px 32px rgba(176, 141, 87, 0.12),
@@ -238,7 +213,6 @@ html[data-theme="dim"] .news-cta-secondary:hover {
   will-change: transform, opacity, clip-path;
 }
 
-/* Dark mode: dunkler solider Hintergrund */
 html[data-theme="dim"] .news-card {
   background: #1e1a15;
   border-color: rgba(176, 141, 87, 0.25);
@@ -247,7 +221,6 @@ html[data-theme="dim"] .news-card {
     inset 0 1px 0 rgba(176, 141, 87, 0.1);
 }
 
-/* Karten-z-index: UNTER dem Header (100), aber übereinander stapelbar */
 .news-card-wrapper:nth-child(1) .news-card { z-index: 1; }
 .news-card-wrapper:nth-child(2) .news-card { z-index: 2; }
 .news-card-wrapper:nth-child(3) .news-card { z-index: 3; }
@@ -267,13 +240,8 @@ html[data-theme="dim"] .news-card:hover {
 }
 
 @media (min-width: 1400px) {
-  .news-card {
-    max-width: 1400px;
-    border-radius: 24px;
-  }
-  .news-grid {
-    padding: 0 40px;
-  }
+  .news-card { max-width: 1400px; border-radius: 24px; }
+  .news-grid { padding: 0 40px; }
 }
 
 /* ==========================================
@@ -291,22 +259,14 @@ html[data-theme="dim"] .news-card:hover {
 .news-card-image::after {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 100%;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  top: 0; right: 0;
+  width: 120px; height: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 100%);
   pointer-events: none;
 }
 
 html[data-theme="dim"] .news-card-image::after {
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(30, 26, 21, 0.05) 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgba(30,26,21,0.05) 100%);
 }
 
 /* ==========================================
@@ -332,9 +292,7 @@ html[data-theme="dim"] .news-card-image::after {
   color: rgba(44, 62, 80, 0.6);
 }
 
-html[data-theme="dim"] .news-card-meta {
-  color: rgba(176, 141, 87, 0.7);
-}
+html[data-theme="dim"] .news-card-meta { color: rgba(176, 141, 87, 0.7); }
 
 .news-card-date {
   font-weight: 600;
@@ -367,9 +325,7 @@ html[data-theme="dim"] .news-card-tag {
   margin: 0;
 }
 
-html[data-theme="dim"] .news-card-title {
-  color: #e8d5b0;
-}
+html[data-theme="dim"] .news-card-title { color: #e8d5b0; }
 
 .news-card-text {
   font-family: 'Georgia', serif;
@@ -379,9 +335,7 @@ html[data-theme="dim"] .news-card-title {
   max-width: 600px;
 }
 
-html[data-theme="dim"] .news-card-text {
-  color: rgba(245, 242, 237, 0.7);
-}
+html[data-theme="dim"] .news-card-text { color: rgba(245, 242, 237, 0.7); }
 
 .news-card-cta {
   display: inline-flex;
@@ -399,27 +353,19 @@ html[data-theme="dim"] .news-card-cta { color: #d4b07a; }
 .news-card:hover .news-card-cta { gap: 16px; }
 
 /* ==========================================
-   RESPONSIVE – MOBILE
+   MOBILE
    ========================================== */
 
 @media (max-width: 768px) {
   .news-section { min-height: auto; }
 
-  /* Header ~33% Bildschirmhöhe */
   .news-header {
     padding: 56px 20px 28px;
     top: 0;
   }
 
-  .news-kicker {
-    font-size: 10px;
-    margin-bottom: 10px;
-  }
-
-  .news-title {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
+  .news-kicker { font-size: 10px; margin-bottom: 10px; }
+  .news-title { font-size: 2rem; margin-bottom: 10px; }
 
   .news-subtitle {
     font-size: 0.95rem;
@@ -436,27 +382,30 @@ html[data-theme="dim"] .news-card-cta { color: #d4b07a; }
 
   .news-cta-btn,
   .news-cta-primary,
-  .news-cta-secondary {
-    font-size: 1.05rem;
-    gap: 8px;
-  }
+  .news-cta-secondary { font-size: 1.05rem; gap: 8px; }
 
+  /* Cards on mobile */
   .news-card {
     grid-template-columns: 1fr;
-    grid-template-rows: 180px auto; /* kleineres Bild */
+    grid-template-rows: 180px auto;
     border-radius: 16px;
     height: auto;
-    min-height: 400px;  /* kleiner als vorher (480px) */
+    min-height: 400px;
     max-height: none;
-    top: 240px;
+    top: 300px; /* sticky stop point — increase to move lower */
   }
 
+  /* More breathing room between cards on mobile too */
   .news-card-wrapper {
-    height: calc(100vh + 120px); /* mehr Abstand zwischen Karten */
+    height: calc(100vh + 60px);
   }
 
   .news-card-wrapper:first-child { margin-top: 40px; }
-  .news-card-wrapper:last-child { height: 100vh; }
+
+  /* Last card: minimal tail — no giant empty gap */
+  .news-card-wrapper:last-child {
+    height: calc(100vh - 60px);
+  }
 
   .news-card-wrapper:nth-child(1) .news-card { z-index: 1; }
   .news-card-wrapper:nth-child(2) .news-card { z-index: 2; }
@@ -466,11 +415,8 @@ html[data-theme="dim"] .news-card-cta { color: #d4b07a; }
   .news-card-image { height: 100%; }
 
   .news-card-image::after {
-    width: 100%;
-    height: 100px;
-    top: auto;
-    bottom: 0;
-    right: 0;
+    width: 100%; height: 100px;
+    top: auto; bottom: 0; right: 0;
     background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.03) 100%);
   }
 
@@ -485,9 +431,9 @@ html[data-theme="dim"] .news-card-cta { color: #d4b07a; }
 }
 
 @media (max-width: 480px) {
-  .news-card { grid-template-rows: 35vh auto; }
-  .news-card-content { padding: 24px 20px; }
-  .news-card-title { font-size: 1.5rem; }
+  .news-card { grid-template-rows: 35vw auto; }
+  .news-card-content { padding: 20px 16px; }
+  .news-card-title { font-size: 1.35rem; }
 }
 
 @media (min-width: 769px) {
