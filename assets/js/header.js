@@ -7,7 +7,8 @@ const ROUTES = {
     contact:  "/de/kontakt.html",
     projects: "/de/projekte.html",
     packages: "/de/pakete.html",
-    config:   "/de/konfigurator-page.html"
+    config:   "/de/konfigurator-page.html",
+    blog:     "/de/blog-index.html"
   },
   en: {
     home:     "/en/",
@@ -15,7 +16,8 @@ const ROUTES = {
     contact:  "/en/contact.html",
     projects: "/en/projects.html",
     packages: "/en/packages.html",
-    config:   "/en/configurator-page.html"
+    config:   "/en/configurator-page.html",
+    blog:     "/en/blog-index.html"
   },
   tr: {
     home:     "/tr/",
@@ -23,7 +25,8 @@ const ROUTES = {
     contact:  "/tr/iletisim.html",
     projects: "/tr/projeler.html",
     packages: "/tr/paketler.html",
-    config:   "/tr/yapilandirma.html"
+    config:   "/tr/yapilandirma.html",
+    blog:     "/tr/blog-index.html"
   },
   fr: {
     home:     "/fr/",
@@ -31,7 +34,8 @@ const ROUTES = {
     contact:  "/fr/contact.html",
     projects: "/fr/projets.html",
     packages: "/fr/forfaits.html",
-    config:   "/fr/configuration.html"
+    config:   "/fr/configuration.html",
+    blog:     "/fr/blog-index.html"
   }
 };
 

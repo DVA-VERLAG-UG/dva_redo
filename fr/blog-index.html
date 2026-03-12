@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | DVAYD Publishing</title>
+    <meta name="description" content="Blog – Articles, mises à jour et insights de DVAYD Publishing.">
+    <link rel="canonical" href="https://dva-yd.com/fr/blog/">
+    <link rel="icon" type="image/png" href="../../assets/images/branding/favicon.png">
+    <link rel="apple-touch-icon" href="../../assets/images/branding/favicon.png">
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('dvayd_theme');
+                if (theme === 'dim') document.documentElement.setAttribute('data-theme', 'dim');
+            } catch(e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/background.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/floating-logo.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/contact-popup.css">
+    <link rel="stylesheet" href="../../assets/css/blog-list.css">
+    <link rel="stylesheet" href="../../assets/css/cursor-follower.css">
+</head>
+<body class="no-curtain">
+
+    <style>
+    body.no-curtain::before, body.no-curtain::after, body.no-curtain .curtain,
+    body.no-curtain .curtain-left, body.no-curtain .curtain-right,
+    body.no-curtain .curtain-text, body.no-curtain .curtain-word,
+    body.no-curtain .curtain-content, body.no-curtain [class*="curtain"] {
+      display: none !important; opacity: 0 !important; pointer-events: none !important;
+      visibility: hidden !important; height: 0 !important; width: 0 !important;
+      overflow: hidden !important; position: absolute !important; left: -9999px !important;
+    }
+    body.no-curtain .curtain *, body.no-curtain [class*="curtain"] * {
+      display: none !important; visibility: hidden !important;
+    }
+    </style>
+
+    <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+        <img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <span class="floating-brand-name">DVAYD Publishing</span>
+    </a>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="blog-wrap">
+            <div class="blog-hero">
+                <h1 class="blog-title">Blog</h1>
+                <p class="blog-sub">Les nouveaux articles apparaissent automatiquement dès qu'ils sont ajoutés à la feuille Google.</p>
+            </div>
+            <div class="blog-controls">
+                <input id="q" class="blog-input" type="search" placeholder="Rechercher (titre / accroche / tags) …" autocomplete="off">
+                <select id="tag" class="blog-select">
+                    <option value="">Tous les Tags</option>
+                </select>
+                <div id="count" class="blog-count"></div>
+            </div>
+            <div id="state" class="blog-state">Chargement des articles …</div>
+            <section id="grid" class="blog-grid" aria-live="polite"></section>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Contact Popup -->
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-popup">
+            <button class="contact-close" type="button" aria-label="Fermer">✕</button>
+            <div class="contact-header">
+                <h2>Nous contacter</h2>
+                <p>Nous vous répondrons dans les 24 heures.</p>
+            </div>
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Prénom *</label>
+                        <input type="text" name="vorname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom *</label>
+                        <input type="text" name="nachname" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>E-mail *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Téléphone</label>
+                    <input type="tel" name="telefon">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="nachricht" rows="5" placeholder="Parlez-nous de votre projet..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Hidden Netlify Form -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname" />
+        <input type="text" name="nachname" />
+        <input type="email" name="email" />
+        <input type="tel" name="telefon" />
+        <textarea name="nachricht"></textarea>
+    </form>
+
+    <script type="module" src="../../assets/js/main.js"></script>
+
+    <script>
+        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?gid=1855248514&output=csv";
+
+        const els = {
+            q: document.getElementById("q"),
+            tag: document.getElementById("tag"),
+            count: document.getElementById("count"),
+            state: document.getElementById("state"),
+            grid: document.getElementById("grid"),
+        };
+
+        let ALL = [];
+
+        function esc(str) {
+            return String(str ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+        }
+        function norm(s) { return String(s ?? "").toLowerCase().trim(); }
+        function splitTags(s) { return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean); }
+
+        function parseCSV(text) {
+            const rows = []; let row = [], cur = "", inQuotes = false;
+            for(let i=0; i<text.length; i++) {
+                const c = text[i], n = text[i+1];
+                if(inQuotes) {
+                    if(c==='"'&&n==='"'){cur+='"';i++;} else if(c==='"'){inQuotes=false;} else{cur+=c;}
+                } else {
+                    if(c==='"'){inQuotes=true;} else if(c===","){row.push(cur);cur="";}
+                    else if(c==="\n"){row.push(cur);rows.push(row);row=[];cur="";}
+                    else if(c!=="\r"){cur+=c;}
+                }
+            }
+            row.push(cur); rows.push(row);
+            return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
+        }
+
+        function fillTagDropdown(posts) {
+            const tags = new Set();
+            posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
+            const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b, "fr"));
+            els.tag.innerHTML = `<option value="">Tous les Tags</option>` +
+                sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
+        }
+
+        function render(posts) {
+            if(!posts.length) {
+                els.grid.innerHTML = "";
+                els.state.textContent = "Aucun article trouvé.";
+                els.state.style.display = "block";
+                els.count.textContent = "";
+                return;
+            }
+            els.state.style.display = "none";
+            const n = posts.length;
+            els.count.textContent = n === 1 ? "1 article" : "{n} articles".replace("{n}", n);
+            els.grid.innerHTML = posts.map(p => `
+                <article class="blog-card">
+                    ${p.cover
+                        ? `<img class="blog-cover" src="${esc(p.cover)}" alt="${esc(p.title)}">`
+                        : `<div class="blog-cover" aria-hidden="true"></div>`}
+                    <div class="blog-card-body">
+                        <div class="blog-meta">
+                            ${p.date ? `<span>${esc(p.date)}</span>` : ``}
+                            ${p.author ? `<span>·</span><span>${esc(p.author)}</span>` : ``}
+                            ${p.tags?.[0] ? `<span class="blog-pill" title="${esc(p.tags.join(", "))}">${esc(p.tags[0])}${p.tags.length>1?" +"+(p.tags.length-1):""}</span>` : ``}
+                        </div>
+                        <h2 class="blog-h2">${esc(p.title)}</h2>
+                        <p class="blog-excerpt">${esc(p.excerpt || "")}</p>
+                        <div class="blog-row">
+                            <a class="blog-btn" href="post.html?slug=${encodeURIComponent(p.slug)}">
+                                Lire <span aria-hidden="true">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            `).join("");
+        }
+
+        function applyFilters() {
+            const q = norm(els.q.value), tag = els.tag.value;
+            let out = ALL;
+            if(tag) out = out.filter(p => (p.tags || []).includes(tag));
+            if(q) out = out.filter(p => norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" ")).includes(q));
+            render(out);
+        }
+
+        (async function init() {
+            try {
+                els.state.textContent = "Chargement des articles …";
+                const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+                const csv = await res.text();
+                const rows = parseCSV(csv);
+                if(rows.length < 2) throw new Error("CSV has no data rows");
+                const header = rows[0].map(h => norm(h));
+                const idx = name => header.indexOf(norm(name));
+                const posts = rows.slice(1).map(r => ({
+                    slug: r[idx("slug")]||"", title: r[idx("title")]||"",
+                    excerpt: r[idx("excerpt")]||r[idx("content")]||"",
+                    date: r[idx("date")]||"", author: r[idx("author")]||"",
+                    cover: r[idx("cover")]||"", tags: splitTags(r[idx("tags")]||""),
+                })).filter(p => p.slug && p.title);
+                posts.sort((a,b) => (b.date||"").localeCompare(a.date||""));
+                ALL = posts;
+                fillTagDropdown(ALL);
+                render(ALL);
+                els.q.addEventListener("input", applyFilters);
+                els.tag.addEventListener("change", applyFilters);
+            } catch(err) {
+                console.error(err);
+                els.grid.innerHTML = "";
+                els.state.style.display = "block";
+                els.state.textContent = "Erreur lors du chargement. Vérifiez : (1) La feuille est 'Publiée', (2) L'en-tête est slug,title,excerpt,content,date,author,cover,tags.";
+            }
+        })();
+    </script>
+
+    <script>
+        (async function() {
+            await new Promise(resolve => {
+                const check = setInterval(() => {
+                    if (document.querySelector('.footer-talk-btn')) { clearInterval(check); resolve(); }
+                }, 100);
+            });
+            const overlay = document.getElementById('contactOverlay');
+            const btns = [
+                document.getElementById('footerConfigBtn'),
+                document.getElementById('footerContactBtn'),
+                document.getElementById('footerConfiguratorBtn')
+            ].filter(Boolean);
+            if (overlay && btns.length > 0) {
+                btns.forEach(btn => btn.addEventListener('click', () => { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }));
+                const closeBtn = overlay.querySelector('.contact-close');
+                if (closeBtn) closeBtn.addEventListener('click', () => { overlay.classList.remove('is-open'); document.body.style.overflow = ''; });
+                overlay.addEventListener('click', e => { if (e.target === overlay) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; } });
+                document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; } });
+            }
+        })();
+    </script>
+    <script type="module">
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                import('../../assets/js/cursor-follower.js')
+                    .then(module => module.initCursorFollower())
+                    .catch(err => console.log('Cursor follower skipped:', err));
+            }, 500);
+        });
+    </script>
+
+</body>
+</html>
