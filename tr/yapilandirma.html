@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapılandırıcı | DVAYD Publishing</title>
+    <link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
+    <script>
+        (function() {
+            try {
+                const theme = localStorage.getItem('dvayd_theme');
+                if (theme === 'dim') document.documentElement.setAttribute('data-theme', 'dim');
+            } catch(e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/background.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/floating-logo.css">
+    <link rel="stylesheet" href="../assets/css/konfigurator-page.css">
+    <link rel="stylesheet" href="../assets/css/contact-popup.css">
+    <link rel="stylesheet" href="../assets/css/flipbook-popup.css">
+</head>
+<body class="no-curtain">
+    <style>
+    body.no-curtain::before,body.no-curtain::after,body.no-curtain .curtain,
+    body.no-curtain .curtain-left,body.no-curtain .curtain-right,body.no-curtain .curtain-text,
+    body.no-curtain .curtain-word,body.no-curtain .curtain-content,body.no-curtain [class*="curtain"]{
+      display:none!important;opacity:0!important;pointer-events:none!important;
+      visibility:hidden!important;height:0!important;width:0!important;
+      overflow:hidden!important;position:absolute!important;left:-9999px!important;
+    }
+    body.no-curtain .curtain *,body.no-curtain [class*="curtain"] *{display:none!important;visibility:hidden!important;}
+    </style>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <a href="index.html" class="floating-brand" aria-label="DVAYD Publishing Ana Sayfa">
+        <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <span class="floating-brand-name">DVAYD Publishing</span>
+    </a>
+    <div id="header-placeholder"></div>
+
+    <section class="konfig-hero">
+        <div class="konfig-hero-container">
+            <p class="konfig-kicker">PAKETLER &amp; YAPILANDIRICI</p>
+            <h1 class="konfig-hero-title">Başarını Yapılandır</h1>
+            <p class="konfig-hero-subtitle">Bir paket seç veya kendi bireysel çözümünü oluştur.</p>
+            <div class="konfig-hero-cta">
+                <button class="konfig-hero-cta-btn" id="heroContactBtn">İletişime Geç</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="konfig-trust">
+        <div class="konfig-container-full">
+            <p class="konfig-trust-ticker">2016'dan beri Altyapı Ortağı +++ 124.500'den fazla sayfa basıldı +++ Öncelikli Kontrol: Analiz &amp; İlk İletişim &lt; 24 saat.</p>
+        </div>
+    </section>
+
+    <main class="konfig-main">
+        <section class="konfig-packages">
+            <div class="konfig-container">
+
+                <!-- STARTER -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Kitap Yayımlama Başlangıç</h3>
+                        <p class="package-subtitle">İlk kez yayımlayan yazarlar, hızlı başlangıç (e-Kitap)</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-row">
+                            <span class="package-label">Düzeltme / Redaksiyon</span>
+                            <span class="package-value">Hafif Düzeltme (isteğe bağlı)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Kapak Tasarımı</span>
+                            <span class="package-value">Temel Kapak (Şablon)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Dizgi (Kitap Düzeni)</span>
+                            <span class="package-value">e-Kitap Dizgisi (Standart)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">e-Kitap Dönüştürme (ePUB)</span>
+                            <span class="package-value">✓</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Baskı Yayını</span>
+                            <span class="package-value">— (isteğe bağlı eklenebilir)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">ISBN</span>
+                            <span class="package-value">İsteğe bağlı önerilir</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Dağıtım</span>
+                            <span class="package-value">Amazon KDP (e-Kitap)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Pazarlama</span>
+                            <span class="package-value">— (isteğe bağlı eklenebilir)</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Haklar</span>
+                            <span class="package-value">%100 Yazarda</span>
+                        </div>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn-configure-underline" data-package="starter">Paketi Seç</button>
+                        <div class="package-contact-form" id="starterContactForm" style="display:none;">
+                            <form class="quick-contact-form" data-package-name="Kitap Yayımlama Başlangıç">
+                                <input type="hidden" name="form-name" value="package-selection">
+                                <input type="hidden" name="package" value="Kitap Yayımlama Başlangıç">
+                                <div class="quick-form-group"><input type="text" name="name" class="quick-form-input" placeholder="Ad *" required></div>
+                                <div class="quick-form-group"><input type="email" name="email" class="quick-form-input" placeholder="E-posta *" required></div>
+                                <div class="quick-form-group"><textarea name="message" class="quick-form-textarea" placeholder="Kısa mesaj (isteğe bağlı)" rows="3"></textarea></div>
+                                <button type="submit" class="btn-quick-submit">Talep Gönder</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CUSTOM -->
+                <div class="package-card package-custom">
+                    <div class="package-badge">Önerilen</div>
+                    <div class="package-header">
+                        <h3>Bireysel Yapılandırma</h3>
+                        <p class="package-subtitle">Mükemmel paketini kendin oluştur</p>
+                    </div>
+                    <div class="package-cta-top">
+                        <button class="btn-configure btn-configure-primary" id="openConfigBtn">Şimdi Yapılandır →</button>
+                    </div>
+                    <div class="package-body">
+                        <div id="custom-config-display" class="custom-config-empty">
+                            <p class="empty-message">Henüz hizmet seçilmedi</p>
+                            <p class="empty-hint">&ldquo;Şimdi Yapılandır&rdquo;a tıkla</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DELUXE -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Yayın Paketi Deluxe</h3>
+                        <p class="package-subtitle">İddialı projeler, premium lansman</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-row">
+                            <span class="package-label">Düzeltme / Redaksiyon</span>
+                            <span class="package-value">✓ Yoğun Redaksiyon</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Kapak Tasarımı</span>
+                            <span class="package-value">✓ Premium Kapak Sanatı</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Dizgi (Kitap Düzeni)</span>
+                            <span class="package-value">✓ Baskı + e-Kitap Dizgisi</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">e-Kitap Dönüştürme</span>
+                            <span class="package-value">✓</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Baskı Yayını</span>
+                            <span class="package-value">✓ Baskı</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">ISBN</span>
+                            <span class="package-value">Seçim: Yazar veya Yayıncı</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Dağıtım</span>
+                            <span class="package-value">Amazon KDP + Toplayıcı</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Pazarlama</span>
+                            <span class="package-value">✓ Lansman Kampanyası</span>
+                        </div>
+                        <div class="package-row">
+                            <span class="package-label">Haklar</span>
+                            <span class="package-value">%100 Yazarda</span>
+                        </div>
+                    </div>
+                    <div class="package-footer">
+                        <button class="btn-configure-underline" data-package="deluxe">Paketi Seç</button>
+                        <div class="package-contact-form" id="deluxeContactForm" style="display:none;">
+                            <form class="quick-contact-form" data-package-name="Yayın Paketi Deluxe">
+                                <input type="hidden" name="form-name" value="package-selection">
+                                <input type="hidden" name="package" value="Yayın Paketi Deluxe">
+                                <div class="quick-form-group"><input type="text" name="name" class="quick-form-input" placeholder="Ad *" required></div>
+                                <div class="quick-form-group"><input type="email" name="email" class="quick-form-input" placeholder="E-posta *" required></div>
+                                <div class="quick-form-group"><textarea name="message" class="quick-form-textarea" placeholder="Kısa mesaj (isteğe bağlı)" rows="3"></textarea></div>
+                                <button type="submit" class="btn-quick-submit">Talep Gönder</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <div class="contact-overlay" id="contactOverlay">
+        <div class="contact-popup">
+            <button class="contact-close" type="button" aria-label="Kapat">✕</button>
+            <div class="contact-header">
+                <h2>İletişime Geçin</h2>
+                <p>24 saat içinde size geri döneceğiz.</p>
+            </div>
+            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
+                <div class="form-row">
+                    <div class="form-group"><label>Ad *</label><input type="text" name="vorname" required></div>
+                    <div class="form-group"><label>Soyad *</label><input type="text" name="nachname" required></div>
+                </div>
+                <div class="form-group"><label>E-posta *</label><input type="email" name="email" required></div>
+                <div class="form-group"><label>Telefon</label><input type="tel" name="telefon"></div>
+                <div class="form-group"><label>Mesaj</label><textarea name="nachricht" rows="5" placeholder="Projeniz hakkında bize anlatın..."></textarea></div>
+                <button type="submit" class="form-submit">Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="package"/><input type="text" name="name"/>
+        <input type="email" name="email"/><textarea name="message"></textarea>
+    </form>
+    <form name="buchkonfigurator" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name"/><input type="email" name="email"/>
+        <input type="tel" name="telefon"/><textarea name="nachricht"></textarea><textarea name="konfiguration"></textarea>
+    </form>
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname"/><input type="text" name="nachname"/>
+        <input type="email" name="email"/><input type="tel" name="telefon"/><textarea name="nachricht"></textarea>
+    </form>
+
+    <script type="module" src="../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/konfigurator-page.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            const s = document.createElement('script');
+            s.src = '../assets/js/background.js';
+            s.onerror = () => console.log('Background script skipped');
+            document.head.appendChild(s);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('contactOverlay');
+            const btn = document.getElementById('heroContactBtn');
+            const close = overlay?.querySelector('.contact-close');
+            if (btn && overlay) btn.addEventListener('click', () => { overlay.classList.add('is-open'); document.body.style.overflow='hidden'; });
+            if (close) close.addEventListener('click', () => { overlay.classList.remove('is-open'); document.body.style.overflow=''; });
+            overlay?.addEventListener('click', e => { if(e.target===overlay){ overlay.classList.remove('is-open'); document.body.style.overflow=''; } });
+        });
+    </script>
+    <script src="../assets/js/flipbook-popup.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => { FlipbookPopup.init('#openConfigBtn'); });
+    </script>
+</body>
+</html>

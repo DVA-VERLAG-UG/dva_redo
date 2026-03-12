@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Configurateur de Livre | DVAYD Publishing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --gold:#b8966e; --gold-l:#d4b48a; --gold-d:#8a6a48;
+      --red:#8b1a10; --red-l:#c0392b;
+      --cream:#f5f0e8; --page:#faf7f2; --page2:#f3ede2;
+      --text:#2c2416; --text-l:#7a6a56;
+      --border:rgba(184,150,110,0.3);
+      --sel:rgba(184,150,110,0.13);
+    }
+    html,body{height:100%;overflow:hidden}
+    body{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px;padding-bottom:16px;gap:20px;background:transparent !important;min-height:100dvh;overflow-y:auto;}
+    .book-wrap{position:relative;filter:drop-shadow(0 32px 60px rgba(44,36,22,0.38)) drop-shadow(0 8px 16px rgba(44,36,22,0.2));}
+    .book-wrap::before{content:'';position:absolute;top:2%;bottom:2%;left:0;width:50%;background:linear-gradient(to right,rgba(0,0,0,0.07) 0%,transparent 18%);pointer-events:none;z-index:10;border-radius:2px 0 0 2px;}
+    .book-wrap::after{content:'';position:absolute;top:2%;bottom:2%;right:0;width:50%;background:linear-gradient(to left,rgba(0,0,0,0.05) 0%,transparent 18%);pointer-events:none;z-index:10;}
+    .spine-line{position:absolute;top:0;bottom:0;left:50%;width:3px;transform:translateX(-50%);background:linear-gradient(to bottom,rgba(255,255,255,0.0) 0%,rgba(255,255,255,0.18) 20%,rgba(255,255,255,0.28) 50%,rgba(255,255,255,0.18) 80%,rgba(255,255,255,0.0) 100%);pointer-events:none;z-index:20;}
+    #flipbook{width:1040px;height:600px}
+    #flipbook .page{background:var(--page);overflow:hidden}
+    #flipbook .page::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.6;}
+    #flipbook .page>*{position:relative;z-index:1}
+    .cover-l{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(160deg,#a01e12 0%,#6e100a 60%,#4a0807 100%) !important;padding:48px 36px;text-align:center;gap:12px;position:relative;overflow:hidden;}
+    .cover-l::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,0.018) 28px,rgba(255,255,255,0.018) 29px);}
+    .cover-l .c-ornament{font-size:28px;opacity:0.35;margin-bottom:4px;color:#f5c97a;}
+    .cover-l h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;line-height:1.25;position:relative;}
+    .cover-l .c-rule{width:50px;height:1.5px;background:linear-gradient(to right,transparent,rgba(245,201,122,0.7),transparent);margin:4px auto;}
+    .cover-l small{font-family:'Lato',sans-serif;font-size:12px;font-style:italic;color:rgba(255,255,255,0.6);letter-spacing:0.06em;position:relative;}
+    .cover-l .c-steps{margin-top:20px;display:flex;flex-direction:column;gap:6px;width:100%;max-width:200px;position:relative;}
+    .c-steps span{font-family:'Lato',sans-serif;font-size:11px;color:rgba(255,255,255,0.55);padding:5px 10px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;}
+    .cover-r{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,var(--cream) 0%,#ede7d9 100%) !important;padding:52px 46px;position:relative;}
+    .cover-r::after{content:'';position:absolute;bottom:0;right:0;width:180px;height:180px;background:radial-gradient(circle,rgba(184,150,110,0.12) 0%,transparent 70%);}
+    .cover-r .cr-label{font-family:'Lato',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);margin-bottom:16px;}
+    .cover-r h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:18px;}
+    .cover-r .cr-line{width:44px;height:2px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:18px;opacity:0.6;}
+    .cover-r p{font-family:'Lato',sans-serif;font-size:13px;color:var(--text-l);line-height:1.75;max-width:240px;}
+    .q-page{display:flex;flex-direction:column;height:100%;overflow:hidden;background:var(--page);}
+    .q-page.right-tint{background:var(--page2);}
+    .q-head{padding:20px 26px 13px;border-bottom:1px solid var(--border);flex-shrink:0;background:linear-gradient(180deg,rgba(245,240,232,0.9) 0%,transparent 100%);}
+    .badge{display:inline-block;font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.13em;color:var(--gold-d);background:rgba(184,150,110,0.12);padding:2.5px 9px;border-radius:12px;margin-bottom:7px;}
+    .q-head h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);margin-bottom:1px;}
+    .q-head .sub{font-family:'Lato',sans-serif;font-size:10.5px;color:var(--text-l);font-style:italic;}
+    .q-opts{flex:1;overflow-y:auto;padding:11px 18px 8px;display:flex;flex-direction:column;gap:6px;}
+    .q-opts::-webkit-scrollbar{width:3px}
+    .q-opts::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+    .opt-wrap{position:relative}
+    .opt{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border:1.5px solid var(--border);border-radius:6px;cursor:pointer;transition:border-color .14s,background .14s,transform .1s;background:rgba(255,255,255,0.55);user-select:none;position:relative;}
+    .opt:hover{border-color:var(--gold-l);background:rgba(255,255,255,0.85);transform:translateX(2px)}
+    .opt.selected{border-color:var(--gold);background:var(--sel);}
+    .opt.selected::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:3px;border-radius:0 2px 2px 0;background:var(--gold);}
+    .chk{width:16px;height:16px;border:2px solid #c8b89a;border-radius:3px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:background .14s,border-color .14s;background:white;}
+    .opt.selected .chk{background:var(--gold);border-color:var(--gold)}
+    .chk svg{display:none}
+    .opt.selected .chk svg{display:block}
+    .opt-text strong{display:block;font-family:'Lato',sans-serif;font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:1px;}
+    .opt-text span{font-family:'Lato',sans-serif;font-size:10.5px;color:var(--text-l);line-height:1.4;}
+    .info-icon{margin-left:auto;flex-shrink:0;margin-top:1px;width:16px;height:16px;border-radius:50%;background:rgba(184,150,110,0.18);border:1px solid rgba(184,150,110,0.4);display:flex;align-items:center;justify-content:center;font-family:'Lato',sans-serif;font-size:9px;font-weight:700;color:var(--gold-d);cursor:pointer;transition:background .15s;flex-shrink:0;}
+    .opt:hover .info-icon{background:rgba(184,150,110,0.35)}
+    .tooltip{position:fixed;z-index:9999;width:220px;background:linear-gradient(135deg,#faf7f2 0%,#f5f0e8 100%);color:#2c2416;font-family:'Lato',sans-serif;font-size:11.5px;line-height:1.6;padding:12px 15px;border-radius:10px;border:1.5px solid rgba(184,150,110,0.4);pointer-events:none;opacity:0;transition:opacity 0.35s cubic-bezier(0.4,0,0.2,1),transform 0.35s cubic-bezier(0.4,0,0.2,1);box-shadow:0 10px 30px rgba(138,106,72,0.2),0 4px 12px rgba(138,106,72,0.1);}
+    @media (min-width:769px){
+      .tooltip.right-side{transform:translateX(-10px) scale(0.95);}
+      .tooltip.right-side.show{opacity:1;transform:translateX(0) scale(1);}
+      .tooltip.right-side::before{content:'';position:absolute;top:16px;left:-8px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-right:8px solid #faf7f2;filter:drop-shadow(-1px 0 1px rgba(184,150,110,0.2));}
+      .tooltip.left-side{transform:translateX(10px) scale(0.95);}
+      .tooltip.left-side.show{opacity:1;transform:translateX(0) scale(1);}
+      .tooltip.left-side::before{content:'';position:absolute;top:16px;right:-8px;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:8px solid #faf7f2;filter:drop-shadow(1px 0 1px rgba(184,150,110,0.2));}
+    }
+    @media (max-width:768px){
+      .tooltip{width:calc(100vw - 40px);max-width:280px;}
+      .tooltip.show{opacity:1;}
+      .tooltip::before{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #faf7f2;filter:drop-shadow(0 1px 1px rgba(184,150,110,0.2));}
+      .tooltip.right-side::before,.tooltip.left-side::before{display:none;}
+    }
+    .page-sep{position:absolute;top:4%;bottom:4%;left:0;width:1px;background:linear-gradient(to bottom,transparent,var(--border) 20%,var(--border) 80%,transparent);pointer-events:none;z-index:5;}
+    .sum-page{display:flex;flex-direction:column;height:100%;overflow:hidden}
+    .sum-head{padding:20px 26px 13px;border-bottom:1px solid var(--border);flex-shrink:0;}
+    .sum-head h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--text);}
+    .sum-head .sub{font-family:'Lato',sans-serif;font-size:10.5px;color:var(--text-l);font-style:italic;}
+    .sum-body{flex:1;overflow-y:auto;padding:16px 20px 8px;display:flex;flex-direction:column;gap:14px;}
+    .sum-body::-webkit-scrollbar{width:3px}
+    .sum-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+    .sum-item h5{font-family:'Lato',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px;font-weight:700;padding-bottom:4px;border-bottom:1px solid rgba(184,150,110,0.2);}
+    .sum-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .sum-tag{font-family:'Lato',sans-serif;font-size:11px;background:rgba(255,255,255,0.7);border:1px solid var(--border);border-radius:4px;padding:4px 10px;color:var(--text);line-height:1.4;}
+    .sum-tag.empty{color:var(--text-l);font-style:italic;background:rgba(245,240,232,0.4);}
+    .btn-submit{width:100%;padding:12px;margin-top:2px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);color:white;border:none;border-radius:7px;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.05em;cursor:pointer;transition:opacity .18s,transform .12s;box-shadow:0 4px 14px rgba(138,106,72,0.35);}
+    .btn-submit:hover{opacity:.9;transform:translateY(-1px)}
+    .nav-bar{display:flex;align-items:center;gap:18px;position:absolute;bottom:0;left:0;right:0;padding:10px 20px 14px;background:transparent;justify-content:center;z-index:100;pointer-events:none;}
+    .nav-bar > * { pointer-events:all; }
+    .nav-btn{padding:11px 28px;border-radius:6px;font-family:'Lato',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;border:2px solid var(--gold);background:transparent;color:var(--gold);transition:all .25s ease;position:relative;overflow:hidden;}
+    .nav-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-d) 100%);transition:left .3s ease;z-index:-1;}
+    .nav-btn:hover{color:white;border-color:var(--gold-d);box-shadow:0 6px 20px rgba(184,150,110,0.4);}
+    .nav-btn:hover::before{left:0;}
+    .nav-btn:disabled{opacity:.3;pointer-events:none;border-color:rgba(184,150,110,0.2);color:rgba(122,106,86,0.4);}
+    .pnum{position:absolute;bottom:8px;font-family:'Lato',sans-serif;font-size:9px;color:rgba(184,150,110,0.5);letter-spacing:0.08em;}
+    .pnum.left{left:14px} .pnum.right{right:14px}
+    .dots-wrap{display:flex;gap:8px;align-items:center;}
+    .ndot{width:8px;height:8px;border-radius:50%;background:rgba(184,150,110,0.3);transition:all .2s;cursor:default;}
+    .ndot.active{background:var(--gold);transform:scale(1.2);}
+    @media (max-width:768px){
+      body{ padding-top: 0; padding-bottom: 0; gap: 0; }
+      .book-wrap{ width:100%;filter:none !important; }
+      .nav-btn{ padding:9px 20px;font-size:12px; }
+      .dots-wrap{ gap:5px; }
+      .ndot{ width:7px;height:7px; }
+    }
+  </style>
+</head>
+<body>
+
+<form name="buchkonfigurator" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="name"/>
+  <input type="email" name="email"/>
+  <input type="tel" name="telefon"/>
+  <textarea name="nachricht"></textarea>
+  <input type="hidden" name="konfiguration"/>
+</form>
+
+<button id="mobile-close-btn"
+  onclick="window.parent.postMessage({type:'closePopup'},'*')"
+  style="display:none;position:fixed;top:8px;right:10px;z-index:99999;
+         width:34px;height:34px;border-radius:50%;
+         background:rgba(220,38,38,0.95);border:none;color:white;
+         font-size:17px;cursor:pointer;align-items:center;justify-content:center;">✕</button>
+
+<div class="book-wrap">
+  <div class="spine-line"></div>
+  <div id="flipbook">
+
+    <!-- SPREAD 1: COVER -->
+    <div class="hard">
+      <div class="cover-l" style="background:linear-gradient(135deg,#f5f0e8 0%,#e8dcc8 50%,#b8966e 100%) !important;">
+        <div style="margin-bottom:24px;"><img src="../../assets/images/branding/dva-logo.png" alt="DVAYD" style="width:140px;height:auto;opacity:0.85;"></div>
+        <div class="c-ornament" style="color:#8a6a48;">✦</div>
+        <h1 style="color:#2c2416;">Configurateur de Livre</h1>
+        <div class="c-rule" style="background:linear-gradient(to right,transparent,rgba(138,106,72,0.6),transparent);"></div>
+        <small style="color:rgba(44,36,22,0.7);">Votre offre sur mesure</small>
+        <div class="c-steps">
+          <span style="color:#2c2416;border-color:rgba(138,106,72,0.3);background:rgba(255,255,255,0.2);">7 Thèmes</span>
+          <span style="color:#2c2416;border-color:rgba(138,106,72,0.3);background:rgba(255,255,255,0.2);">Choix Multiples</span>
+          <span style="color:#2c2416;border-color:rgba(138,106,72,0.3);background:rgba(255,255,255,0.2);">Demande Immédiate</span>
+        </div>
+      </div>
+    </div>
+    <div class="hard">
+      <div class="cover-r">
+        <div class="cr-label">Étape par Étape</div>
+        <h2>Répondez à quelques questions &amp; recevez une offre concrète</h2>
+        <div class="cr-line"></div>
+        <p>Sur chaque double page, sélectionnez les services appropriés. Survolez le <strong style="color:var(--gold)">ⓘ</strong> pour plus d'info. Naviguez avec les boutons ou glissez manuellement.</p>
+      </div>
+    </div>
+
+    <!-- SPREAD 2: T1+T2 -->
+    <div>
+      <div class="q-page">
+        <div class="q-head"><span class="badge">Thème 1/7</span><h3>Démarrage &amp; Configuration du Projet</h3><div class="sub">Clarté, plan, exécution propre</div></div>
+        <div class="q-opts" id="q1">
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Audit Professionnel UE" data-tip="Nous évaluons la viabilité marché & fournissons des actions claires. Résultat : feuille de route honnête." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Audit Professionnel UE</strong><span>Viabilité marché &amp; actions claires</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Feuille de Route Projet (UE)" data-tip="Calendrier avec jalons : Texte → Design → Production → QA → Sortie." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Feuille de Route Projet (UE)</strong><span>Calendrier : Texte → Design → Production → Sortie</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Gestion de Projet / Accompagnement" data-tip="Nous gérons délais, validations, communication — vous avez un processus clair." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Gestion de Projet / Accompagnement</strong><span>Délais, validations, communication</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Intake Turquie → UE (Route C)" data-tip="Vérification des droits/données sources/fichiers + faisabilité UE." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Intake Turquie → UE (Route C)</strong><span>Vérification des droits/données/fichiers</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="1" data-val="Coordination UE + TR (Route B)" data-tip="Un plan de sortie pour deux marchés — sans chaos." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Coordination UE + TR (Route B)</strong><span>Coordination entre les deux marchés</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum left">1</span>
+      </div>
+    </div>
+    <div>
+      <div class="page-sep"></div>
+      <div class="q-page right-tint">
+        <div class="q-head"><span class="badge">Thème 2/7</span><h3>Qualité du Texte</h3><div class="sub">Un texte professionnel — pas 'fait maison'</div></div>
+        <div class="q-opts" id="q2">
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Correction" data-tip="Orthographe/grammaire/ponctuation. Base de la crédibilité." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Correction</strong><span>Orthographe, grammaire, ponctuation</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Révision Stylistique" data-tip="Fluidité, ton, rythme — nous affinons votre style sans le détruire." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Révision Stylistique</strong><span>Fluidité, ton, rythme — affiner votre style</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Révision Structurelle / du Contenu" data-tip="Structure, logique, dramaturgie — nous corrigeons les vraies faiblesses." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Révision Structurelle / du Contenu</strong><span>Structure, logique, dramaturgie</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="Vérification de Cohérence" data-tip="Noms, chronologie, faits, répétitions — tout doit être cohérent." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Vérification de Cohérence</strong><span>Noms, chronologie, faits, répétitions</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="2" data-val="QA Final / Double Lecture" data-tip="Dernière vérification avant production — le filet de sécurité." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>QA Final / Double Lecture</strong><span>Dernière vérification avant production</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum right">2</span>
+      </div>
+    </div>
+
+    <!-- SPREAD 3: T3+T4 -->
+    <div>
+      <div class="q-page">
+        <div class="q-head"><span class="badge">Thème 3/7</span><h3>Design du Livre</h3><div class="sub">La couverture vend. L'intérieur donne l'impression d'un éditeur.</div></div>
+        <div class="q-opts" id="q3">
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Design de Couverture (Print)" data-tip="Recto + dos + quatrième comme ensemble cohérent." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Design de Couverture (Print)</strong><span>Recto + dos + quatrième comme ensemble</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Variantes de Couverture (A/B)" data-tip="2–3 alternatives à comparer — vous choisissez la plus forte." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Variantes de Couverture (A/B)</strong><span>2–3 alternatives — vous choisissez la plus forte</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Mise en Page Intérieure (Print)" data-tip="Composition, structure des chapitres, design de page — look professionnel." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Mise en Page Intérieure (Print)</strong><span>Composition, structure des chapitres</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Typographie &amp; Jeu de Styles" data-tip="Polices & règles adaptées au genre — style cohérent." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Typographie &amp; Jeu de Styles</strong><span>Polices &amp; règles adaptées au genre</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="3" data-val="Illustration / Graphismes (optionnel)" data-tip="Éléments individuels quand le livre en a vraiment besoin." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Illustration / Graphismes (optionnel)</strong><span>Éléments individuels si nécessaires</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum left">3</span>
+      </div>
+    </div>
+    <div>
+      <div class="page-sep"></div>
+      <div class="q-page right-tint">
+        <div class="q-head"><span class="badge">Thème 4/7</span><h3>Spécification Print &amp; Production</h3><div class="sub">Un print qualitatif et techniquement propre</div></div>
+        <div class="q-opts" id="q4">
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Couverture Rigide / Souple" data-tip="Choisir la reliure : premium vs. classique." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Couverture Rigide / Souple</strong><span>Choisir la reliure : premium vs. classique</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Choix du Format" data-tip="Adapté au genre, à la lisibilité et aux coûts." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Choix du Format</strong><span>Adapté au genre, lisibilité et coûts</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="N&amp;B / Couleur / Mixte" data-tip="Optimisation entre qualité & coûts d'impression." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>N&amp;B / Couleur / Mixte</strong><span>Optimisation entre qualité &amp; coûts d'impression</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Papier &amp; Finition" data-tip="Toucher + aspect — mat, brillant et plus encore." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Papier &amp; Finition</strong><span>Toucher + aspect — mat, brillant et plus</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Épreuve / Exemplaire de Test" data-tip="Impression préalable pour validation avant mise en vente." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Épreuve / Exemplaire de Test</strong><span>Impression préalable pour validation</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="4" data-val="Contrôle Print (Preflight)" data-tip="Contrôle technique : fond perdu, résolution, espace colorimétrique — pas de mauvaises surprises." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Contrôle Print (Preflight)</strong><span>Fond perdu, résolution, espace colorimétrique</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum right">4</span>
+      </div>
+    </div>
+
+    <!-- SPREAD 4: T5+T6 -->
+    <div>
+      <div class="q-page">
+        <div class="q-head"><span class="badge">Thème 5/7</span><h3>eBook &amp; Formats Numériques</h3><div class="sub">Sans erreurs sur les appareils &amp; boutiques</div></div>
+        <div class="q-opts" id="q5">
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="eBook Publication Rapide (Entrée)" data-tip="Démarrage rapide : 1 fichier, 1 révision, support minimal." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>eBook Publication Rapide (Entrée)</strong><span>Démarrage rapide : 1 fichier, 1 révision</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="Création EPUB" data-tip="Export propre pour lecteurs/boutiques courants." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Création EPUB</strong><span>Export propre pour lecteurs/boutiques</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="Format Kindle" data-tip="Optimisé pour l'écosystème Kindle." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Format Kindle</strong><span>Optimisé pour l'écosystème Kindle</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="QA / Correction eBook" data-tip="Nous trouvons les erreurs et réparons les fichiers existants." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>QA / Correction eBook</strong><span>Trouver les erreurs &amp; réparer les fichiers</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="Upgrade Qualité eBook" data-tip="Optimisation premium : affichage + métadonnées + structure." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Upgrade Qualité eBook</strong><span>Premium : affichage + métadonnées + structure</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="5" data-val="Livre Audio (Bientôt disponible)" data-tip="En préparation — pas encore réservable." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()" style="opacity:0.5;pointer-events:none;"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Livre Audio (Bientôt disponible)</strong><span>En préparation — pas encore réservable</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum left">5</span>
+      </div>
+    </div>
+    <div>
+      <div class="page-sep"></div>
+      <div class="q-page right-tint">
+        <div class="q-head"><span class="badge">Thème 6/7</span><h3>Visibilité &amp; Localisation</h3><div class="sub">Le contenu reste en turc — mais l'UE peut le trouver &amp; comprendre</div></div>
+        <div class="q-opts" id="q6">
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Description Produit DE/EN (Prête boutique)" data-tip="Texte de vente qui touche les lecteurs UE — sans traduction complète." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Description Produit DE/EN (Prête boutique)</strong><span>Texte de vente pour les lecteurs UE</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Mots-clés &amp; Catégories DE/EN" data-tip="Logique de recherche & visibilité — pour que votre livre soit trouvé." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Mots-clés &amp; Catégories DE/EN</strong><span>Logique de recherche &amp; visibilité</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Optimisation 4e de Couverture (TR)" data-tip="Plus percutant, plus clair, plus vendeur." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Optimisation 4e de Couverture (TR)</strong><span>Plus percutant, plus clair, plus vendeur</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Traduction (optionnel)" data-tip="Si vous voulez vraiment publier dans une nouvelle langue." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Traduction (optionnel)</strong><span>Publier dans une nouvelle langue</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="6" data-val="Localisation (optionnel)" data-tip="Finition culturelle : ton, exemples, contexte." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Localisation (optionnel)</strong><span>Finition culturelle : ton, exemples</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum right">6</span>
+      </div>
+    </div>
+
+    <!-- SPREAD 5: T7 + SUMMARY -->
+    <div>
+      <div class="q-page">
+        <div class="q-head"><span class="badge">Thème 7/7</span><h3>Sortie, Distribution &amp; Marketing</h3><div class="sub">Visibilité + disponibilité + lancement propre</div></div>
+        <div class="q-opts" id="q7">
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Listing Boutique UE &amp; Métadonnées" data-tip="Titre/sous-titre/description/images/données de base — mise en ligne propre." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Listing Boutique UE &amp; Métadonnées</strong><span>Mise en ligne propre avec toutes les données</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Distribution UE (Boutique + Expédition)" data-tip="Modèle d'expédition et de traitement après configuration." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Distribution UE (Boutique + Expédition)</strong><span>Modèle d'expédition &amp; traitement</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Readiness Librairies (Premium)" data-tip="Préparation pour la commande en librairie (selon configuration/contrat)." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Readiness Librairies (Premium)</strong><span>Préparation pour la commande en librairie</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Campagne Marketing Impact" data-tip="Campagne par votre équipe marketing (audience, visuels, canaux)." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Campagne Marketing Impact</strong><span>Audience, visuels, canaux</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Système de Lancement Avis (éthique)" data-tip="Construction de retours lecteurs (ARC/liste/modèles/relances) — sans manipulation." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Système de Lancement Avis (éthique)</strong><span>ARC, liste lecteurs, modèles, relances</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+          <div class="opt-wrap"><div class="opt" data-q="7" data-val="Add-on Distribution UE + TR (Route B)" data-tip="Deuxième marché en upgrade — plan de sortie séparé." onclick="toggle(this)" onmouseenter="showTip(this)" onmouseleave="hideTip()"><div class="chk"><svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="opt-text"><strong>Add-on Distribution UE + TR (Route B)</strong><span>Deuxième marché en upgrade</span></div><div class="info-icon" onclick="showTipInstant(this.parentElement);event.stopPropagation();">i</div></div></div>
+        </div>
+        <span class="pnum left">7</span>
+      </div>
+    </div>
+    <div>
+      <div class="page-sep"></div>
+      <div class="sum-page right-tint">
+        <div class="sum-head"><span class="badge">Résumé</span><h3>Votre Configuration</h3><div class="sub">Tous les services sélectionnés</div></div>
+        <div class="sum-body" id="sum-complete" style="font-size:10px;"></div>
+        <span class="pnum right">8</span>
+      </div>
+    </div>
+
+    <!-- SPREAD 6: CONTACT + BACK COVER -->
+    <div>
+      <div class="sum-page">
+        <div class="sum-head"><span class="badge">Demander Maintenant</span><h3>Coordonnées</h3><div class="sub">Nous créons votre offre</div></div>
+        <div style="flex:1;overflow-y:auto;padding:12px 20px;">
+          <form id="inline-contact-form" style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;flex-direction:column;gap:4px;"><label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">Nom *</label><input type="text" name="name" id="inline-name" required style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;"></div>
+            <div style="display:flex;flex-direction:column;gap:4px;"><label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">E-mail *</label><input type="email" name="email" id="inline-email" required style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;"></div>
+            <div style="display:flex;flex-direction:column;gap:4px;"><label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">Téléphone <span style="color:var(--text-l);font-weight:400;text-transform:none;font-size:9px;">(optionnel)</span></label><input type="tel" name="telefon" id="inline-tel" style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;"></div>
+            <div style="display:flex;flex-direction:column;gap:4px;"><label style="font-family:'Lato',sans-serif;font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold-d);font-weight:700;">Message <span style="color:var(--text-l);font-weight:400;text-transform:none;font-size:9px;">(optionnel)</span></label><textarea name="nachricht" id="inline-msg" rows="3" style="font-family:'Lato',sans-serif;font-size:12px;color:var(--text);background:rgba(255,255,255,0.7);border:1.5px solid var(--border);border-radius:5px;padding:7px 10px;outline:none;resize:none;"></textarea></div>
+            <button type="submit" class="btn-submit" style="margin-top:8px;">Envoyer la Configuration →</button>
+          </form>
+        </div>
+        <span class="pnum left">9</span>
+      </div>
+    </div>
+    <div class="hard">
+      <div class="cover-l" style="background:linear-gradient(225deg,#b8966e 0%,#8a6a48 50%,#6b533a 100%) !important;">
+        <div style="margin-bottom:32px;"><img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Verlag" style="width:180px;height:auto;filter:brightness(0) invert(1);opacity:0.95;"></div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:600;color:rgba(255,255,255,0.9);letter-spacing:0.08em;text-transform:uppercase;">DVAYD Verlag</div>
+      </div>
+    </div>
+
+  </div><!-- /#flipbook -->
+
+  <div class="nav-bar">
+    <button class="nav-btn" id="btn-prev" onclick="goBack()">← Retour</button>
+    <div class="dots-wrap" id="nav-dots"></div>
+    <button class="nav-btn" id="btn-next" onclick="goNext()">Suivant →</button>
+  </div>
+</div>
+
+<div class="tooltip" id="tt"></div>
+
+<script src="../jquery.js"></script>
+<script src="../turn.js"></script>
+<script>
+  let answers = {};
+
+  function loadAnswers(){try{const s=sessionStorage.getItem('buchkonfig');if(s)answers=JSON.parse(s);}catch(e){}}
+  function saveAnswers(){try{sessionStorage.setItem('buchkonfig',JSON.stringify(answers));}catch(e){}}
+
+  function toggle(el){
+    el.classList.toggle('selected');
+    const q=el.dataset.q,v=el.dataset.val;
+    if(!answers[q])answers[q]=[];
+    const i=answers[q].indexOf(v);
+    if(i===-1)answers[q].push(v);else answers[q].splice(i,1);
+    saveAnswers();
+  }
+
+  const tt=document.getElementById('tt');
+  let ttHide,ttShow;
+  function showTip(el){clearTimeout(ttHide);clearTimeout(ttShow);ttShow=setTimeout(()=>{displayTooltip(el);},1500);}
+  function showTipInstant(el){clearTimeout(ttHide);clearTimeout(ttShow);displayTooltip(el);}
+  function displayTooltip(el){
+    const tip=el.dataset.tip;if(!tip)return;
+    tt.textContent=tip;
+    const rect=el.getBoundingClientRect();
+    const isMobile=window.innerWidth<=768;
+    if(isMobile){
+      const leftPos=Math.max(20,Math.min(window.innerWidth-300,rect.left+rect.width/2-140));
+      tt.style.left=leftPos+'px';tt.style.top=rect.top-10+'px';tt.style.transform='translateY(-100%)';
+      tt.classList.remove('left-side','right-side');
+      clearTimeout(window.tooltipAutoHide);
+      window.tooltipAutoHide=setTimeout(()=>{tt.classList.remove('show');},2000);
+    }else{
+      const bookRect=document.getElementById('flipbook').getBoundingClientRect();
+      const isLeftPage=rect.left<bookRect.left+bookRect.width/2;
+      let leftPos,topPos;
+      if(isLeftPage){leftPos=rect.right+14;tt.classList.remove('left-side');tt.classList.add('right-side');}
+      else{leftPos=rect.left-220;tt.classList.add('left-side');tt.classList.remove('right-side');}
+      topPos=Math.max(10,Math.min(window.innerHeight-120,rect.top+rect.height/2-20));
+      tt.style.left=leftPos+'px';tt.style.top=topPos+'px';tt.style.transform='';
+    }
+    tt.classList.add('show');
+  }
+  function hideTip(){clearTimeout(ttShow);ttHide=setTimeout(()=>{tt.classList.remove('show');},80);}
+
+  const TOTAL_SPREADS=6;
+  function currentSpread(){return Math.ceil($('#flipbook').turn('page')/2);}
+  function goNext(){const s=currentSpread();if(s<TOTAL_SPREADS){$('#flipbook').turn('next');afterTurn();}}
+  function goBack(){if(currentSpread()>1){$('#flipbook').turn('previous');afterTurn();}}
+
+  function afterTurn(){
+    const s=currentSpread();
+    document.getElementById('btn-prev').disabled=(s<=1);
+    const bn=document.getElementById('btn-next');
+    if(s>=TOTAL_SPREADS){bn.textContent='—';bn.disabled=true;}
+    else{bn.textContent='Suivant →';bn.disabled=false;}
+    setTimeout(()=>{buildSummary();},100);
+    updateDots(s);
+  }
+
+  const qLabels={1:'Démarrage & Configuration',2:'Qualité du Texte',3:'Design du Livre',4:'Spécification Print',5:'eBook & Formats Numériques',6:'Visibilité & Localisation',7:'Sortie, Distribution & Marketing'};
+
+  function buildSummary(){
+    const el=document.getElementById('sum-complete');if(!el)return;
+    let h='';
+    [1,2,3,4,5,6,7].forEach(n=>{
+      const sel=answers[n]||[];
+      h+=`<div class="sum-item"><h5>${qLabels[n]}</h5><div class="sum-tags">`;
+      if(!sel.length)h+=`<span class="sum-tag empty">Aucune sélection</span>`;
+      else sel.forEach(v=>{h+=`<span class="sum-tag">${v}</span>`;});
+      h+=`</div></div>`;
+    });
+    el.innerHTML=h;
+  }
+
+  function handleInlineSubmit(e){
+    e.preventDefault();
+    const nameEl=document.getElementById('inline-name');
+    const emailEl=document.getElementById('inline-email');
+    if(!nameEl.value.trim()||!emailEl.value.trim()){alert('Veuillez remplir Nom et E-mail');return;}
+    const btn=e.target.querySelector('button[type="submit"]');
+    if(btn){btn.disabled=true;btn.textContent='Envoi en cours...';}
+    const export_data={};
+    Object.keys(answers).forEach(k=>{if(answers[k]&&answers[k].length>0){export_data[qLabels[k]]=answers[k];}});
+    let konfig_text='';
+    Object.keys(export_data).forEach(thema=>{
+      const auswahl=export_data[thema];
+      if(auswahl&&auswahl.length>0){
+        konfig_text+=thema+':\n';
+        auswahl.forEach(item=>{konfig_text+='  • '+item+'\n';});
+        konfig_text+='\n';
+      }
+    });
+    const total=Object.values(export_data).reduce((s,a)=>s+(a?a.length:0),0);
+    konfig_text=`Sélection totale: ${total}\n${'─'.repeat(30)}\n\n`+konfig_text;
+    const params=new URLSearchParams();
+    params.append('form-name','buchkonfigurator');
+    params.append('name',nameEl.value.trim());
+    params.append('email',emailEl.value.trim());
+    params.append('telefon',document.getElementById('inline-tel').value.trim());
+    params.append('nachricht',document.getElementById('inline-msg').value.trim());
+    params.append('konfiguration',konfig_text);
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:params.toString()})
+    .then(res=>{
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      if(window.parent&&window.parent!==window){window.parent.postMessage({type:'selectionUpdate',selections:export_data},'*');}
+      answers={};sessionStorage.removeItem('buchkonfig');
+      document.querySelectorAll('.opt.selected').forEach(el=>el.classList.remove('selected'));
+      if(btn){btn.textContent='✓ Envoyé !';btn.style.background='#4a7c59';}
+      setTimeout(()=>{if(window.parent&&window.parent!==window)window.parent.postMessage({type:'closePopup'},'*');},1500);
+    })
+    .catch(err=>{
+      console.error('Submit error:',err);
+      if(btn){btn.disabled=false;btn.textContent='Envoyer la Configuration →';}
+      alert('Erreur denvoi. Veuillez réessayer.');
+    });
+  }
+
+  const DOT_LABELS=['Couverture','T.1+2','T.3+4','T.5+6','T.7+Rés','Contact'];
+  function buildDots(){
+    const w=document.getElementById('nav-dots');
+    DOT_LABELS.forEach((_,i)=>{const d=document.createElement('div');d.className='ndot'+(i===0?' active':'');d.title=DOT_LABELS[i];w.appendChild(d);});
+  }
+  function updateDots(s){document.querySelectorAll('.ndot').forEach((d,i)=>{d.classList.toggle('active',i===s-1);});}
+
+  loadAnswers();
+  document.addEventListener('DOMContentLoaded',()=>{
+    Object.keys(answers).forEach(q=>{answers[q].forEach(v=>{document.querySelectorAll(`.opt[data-q="${q}"][data-val="${v}"]`).forEach(el=>{el.classList.add('selected');});});});
+    const inlineForm=document.getElementById('inline-contact-form');
+    if(inlineForm)inlineForm.addEventListener('submit',handleInlineSubmit);
+  });
+
+  $(document).ready(function(){
+    const isMobile=window.innerWidth<=768;
+    if(isMobile){
+      const CLOSE_H=46;
+      const flipH=window.innerHeight-CLOSE_H;
+      document.getElementById('mobile-close-btn').style.display='flex';
+      $('#flipbook').turn({width:window.innerWidth,height:flipH,display:'single',autoCenter:true,acceleration:true,duration:400,gradients:false,when:{turned:function(){afterTurn();$('.spine-line').hide();$('.page-sep').hide();$('.book-wrap').css('filter','none');}}});
+      $('.spine-line').hide();$('.page-sep').hide();$('.book-wrap').css('filter','none');
+      let touchStartX=0;
+      const flipbook=document.getElementById('flipbook');
+      flipbook.addEventListener('touchstart',function(e){touchStartX=e.touches[0].clientX;});
+      flipbook.addEventListener('touchend',function(e){const diff=touchStartX-e.changedTouches[0].clientX;if(Math.abs(diff)>50){if(diff>0)goNext();else goBack();}});
+    }else{
+      const deskH=Math.min(640,Math.round(window.innerHeight*0.85));
+      $('#flipbook').turn({width:1040,height:deskH,display:'double',autoCenter:false,gradients:true,acceleration:true,duration:650,when:{turned:function(){afterTurn();}}});
+    }
+    buildDots();
+    afterTurn();
+  });
+</script>
+</body>
+</html>
