@@ -3,56 +3,33 @@
    Royal Bronze Theme - With Softer Hero-Style Mask Fade
    ========================================== */
 
-/* Ensure no white gaps around footer */
-body {
-  margin: 0;
-  padding: 0;
-}
+body { margin: 0; padding: 0; }
 
 .dv-footer {
   background:
     radial-gradient(900px 520px at 15% 0%, rgba(176, 141, 87, 0.2), transparent 60%),
     linear-gradient(180deg, #2C3E50, #1a2631);
   color: rgba(245, 242, 237, 0.88);
-  border-top: none;
-  font-family: 'Georgia', serif;
+  font-family: var(--font-body);
   width: 100%;
-  margin: 0;
-  padding: 0;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
+  margin: 0; padding: 0;
+  border: none;
   box-sizing: border-box;
   position: relative;
-  
-  /* Viel sanfterer Hero-Style Mask - längerer Fade */
+
   mask-image: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.05) 8%,
-    rgba(0, 0, 0, 0.1) 12%,
-    rgba(0, 0, 0, 0.2) 18%,
-    rgba(0, 0, 0, 0.3) 25%,
-    rgba(0, 0, 0, 0.45) 32%,
-    rgba(0, 0, 0, 0.6) 40%,
-    rgba(0, 0, 0, 0.75) 50%,
-    rgba(0, 0, 0, 0.88) 60%,
-    rgba(0, 0, 0, 1) 70%,
-    rgba(0, 0, 0, 1) 100%
+    transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.1) 12%,
+    rgba(0,0,0,0.2) 18%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.45) 32%,
+    rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.88) 60%,
+    rgba(0,0,0,1) 70%, rgba(0,0,0,1) 100%
   );
   -webkit-mask-image: linear-gradient(
     to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.05) 8%,
-    rgba(0, 0, 0, 0.1) 12%,
-    rgba(0, 0, 0, 0.2) 18%,
-    rgba(0, 0, 0, 0.3) 25%,
-    rgba(0, 0, 0, 0.45) 32%,
-    rgba(0, 0, 0, 0.6) 40%,
-    rgba(0, 0, 0, 0.75) 50%,
-    rgba(0, 0, 0, 0.88) 60%,
-    rgba(0, 0, 0, 1) 70%,
-    rgba(0, 0, 0, 1) 100%
+    transparent 0%, rgba(0,0,0,0.05) 8%, rgba(0,0,0,0.1) 12%,
+    rgba(0,0,0,0.2) 18%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.45) 32%,
+    rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.88) 60%,
+    rgba(0,0,0,1) 70%, rgba(0,0,0,1) 100%
   );
 }
 
@@ -62,66 +39,61 @@ body {
   padding: 56px 20px 26px;
 }
 
-/* Account for social bar on desktop */
 @media (min-width: 769px) {
-  .dv-footer-inner {
-    padding-right: 70px;
-  }
+  .dv-footer-inner { padding-right: 70px; }
 }
 
-/* ==========================================
-   FOOTER GRID
-   ========================================== */
+/* ── Grid ── */
 .dv-footer-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 34px;
 }
 
+/* Column title — Inter */
 .dv-ftitle {
-  font-size: 12px;
-  font-weight: 900;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 14px;
   color: #B08D57;
-  font-family: 'Georgia', serif;
 }
 
+/* Nav links — Inter */
 .dv-flink {
   display: block;
   padding: 6px 0;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-body);
   color: rgba(245, 242, 237, 0.72);
   text-decoration: none;
   transition: color 0.15s ease;
-  font-family: 'Georgia', serif;
 }
 
-.dv-flink:hover {
-  color: #B08D57;
-}
+.dv-flink:hover { color: #B08D57; }
 
-/* ==========================================
-   CONTACT COLUMN
-   ========================================== */
+/* ── Contact column ── */
 .dv-contact strong {
   display: block;
-  font-size: 15px;
-  font-weight: 900;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-button);
   color: #B08D57;
   margin-bottom: 6px;
-  font-family: 'Georgia', serif;
 }
 
 .dv-contact span {
-  font-size: 13px;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-body);
   opacity: 0.75;
   color: rgba(245, 242, 237, 0.75);
 }
 
-/* ==========================================
-   SOCIAL ICONS
-   ========================================== */
+/* ── Social icons ── */
 .dv-social {
   margin-top: 14px;
   display: flex;
@@ -129,8 +101,7 @@ body {
 }
 
 .dv-social a {
-  width: 40px;
-  height: 40px;
+  width: 40px; height: 40px;
   border-radius: 999px;
   display: grid;
   place-items: center;
@@ -146,15 +117,12 @@ body {
 }
 
 .dv-social img {
-  width: 18px;
-  height: 18px;
+  width: 18px; height: 18px;
   object-fit: contain;
   filter: brightness(1.1);
 }
 
-/* ==========================================
-   BOTTOM BAR
-   ========================================== */
+/* ── Bottom bar ── */
 .dv-footer-bottom {
   margin-top: 34px;
   padding-top: 18px;
@@ -164,26 +132,27 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  font-size: 12.5px;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-body);
   color: rgba(245, 242, 237, 0.55);
-  font-family: 'Georgia', serif;
 }
 
+/* Brand — Cormorant Garamond */
 .dv-footer-brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 900;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: var(--weight-h3);
+  font-style: normal;
   color: #B08D57;
-  font-family: 'Playfair Display', 'Georgia', serif;
 }
 
-.dv-footer-brand img {
-  height: 22px;
-  width: auto;
-}
+.dv-footer-brand img { height: 22px; width: auto; }
 
-/* Legal links row — alle nebeneinander */
+/* Legal links — Inter */
 .dv-footer-legal {
   display: flex;
   align-items: center;
@@ -193,23 +162,23 @@ body {
 
 .dv-footer-legal span,
 .dv-footer-legal #footer-year {
+  font-family: var(--font-body);
   color: rgba(245, 242, 237, 0.55);
   white-space: nowrap;
 }
 
 .dv-footer-legal a {
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-body);
   color: rgba(245, 242, 237, 0.7);
   text-decoration: none;
-  font-size: 13px;
   white-space: nowrap;
   transition: color 0.15s ease;
 }
 
-.dv-footer-legal a:hover {
-  color: #B08D57;
-}
+.dv-footer-legal a:hover { color: #B08D57; }
 
-/* Separator dots */
 .dv-footer-legal a::before {
   content: '·';
   margin-right: 6px;
@@ -217,10 +186,7 @@ body {
   pointer-events: none;
 }
 
-/* ==========================================
-   LET'S TALK CTA
-   ========================================== */
-
+/* ── CTA Button — Cormorant Garamond ── */
 .dv-footer-cta {
   margin-bottom: 120px;
   margin-top: 80px;
@@ -229,17 +195,16 @@ body {
 }
 
 .footer-talk-btn {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: var(--font-heading);
   font-size: clamp(4rem, 12vw, 10rem);
-  font-weight: 400;
-  font-style: italic;
+  font-weight: var(--weight-h2);
+  font-style: italic; /* erlaubt: seltener Akzent */
   color: #B08D57;
   background: none;
   border: none;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0;
-  margin: 0;
+  padding: 0; margin: 0;
   line-height: 1;
   position: relative;
   display: inline-block;
@@ -248,94 +213,42 @@ body {
 .footer-talk-btn::after {
   content: '';
   position: absolute;
-  bottom: -20px;
-  left: 0;
-  width: 100%;
-  height: 3px;
+  bottom: -20px; left: 0;
+  width: 100%; height: 3px;
   background: currentColor;
   transform: scaleX(0);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer-talk-btn:hover {
-  color: #d4b07a;
-  transform: translateY(-4px);
-}
+.footer-talk-btn:hover      { color: #d4b07a; transform: translateY(-4px); }
+.footer-talk-btn:hover::after { transform: scaleX(1); }
+.footer-talk-btn:active       { transform: translateY(-2px); }
 
-.footer-talk-btn:hover::after {
-  transform: scaleX(1);
-}
-
-.footer-talk-btn:active {
-  transform: translateY(-2px);
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .dv-footer {
     mask-image: linear-gradient(
       to bottom,
-      transparent 0%,
-      rgba(0, 0, 0, 0.5) 5%,
-      rgba(0, 0, 0, 0.85) 10%,
-      rgba(0, 0, 0, 1) 15%,
-      rgba(0, 0, 0, 1) 100%
+      transparent 0%, rgba(0,0,0,0.5) 5%,
+      rgba(0,0,0,0.85) 10%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 100%
     );
     -webkit-mask-image: linear-gradient(
       to bottom,
-      transparent 0%,
-      rgba(0, 0, 0, 0.5) 5%,
-      rgba(0, 0, 0, 0.85) 10%,
-      rgba(0, 0, 0, 1) 15%,
-      rgba(0, 0, 0, 1) 100%
+      transparent 0%, rgba(0,0,0,0.5) 5%,
+      rgba(0,0,0,0.85) 10%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 100%
     );
   }
 
-  .dv-footer-cta {
-    padding: 80px 20px;
-    margin-bottom: 100px;
-    margin-top: 60px;
-  }
-
-  .dv-footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .footer-talk-btn {
-    font-size: clamp(3rem, 10vw, 6rem);
-  }
-
-  .dv-footer-legal {
-    flex-wrap: wrap;
-    gap: 4px;
-  }
+  .dv-footer-cta   { padding: 80px 20px; margin-bottom: 100px; margin-top: 60px; }
+  .dv-footer-grid  { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .footer-talk-btn { font-size: clamp(3rem, 10vw, 6rem); }
+  .dv-footer-legal { flex-wrap: wrap; gap: 4px; }
 }
 
 @media (max-width: 480px) {
-  .dv-footer-cta {
-    padding: 60px 20px;
-    margin-bottom: 80px;
-    margin-top: 40px;
-  }
-
-  .dv-footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .dv-footer-inner {
-    padding: 40px 20px 20px;
-  }
-
-  .dv-footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .dv-footer-legal {
-    flex-wrap: wrap;
-  }
+  .dv-footer-cta    { padding: 60px 20px; margin-bottom: 80px; margin-top: 40px; }
+  .dv-footer-grid   { grid-template-columns: 1fr; }
+  .dv-footer-inner  { padding: 40px 20px 20px; }
+  .dv-footer-bottom { flex-direction: column; align-items: flex-start; }
+  .dv-footer-legal  { flex-wrap: wrap; }
 }

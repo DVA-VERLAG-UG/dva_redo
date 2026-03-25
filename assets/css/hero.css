@@ -5,24 +5,20 @@
 
 .hero {
   position: relative;
-  min-height: 110vh; /* Verlängert: 100vh → 110vh */
+  min-height: 110vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 140px 20px 140px; /* Mehr Padding unten: 100px → 140px */
-  overflow: visible; /* Changed from hidden to see fade */
+  padding: 140px 20px;
+  overflow: visible;
 }
 
-/* Background Image - subtle and elegant */
 .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
+  top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 1700px;
-  height: 100%;
+  width: 100%; max-width: 1700px; height: 100%;
   background-image: url("../images/index/library.jpg");
   background-size: cover;
   background-position: center;
@@ -30,70 +26,44 @@
   opacity: 0.4;
   z-index: -2;
   transition: opacity 0.3s ease;
-  /* Kein Filter hier - kommt separat */
+  mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%
+  );
 }
 
-html[data-theme="dim"] .hero::before {
-  opacity: 0.4;
-}
+html[data-theme="dim"] .hero::before { opacity: 0.4; }
 
-/* Shadow layer - nur über dem Bild */
 .hero::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 50%;
+  top: 0; left: 50%;
   transform: translateX(-50%);
-  width: 100%;
-  max-width: 1400px; /* Gleiche Breite wie Bild */
-  height: 100%;
+  width: 100%; max-width: 1400px; height: 100%;
   z-index: -1;
   pointer-events: none;
-  
-  /* Schatten nur an den Seiten des Bildes */
-  filter: drop-shadow(-40px 0 60px rgba(44, 62, 80, 0.25))
-          drop-shadow(40px 0 60px rgba(44, 62, 80, 0.25));
-  
-  /* Gradient Mask - fade out am unteren Ende */
+  filter: drop-shadow(-40px 0 60px rgba(44,62,80,0.25))
+          drop-shadow(40px 0 60px rgba(44,62,80,0.25));
   mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0.7) 75%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%
   );
   -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0.7) 75%,
-    rgba(0, 0, 0, 0) 100%
+    rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%,
+    rgba(0,0,0,0.7) 75%, rgba(0,0,0,0) 100%
   );
-  
-  /* Pseudo-content für Schatten */
   background: linear-gradient(to bottom, transparent, transparent);
 }
 
 html[data-theme="dim"] .hero::after {
-  filter: drop-shadow(-40px 0 60px rgba(0, 0, 0, 0.5))
-          drop-shadow(40px 0 60px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(-40px 0 60px rgba(0,0,0,0.5))
+          drop-shadow(40px 0 60px rgba(0,0,0,0.5));
 }
 
-/* Image fade out am unteren Ende */
-.hero::before {
-  mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0.7) 75%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 60%,
-    rgba(0, 0, 0, 0.7) 75%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-
-/* Hero Content Container */
 .hero-container {
   max-width: 1000px;
   width: 100%;
@@ -102,18 +72,18 @@ html[data-theme="dim"] .hero::after {
   z-index: 1;
 }
 
-/* Hero Content - CENTERED */
 .hero-content {
   max-width: 900px;
   text-align: center;
   margin: 0 auto;
 }
 
-/* Hero Title - Clean Typography */
+/* Title — Cormorant Garamond */
 .hero-title {
-  font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: 4.5rem;
-  font-weight: 900;
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-h1);
+  font-style: normal;
   line-height: 1.1;
   margin-bottom: 32px;
   color: #2C3E50;
@@ -127,24 +97,22 @@ html[data-theme="dim"] .hero-title {
   -webkit-text-stroke: 0.5px rgba(176, 141, 87, 0.2);
 }
 
-/* Hero Description - Clean */
+/* Description — Inter */
 .hero-description {
-  font-family: 'Georgia', serif;
-  font-size: 1.35rem;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-lead);
+  font-style: normal;
   line-height: 1.7;
   color: #2C3E50;
   margin-bottom: 56px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  font-weight: 400;
 }
 
-html[data-theme="dim"] .hero-description {
-  color: rgba(245, 242, 237, 0.9);
-}
+html[data-theme="dim"] .hero-description { color: rgba(245, 242, 237, 0.9); }
 
-/* Hero CTA Buttons Container (CENTERED) */
 .hero-cta-group {
   display: flex;
   gap: 16px;
@@ -153,28 +121,25 @@ html[data-theme="dim"] .hero-description {
   margin-bottom: 56px;
 }
 
-/* SUBTLE CTA BUTTON (wie Screenshot - underlined) */
+/* Subtle CTA — Inter (kursiv erlaubt als Akzent) */
 .hero-cta-subtle {
   display: inline-block;
-  padding: 0;
+  padding: 0 0 4px;
   background: none;
   border: none;
   border-bottom: 2px solid currentColor;
   color: #2C3E50;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-style: italic;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-button);
+  font-style: italic; /* erlaubt: seltener Akzent */
   letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  padding-bottom: 4px;
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .hero-cta-subtle {
-  color: #B08D57;
-}
+html[data-theme="dim"] .hero-cta-subtle { color: #B08D57; }
 
 .hero-cta-subtle:hover {
   color: #B08D57;
@@ -187,7 +152,7 @@ html[data-theme="dim"] .hero-cta-subtle:hover {
   border-bottom-color: #d4b07a;
 }
 
-/* GLASS BUTTON STYLES (Bronze Theme) */
+/* Glass CTA — Inter */
 .hero-cta {
   display: inline-flex;
   align-items: center;
@@ -198,14 +163,15 @@ html[data-theme="dim"] .hero-cta-subtle:hover {
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   border: 1px solid rgba(176, 141, 87, 0.3);
   color: #2C3E50;
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--text-button);
+  font-weight: var(--weight-button);
+  font-style: normal;
   letter-spacing: 0.02em;
   border-radius: 10px;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-family: 'Georgia', serif;
-  box-shadow: 
+  box-shadow:
     0 8px 24px rgba(176, 141, 87, 0.15),
     inset 0 1px 0 rgba(176, 141, 87, 0.2);
 }
@@ -214,13 +180,12 @@ html[data-theme="dim"] .hero-cta-subtle:hover {
   background: rgba(176, 141, 87, 0.25);
   border-color: #B08D57;
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(176, 141, 87, 0.35),
     0 0 0 1px rgba(176, 141, 87, 0.4),
     inset 0 1px 0 rgba(176, 141, 87, 0.3);
 }
 
-/* Secondary Button - Glass Outline */
 .hero-cta-secondary {
   background: rgba(44, 62, 80, 0.05);
   border: 1.5px solid rgba(44, 62, 80, 0.2);
@@ -237,10 +202,23 @@ html[data-theme="dim"] .hero-cta-secondary {
   background: rgba(176, 141, 87, 0.15);
   border-color: #B08D57;
   color: #B08D57;
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(176, 141, 87, 0.25),
     0 0 0 1px rgba(176, 141, 87, 0.3),
     inset 0 1px 0 rgba(176, 141, 87, 0.2);
+}
+
+html[data-theme="dim"] .hero-cta {
+  background: rgba(176, 141, 87, 0.2);
+  border-color: rgba(176, 141, 87, 0.35);
+  color: #B08D57;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(176, 141, 87, 0.25);
+}
+
+html[data-theme="dim"] .hero-cta:hover {
+  background: rgba(176, 141, 87, 0.3);
+  border-color: #B08D57;
+  color: #d4b07a;
 }
 
 html[data-theme="dim"] .hero-cta-secondary:hover {
@@ -248,32 +226,9 @@ html[data-theme="dim"] .hero-cta-secondary:hover {
   color: #d4b07a;
 }
 
-/* Dark mode primary button */
-html[data-theme="dim"] .hero-cta {
-  background: rgba(176, 141, 87, 0.2);
-  border-color: rgba(176, 141, 87, 0.35);
-  color: #B08D57;
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(176, 141, 87, 0.25);
-}
+.hero-cta::before { display: none; }
 
-html[data-theme="dim"] .hero-cta:hover {
-  background: rgba(176, 141, 87, 0.3);
-  border-color: #B08D57;
-  color: #d4b07a;
-  box-shadow: 
-    0 12px 40px rgba(176, 141, 87, 0.4),
-    0 0 0 1px rgba(176, 141, 87, 0.5),
-    inset 0 1px 0 rgba(176, 141, 87, 0.3);
-}
-
-/* Glass reflection effect */
-.hero-cta::before {
-  display: none;
-}
-
-/* Hero Features - Glass Container */
+/* Features pill — Inter */
 .hero-features {
   display: inline-flex;
   gap: 24px;
@@ -284,105 +239,41 @@ html[data-theme="dim"] .hero-cta:hover {
   -webkit-backdrop-filter: blur(10px) saturate(180%);
   border: 1px solid rgba(176, 141, 87, 0.2);
   border-radius: 999px;
-  box-shadow: 
-    0 4px 16px rgba(176, 141, 87, 0.1),
-    inset 0 1px 0 rgba(176, 141, 87, 0.15);
+  box-shadow: 0 4px 16px rgba(176, 141, 87, 0.1), inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
 html[data-theme="dim"] .hero-features {
   background: rgba(176, 141, 87, 0.12);
   border-color: rgba(176, 141, 87, 0.25);
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(176, 141, 87, 0.2);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2), inset 0 1px 0 rgba(176, 141, 87, 0.2);
 }
 
 .hero-feature {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Georgia', serif;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-body);
   color: rgba(44, 62, 80, 0.85);
 }
 
-html[data-theme="dim"] .hero-feature {
-  color: rgba(245, 242, 237, 0.85);
-}
+html[data-theme="dim"] .hero-feature { color: rgba(245, 242, 237, 0.85); }
+.hero-feature-icon { font-size: 16px; color: #B08D57; }
 
-.hero-feature-icon {
-  font-size: 16px;
-  color: #B08D57;
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .hero-title {
-    font-size: 3rem;
-  }
+  .hero-title { font-size: clamp(2.5rem, 5vw, var(--text-h1)); }
 }
 
 @media (max-width: 768px) {
-  .hero {
-    min-height: auto;
-    padding: 100px 20px 80px;
-  }
-  
-  .hero::before,
-  .hero::after {
-    max-width: 100%;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-description {
-    font-size: 1.1rem;
-  }
-  
-  .hero-features {
-    flex-direction: column;
-    gap: 16px;
-  }
+  .hero { min-height: auto; padding: 100px 20px 80px; }
+  .hero::before, .hero::after { max-width: 100%; }
+  .hero-features { flex-direction: column; gap: 16px; }
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-description {
-    font-size: 1rem;
-  }
-  
-  .hero-cta-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  
+  .hero-cta-group { flex-direction: column; width: 100%; }
   .hero-cta,
-  .hero-cta-subtle {
-    width: 100%;
-    justify-content: center;
-  }
+  .hero-cta-subtle { width: 100%; justify-content: center; }
 }
-
-/* ==========================================
-   FARBPALETTE
-   ========================================== 
-   
-   🎨 HERO COLORS:
-   Title:           #2C3E50 (Light) / #B08D57 (Dark)
-   Description:     #2C3E50 (Light) / #f5f2ed (Dark)
-   CTA Accent:      #B08D57 (Bronze/Gold)
-   Glass Buttons:   rgba(176, 141, 87, 0.15-0.3)
-   
-   🔤 TYPOGRAPHY:
-   Title:           Playfair Display
-   Body/CTA:        Georgia
-   
-   ========================================== */

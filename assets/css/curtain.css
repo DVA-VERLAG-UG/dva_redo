@@ -3,12 +3,11 @@
    Royal Bronze Theme
    ========================================== */
 
-/* Curtain overlay - covers entire viewport */
 .curtain-overlay {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #2C3E50; /* Deep Blue statt Schwarz */
+  background: #2C3E50;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,99 +15,43 @@
   pointer-events: none;
 }
 
-/* Hide curtain after animation completes */
-.curtain-overlay.hide {
-  display: none;
-}
+.curtain-overlay.hide { display: none; }
 
-/* Prevent body scroll during curtain */
-body.curtain-active {
-  overflow: hidden;
-}
+body.curtain-active { overflow: hidden; }
 
-/* Text container */
-.curtain-text {
-  text-align: center;
-}
+.curtain-text { text-align: center; }
 
-/* Individual words */
+/* Words — Cormorant Garamond */
 .curtain-word {
   display: block;
+  font-family: var(--font-heading);
   font-size: 4rem;
-  font-weight: 900;
+  font-weight: var(--weight-h1);
+  font-style: normal;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-family: 'Playfair Display', 'Georgia', serif;
-  color: #B08D57; /* Bronze */
+  color: #B08D57;
   opacity: 0;
   transform: translateY(20px);
-}
-
-/* Staggered fade-in animations */
-.curtain-word:nth-child(1) {
-  animation: wordReveal 0.4s ease-out 0.2s forwards;
-}
-
-.curtain-word:nth-child(2) {
-  animation: wordReveal 0.4s ease-out 0.7s forwards;
-}
-
-.curtain-word:nth-child(3) {
-  animation: wordReveal 0.4s ease-out 1.2s forwards;
-}
-
-/* Bronze gradient text effect */
-.curtain-word {
   background: linear-gradient(135deg, #B08D57, #d4b07a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Word reveal animation */
+.curtain-word:nth-child(1) { animation: wordReveal 0.4s ease-out 0.2s forwards; }
+.curtain-word:nth-child(2) { animation: wordReveal 0.4s ease-out 0.7s forwards; }
+.curtain-word:nth-child(3) { animation: wordReveal 0.4s ease-out 1.2s forwards; }
+
 @keyframes wordReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Curtain slide up animation */
 @keyframes curtainSlideUp {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
 }
 
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-@media (max-width: 768px) {
-  .curtain-word {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .curtain-word {
-    font-size: 2rem;
-    letter-spacing: 0.05em;
-  }
-}
-
-/* ==========================================
-   FARBPALETTE
-   ========================================== 
-   
-   Background: #2C3E50 (Deep Blue)
-   Text: #B08D57 → #d4b07a (Bronze Gradient)
-   Font: Playfair Display
-   
-   ========================================== */
+@media (max-width: 768px) { .curtain-word { font-size: 2.5rem; } }
+@media (max-width: 480px) { .curtain-word { font-size: 2rem; letter-spacing: 0.05em; } }

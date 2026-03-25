@@ -1,11 +1,8 @@
 /* ═══════════════════════════════════════════════════════════
    FLIPBOOK POPUP - KOMPLETTE STYLES
-   Inkl. Overlay, Container, Config-Display
    ═══════════════════════════════════════════════════════════ */
 
-/* ──────────────────────────────────────────────────────────
-   POPUP OVERLAY & CONTAINER
-   ────────────────────────────────────────────────────────── */
+/* ── OVERLAY & CONTAINER ── */
 
 .flipbook-overlay {
   position: fixed;
@@ -42,17 +39,13 @@
   transition: transform 0.3s ease;
 }
 
-.flipbook-overlay.is-open .flipbook-container {
-  transform: scale(1);
-}
+.flipbook-overlay.is-open .flipbook-container { transform: scale(1); }
 
 .flipbook-close {
   position: absolute;
-  top: -16px;
-  right: -16px;
+  top: -16px; right: -16px;
   z-index: 100001;
-  width: 40px;
-  height: 40px;
+  width: 40px; height: 40px;
   border: none;
   background: rgba(220, 38, 38, 0.95);
   color: white;
@@ -80,14 +73,10 @@
 }
 
 @media (max-width: 1200px) {
-  .flipbook-iframe {
-    height: min(600px, 85vh);
-  }
+  .flipbook-iframe { height: min(600px, 85vh); }
 }
 
-/* ──────────────────────────────────────────────────────────
-   MOBILE
-   ────────────────────────────────────────────────────────── */
+/* ── MOBILE ── */
 
 @media (max-width: 768px) {
   .flipbook-overlay {
@@ -100,43 +89,29 @@
     width: 100vw !important;
     max-width: 100vw !important;
     height: 100dvh !important;
-    padding: 0;
-    margin: 0;
+    padding: 0; margin: 0;
     transform: none !important;
   }
 
-  .flipbook-overlay.is-open .flipbook-container {
-    transform: none !important;
-  }
+  .flipbook-overlay.is-open .flipbook-container { transform: none !important; }
 
   .flipbook-iframe {
     height: 100dvh !important;
     width: 100vw !important;
   }
 
-  /* Kreuz: im iframe selbst (mobile-close-btn) – Parent-Button ausblenden */
-  .flipbook-close {
-    display: none !important;
-  }
+  .flipbook-close { display: none !important; }
 
   /* Config Summary - Mobile */
-  .config-summary {
-    padding: 16px 20px;
-  }
+  .config-summary { padding: 16px 20px; }
 
   .config-count {
     font-size: 1.2rem;
     margin-bottom: 24px;
   }
 
-  .config-categories {
-    max-width: 100%;
-    gap: 20px;
-  }
-
-  .config-cat h4 {
-    font-size: 0.7rem;
-  }
+  .config-categories { max-width: 100%; gap: 20px; }
+  .config-cat h4     { font-size: 0.7rem; }
 
   .config-cat li {
     font-size: 0.75rem;
@@ -145,118 +120,109 @@
 }
 
 @media (max-width: 480px) {
-  .config-summary {
-    padding: 12px 16px;
-  }
-
-  .config-count {
-    font-size: 1rem;
-  }
-
-  .config-cat h4 {
-    font-size: 0.65rem;
-  }
-
-  .config-cat li {
-    font-size: 0.7rem;
-    padding: 5px 8px;
-  }
+  .config-summary { padding: 12px 16px; }
+  .config-count   { font-size: 1rem; }
+  .config-cat h4  { font-size: 0.65rem; }
+  .config-cat li  { font-size: 0.7rem; padding: 5px 8px; }
 }
 
-/* ──────────────────────────────────────────────────────────
-   CONFIG SUMMARY - Clean & Hochwertig
-   ────────────────────────────────────────────────────────── */
+/* ── CONFIG SUMMARY ── */
 
 .config-summary {
-    padding: 24px 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Count — Cormorant Garamond */
 .config-count {
-    font-family: 'Playfair Display', 'Georgia', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #B08D57;
-    text-align: center;
-    margin-bottom: 36px;
-    padding-bottom: 18px;
-    border-bottom: 2px solid rgba(176, 141, 87, 0.25);
-    width: 100%;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: var(--weight-h3);
+  font-style: normal;
+  color: #B08D57;
+  text-align: center;
+  margin-bottom: 36px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid rgba(176, 141, 87, 0.25);
+  width: 100%;
 }
 
 .config-categories {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 28px;
-    margin-bottom: 16px;
-    width: 100%;
-    max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 650px;
 }
 
 .config-cat {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
 }
 
+/* Category heading — Inter */
 .config-cat h4 {
-    font-family: 'Georgia', serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #B08D57;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 12px;
-    text-align: left;
-    padding-bottom: 8px;
-    border-bottom: 1.5px solid rgba(176, 141, 87, 0.2);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
+  color: #B08D57;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  text-align: left;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid rgba(176, 141, 87, 0.2);
 }
 
 .config-cat ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-    width: 100%;
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
 }
 
+/* Items — Inter */
 .config-cat li {
-    font-family: 'Georgia', serif;
-    font-size: 0.82rem;
-    color: #2c2416;
-    padding: 8px 14px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 6px;
-    border: 1px solid rgba(176, 141, 87, 0.25);
-    text-align: center;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(176, 141, 87, 0.08);
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-body);
+  color: #2c2416;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  border: 1px solid rgba(176, 141, 87, 0.25);
+  text-align: center;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(176, 141, 87, 0.08);
 }
 
 .config-cat li:hover {
-    background: rgba(176, 141, 87, 0.15);
-    border-color: #B08D57;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(176, 141, 87, 0.15);
+  background: rgba(176, 141, 87, 0.15);
+  border-color: #B08D57;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(176, 141, 87, 0.15);
 }
 
+/* Edit button — Inter */
 .btn-edit-config {
   width: 100%;
   padding: 10px 16px;
   background: rgba(176, 141, 87, 0.1);
   border: 1.5px solid rgba(176, 141, 87, 0.3);
   border-radius: 8px;
-  font-family: 'Georgia', serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-button);
   color: #B08D57;
   cursor: pointer;
   transition: all 0.2s;
@@ -267,29 +233,27 @@
   border-color: #B08D57;
 }
 
-/* ──────────────────────────────────────────────────────────
-   DARK MODE
-   ────────────────────────────────────────────────────────── */
+/* ── DARK MODE ── */
 
 html[data-theme="dim"] .config-count {
-    color: #ffffff;
-    border-bottom-color: rgba(176, 141, 87, 0.3);
+  color: #ffffff;
+  border-bottom-color: rgba(176, 141, 87, 0.3);
 }
 
 html[data-theme="dim"] .config-cat h4 {
-    color: #e8d4b0;
-    border-bottom-color: rgba(176, 141, 87, 0.25);
+  color: #e8d4b0;
+  border-bottom-color: rgba(176, 141, 87, 0.25);
 }
 
 html[data-theme="dim"] .config-cat li {
-    color: #ffffff;
-    background: rgba(176, 141, 87, 0.12);
-    border-color: rgba(176, 141, 87, 0.3);
+  color: #ffffff;
+  background: rgba(176, 141, 87, 0.12);
+  border-color: rgba(176, 141, 87, 0.3);
 }
 
 html[data-theme="dim"] .config-cat li:hover {
-    background: rgba(176, 141, 87, 0.2);
-    color: #ffffff;
+  background: rgba(176, 141, 87, 0.2);
+  color: #ffffff;
 }
 
 html[data-theme="dim"] .btn-edit-config {
