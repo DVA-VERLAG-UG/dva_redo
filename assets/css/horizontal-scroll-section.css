@@ -1,20 +1,18 @@
 /* ==========================================
    HORIZONTAL SCROLL SECTION
    Royal Bronze Theme
-   ========================================== */ 
+   ========================================== */
 
 .horizontal-scroll-wrapper {
   position: relative;
-  height: 300vh; /* 3x viewport height for scroll length */
+  height: 300vh;
   overflow: visible;
 }
 
 .horizontal-scroll-container {
   position: sticky;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
+  top: 0; left: 0;
+  height: 100vh; width: 100vw;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -30,132 +28,80 @@
   align-items: center;
 }
 
-/* ==========================================
-   SCROLL PANELS
-   ========================================== */
-
+/* ── Panels ── */
 .scroll-panel {
   flex-shrink: 0;
-  width: 80vw;
-  height: 80vh;
+  width: 80vw; height: 80vh;
   display: flex;
   align-items: center;
   gap: 0;
   position: relative;
 }
 
-/* Panel Variants */
-.scroll-panel.text-left {
-  flex-direction: row;
-}
+.scroll-panel.text-left  { flex-direction: row; }
+.scroll-panel.text-right { flex-direction: row-reverse; }
 
-.scroll-panel.text-right {
-  flex-direction: row-reverse;
-}
+.scroll-panel-text-only { justify-content: center; }
 
-/* Text-only panel - Panel 3 */
-.scroll-panel-text-only {
-  justify-content: center;
-}
+.panel-text-full { flex: none; width: 100%; max-width: 800px; }
 
-.panel-text-full {
-  flex: none;
-  width: 100%;
-  max-width: 800px;
-}
-
-/* Panel 3 - Animated elements */
 .scroll-panel:nth-child(3) .panel-title,
 .scroll-panel:nth-child(3) .panel-description {
-  opacity: 0;
-  transform: translateY(-40px);
+  opacity: 0; transform: translateY(-40px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .scroll-panel:nth-child(3) .panel-info {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 0; transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
 }
 
 .scroll-panel:nth-child(3).panel-visible .panel-title,
-.scroll-panel:nth-child(3).panel-visible .panel-description {
-  opacity: 1;
-  transform: translateY(0);
-}
+.scroll-panel:nth-child(3).panel-visible .panel-description { opacity: 1; transform: translateY(0); }
 
-.scroll-panel:nth-child(3).panel-visible .panel-info {
-  opacity: 1;
-  transform: translateY(0);
-}
+.scroll-panel:nth-child(3).panel-visible .panel-info { opacity: 1; transform: translateY(0); }
 
-/* ==========================================
-   PANEL CONTENT
-   ========================================== */
-
+/* ── Image ── */
 .panel-image {
-  flex: 1;
-  height: 100%;
-  border-radius: 24px;
-  overflow: hidden;
+  flex: 1; height: 100%;
+  border-radius: 24px; overflow: hidden;
   position: relative;
   background: rgba(176, 141, 87, 0.05);
   border: 1px solid rgba(176, 141, 87, 0.15);
-  box-shadow: 
-    0 24px 60px rgba(44, 62, 80, 0.2),
-    inset 0 1px 0 rgba(176, 141, 87, 0.1);
+  box-shadow: 0 24px 60px rgba(44, 62, 80, 0.2), inset 0 1px 0 rgba(176, 141, 87, 0.1);
   z-index: 1;
 }
 
 .panel-image img {
-  width: 100%;
-  height: 100%;
+  width: 100%; height: 100%;
   object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.panel-image:hover img {
-  transform: scale(1.05);
-}
+.panel-image:hover img { transform: scale(1.05); }
 
+/* ── Text ── */
 .panel-text {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   justify-content: center;
-  gap: 32px;
-  z-index: 2;
+  gap: 32px; z-index: 2;
   position: relative;
   will-change: transform;
 }
 
-.text-left .panel-text {
-  margin-right: -120px;
-  padding-right: 120px;
-}
+.text-left .panel-text  { margin-right: -120px; padding-right: 120px; }
+.text-right .panel-text { margin-left: -120px;  padding-left: 120px; }
 
-.text-right .panel-text {
-  margin-left: -120px;
-  padding-left: 120px;
-}
-
-.scroll-panel[data-parallax] .panel-text {
-  transform: translateX(0);
-  transition: transform 0.1s linear;
-}
-
-.scroll-panel-large .panel-text {
-  gap: 20px;
-}
-
+/* Panel title — Cormorant Garamond */
 .panel-title {
-  font-family: 'Playfair Display', 'Georgia', serif;
+  font-family: var(--font-heading);
   font-size: 4rem;
-  font-weight: 900;
+  font-weight: var(--weight-h1);
+  font-style: normal;
   color: #2C3E50;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  text-shadow: 0 4px 12px rgba(44, 62, 80, 0.1);
   position: relative;
   background: linear-gradient(135deg, #2C3E50, #1a2631);
   -webkit-background-clip: text;
@@ -170,7 +116,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 8px 24px rgba(176, 141, 87, 0.4);
   transform: translateX(8px);
 }
 
@@ -179,7 +124,6 @@ html[data-theme="dim"] .panel-title {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 4px 12px rgba(176, 141, 87, 0.3);
 }
 
 html[data-theme="dim"] .panel-title:hover {
@@ -187,23 +131,21 @@ html[data-theme="dim"] .panel-title:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 8px 24px rgba(176, 141, 87, 0.6);
 }
 
+/* Panel description — Inter */
 .panel-description {
-  font-family: 'Georgia', serif;
-  font-size: 1.4rem;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-body);
+  font-style: normal;
   line-height: 1.7;
   color: rgba(44, 62, 80, 0.85);
-  font-weight: 400;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-html[data-theme="dim"] .panel-description {
-  color: rgba(245, 242, 237, 0.85);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
+html[data-theme="dim"] .panel-description { color: rgba(245, 242, 237, 0.85); }
 
+/* Info box */
 .panel-info {
   padding: 28px;
   background: rgba(176, 141, 87, 0.08);
@@ -211,301 +153,163 @@ html[data-theme="dim"] .panel-description {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(176, 141, 87, 0.25);
   border-radius: 20px;
-  box-shadow: 
-    0 16px 48px rgba(176, 141, 87, 0.15),
-    0 0 0 1px rgba(176, 141, 87, 0.15),
-    inset 0 1px 0 rgba(176, 141, 87, 0.2);
+  box-shadow: 0 16px 48px rgba(176, 141, 87, 0.15), inset 0 1px 0 rgba(176, 141, 87, 0.2);
   margin-top: 12px;
 }
 
 html[data-theme="dim"] .panel-info {
   background: rgba(176, 141, 87, 0.12);
   border-color: rgba(176, 141, 87, 0.3);
-  box-shadow: 
-    0 16px 48px rgba(176, 141, 87, 0.2),
-    0 0 0 1px rgba(176, 141, 87, 0.2),
-    inset 0 1px 0 rgba(176, 141, 87, 0.15);
 }
 
+/* Info title — Cormorant Garamond */
 .panel-info-title {
-  font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  font-style: normal;
   color: #2C3E50;
   margin-bottom: 16px;
 }
 
-html[data-theme="dim"] .panel-info-title {
-  color: #B08D57;
-}
+html[data-theme="dim"] .panel-info-title { color: #B08D57; }
 
+/* Info text — Inter */
 .panel-info-text {
-  font-family: 'Georgia', serif;
-  font-size: 1rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
   line-height: 1.6;
   color: rgba(44, 62, 80, 0.75);
   margin-bottom: 24px;
 }
 
-html[data-theme="dim"] .panel-info-text {
-  color: rgba(245, 242, 237, 0.75);
-}
+html[data-theme="dim"] .panel-info-text { color: rgba(245, 242, 237, 0.75); }
 
-.panel-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 8px;
-}
+.panel-buttons { display: flex; justify-content: center; margin-top: 8px; }
 
+/* Panel button — Inter (kursiv als Akzent erlaubt) */
 .panel-btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 0;
-  padding-bottom: 4px;
-  background: none;
-  border: none;
+  padding: 0 0 4px;
+  background: none; border: none;
   border-bottom: 2px solid currentColor;
   color: #2C3E50;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-button);
   font-style: italic;
   letter-spacing: 0.02em;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .panel-btn {
-  color: #B08D57;
-}
+html[data-theme="dim"] .panel-btn { color: #B08D57; }
 
-.panel-btn:hover {
-  color: #B08D57;
-  border-bottom-color: #B08D57;
-  transform: translateY(-1px);
-}
+.panel-btn:hover { color: #B08D57; border-bottom-color: #B08D57; transform: translateY(-1px); }
+html[data-theme="dim"] .panel-btn:hover { color: #d4b07a; border-bottom-color: #d4b07a; }
+.panel-btn svg { transition: transform 0.3s ease; }
+.panel-btn:hover svg { transform: translateX(4px); }
 
-html[data-theme="dim"] .panel-btn:hover {
-  color: #d4b07a;
-  border-bottom-color: #d4b07a;
-}
-
-.panel-btn svg {
-  transition: transform 0.3s ease;
-}
-
-.panel-btn:hover svg {
-  transform: translateX(4px);
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-
+/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .scroll-panel {
-    width: 85vw;
-    gap: 40px;
-  }
-
-  .panel-title-large {
-    font-size: 6rem;
-  }
-
-  .panel-title {
-    font-size: 2.5rem;
-  }
+  .scroll-panel { width: 85vw; gap: 40px; }
+  .panel-title  { font-size: 2.5rem; }
 }
 
-/* ==========================================
-   MOBILE - Vertical stacking + parallax overlay
-   ⚠️ DESKTOP UNTOUCHED above this breakpoint
-   ========================================== */
 @media (max-width: 768px) {
-  /* Wrapper: no more fixed height, normal flow */
-  .horizontal-scroll-wrapper {
-    height: auto;
-    overflow: visible;
-  }
-
-  .horizontal-scroll-container {
-    position: relative;
-    height: auto;
-    width: 100%;          /* ← FIX: kein 100vw mehr, verhindert overflow */
-    overflow: visible;
-  }
+  .horizontal-scroll-wrapper   { height: auto; overflow: visible; }
+  .horizontal-scroll-container { position: relative; height: auto; width: 100%; overflow: visible; }
 
   .horizontal-scroll-track {
     flex-direction: column;
     gap: 48px;
     padding: 60px 20px;
-    transform: none !important; /* disable JS transform on mobile */
+    transform: none !important;
     width: 100%;
   }
 
-  /* Each panel: full width, image + text stacked */
   .scroll-panel {
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto;
     flex-direction: column !important;
     gap: 0;
     position: relative;
     border-radius: 20px;
-    overflow: visible; /* allow text card to overlap */
+    overflow: visible;
   }
 
-  .scroll-panel.text-right {
-    flex-direction: column !important;
-  }
+  .scroll-panel.text-right { flex-direction: column !important; }
 
-  /* Image always on top visually */
   .panel-image {
-    width: 100%;
-    height: 340px;
-    border-radius: 20px;
-    flex: none;
-    order: 1; /* image first */
+    width: 100%; height: 340px;
+    border-radius: 20px; flex: none; order: 1;
   }
 
-  /* Text card slides under/over image from bottom */
   .panel-text {
-    order: 2; /* text second */
+    order: 2;
     width: calc(100% - 32px);
     flex: none;
-    margin-top: -60px;  /* overlap bottom of image */
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: -60px;
+    margin-left: auto; margin-right: auto;
     padding: 24px 20px;
     gap: 14px;
     border-radius: 16px;
-    position: relative;
-    z-index: 2;
-
+    position: relative; z-index: 2;
     background: rgba(250, 248, 245, 0.95);
     backdrop-filter: blur(14px) saturate(1.4);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
     border: 1px solid rgba(176, 141, 87, 0.2);
-    box-shadow:
-      0 12px 40px rgba(44, 62, 80, 0.12),
-      inset 0 1px 0 rgba(176, 141, 87, 0.1);
-
+    box-shadow: 0 12px 40px rgba(44, 62, 80, 0.12), inset 0 1px 0 rgba(176, 141, 87, 0.1);
     will-change: transform, opacity;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(20px); opacity: 0;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   html[data-theme="dim"] .panel-text {
     background: rgba(36, 52, 66, 0.95);
     border-color: rgba(176, 141, 87, 0.25);
-    box-shadow:
-      0 12px 40px rgba(0, 0, 0, 0.3),
-      inset 0 1px 0 rgba(176, 141, 87, 0.12);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(176, 141, 87, 0.12);
   }
 
-  /* Visible state triggered by JS IntersectionObserver */
-  .scroll-panel.mobile-visible .panel-text {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  .scroll-panel.mobile-visible .panel-text { transform: translateY(0); opacity: 1; }
 
-  /* Reset ALL desktop overlapping margins */
   .text-left .panel-text,
   .text-right .panel-text {
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 20px;
-    padding-left: 20px;
+    margin-right: auto; margin-left: auto;
+    padding-right: 20px; padding-left: 20px;
   }
 
-  .panel-title {
-    font-size: 1.9rem;
-  }
+  .panel-title       { font-size: 1.9rem; }
+  .panel-description { font-size: var(--text-body); line-height: 1.65; }
+  .panel-info        { padding: 20px; margin-top: 8px; }
+  .panel-buttons     { flex-direction: column; }
+  .panel-btn         { font-size: var(--text-body); justify-content: center; }
 
-  .panel-description {
-    font-size: 1rem;
-    line-height: 1.65;
-  }
-
-  .panel-info {
-    padding: 20px;
-    margin-top: 8px;
-  }
-
-  .panel-buttons {
-    flex-direction: column;
-  }
-
-  .panel-btn {
-    font-size: 1.1rem;
-    justify-content: center;
-  }
-
-  /* Panel 3 text-only: no image, no overlap, always visible */
-  .scroll-panel-text-only {
-    overflow: visible;
-    border-radius: 0;
-    gap: 0;
-  }
-
-  .scroll-panel-text-only .panel-image {
-    display: none; /* no image in text-only panel */
-  }
+  .scroll-panel-text-only { overflow: visible; border-radius: 0; gap: 0; }
+  .scroll-panel-text-only .panel-image { display: none; }
 
   .scroll-panel-text-only .panel-text,
   .scroll-panel-text-only .panel-text-full {
-    order: 1;
-    width: 100%;
-    margin-top: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    order: 1; width: 100%;
+    margin-top: 0 !important; margin-left: 0 !important; margin-right: 0 !important;
     padding: 20px 0 !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
+    background: transparent !important; backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+    border: none !important; box-shadow: none !important;
+    opacity: 1 !important; transform: none !important; transition: none !important;
   }
 
   html[data-theme="dim"] .scroll-panel-text-only .panel-text,
   html[data-theme="dim"] .scroll-panel-text-only .panel-text-full {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    background: transparent !important; border: none !important; box-shadow: none !important;
   }
 }
 
 @media (max-width: 480px) {
-  .panel-title {
-    font-size: 1.6rem;
-  }
-
-  .panel-image {
-    height: 280px;
-  }
-
-  .panel-text {
-    margin-top: -80px;
-    padding: 22px 18px;
-  }
+  .panel-title  { font-size: 1.6rem; }
+  .panel-image  { height: 280px; }
+  .panel-text   { margin-top: -80px; padding: 22px 18px; }
 }
-
-/* ==========================================
-   FARBPALETTE
-   ========================================== 
-   
-   🎨 COLORS:
-   Title Light:     #2C3E50 → #1a2631 (Gradient)
-   Title Dark:      #B08D57 → #d4b07a (Gradient)
-   Title Hover:     Bronze
-   Description:     rgba(44, 62, 80, 0.85)
-   Info Box:        Bronze Glass Effect
-   Button:          Bronze Underline
-   
-   ========================================== */
