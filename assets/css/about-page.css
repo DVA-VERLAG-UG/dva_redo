@@ -17,34 +17,34 @@
   overflow-x: hidden;
 }
 
-/* Section Labels */
+/* Section Labels — Inter */
 .about-section-label {
   display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #B08D57;
   margin-bottom: 16px;
-  font-family: 'Georgia', serif;
 }
 
+/* Section Titles — Cormorant Garamond */
 .about-section-title {
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
+  font-weight: var(--weight-h2);
+  font-style: normal;
   line-height: 1.1;
   color: #2C3E50;
   margin-bottom: 32px;
-  font-family: 'Playfair Display', 'Georgia', serif;
   letter-spacing: -0.02em;
 }
 
-html[data-theme="dim"] .about-section-title {
-  color: #B08D57;
-}
+html[data-theme="dim"] .about-section-title { color: #B08D57; }
 
 /* ==========================================
-   HERO SECTION - Full Screen Parallax
+   HERO SECTION
    ========================================== */
 .about-hero {
   position: relative;
@@ -59,7 +59,7 @@ html[data-theme="dim"] .about-section-title {
 .about-hero-bg {
   position: absolute;
   inset: 0;
-  background: 
+  background:
     radial-gradient(circle at 30% 40%, rgba(176, 141, 87, 0.08), transparent 50%),
     radial-gradient(circle at 70% 60%, rgba(176, 141, 87, 0.05), transparent 60%),
     linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%);
@@ -67,7 +67,7 @@ html[data-theme="dim"] .about-section-title {
 }
 
 html[data-theme="dim"] .about-hero-bg {
-  background: 
+  background:
     radial-gradient(circle at 30% 40%, rgba(176, 141, 87, 0.15), transparent 50%),
     radial-gradient(circle at 70% 60%, rgba(176, 141, 87, 0.10), transparent 60%),
     linear-gradient(135deg, #2C3E50 0%, #243442 100%);
@@ -81,9 +81,11 @@ html[data-theme="dim"] .about-hero-bg {
   will-change: transform;
 }
 
+/* Kicker — Inter */
 .about-hero-kicker {
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #B08D57;
@@ -93,36 +95,37 @@ html[data-theme="dim"] .about-hero-bg {
   animation-delay: 0.2s;
 }
 
+/* Hero Title — Cormorant Garamond */
 .about-hero-title {
+  font-family: var(--font-heading);
   font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 900;
+  font-weight: var(--weight-h1);
+  font-style: normal;
   line-height: 1.1;
   color: #2C3E50;
   margin-bottom: 32px;
-  font-family: 'Playfair Display', 'Georgia', serif;
   letter-spacing: -0.03em;
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
   animation-delay: 0.4s;
 }
 
-html[data-theme="dim"] .about-hero-title {
-  color: #B08D57;
-}
+html[data-theme="dim"] .about-hero-title { color: #B08D57; }
 
+/* Hero Subtitle — Inter */
 .about-hero-subtitle {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-lead);
+  font-style: normal;
   line-height: 1.7;
   color: rgba(44, 62, 80, 0.8);
-  font-family: 'Georgia', serif;
   opacity: 0;
   animation: fadeInUp 0.8s ease forwards;
   animation-delay: 0.6s;
 }
 
-html[data-theme="dim"] .about-hero-subtitle {
-  color: rgba(245, 242, 237, 0.8);
-}
+html[data-theme="dim"] .about-hero-subtitle { color: rgba(245, 242, 237, 0.8); }
 
 .about-hero-scroll-indicator {
   position: absolute;
@@ -134,43 +137,29 @@ html[data-theme="dim"] .about-hero-subtitle {
   align-items: center;
   gap: 8px;
   color: rgba(176, 141, 87, 0.6);
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-label);
   letter-spacing: 0.05em;
   animation: bounceArrow 2s ease-in-out infinite;
 }
 
-.about-hero-scroll-indicator svg {
-  width: 24px;
-  height: 24px;
-}
+.about-hero-scroll-indicator svg { width: 24px; height: 24px; }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes bounceArrow {
-  0%, 100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(10px);
-  }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(10px); }
 }
 
 /* ==========================================
-   STORY SECTION - Split Screen
+   STORY SECTION
    ========================================== */
-.about-story {
-  padding: var(--about-spacing) 0;
-}
+.about-story { padding: var(--about-spacing) 0; }
 
 .about-story-grid {
   max-width: var(--about-max-width);
@@ -182,26 +171,21 @@ html[data-theme="dim"] .about-hero-subtitle {
   align-items: center;
 }
 
-.about-story-text {
-  will-change: transform;
-}
+.about-story-text    { will-change: transform; }
 
+/* Story text — Inter */
 .about-story-content p {
-  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
   line-height: 1.8;
   color: rgba(44, 62, 80, 0.85);
   margin-bottom: 24px;
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-story-content p {
-  color: rgba(245, 242, 237, 0.85);
-}
+html[data-theme="dim"] .about-story-content p { color: rgba(245, 242, 237, 0.85); }
 
-.about-story-content strong {
-  color: #B08D57;
-  font-weight: 700;
-}
+.about-story-content strong { color: #B08D57; font-weight: 700; }
 
 .about-story-media {
   position: relative;
@@ -253,29 +237,31 @@ html[data-theme="dim"] .about-stat {
   border-color: #B08D57;
 }
 
+/* Stat number — Cormorant Garamond */
 .about-stat-number {
   display: block;
+  font-family: var(--font-heading);
   font-size: 3rem;
-  font-weight: 900;
+  font-weight: var(--weight-h1);
+  font-style: normal;
   color: #B08D57;
   line-height: 1;
   margin-bottom: 8px;
-  font-family: 'Playfair Display', 'Georgia', serif;
 }
 
+/* Stat label — Inter */
 .about-stat-label {
   display: block;
-  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-label);
   color: rgba(44, 62, 80, 0.7);
-  font-weight: 600;
 }
 
-html[data-theme="dim"] .about-stat-label {
-  color: rgba(245, 242, 237, 0.7);
-}
+html[data-theme="dim"] .about-stat-label { color: rgba(245, 242, 237, 0.7); }
 
 /* ==========================================
-   VALUES SECTION - Horizontal Scroll
+   VALUES SECTION
    ========================================== */
 .about-values {
   padding: var(--about-spacing) 0;
@@ -283,9 +269,7 @@ html[data-theme="dim"] .about-stat-label {
   overflow: hidden;
 }
 
-html[data-theme="dim"] .about-values {
-  background: rgba(176, 141, 87, 0.05);
-}
+html[data-theme="dim"] .about-values { background: rgba(176, 141, 87, 0.05); }
 
 .about-values-header {
   max-width: var(--about-max-width);
@@ -301,9 +285,7 @@ html[data-theme="dim"] .about-values {
   scrollbar-width: none;
 }
 
-.about-values-scroll::-webkit-scrollbar {
-  display: none;
-}
+.about-values-scroll::-webkit-scrollbar { display: none; }
 
 .about-values-track {
   display: flex;
@@ -346,35 +328,33 @@ html[data-theme="dim"] .about-value-card {
   color: #B08D57;
 }
 
+/* Value card title — Cormorant Garamond */
 .about-value-card h3 {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  font-style: normal;
   color: #2C3E50;
   margin-bottom: 16px;
-  font-family: 'Playfair Display', 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-value-card h3 {
-  color: #B08D57;
-}
+html[data-theme="dim"] .about-value-card h3 { color: #B08D57; }
 
+/* Value card text — Inter */
 .about-value-card p {
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
   line-height: 1.7;
   color: rgba(44, 62, 80, 0.8);
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-value-card p {
-  color: rgba(245, 242, 237, 0.8);
-}
+html[data-theme="dim"] .about-value-card p { color: rgba(245, 242, 237, 0.8); }
 
 /* ==========================================
-   TEAM SECTION - Grid with Stagger
+   TEAM SECTION
    ========================================== */
-.about-team {
-  padding: var(--about-spacing) 0;
-}
+.about-team { padding: var(--about-spacing) 0; }
 
 .about-team-container {
   max-width: var(--about-max-width);
@@ -388,16 +368,16 @@ html[data-theme="dim"] .about-value-card p {
   margin: 0 auto 80px;
 }
 
+/* Team intro — Inter */
 .about-team-intro {
-  font-size: 1.15rem;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-lead);
   line-height: 1.7;
   color: rgba(44, 62, 80, 0.75);
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-team-intro {
-  color: rgba(245, 242, 237, 0.75);
-}
+html[data-theme="dim"] .about-team-intro { color: rgba(245, 242, 237, 0.75); }
 
 .about-team-grid {
   display: grid;
@@ -434,57 +414,53 @@ html[data-theme="dim"] .about-team-card {
   transition: transform 0.4s ease;
 }
 
-.about-team-card:hover .about-team-image {
-  transform: scale(1.05);
-}
+.about-team-card:hover .about-team-image { transform: scale(1.05); }
 
-.about-team-info {
-  padding: 32px 24px;
-}
+.about-team-info { padding: 32px 24px; }
 
+/* Team name — Cormorant Garamond */
 .about-team-info h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-h3);
+  font-style: normal;
   color: #2C3E50;
   margin-bottom: 8px;
-  font-family: 'Playfair Display', 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-team-info h3 {
-  color: #B08D57;
-}
+html[data-theme="dim"] .about-team-info h3 { color: #B08D57; }
 
+/* Role — Inter */
 .about-team-role {
   display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-label);
   color: #B08D57;
   margin-bottom: 16px;
   letter-spacing: 0.05em;
 }
 
+/* Team description — Inter */
 .about-team-info p {
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-body);
   line-height: 1.6;
   color: rgba(44, 62, 80, 0.75);
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-team-info p {
-  color: rgba(245, 242, 237, 0.75);
-}
+html[data-theme="dim"] .about-team-info p { color: rgba(245, 242, 237, 0.75); }
 
 /* ==========================================
-   LOCATIONS SECTION - Dual Cards
+   LOCATIONS SECTION
    ========================================== */
 .about-locations {
   padding: var(--about-spacing) 0;
   background: rgba(176, 141, 87, 0.03);
 }
 
-html[data-theme="dim"] .about-locations {
-  background: rgba(176, 141, 87, 0.05);
-}
+html[data-theme="dim"] .about-locations { background: rgba(176, 141, 87, 0.05); }
 
 .about-locations-header {
   max-width: var(--about-max-width);
@@ -541,58 +517,54 @@ html[data-theme="dim"] .about-location-card {
   padding: 32px;
 }
 
+/* Location overlay title — Cormorant Garamond */
 .about-location-overlay h3 {
-  font-size: 2.5rem;
-  font-weight: 900;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: var(--weight-h2);
+  font-style: normal;
   color: white;
   margin-bottom: 8px;
-  font-family: 'Playfair Display', 'Georgia', serif;
 }
 
+/* Location label — Inter */
 .about-location-label {
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-label);
   color: #B08D57;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.about-location-content {
-  padding: 32px;
-}
+.about-location-content { padding: 32px; }
 
+/* Location text — Inter */
 .about-location-content p {
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
   line-height: 1.7;
   color: rgba(44, 62, 80, 0.8);
   margin-bottom: 24px;
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-location-content p {
-  color: rgba(245, 242, 237, 0.8);
-}
+html[data-theme="dim"] .about-location-content p { color: rgba(245, 242, 237, 0.8); }
 
-.about-location-features {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.about-location-features { list-style: none; padding: 0; margin: 0; }
 
 .about-location-features li {
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: var(--weight-label);
   color: rgba(44, 62, 80, 0.75);
   padding: 8px 0;
-  font-family: 'Georgia', serif;
-  font-weight: 600;
 }
 
-html[data-theme="dim"] .about-location-features li {
-  color: rgba(245, 242, 237, 0.75);
-}
+html[data-theme="dim"] .about-location-features li { color: rgba(245, 242, 237, 0.75); }
 
 /* ==========================================
-   CTA SECTION - Final
+   CTA SECTION
    ========================================== */
 .about-cta {
   padding: 120px 0;
@@ -610,30 +582,30 @@ html[data-theme="dim"] .about-cta {
   text-align: center;
 }
 
+/* CTA heading — Cormorant Garamond */
 .about-cta-content h2 {
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
+  font-weight: var(--weight-h2);
+  font-style: normal;
   color: #2C3E50;
   margin-bottom: 24px;
-  font-family: 'Playfair Display', 'Georgia', serif;
   letter-spacing: -0.02em;
 }
 
-html[data-theme="dim"] .about-cta-content h2 {
-  color: #B08D57;
-}
+html[data-theme="dim"] .about-cta-content h2 { color: #B08D57; }
 
+/* CTA text — Inter */
 .about-cta-content p {
-  font-size: 1.2rem;
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  font-weight: var(--weight-lead);
   line-height: 1.7;
   color: rgba(44, 62, 80, 0.8);
   margin-bottom: 40px;
-  font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .about-cta-content p {
-  color: rgba(245, 242, 237, 0.8);
-}
+html[data-theme="dim"] .about-cta-content p { color: rgba(245, 242, 237, 0.8); }
 
 .about-cta-buttons {
   display: flex;
@@ -642,16 +614,18 @@ html[data-theme="dim"] .about-cta-content p {
   flex-wrap: wrap;
 }
 
+/* CTA buttons — Inter */
 .about-cta-btn {
   display: inline-block;
   padding: 18px 36px;
   border-radius: 14px;
-  font-size: 1.05rem;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: var(--text-button);
+  font-weight: var(--weight-button);
+  font-style: normal;
   text-decoration: none;
   transition: all 0.3s ease;
-  font-family: 'Georgia', serif;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   cursor: pointer;
   border: none;
 }
@@ -687,153 +661,76 @@ html[data-theme="dim"] .about-cta-secondary {
 }
 
 /* ==========================================
-   RESPONSIVE
+   REVEAL ANIMATIONS
    ========================================== */
-
-/* CSS-based Reveal Animation (No JS Lag) */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.reveal.revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.revealed { opacity: 1; transform: translateY(0); }
 
-/* Stagger animation for cards */
-.about-team-card:nth-child(1).revealed {
-  transition-delay: 0.1s;
-}
+.about-team-card:nth-child(1).revealed { transition-delay: 0.1s; }
+.about-team-card:nth-child(2).revealed { transition-delay: 0.2s; }
+.about-team-card:nth-child(3).revealed { transition-delay: 0.3s; }
+.about-team-card:nth-child(4).revealed { transition-delay: 0.4s; }
 
-.about-team-card:nth-child(2).revealed {
-  transition-delay: 0.2s;
-}
+[data-scroll]          { will-change: transform; }
+.no-scroll [data-scroll] { will-change: auto; }
 
-.about-team-card:nth-child(3).revealed {
-  transition-delay: 0.3s;
-}
-
-.about-team-card:nth-child(4).revealed {
-  transition-delay: 0.4s;
-}
-
-/* Optimize will-change for performance */
-[data-scroll] {
-  will-change: transform;
-}
-
-/* Remove will-change when not scrolling */
-.no-scroll [data-scroll] {
-  will-change: auto;
-}
-
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
 @media (max-width: 1024px) {
-  :root {
-    --about-spacing: 80px;
-  }
-  
+  :root { --about-spacing: 80px; }
+
   .about-story-grid,
-  .about-locations-grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
-  }
-  
-  .about-team-grid {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
+  .about-locations-grid { grid-template-columns: 1fr; gap: 60px; }
+
+  .about-team-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 }
 
 @media (max-width: 768px) {
-  :root {
-    --about-spacing: var(--about-spacing-mobile);
-  }
-  
-  .about-hero {
-    min-height: 80vh;
-  }
-  
-  .about-story-image {
-    height: 400px;
-  }
-  
-  .about-value-card {
-    width: 320px;
-  }
-  
-  .about-location-image {
-    height: 300px;
-  }
-  
-  .about-cta-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
+  :root { --about-spacing: var(--about-spacing-mobile); }
+
+  .about-hero        { min-height: 80vh; }
+  .about-story-image { height: 400px; }
+  .about-value-card  { width: 320px; }
+  .about-location-image { height: 300px; }
+
+  .about-cta-buttons { flex-direction: column; align-items: stretch; }
 }
 
 /* ==========================================
-   CURSOR FIX - UNIVERSAL
+   CURSOR FIX
    ========================================== */
-
-/* ALL interactive elements */
-a,
-a:hover,
-a:active,
-button,
-button:hover,
-button:active,
-[onclick],
-[role="button"],
-input[type="button"],
-input[type="submit"],
-input[type="reset"] {
+a, a:hover, a:active,
+button, button:hover, button:active,
+[onclick], [role="button"],
+input[type="button"], input[type="submit"], input[type="reset"] {
   cursor: pointer !important;
 }
 
-/* Specific about page elements */
 .about-cta-btn,
 .about-team-card,
 .about-value-card,
 .about-location-card,
 .about-hero-scroll-indicator,
-.floating-brand,
-.brand {
-  cursor: pointer !important;
-}
+.floating-brand { cursor: pointer !important; }
 
-/* Text inputs */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-textarea {
-  cursor: text !important;
-}
+input[type="text"], input[type="email"], input[type="password"],
+input[type="search"], input[type="tel"], textarea { cursor: text !important; }
 
-/* Default cursor for body */
-body {
-  cursor: auto !important;
-}
+body { cursor: auto !important; }
 
 /* ==========================================
-   PERFORMANCE OPTIMIZATIONS
+   PERFORMANCE
    ========================================== */
-
-/* Disable curtain for better performance */
 body.no-curtain::before,
-body.no-curtain::after {
-  display: none !important;
-}
+body.no-curtain::after  { display: none !important; }
+body.no-curtain          { opacity: 1 !important; animation: none !important; }
 
-/* Prevent page load animation lag */
-body.no-curtain {
-  opacity: 1 !important;
-  animation: none !important;
-}
-
-/* GPU Acceleration for smooth scrolling */
 .about-hero-bg,
 .about-story-media,
 [data-scroll] {
@@ -842,15 +739,11 @@ body.no-curtain {
   perspective: 1000px;
 }
 
-/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
-  [data-scroll] {
-    transform: none !important;
-  }
+  [data-scroll] { transform: none !important; }
 }

@@ -17,32 +17,34 @@
     margin-bottom: 40px;
 }
 
+/* Title — Cormorant Garamond */
 .blog-title {
+    font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
+    font-weight: var(--weight-h1);
+    font-style: normal;
     line-height: 1.1;
     color: #2C3E50;
     margin: 0 0 16px;
     letter-spacing: -0.02em;
 }
 
-html[data-theme="dim"] .blog-title {
-    color: #f5f2ed;
-}
+html[data-theme="dim"] .blog-title { color: #f5f2ed; }
 
+/* Subtitle — Inter */
 .blog-sub {
-    font-size: 1.15rem;
+    font-family: var(--font-body);
+    font-size: var(--text-lead);
+    font-weight: var(--weight-lead);
     color: rgba(44, 62, 80, 0.7);
     max-width: 700px;
     line-height: 1.6;
     margin: 0;
 }
 
-html[data-theme="dim"] .blog-sub {
-    color: rgba(245, 242, 237, 0.7);
-}
+html[data-theme="dim"] .blog-sub { color: rgba(245, 242, 237, 0.7); }
 
-/* Controls */
+/* Controls — Inter */
 .blog-controls {
     display: flex;
     gap: 12px;
@@ -53,6 +55,8 @@ html[data-theme="dim"] .blog-sub {
 
 .blog-input,
 .blog-select {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
     background: rgba(44, 62, 80, 0.05);
     border: 1px solid rgba(44, 62, 80, 0.1);
     border-radius: 12px;
@@ -61,8 +65,6 @@ html[data-theme="dim"] .blog-sub {
     outline: none;
     backdrop-filter: blur(12px);
     transition: all 0.3s ease;
-    font-size: 14px;
-    font-family: 'Georgia', serif;
 }
 
 html[data-theme="dim"] .blog-input,
@@ -72,18 +74,11 @@ html[data-theme="dim"] .blog-select {
     color: #f5f2ed;
 }
 
-.blog-input::placeholder {
-    color: rgba(44, 62, 80, 0.5);
-}
+.blog-input::placeholder { color: rgba(44, 62, 80, 0.5); }
+html[data-theme="dim"] .blog-input::placeholder { color: rgba(245, 242, 237, 0.5); }
 
-html[data-theme="dim"] .blog-input::placeholder {
-    color: rgba(245, 242, 237, 0.5);
-}
-
-.blog-input {
-    flex: 1;
-    min-width: 240px;
-}
+.blog-input  { flex: 1; min-width: 240px; }
+.blog-select { min-width: 180px; }
 
 .blog-input:focus,
 .blog-select:focus {
@@ -96,20 +91,15 @@ html[data-theme="dim"] .blog-select:focus {
     background: rgba(176, 141, 87, 0.15);
 }
 
-.blog-select {
-    min-width: 180px;
-}
-
 .blog-count {
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: var(--weight-label);
     color: rgba(44, 62, 80, 0.6);
-    font-size: 14px;
     margin-left: auto;
-    font-weight: 600;
 }
 
-html[data-theme="dim"] .blog-count {
-    color: rgba(245, 242, 237, 0.6);
-}
+html[data-theme="dim"] .blog-count { color: rgba(245, 242, 237, 0.6); }
 
 /* State */
 .blog-state {
@@ -119,6 +109,8 @@ html[data-theme="dim"] .blog-count {
     border: 1px dashed rgba(44, 62, 80, 0.2);
     color: rgba(44, 62, 80, 0.7);
     background: rgba(44, 62, 80, 0.05);
+    font-family: var(--font-body);
+    font-size: var(--text-small);
 }
 
 html[data-theme="dim"] .blog-state {
@@ -173,9 +165,7 @@ html[data-theme="dim"] .blog-card:hover {
     object-fit: cover;
 }
 
-html[data-theme="dim"] .blog-cover {
-    background: rgba(176, 141, 87, 0.1);
-}
+html[data-theme="dim"] .blog-cover { background: rgba(176, 141, 87, 0.1); }
 
 .blog-card-body {
     padding: 20px;
@@ -185,28 +175,28 @@ html[data-theme="dim"] .blog-cover {
     flex: 1;
 }
 
+/* Meta — Inter */
 .blog-meta {
     display: flex;
     gap: 10px;
     align-items: center;
-    color: rgba(44, 62, 80, 0.6);
+    font-family: var(--font-body);
     font-size: 13px;
+    color: rgba(44, 62, 80, 0.6);
     flex-wrap: wrap;
 }
 
-html[data-theme="dim"] .blog-meta {
-    color: rgba(176, 141, 87, 0.8);
-}
+html[data-theme="dim"] .blog-meta { color: rgba(176, 141, 87, 0.8); }
 
-/* Tag Pills — Bronze statt Lila */
 .blog-pill {
     border: 1px solid rgba(176, 141, 87, 0.3);
     padding: 4px 10px;
     border-radius: 999px;
     background: rgba(176, 141, 87, 0.1);
     color: #8a6d3f;
+    font-family: var(--font-body);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: var(--weight-label);
     white-space: nowrap;
 }
 
@@ -216,40 +206,41 @@ html[data-theme="dim"] .blog-pill {
     color: #B08D57;
 }
 
+/* Card title — Cormorant Garamond */
 .blog-h2 {
     margin: 0;
-    font-size: 1.35rem;
+    font-family: var(--font-heading);
+    font-size: var(--text-h3);
+    font-weight: var(--weight-h3);
+    font-style: normal;
     line-height: 1.3;
     color: #2C3E50;
-    font-weight: 700;
-    font-family: 'Playfair Display', 'Georgia', serif;
 }
 
-html[data-theme="dim"] .blog-h2 {
-    color: #f5f2ed;
-}
+html[data-theme="dim"] .blog-h2 { color: #f5f2ed; }
 
+/* Excerpt — Inter */
 .blog-excerpt {
     margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-small);
     color: rgba(44, 62, 80, 0.7);
     line-height: 1.6;
-    font-size: 0.95rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-html[data-theme="dim"] .blog-excerpt {
-    color: rgba(245, 242, 237, 0.7);
-}
+html[data-theme="dim"] .blog-excerpt { color: rgba(245, 242, 237, 0.7); }
 
 .blog-row {
     margin-top: auto;
     padding-top: 12px;
 }
 
-/* Button — Bronze statt Lila */
+/* Button — Inter */
 .blog-btn {
     display: inline-flex;
     align-items: center;
@@ -260,9 +251,9 @@ html[data-theme="dim"] .blog-excerpt {
     border: 1px solid rgba(176, 141, 87, 0.3);
     padding: 10px 16px;
     border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-body);
+    font-size: var(--text-button);
+    font-weight: var(--weight-button);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -292,18 +283,10 @@ html[data-theme="dim"] .blog-btn:hover {
         width: calc(100% - 32px);
         padding-top: calc(72px + 40px);
     }
-    .blog-grid {
-        grid-template-columns: 1fr;
-    }
-    .blog-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
+
+    .blog-grid        { grid-template-columns: 1fr; }
+    .blog-controls    { flex-direction: column; align-items: stretch; }
     .blog-input,
-    .blog-select {
-        min-width: 0;
-    }
-    .blog-count {
-        margin-left: 0;
-    }
+    .blog-select      { min-width: 0; }
+    .blog-count       { margin-left: 0; }
 }

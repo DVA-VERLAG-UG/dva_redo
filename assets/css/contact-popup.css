@@ -5,10 +5,8 @@
 
 .contact-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(44, 62, 80, 0.8);
     backdrop-filter: blur(12px);
     z-index: 10000;
@@ -45,16 +43,12 @@ html[data-theme="dim"] .contact-popup {
     border-color: rgba(176, 141, 87, 0.3);
 }
 
-.contact-overlay.is-open .contact-popup {
-    transform: scale(1);
-}
+.contact-overlay.is-open .contact-popup { transform: scale(1); }
 
 .contact-close {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
+    top: 16px; right: 16px;
+    width: 40px; height: 40px;
     border: none;
     background: rgba(44, 62, 80, 0.08);
     border-radius: 50%;
@@ -75,34 +69,32 @@ html[data-theme="dim"] .contact-close {
     transform: rotate(90deg);
 }
 
-.contact-header {
-    margin-bottom: 32px;
-}
+.contact-header { margin-bottom: 32px; }
 
+/* Header title — Cormorant Garamond */
 .contact-header h2 {
-    font-size: 2rem;
-    font-weight: 900;
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: var(--weight-h2);
+    font-style: normal;
     color: #2C3E50;
     margin: 0 0 8px;
-    font-family: 'Playfair Display', 'Georgia', serif;
 }
 
-html[data-theme="dim"] .contact-header h2 {
-    color: #B08D57;
-}
+html[data-theme="dim"] .contact-header h2 { color: #B08D57; }
 
+/* Header subtitle — Inter */
 .contact-header p {
-    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-body);
     color: rgba(44, 62, 80, 0.7);
     margin: 0;
-    font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .contact-header p {
-    color: rgba(245, 242, 237, 0.7);
-}
+html[data-theme="dim"] .contact-header p { color: rgba(245, 242, 237, 0.7); }
 
-/* Form Styles */
+/* Form */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -121,26 +113,27 @@ html[data-theme="dim"] .contact-header p {
     gap: 8px;
 }
 
+/* Labels — Inter */
 .form-group label {
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-family: var(--font-body);
+    font-size: var(--text-label);
+    font-weight: var(--weight-label);
     color: #2C3E50;
-    font-family: 'Georgia', serif;
 }
 
-html[data-theme="dim"] .form-group label {
-    color: #B08D57;
-}
+html[data-theme="dim"] .form-group label { color: #B08D57; }
 
+/* Inputs — Inter */
 .form-group input,
 .form-group textarea {
     padding: 12px;
     border: 2px solid rgba(44, 62, 80, 0.15);
     border-radius: 8px;
-    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-body);
     background: rgba(255, 255, 255, 0.6);
     transition: all 0.3s ease;
-    font-family: 'Georgia', serif;
     color: #2C3E50;
 }
 
@@ -152,14 +145,10 @@ html[data-theme="dim"] .form-group textarea {
 }
 
 .form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: rgba(44, 62, 80, 0.5);
-}
+.form-group textarea::placeholder { color: rgba(44, 62, 80, 0.5); }
 
 html[data-theme="dim"] .form-group input::placeholder,
-html[data-theme="dim"] .form-group textarea::placeholder {
-    color: rgba(176, 141, 87, 0.5);
-}
+html[data-theme="dim"] .form-group textarea::placeholder { color: rgba(176, 141, 87, 0.5); }
 
 .form-group input:focus,
 .form-group textarea:focus {
@@ -174,24 +163,23 @@ html[data-theme="dim"] .form-group textarea:focus {
     background: rgba(176, 141, 87, 0.12);
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
+.form-group textarea { resize: vertical; min-height: 120px; }
 
+/* Submit button — Inter */
 .form-submit {
     background: linear-gradient(135deg, #B08D57, #8a6d3f);
     color: white;
     border: none;
     padding: 16px 24px;
     border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 700;
+    font-family: var(--font-body);
+    font-size: var(--text-button);
+    font-weight: var(--weight-button);
+    font-style: normal;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 8px;
-    font-family: 'Georgia', serif;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
 }
 
 .form-submit:hover {
@@ -209,12 +197,13 @@ html[data-theme="dim"] .form-submit:hover {
     background: linear-gradient(135deg, #d4b07a, #B08D57);
 }
 
-/* Success/Error Messages */
+/* Messages — Inter */
 .form-message {
     padding: 12px;
     border-radius: 8px;
-    font-size: 0.9rem;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-body);
     margin-top: 16px;
 }
 
@@ -244,42 +233,14 @@ html[data-theme="dim"] .form-message.error {
    MOBILE
    ========================================== */
 @media (max-width: 640px) {
-    .contact-popup {
-        padding: 20px 14px;
-        width: 92%;
-        max-height: 80vh;
-        border-radius: 12px;
-    }
-
-    .contact-header {
-        margin-bottom: 14px;
-    }
-
-    .contact-header h2 {
-        font-size: 1.2rem;
-        padding-right: 36px;
-    }
-
-    .contact-header p {
-        font-size: 0.8rem;
-    }
-
-    .contact-form {
-        gap: 10px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .form-group {
-        gap: 4px;
-    }
-
-    .form-group label {
-        font-size: 0.78rem;
-    }
+    .contact-popup      { padding: 20px 14px; width: 92%; max-height: 80vh; border-radius: 12px; }
+    .contact-header     { margin-bottom: 14px; }
+    .contact-header h2  { font-size: 1.4rem; padding-right: 36px; }
+    .contact-header p   { font-size: 0.8rem; }
+    .contact-form       { gap: 10px; }
+    .form-row           { grid-template-columns: 1fr; gap: 10px; }
+    .form-group         { gap: 4px; }
+    .form-group label   { font-size: 0.78rem; }
 
     .form-group input,
     .form-group textarea {
@@ -287,21 +248,7 @@ html[data-theme="dim"] .form-message.error {
         font-size: 16px; /* verhindert iOS auto-zoom */
     }
 
-    .form-group textarea {
-        min-height: 70px;
-    }
-
-    .form-submit {
-        padding: 11px 18px;
-        font-size: 0.88rem;
-        margin-top: 4px;
-    }
-
-    .contact-close {
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-        top: 10px;
-        right: 10px;
-    }
+    .form-group textarea { min-height: 70px; }
+    .form-submit        { padding: 11px 18px; font-size: 0.88rem; margin-top: 4px; }
+    .contact-close      { width: 30px; height: 30px; font-size: 14px; top: 10px; right: 10px; }
 }
