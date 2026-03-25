@@ -10,9 +10,13 @@ const FOOTER_CONTENT = {
     tagline:      'Deutschland \u2194 T\u00fcrkei \u00b7 Pers\u00f6nliche Betreuung \u00b7 100% Autorenrechte',
     configurator: 'Konfigurator',
     privacy:      'Datenschutz',
-    privacyHref:  '/de/datenschutz.html',
+    privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'Impressum',
     imprintHref:  '/de/impressum.html',
+    agb:          'AGB',
+    agbHref:      '/de/agb.html',
+    widerruf:     'Widerruf',
+    widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
       { href: '/de/',               label: 'Start'         },
       { href: '/de/ueber-uns.html', label: '\u00dcber uns' },
@@ -43,9 +47,13 @@ const FOOTER_CONTENT = {
     tagline:      'Germany \u2194 Turkey \u00b7 Personal support \u00b7 100% author rights',
     configurator: 'Configurator',
     privacy:      'Privacy Policy',
-    privacyHref:  '/en/privacy.html',
+    privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'Imprint',
-    imprintHref:  '/en/imprint.html',
+    imprintHref:  '/de/impressum.html',
+    agb:          'AGB',
+    agbHref:      '/de/agb.html',
+    widerruf:     'Cancellation Policy',
+    widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
       { href: '/en/',               label: 'Home'      },
       { href: '/en/about.html',     label: 'About Us'  },
@@ -76,15 +84,19 @@ const FOOTER_CONTENT = {
     tagline:      'Almanya \u2194 T\u00fcrkiye \u00b7 Ki\u015fisel destek \u00b7 %100 yazar haklar\u0131',
     configurator: 'Konfigurat\u00f6r',
     privacy:      'Gizlilik Politikas\u0131',
-    privacyHref:  '/tr/gizlilik.html',
+    privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'K\u00fcnye',
-    imprintHref:  '/tr/kunye.html',
+    imprintHref:  '/de/impressum.html',
+    agb:          'AGB',
+    agbHref:      '/de/agb.html',
+    widerruf:     'İptal Politikası',
+    widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
-      { href: '/tr/',                label: 'Ana Sayfa'          },
-      { href: '/tr/hakkimizda.html', label: 'Hakk\u0131m\u0131zda' },
-      { href: '/tr/projeler.html',   label: 'Projeler'           },
-      { href: '/tr/paketler.html',   label: 'Paketler'           },
-      { href: '/tr/iletisim.html',   label: '\u0130leti\u015fim' },
+      { href: '/tr/',                label: 'Ana Sayfa'               },
+      { href: '/tr/hakkimizda.html', label: 'Hakk\u0131m\u0131zda'   },
+      { href: '/tr/projeler.html',   label: 'Projeler'                },
+      { href: '/tr/paketler.html',   label: 'Paketler'                },
+      { href: '/tr/iletisim.html',   label: '\u0130leti\u015fim'      },
     ],
     serviceLinks: [
       'El Yazmas\u0131 \u0130ncelemesi',
@@ -94,10 +106,10 @@ const FOOTER_CONTENT = {
       'Pazarlama',
     ],
     knowledgeLinks: [
-      { href: '/tr/blog/',           label: 'Blog'               },
-      { href: '/tr/faq/',            label: 'SSS'                },
-      { href: '/tr/surec/',          label: 'S\u00fcre\u00e7'   },
-      { href: '/tr/projeler.html',   label: 'Referanslar'        },
+      { href: '/tr/blog/',           label: 'Blog'              },
+      { href: '/tr/faq/',            label: 'SSS'               },
+      { href: '/tr/surec/',          label: 'S\u00fcre\u00e7'  },
+      { href: '/tr/projeler.html',   label: 'Referanslar'       },
     ],
   },
   fr: {
@@ -109,15 +121,19 @@ const FOOTER_CONTENT = {
     tagline:      "Allemagne \u2194 Turquie \u00b7 Suivi personnalis\u00e9 \u00b7 100% droits d'auteur",
     configurator: 'Configurateur',
     privacy:      'Politique de confidentialit\u00e9',
-    privacyHref:  '/fr/confidentialite.html',
+    privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'Mentions l\u00e9gales',
-    imprintHref:  '/fr/mentions-legales.html',
+    imprintHref:  '/de/impressum.html',
+    agb:          'CGV',
+    agbHref:      '/de/agb.html',
+    widerruf:     'R\u00e9tractation',
+    widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
-      { href: '/fr/',               label: 'Accueil'        },
-      { href: '/fr/a-propos.html',  label: '\u00c0 propos'  },
-      { href: '/fr/projets.html',   label: 'Projets'        },
-      { href: '/fr/forfaits.html',  label: 'Forfaits'       },
-      { href: '/fr/contact.html',   label: 'Contact'        },
+      { href: '/fr/',               label: 'Accueil'       },
+      { href: '/fr/a-propos.html',  label: '\u00c0 propos' },
+      { href: '/fr/projets.html',   label: 'Projets'       },
+      { href: '/fr/forfaits.html',  label: 'Forfaits'      },
+      { href: '/fr/contact.html',   label: 'Contact'       },
     ],
     serviceLinks: [
       '\u00c9valuation manuscrit',
@@ -158,7 +174,7 @@ export function initFooter() {
       + t.navLinks.map(l => `<a class="dv-flink" href="${l.href}">${l.label}</a>`).join('');
   }
 
-  // Col 2: Services (Konfigurator-Button bleibt klickbar)
+  // Col 2: Services
   const colServices = document.getElementById('footer-col-services');
   if (colServices) {
     colServices.innerHTML = `<div class="dv-ftitle">${t.services}</div>`
@@ -183,11 +199,16 @@ export function initFooter() {
   const tagline = document.getElementById('footer-tagline');
   if (tagline) tagline.textContent = t.tagline;
 
-  // Bottom bar
+  // Bottom bar — year + alle 4 Legal-Links
   const yearEl = document.getElementById('footer-year');
   if (yearEl) {
     const year = new Date().getFullYear();
-    yearEl.innerHTML = `© ${year} DVAYD · <a href="${t.privacyHref}">${t.privacy}</a> · <a href="${t.imprintHref}">${t.imprint}</a>`;
+    yearEl.innerHTML =
+      `© ${year} DVAYD`
+      + ` · <a href="${t.privacyHref}">${t.privacy}</a>`
+      + ` · <a href="${t.imprintHref}">${t.imprint}</a>`
+      + ` · <a href="${t.agbHref}">${t.agb}</a>`
+      + ` · <a href="${t.widerrufHref}">${t.widerruf}</a>`;
   }
 
   bindFooterButtons();
@@ -195,7 +216,6 @@ export function initFooter() {
 }
 
 function bindFooterButtons() {
-  // footerConfiguratorBtn wird dynamisch erzeugt — erst hier binden
   const ids = ['footerConfigBtn', 'footerContactBtn', 'footerConfiguratorBtn'];
 
   ids.forEach(id => {

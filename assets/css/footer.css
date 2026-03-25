@@ -65,7 +65,7 @@ body {
 /* Account for social bar on desktop */
 @media (min-width: 769px) {
   .dv-footer-inner {
-    padding-right: 70px; /* Space for fixed social bar */
+    padding-right: 70px;
   }
 }
 
@@ -183,25 +183,49 @@ body {
   width: auto;
 }
 
-.dv-footer-bottom a {
+/* Legal links row — alle nebeneinander */
+.dv-footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.dv-footer-legal span,
+.dv-footer-legal #footer-year {
+  color: rgba(245, 242, 237, 0.55);
+  white-space: nowrap;
+}
+
+.dv-footer-legal a {
   color: rgba(245, 242, 237, 0.7);
   text-decoration: none;
+  font-size: 13px;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
-.dv-footer-bottom a:hover {
+.dv-footer-legal a:hover {
   color: #B08D57;
 }
 
+/* Separator dots */
+.dv-footer-legal a::before {
+  content: '·';
+  margin-right: 6px;
+  color: rgba(245, 242, 237, 0.3);
+  pointer-events: none;
+}
+
 /* ==========================================
-   LET'S TALK CTA - Moved Down
+   LET'S TALK CTA
    ========================================== */
 
 .dv-footer-cta {
-  margin-bottom: 120px; /* War 80px → jetzt 120px (weiter unten) */
-  margin-top: 80px; /* Extra Abstand nach oben */
+  margin-bottom: 120px;
+  margin-top: 80px;
   text-align: center;
-  padding: 100px 20px; /* War 80px → jetzt 100px (mehr Padding) */
+  padding: 100px 20px;
 }
 
 .footer-talk-btn {
@@ -269,66 +293,49 @@ body {
       rgba(0, 0, 0, 1) 100%
     );
   }
-  
+
   .dv-footer-cta {
-    padding: 80px 20px; /* Etwas weniger Padding auf Tablet */
+    padding: 80px 20px;
     margin-bottom: 100px;
     margin-top: 60px;
   }
-  
+
   .dv-footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
-  
+
   .footer-talk-btn {
     font-size: clamp(3rem, 10vw, 6rem);
+  }
+
+  .dv-footer-legal {
+    flex-wrap: wrap;
+    gap: 4px;
   }
 }
 
 @media (max-width: 480px) {
   .dv-footer-cta {
-    padding: 60px 20px; /* Noch weniger auf Mobile */
+    padding: 60px 20px;
     margin-bottom: 80px;
     margin-top: 40px;
   }
-  
+
   .dv-footer-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .dv-footer-inner {
     padding: 40px 20px 20px;
   }
-}
 
-/* ========================================== 
-   FARBPALETTE & ULTRA-SOFT MASK FADE
-   ========================================== 
-   
-   🎨 ULTRA-SANFTER HERO-STYLE MASK FADE:
-   
-   Der Footer verwendet einen sehr weichen, langen Fade:
-   
-   0%:   transparent          (ganz oben unsichtbar)
-   8%:   rgba(0,0,0,0.05)    (kaum sichtbar)
-   12%:  rgba(0,0,0,0.1)     (sehr leicht)
-   18%:  rgba(0,0,0,0.2)     (leichter Beginn)
-   25%:  rgba(0,0,0,0.3)     (sanfter Aufbau)
-   32%:  rgba(0,0,0,0.45)    (wird sichtbarer)
-   40%:  rgba(0,0,0,0.6)     (mehr Deckkraft)
-   50%:  rgba(0,0,0,0.75)    (deutlich sichtbar)
-   60%:  rgba(0,0,0,0.88)    (fast voll)
-   70%:  rgba(0,0,0,1)       (volle Sichtbarkeit)
-   100%: rgba(0,0,0,1)       (bleibt voll)
-   
-   ✨ Die ersten ~70% des Footers faden sanft ein
-   ✨ 10 Gradient-Stops für ultra-weichen Übergang
-   ✨ Wie ein sanfter Nebel, der sich langsam lichtet
-   
-   📍 CTA POSITION:
-   - margin-top: 80px (mehr Abstand nach oben)
-   - margin-bottom: 120px (war 80px)
-   - padding: 100px 20px (war 80px 20px)
-   
-   ========================================== */
+  .dv-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dv-footer-legal {
+    flex-wrap: wrap;
+  }
+}

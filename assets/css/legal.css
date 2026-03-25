@@ -1,0 +1,162 @@
+/* ==========================================
+   LEGAL PAGES — Shared Styles
+   Impressum · AGB · Datenschutz · Widerruf
+   Royal Bronze Theme
+   ========================================== */
+
+.legal-main {
+  min-height: 100vh;
+  padding: 120px 20px 80px;
+}
+
+.legal-container {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.legal-header {
+  margin-bottom: 56px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.2);
+}
+
+.legal-kicker {
+  font-family: 'Georgia', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B08D57;
+  margin: 0 0 14px;
+}
+
+.legal-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #2C3E50;
+  margin: 0 0 10px;
+}
+
+html[data-theme="dim"] .legal-title {
+  color: #e8d5b0;
+}
+
+.legal-meta {
+  font-family: 'Georgia', serif;
+  font-size: 0.9rem;
+  color: rgba(44, 62, 80, 0.55);
+  margin: 0;
+}
+
+html[data-theme="dim"] .legal-meta {
+  color: rgba(245, 242, 237, 0.45);
+}
+
+/* ── Content ── */
+.legal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.legal-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legal-section h2 {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2C3E50;
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.12);
+}
+
+html[data-theme="dim"] .legal-section h2 {
+  color: #d4b07a;
+  border-bottom-color: rgba(176, 141, 87, 0.2);
+}
+
+.legal-section p,
+.legal-section li {
+  font-family: 'Georgia', serif;
+  font-size: 0.975rem;
+  line-height: 1.75;
+  color: rgba(44, 62, 80, 0.82);
+  margin: 0;
+}
+
+html[data-theme="dim"] .legal-section p,
+html[data-theme="dim"] .legal-section li {
+  color: rgba(245, 242, 237, 0.75);
+}
+
+.legal-section ul,
+.legal-section ol {
+  padding-left: 1.4em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.legal-section a {
+  color: #B08D57;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(176, 141, 87, 0.3);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.legal-section a:hover {
+  color: #d4b07a;
+  border-bottom-color: #d4b07a;
+}
+
+/* Small footnote-style notes */
+.legal-note {
+  font-size: 0.82rem !important;
+  color: rgba(44, 62, 80, 0.5) !important;
+  font-style: italic;
+  padding: 10px 14px;
+  border-left: 2px solid rgba(176, 141, 87, 0.25);
+  background: rgba(176, 141, 87, 0.04);
+  border-radius: 0 6px 6px 0;
+}
+
+html[data-theme="dim"] .legal-note {
+  color: rgba(245, 242, 237, 0.4) !important;
+  background: rgba(176, 141, 87, 0.06);
+  border-left-color: rgba(176, 141, 87, 0.3);
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .legal-main {
+    padding: 100px 16px 60px;
+  }
+
+  .legal-header {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+  }
+
+  .legal-content {
+    gap: 28px;
+  }
+
+  .legal-section h2 {
+    font-size: 1.05rem;
+  }
+
+  .legal-section p,
+  .legal-section li {
+    font-size: 0.92rem;
+  }
+}
