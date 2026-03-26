@@ -408,3 +408,26 @@ html[data-theme="dim"] .drawer-link:hover   { background: rgba(176, 141, 87, 0.1
   .theme-toggle   { width: 36px; height: 36px; }
   .menu-toggle    { width: 36px; height: 36px; }
 }
+
+/* ── Disabled nav link (coming soon) ── */
+.drawer-link--disabled {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.38;
+  cursor: default;
+  pointer-events: none;
+  color: inherit;
+}
+
+.drawer-link-soon {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(176, 141, 87, 0.15);
+  color: #B08D57;
+}

@@ -33,45 +33,45 @@ function safeInit(name, fn) {
   }
 }
 
-// ── Nav data (mirrors header.html inline script) ──────────────────────────────
+// ── Nav data ──────────────────────────────────────────────
+// disabled: true  → ausgegraut, nicht klickbar, zeigt "(bald)" Label
 const NAV = {
   de: [
-    { href: '/de/',                       label: 'Startseite'    },
-    { href: '/de/ueber-uns.html',         label: 'Über uns'      },
-    { href: '/de/projekte.html',          label: 'Projekte'      },
-    { href: '/de/pakete.html',            label: 'Pakete'        },
-    { href: '/de/konfigurator-page.html', label: 'Konfigurator'  },
-    { href: '/de/kontakt.html',           label: 'Kontakt'       },
-    { href: '/de/blog-index.html',                  label: 'Blog'          },
+    { href: '/de/',                       label: 'Startseite'                    },
+    { href: '/de/ueber-uns.html',         label: 'Über uns'                      },
+    { href: '/de/projekte.html',          label: 'Projekte',   disabled: true    },
+    { href: '/de/konfigurator-page.html', label: 'Konfigurator'                  },
+    { href: '/de/kontakt.html',           label: 'Kontakt'                       },
+    { href: '/de/blog-index.html',        label: 'Blog'                          },
   ],
   en: [
-    { href: '/en/',                       label: 'Home'          },
-    { href: '/en/about.html',             label: 'About Us'      },
-    { href: '/en/projects.html',          label: 'Projects'      },
-    { href: '/en/packages.html',          label: 'Packages'      },
-    { href: '/en/configurator-page.html', label: 'Configurator'  },
-    { href: '/en/contact.html',           label: 'Contact'       },
-    { href: '/en/blog-index.html',                  label: 'Blog'          },
+    { href: '/en/',                       label: 'Home'                          },
+    { href: '/en/about.html',             label: 'About Us'                      },
+    { href: '/en/projects.html',          label: 'Projects',   disabled: true    },
+    { href: '/en/configurator-page.html', label: 'Configurator'                  },
+    { href: '/en/contact.html',           label: 'Contact'                       },
+    { href: '/en/blog-index.html',        label: 'Blog'                          },
   ],
   tr: [
-    { href: '/tr/',                       label: 'Ana Sayfa'     },
-    { href: '/tr/hakkimizda.html',        label: 'Hakkımızda'    },
-    { href: '/tr/projeler.html',          label: 'Projeler'      },
-    { href: '/tr/paketler.html',          label: 'Paketler'      },
-    { href: '/tr/yapilandirma.html',      label: 'Konfiguratör'  },
-    { href: '/tr/iletisim.html',          label: 'İletişim'      },
-    { href: '/tr/blog-index.html',                  label: 'Blog'          },
+    { href: '/tr/',                       label: 'Ana Sayfa'                     },
+    { href: '/tr/hakkimizda.html',        label: 'Hakkımızda'                    },
+    { href: '/tr/projeler.html',          label: 'Projeler',   disabled: true    },
+    { href: '/tr/yapilandirma.html',      label: 'Konfiguratör'                  },
+    { href: '/tr/iletisim.html',          label: 'İletişim'                      },
+    { href: '/tr/blog-index.html',        label: 'Blog'                          },
   ],
   fr: [
-    { href: '/fr/',                       label: 'Accueil'       },
-    { href: '/fr/a-propos.html',          label: 'À propos'      },
-    { href: '/fr/projets.html',           label: 'Projets'       },
-    { href: '/fr/forfaits.html',          label: 'Forfaits'      },
-    { href: '/fr/configuration.html',     label: 'Configurateur' },
-    { href: '/fr/contact.html',           label: 'Contact'       },
-    { href: '/fr/blog-index.html',                  label: 'Blog'          },
+    { href: '/fr/',                       label: 'Accueil'                       },
+    { href: '/fr/a-propos.html',          label: 'À propos'                      },
+    { href: '/fr/projets.html',           label: 'Projets',    disabled: true    },
+    { href: '/fr/configuration.html',     label: 'Configurateur'                 },
+    { href: '/fr/contact.html',           label: 'Contact'                       },
+    { href: '/fr/blog-index.html',        label: 'Blog'                          },
   ]
 };
+
+// "Coming soon" label per language
+const COMING_SOON = { de: 'bald', en: 'soon', tr: 'yakında', fr: 'bientôt' };
 
 const DRAWER_TITLES      = { de: 'Menü', en: 'Menu', tr: 'Menü', fr: 'Menu' };
 const SEARCH_PLACEHOLDER = { de: 'Suchbegriff eingeben', en: 'Search…', tr: 'Ara…', fr: 'Rechercher…' };
@@ -84,10 +84,10 @@ function getHeaderLang() {
   return 'de';
 }
 
-// Inject nav links, titles, placeholders — runs after header HTML is in the DOM
 function initHeaderContent() {
   const lang        = getHeaderLang();
   const currentPath = window.location.pathname;
+  const soon        = COMING_SOON[lang] || 'soon';
 
   const drawerNav   = document.getElementById('drawerNav');
   const drawerTitle = document.getElementById('drawerTitle');
@@ -97,6 +97,13 @@ function initHeaderContent() {
 
   if (drawerNav) {
     drawerNav.innerHTML = (NAV[lang] || NAV.de).map(item => {
+      if (item.disabled) {
+        // Ausgegraut, nicht klickbar, mit "bald/soon/yakında" Badge
+        return `<span class="drawer-link drawer-link--disabled">
+          ${item.label}
+          <span class="drawer-link-soon">${soon}</span>
+        </span>`;
+      }
       const isActive = currentPath === item.href ||
         (currentPath.startsWith(item.href) && item.href !== '/' + lang + '/');
       return `<a href="${item.href}" class="drawer-link${isActive ? ' is-active' : ''}">${item.label}</a>`;
@@ -113,40 +120,30 @@ function initHeaderContent() {
   });
 }
 
-// Load header component
 async function loadHeader() {
   const placeholder = document.getElementById('header-placeholder');
   if (!placeholder) {
     console.error('❌ Header placeholder not found!');
     return;
   }
-
   try {
     const response = await fetch(`${BASE_PATH}/components/header.html`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Failed to load header (${response.status})`);
-
     const html = await response.text();
     placeholder.innerHTML = html;
-
-    // Populate drawer nav & language markers (inline scripts don't run via innerHTML)
     initHeaderContent();
-
-    // Initialize scroll, menu toggle, search
     safeInit('Header', initHeader);
   } catch (error) {
     console.error('❌ Error loading header:', error);
   }
 }
 
-// Load footer component
 async function loadFooter() {
   const placeholder = document.getElementById('footer-placeholder');
   if (!placeholder) return;
-
   try {
     const response = await fetch(`${BASE_PATH}/components/footer.html`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Failed to load footer (${response.status})`);
-
     const html = await response.text();
     placeholder.innerHTML = html;
     safeInit('Footer', initFooter);
@@ -155,7 +152,6 @@ async function loadFooter() {
   }
 }
 
-// Initialize everything
 async function init() {
   console.log('🚀 Starting initialization...');
 
