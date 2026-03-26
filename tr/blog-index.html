@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | DVAYD Publishing</title>
-    <meta name="description" content="Blog – DVAYD Publishing'den makaleler, güncellemeler ve içgörüler.">
-    <link rel="canonical" href="https://dva-yd.com/tr/blog/">
+    
+    <title>Yayın Notları | DVAYD Publishing</title>
+    <meta name="description" content="Yayıncılık sürecine, yeni gelişmelere ve yazarlarımıza dair kısa notlar – DVAYD Publishing.">
+    <link rel="canonical" href="https://dva-yd.com/tr/blog-index.html">
+    
     <link rel="icon" type="image/png" href="../../assets/images/branding/favicon.png">
     <link rel="apple-touch-icon" href="../../assets/images/branding/favicon.png">
+    
     <script>
         (function() {
             try {
@@ -16,6 +19,8 @@
             } catch(e) {}
         })();
     </script>
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/background.css">
     <link rel="stylesheet" href="../../assets/css/header.css">
@@ -24,24 +29,93 @@
     <link rel="stylesheet" href="../../assets/css/contact-popup.css">
     <link rel="stylesheet" href="../../assets/css/blog-list.css">
     <link rel="stylesheet" href="../../assets/css/cursor-follower.css">
+
+    <style>
+    /* Ek stil — kategori filtreleri & intro blok */
+    .blog-intro-block {
+        margin: 32px 0 40px;
+        padding: 24px 28px;
+        background: rgba(176,141,87,0.06);
+        border-left: 3px solid rgba(176,141,87,0.35);
+        border-radius: 0 12px 12px 0;
+    }
+
+    .blog-intro-block h3 {
+        font-family: var(--font-heading, 'Cormorant Garamond', Georgia, serif);
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #B08D57;
+        margin: 0 0 8px;
+    }
+
+    .blog-intro-block p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: rgba(44,62,80,0.78);
+        margin: 0;
+    }
+
+    html[data-theme="dim"] .blog-intro-block p { color: rgba(245,242,237,0.75); }
+
+    .blog-categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 40px;
+    }
+
+    .blog-cat-btn {
+        padding: 8px 18px;
+        border: 1.5px solid rgba(176,141,87,0.3);
+        border-radius: 999px;
+        background: transparent;
+        font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: rgba(44,62,80,0.75);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .blog-cat-btn:hover,
+    .blog-cat-btn.active {
+        background: rgba(176,141,87,0.12);
+        border-color: #B08D57;
+        color: #B08D57;
+    }
+
+    html[data-theme="dim"] .blog-cat-btn {
+        color: rgba(245,242,237,0.65);
+        border-color: rgba(176,141,87,0.25);
+    }
+
+    html[data-theme="dim"] .blog-cat-btn:hover,
+    html[data-theme="dim"] .blog-cat-btn.active {
+        background: rgba(176,141,87,0.18);
+        border-color: #B08D57;
+        color: #d4b07a;
+    }
+    </style>
 </head>
 <body class="no-curtain">
 
     <style>
-    body.no-curtain::before, body.no-curtain::after, body.no-curtain .curtain,
-    body.no-curtain .curtain-left, body.no-curtain .curtain-right,
-    body.no-curtain .curtain-text, body.no-curtain .curtain-word,
-    body.no-curtain .curtain-content, body.no-curtain [class*="curtain"] {
-      display: none !important; opacity: 0 !important; pointer-events: none !important;
-      visibility: hidden !important; height: 0 !important; width: 0 !important;
-      overflow: hidden !important; position: absolute !important; left: -9999px !important;
+    body.no-curtain::before, body.no-curtain::after,
+    body.no-curtain .curtain, body.no-curtain .curtain-left,
+    body.no-curtain .curtain-right, body.no-curtain .curtain-text,
+    body.no-curtain .curtain-word, body.no-curtain .curtain-content,
+    body.no-curtain [class*="curtain"] {
+      display: none !important; opacity: 0 !important;
+      pointer-events: none !important; visibility: hidden !important;
+      height: 0 !important; width: 0 !important; overflow: hidden !important;
+      position: absolute !important; left: -9999px !important;
     }
     body.no-curtain .curtain *, body.no-curtain [class*="curtain"] * {
       display: none !important; visibility: hidden !important;
     }
     </style>
 
-    <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+    <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Ana Sayfa">
         <img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
@@ -50,34 +124,62 @@
 
     <main>
         <section class="blog-wrap">
+
+            <!-- Başlık -->
             <div class="blog-hero">
-                <h1 class="blog-title">Blog</h1>
-                <p class="blog-sub">Yeni yazılar Google Sheet'e eklendiğinde otomatik olarak görünür.</p>
+                <h1 class="blog-title">Yayın Notları</h1>
+                <p class="blog-sub">
+                    Yayıncılık sürecine, yeni gelişmelere ve yazarlarımıza dair kısa notlar burada yer alır.
+                </p>
             </div>
+
+            <!-- Intro blok -->
+            <div class="blog-intro-block">
+                <h3>Burada neler bulacaksınız?</h3>
+                <p>Yayın sürecine dair kısa bilgiler, yeni gelişmeler, kitaplarla ilgili notlar ve yazarlarımızdan haberler.</p>
+            </div>
+
+            <!-- Kategori filtreleri -->
+            <div class="blog-categories" id="categories">
+                <button class="blog-cat-btn active" data-cat="">Tüm başlıklar</button>
+                <button class="blog-cat-btn" data-cat="Yayın süreci">Yayın süreci</button>
+                <button class="blog-cat-btn" data-cat="Duyurular">Duyurular</button>
+                <button class="blog-cat-btn" data-cat="Yazar notları">Yazar notları</button>
+                <button class="blog-cat-btn" data-cat="Kitaplardan haberler">Kitaplardan haberler</button>
+                <button class="blog-cat-btn" data-cat="Yeni içerikler">Yeni içerikler</button>
+            </div>
+
+            <!-- Arama & etiket -->
             <div class="blog-controls">
-                <input id="q" class="blog-input" type="search" placeholder="Ara (başlık / özet / etiketler) …" autocomplete="off">
+                <input id="q" class="blog-input" type="search" placeholder="Ara (başlık / özet / etiket)…" autocomplete="off">
                 <select id="tag" class="blog-select">
-                    <option value="">Tüm Etiketler</option>
+                    <option value="">Tüm başlıklar</option>
                 </select>
                 <div id="count" class="blog-count"></div>
             </div>
-            <div id="state" class="blog-state">Yazılar yükleniyor …</div>
+
+            <div id="state" class="blog-state" style="display:none;"></div>
             <section id="grid" class="blog-grid" aria-live="polite"></section>
+
         </section>
     </main>
 
     <div id="footer-placeholder"></div>
 
-    <!-- Contact Popup -->
+    <!-- İletişim Popup -->
     <div class="contact-overlay" id="contactOverlay">
         <div class="contact-popup">
             <button class="contact-close" type="button" aria-label="Kapat">✕</button>
+
             <div class="contact-header">
-                <h2>İletişime Geç</h2>
-                <p>24 saat içinde size geri döneceğiz.</p>
+                <h2>Bizimle iletişime geçin</h2>
+                <p>24 saat içinde size geri dönüş sağlıyoruz.</p>
+                <p style="margin-top:8px; font-size:0.85rem; opacity:0.8;">Mesajınız doğrudan DVA Verlag ekibine ulaşır.</p>
             </div>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true">
-                <input type="hidden" name="form-name" value="contact">
+
+            <form class="contact-form" name="contact-tr-blog" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact-tr-blog">
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Ad *</label>
@@ -88,179 +190,263 @@
                         <input type="text" name="nachname" required>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label>E-posta *</label>
                     <input type="email" name="email" required>
                 </div>
+
                 <div class="form-group">
                     <label>Telefon</label>
                     <input type="tel" name="telefon">
                 </div>
+
                 <div class="form-group">
-                    <label>Mesaj</label>
-                    <textarea name="nachricht" rows="5" placeholder="Projeniz hakkında bize anlatın..."></textarea>
+                    <label>Mesajınız</label>
+                    <textarea name="nachricht" rows="5" placeholder="Kitabınız hakkında bize anlatın…"></textarea>
                 </div>
+
                 <button type="submit" class="form-submit">Gönder</button>
             </form>
         </div>
     </div>
-    
-    <!-- Hidden Netlify Form -->
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="vorname" />
-        <input type="text" name="nachname" />
-        <input type="email" name="email" />
-        <input type="tel" name="telefon" />
+
+    <!-- Netlify form detection -->
+    <form name="contact-tr-blog" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
         <textarea name="nachricht"></textarea>
     </form>
 
+    <!-- JS -->
     <script type="module" src="../../assets/js/main.js"></script>
 
     <script>
-        const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?gid=164684917&output=csv";
-
-        const els = {
-            q: document.getElementById("q"),
-            tag: document.getElementById("tag"),
-            count: document.getElementById("count"),
-            state: document.getElementById("state"),
-            grid: document.getElementById("grid"),
-        };
-
-        let ALL = [];
-
-        function esc(str) {
-            return String(str ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+    /* ── Sabit gerçek yazılar (Google Sheet yüklenene kadar görünür) ── */
+    const STATIC_POSTS = [
+        {
+            slug: "kitap-yayimlama-sureci-nasil-ilerler",
+            title: "Kitap yayımlama süreci nasıl ilerler?",
+            excerpt: "Dosyanızı teslim ettiğiniz andan kitabınızın satışa açıldığı ana kadar her adımı net biçimde anlattık.",
+            date: "2026-03-01",
+            author: "DVA Verlag",
+            cover: "",
+            tags: ["Yayın süreci"]
+        },
+        {
+            slug: "editorluk-ile-son-okuma-arasindaki-fark",
+            title: "Editörlük ile son okuma arasındaki fark nedir?",
+            excerpt: "Pek çok yazar bu iki kavramı karıştırır. Hangisi ne zaman gereklidir, birlikte mi yoksa ayrı ayrı mı yapılmalıdır?",
+            date: "2026-02-15",
+            author: "DVA Verlag",
+            cover: "",
+            tags: ["Yayın süreci", "Yazar notları"]
+        },
+        {
+            slug: "kitabiniz-avrupada-nasil-gorunur-hale-gelir",
+            title: "Kitabınız Avrupa'da nasıl görünür hale gelir?",
+            excerpt: "ISBN kaydından Amazon listesine, dağıtım ağlarından çevrim içi platformlara — Avrupa'da görünürlük nasıl sağlanır?",
+            date: "2026-02-01",
+            author: "DVA Verlag",
+            cover: "",
+            tags: ["Duyurular", "Kitaplardan haberler"]
         }
-        function norm(s) { return String(s ?? "").toLowerCase().trim(); }
-        function splitTags(s) { return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean); }
+    ];
 
-        function parseCSV(text) {
-            const rows = []; let row = [], cur = "", inQuotes = false;
-            for(let i=0; i<text.length; i++) {
-                const c = text[i], n = text[i+1];
-                if(inQuotes) {
-                    if(c==='"'&&n==='"'){cur+='"';i++;} else if(c==='"'){inQuotes=false;} else{cur+=c;}
-                } else {
-                    if(c==='"'){inQuotes=true;} else if(c===","){row.push(cur);cur="";}
-                    else if(c==="\n"){row.push(cur);rows.push(row);row=[];cur="";}
-                    else if(c!=="\r"){cur+=c;}
-                }
+    const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?gid=164684917&single=true&output=csv";
+
+    const els = {
+        q:     document.getElementById("q"),
+        tag:   document.getElementById("tag"),
+        count: document.getElementById("count"),
+        state: document.getElementById("state"),
+        grid:  document.getElementById("grid"),
+    };
+
+    let ALL = [];
+    let activeCat = "";
+
+    function esc(str) {
+        return String(str ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+    }
+
+    function norm(s) { return String(s ?? "").toLowerCase().trim(); }
+
+    function splitTags(s) { return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean); }
+
+    function parseCSV(text) {
+        const rows = []; let row = [], cur = "", inQuotes = false;
+        for(let i=0; i<text.length; i++) {
+            const c=text[i], n=text[i+1];
+            if(inQuotes) {
+                if(c==='"'&&n==='"') { cur+='"'; i++; }
+                else if(c==='"') { inQuotes=false; }
+                else { cur+=c; }
+            } else {
+                if(c==='"') inQuotes=true;
+                else if(c===",") { row.push(cur); cur=""; }
+                else if(c==="\n") { row.push(cur); rows.push(row); row=[]; cur=""; }
+                else if(c!=="\r") cur+=c;
             }
-            row.push(cur); rows.push(row);
-            return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
         }
+        row.push(cur); rows.push(row);
+        return rows.filter(r => r.some(cell => String(cell).trim()!==""));
+    }
 
-        function fillTagDropdown(posts) {
-            const tags = new Set();
-            posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
-            const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b, "tr"));
-            els.tag.innerHTML = `<option value="">Tüm Etiketler</option>` +
-                sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
-        }
+    function fillTagDropdown(posts) {
+        const tags = new Set();
+        posts.forEach(p => (p.tags||[]).forEach(t => tags.add(t)));
+        const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b,"tr"));
+        els.tag.innerHTML =
+            `<option value="">Tüm başlıklar</option>` +
+            sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
+    }
 
-        function render(posts) {
-            if(!posts.length) {
-                els.grid.innerHTML = "";
-                els.state.textContent = "Yazı bulunamadı.";
-                els.state.style.display = "block";
-                els.count.textContent = "";
-                return;
+    function cardHTML(p) {
+        return `
+        <article class="blog-card">
+            ${p.cover
+                ? `<img class="blog-cover" src="${esc(p.cover)}" alt="${esc(p.title)}" loading="lazy">`
+                : `<div class="blog-cover" aria-hidden="true" style="background:rgba(176,141,87,0.06);"></div>`
             }
-            els.state.style.display = "none";
-            const n = posts.length;
-            els.count.textContent = n === 1 ? "1 yazı" : "{n} yazı".replace("{n}", n);
-            els.grid.innerHTML = posts.map(p => `
-                <article class="blog-card">
-                    ${p.cover
-                        ? `<img class="blog-cover" src="${esc(p.cover)}" alt="${esc(p.title)}">`
-                        : `<div class="blog-cover" aria-hidden="true"></div>`}
-                    <div class="blog-card-body">
-                        <div class="blog-meta">
-                            ${p.date ? `<span>${esc(p.date)}</span>` : ``}
-                            ${p.author ? `<span>·</span><span>${esc(p.author)}</span>` : ``}
-                            ${p.tags?.[0] ? `<span class="blog-pill" title="${esc(p.tags.join(", "))}">${esc(p.tags[0])}${p.tags.length>1?" +"+(p.tags.length-1):""}</span>` : ``}
-                        </div>
-                        <h2 class="blog-h2">${esc(p.title)}</h2>
-                        <p class="blog-excerpt">${esc(p.excerpt || "")}</p>
-                        <div class="blog-row">
-                            <a class="blog-btn" href="post.html?slug=${encodeURIComponent(p.slug)}">
-                                Oku <span aria-hidden="true">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            `).join("");
-        }
+            <div class="blog-card-body">
+                <div class="blog-meta">
+                    ${p.date   ? `<span>${esc(p.date)}</span>` : ""}
+                    ${p.author ? `<span>·</span><span>${esc(p.author)}</span>` : ""}
+                    ${p.tags?.[0]
+                        ? `<span class="blog-pill" title="${esc(p.tags.join(", "))}">${esc(p.tags[0])}${p.tags.length>1?" +"+(p.tags.length-1):""}</span>`
+                        : ""}
+                </div>
+                <h2 class="blog-h2">${esc(p.title)}</h2>
+                <p class="blog-excerpt">${esc(p.excerpt||"")}</p>
+                <div class="blog-row">
+                    <a class="blog-btn" href="post.html?slug=${encodeURIComponent(p.slug)}">
+                        Devamını oku <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+        </article>`;
+    }
 
-        function applyFilters() {
-            const q = norm(els.q.value), tag = els.tag.value;
-            let out = ALL;
-            if(tag) out = out.filter(p => (p.tags || []).includes(tag));
-            if(q) out = out.filter(p => norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" ")).includes(q));
-            render(out);
+    function render(posts) {
+        if(!posts.length) {
+            els.grid.innerHTML = "";
+            els.state.textContent = "Sonuç bulunamadı.";
+            els.state.style.display = "block";
+            els.count.textContent = "";
+            return;
         }
+        els.state.style.display = "none";
+        els.count.textContent = `${posts.length} yazı`;
+        els.grid.innerHTML = posts.map(cardHTML).join("");
+    }
 
-        (async function init() {
-            try {
-                els.state.textContent = "Yazılar yükleniyor …";
-                const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
-                const csv = await res.text();
-                const rows = parseCSV(csv);
-                if(rows.length < 2) throw new Error("CSV has no data rows");
-                const header = rows[0].map(h => norm(h));
-                const idx = name => header.indexOf(norm(name));
-                const posts = rows.slice(1).map(r => ({
-                    slug: r[idx("slug")]||"", title: r[idx("title")]||"",
-                    excerpt: r[idx("excerpt")]||r[idx("content")]||"",
-                    date: r[idx("date")]||"", author: r[idx("author")]||"",
-                    cover: r[idx("cover")]||"", tags: splitTags(r[idx("tags")]||""),
-                })).filter(p => p.slug && p.title);
-                posts.sort((a,b) => (b.date||"").localeCompare(a.date||""));
-                ALL = posts;
-                fillTagDropdown(ALL);
-                render(ALL);
-                els.q.addEventListener("input", applyFilters);
-                els.tag.addEventListener("change", applyFilters);
-            } catch(err) {
-                console.error(err);
-                els.grid.innerHTML = "";
-                els.state.style.display = "block";
-                els.state.textContent = "Yazılar yüklenirken hata oluştu. Kontrol edin: (1) Sheet 'Yayınlandı', (2) Başlık satırı slug,title,excerpt,content,date,author,cover,tags.";
-            }
-        })();
+    function applyFilters() {
+        const q   = norm(els.q.value);
+        const tag = els.tag.value;
+        let out = ALL;
+        if(activeCat) out = out.filter(p => (p.tags||[]).includes(activeCat));
+        if(tag)       out = out.filter(p => (p.tags||[]).includes(tag));
+        if(q)         out = out.filter(p => norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" ")).includes(q));
+        render(out);
+    }
+
+    /* Kategori butonları */
+    document.getElementById("categories").addEventListener("click", e => {
+        const btn = e.target.closest(".blog-cat-btn");
+        if(!btn) return;
+        document.querySelectorAll(".blog-cat-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        applyFilters();
+    });
+
+    /* Başlangıçta statik yazıları göster */
+    ALL = STATIC_POSTS;
+    fillTagDropdown(ALL);
+    render(ALL);
+
+    /* Sonra Google Sheet'ten yükle */
+    (async function loadSheet() {
+        try {
+            const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
+            const csv = await res.text();
+            if(csv.trim().startsWith("<")) return; // HTML döndü, sheet yayınlanmamış
+
+            const rows = parseCSV(csv);
+            if(rows.length < 2) return;
+
+            const header = rows[0].map(h => norm(h));
+            const idx = name => header.indexOf(norm(name));
+
+            const sheetPosts = rows.slice(1).map(r => ({
+                slug:   r[idx("slug")]||"",
+                title:  r[idx("title")]||"",
+                excerpt:r[idx("excerpt")]||r[idx("content")]||"",
+                date:   r[idx("date")]||"",
+                author: r[idx("author")]||"",
+                cover:  r[idx("cover")]||"",
+                tags:   splitTags(r[idx("tags")]||""),
+            })).filter(p => p.slug && p.title);
+
+            if(!sheetPosts.length) return;
+
+            sheetPosts.sort((a,b) => (b.date||"").localeCompare(a.date||""));
+            ALL = sheetPosts;
+            fillTagDropdown(ALL);
+            applyFilters();
+        } catch(err) {
+            console.warn("Google Sheet yüklenemedi, statik yazılar gösteriliyor:", err);
+        }
+    })();
+
+    els.q.addEventListener("input", applyFilters);
+    els.tag.addEventListener("change", applyFilters);
     </script>
 
+    <!-- Footer popup bağlantısı -->
     <script>
-        (async function() {
-            await new Promise(resolve => {
-                const check = setInterval(() => {
-                    if (document.querySelector('.footer-talk-btn')) { clearInterval(check); resolve(); }
-                }, 100);
-            });
-            const overlay = document.getElementById('contactOverlay');
-            const btns = [
-                document.getElementById('footerConfigBtn'),
-                document.getElementById('footerContactBtn'),
-                document.getElementById('footerConfiguratorBtn')
-            ].filter(Boolean);
-            if (overlay && btns.length > 0) {
-                btns.forEach(btn => btn.addEventListener('click', () => { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }));
-                const closeBtn = overlay.querySelector('.contact-close');
-                if (closeBtn) closeBtn.addEventListener('click', () => { overlay.classList.remove('is-open'); document.body.style.overflow = ''; });
-                overlay.addEventListener('click', e => { if (e.target === overlay) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; } });
-                document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; } });
-            }
-        })();
-    </script>
-    <script type="module">
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                import('../../assets/js/cursor-follower.js')
-                    .then(module => module.initCursorFollower())
-                    .catch(err => console.log('Cursor follower skipped:', err));
-            }, 500);
+    (async function() {
+        await new Promise(resolve => {
+            const t = setInterval(() => {
+                if(document.querySelector('.footer-talk-btn')) { clearInterval(t); resolve(); }
+            }, 100);
         });
+        const overlay = document.getElementById('contactOverlay');
+        const btns = ['footerConfigBtn','footerContactBtn','footerConfiguratorBtn']
+            .map(id => document.getElementById(id)).filter(Boolean);
+        if(overlay && btns.length) {
+            btns.forEach(btn => btn.addEventListener('click', () => {
+                overlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }));
+            const closeBtn = overlay.querySelector('.contact-close');
+            if(closeBtn) closeBtn.addEventListener('click', () => {
+                overlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            });
+            overlay.addEventListener('click', e => {
+                if(e.target === overlay) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; }
+            });
+            document.addEventListener('keydown', e => {
+                if(e.key === 'Escape' && overlay.classList.contains('is-open')) {
+                    overlay.classList.remove('is-open'); document.body.style.overflow = '';
+                }
+            });
+        }
+    })();
+    </script>
+
+    <script type="module">
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            import('../../assets/js/cursor-follower.js')
+                .then(m => m.initCursorFollower())
+                .catch(() => {});
+        }, 500);
+    });
     </script>
 
 </body>

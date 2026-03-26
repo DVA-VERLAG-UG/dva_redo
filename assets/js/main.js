@@ -42,7 +42,7 @@ const NAV = {
     { href: '/de/pakete.html',            label: 'Pakete'        },
     { href: '/de/konfigurator-page.html', label: 'Konfigurator'  },
     { href: '/de/kontakt.html',           label: 'Kontakt'       },
-    { href: '/de/blog/',                  label: 'Blog'          },
+    { href: '/de/blog-index.html',                  label: 'Blog'          },
   ],
   en: [
     { href: '/en/',                       label: 'Home'          },
@@ -51,7 +51,7 @@ const NAV = {
     { href: '/en/packages.html',          label: 'Packages'      },
     { href: '/en/configurator-page.html', label: 'Configurator'  },
     { href: '/en/contact.html',           label: 'Contact'       },
-    { href: '/en/blog/',                  label: 'Blog'          },
+    { href: '/en/blog-index.html',                  label: 'Blog'          },
   ],
   tr: [
     { href: '/tr/',                       label: 'Ana Sayfa'     },
@@ -60,7 +60,7 @@ const NAV = {
     { href: '/tr/paketler.html',          label: 'Paketler'      },
     { href: '/tr/yapilandirma.html',      label: 'Konfiguratör'  },
     { href: '/tr/iletisim.html',          label: 'İletişim'      },
-    { href: '/tr/blog/',                  label: 'Blog'          },
+    { href: '/tr/blog-index.html',                  label: 'Blog'          },
   ],
   fr: [
     { href: '/fr/',                       label: 'Accueil'       },
@@ -69,7 +69,7 @@ const NAV = {
     { href: '/fr/forfaits.html',          label: 'Forfaits'      },
     { href: '/fr/configuration.html',     label: 'Configurateur' },
     { href: '/fr/contact.html',           label: 'Contact'       },
-    { href: '/fr/blog/',                  label: 'Blog'          },
+    { href: '/fr/blog-index.html',                  label: 'Blog'          },
   ]
 };
 
