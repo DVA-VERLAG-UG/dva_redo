@@ -182,7 +182,7 @@ async function loadBlogEntries() {
     blogCache = rows.slice(1).map(r => ({
       title:       r[idx('title')]   || '',
       description: r[idx('excerpt')] || r[idx('content')] || '',
-      url:         '/' + getCurrentLanguage() + '/blog/post.html?slug=' + encodeURIComponent(r[idx('slug')] || ''),
+      url:         '/' + getCurrentLanguage() + '/post.html?slug=' + encodeURIComponent(r[idx('slug')] || ''),
       keywords:    (r[idx('tags')] || '').split(',').map(t => t.trim()).filter(Boolean),
       type:        'blog',
       date:        r[idx('date')] || '',
@@ -234,7 +234,7 @@ function findSection(entry, words) {
 function buildUrl(entry, query, section) {
   // Blog-Posts haben slug direkt in der URL, kein Anker nötig
   const base = entry.type === 'blog'
-    ? '/' + getCurrentLanguage() + '/blog/post.html?slug=' + encodeURIComponent(entry.slug) + '&q=' + encodeURIComponent(query)
+    ? '/' + getCurrentLanguage() + '/post.html?slug=' + encodeURIComponent(entry.slug) + '&q=' + encodeURIComponent(query)
     : (() => {
         const u = new URL(entry.url, window.location.origin);
         u.searchParams.set('q', query);

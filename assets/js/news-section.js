@@ -172,7 +172,7 @@ export function initNews() {
     if (!latest.length) return FALLBACK;
 
     return latest.map((p) => ({
-      href:  `/${lang}/blog/post.html?slug=${encodeURIComponent(p.slug)}`,
+      href:  `/${lang}/post.html?slug=${encodeURIComponent(p.slug)}`,
       tag:   p.tags?.[0] || "Update",
       date:  p.date || "",
       cover: p.cover
