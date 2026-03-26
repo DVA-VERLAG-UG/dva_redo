@@ -19,6 +19,14 @@
     fr: '../book_effekt/fr/index.html',
   };
 
+  // ── localStorage key per language (prevents cross-language contamination) ──
+  const STORAGE_KEY = {
+    de: 'buchkonfig_selections_de',
+    en: 'buchkonfig_selections_en',
+    tr: 'buchkonfig_selections_tr',
+    fr: 'buchkonfig_selections_fr',
+  };
+
   // ── UI strings per language ─────────────────────────────────────────────────
   const STRINGS = {
     de: {
@@ -39,11 +47,11 @@
     },
     tr: {
       close:       'Kapat',
-      title:       'Kitap Yapılandırıcı',
+      title:       'Yayın Konfigüratörü',
       countPlural: (n) => `${n} hizmet seçildi`,
       edit:        'Düzenle →',
-      emptyMsg:    'Henüz hizmet seçilmedi',
-      emptyHint:   '"Şimdi Yapılandır"a tıkla',
+      emptyMsg:    'Henüz bir seçim yapılmadı',
+      emptyHint:   'Başlamak için \'Şimdi başlayın\' seçeneğini kullanın',
     },
     fr: {
       close:       'Fermer',
@@ -57,9 +65,10 @@
 
   window.FlipbookPopup = {
     init: function(triggerSelector) {
-      this.lang = getLang();
-      this.s    = STRINGS[this.lang] || STRINGS.de;
-      this.src  = FLIPBOOK_URLS[this.lang] || FLIPBOOK_URLS.de;
+      this.lang       = getLang();
+      this.s          = STRINGS[this.lang] || STRINGS.de;
+      this.src        = FLIPBOOK_URLS[this.lang] || FLIPBOOK_URLS.de;
+      this.storageKey = STORAGE_KEY[this.lang] || STORAGE_KEY.de;
 
       this.buildHTML();
 
@@ -127,7 +136,8 @@
 
     handleMessage: function(event) {
       if (event.data && event.data.type === 'selectionUpdate') {
-        localStorage.setItem('buchkonfig_selections', JSON.stringify(event.data.selections));
+        // Sprachspezifischen Key verwenden — verhindert DE/TR Überschneidung
+        localStorage.setItem(this.storageKey, JSON.stringify(event.data.selections));
         this.displaySelections();
       }
       if (event.data && event.data.type === 'closePopup') {
@@ -140,7 +150,7 @@
       if (!container) return;
 
       try {
-        const data = localStorage.getItem('buchkonfig_selections');
+        const data = localStorage.getItem(this.storageKey);
         if (!data) { this._showEmpty(container); return; }
 
         const selections = JSON.parse(data);
