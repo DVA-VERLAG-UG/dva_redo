@@ -21,7 +21,7 @@
   width: 100%; max-width: 1700px; height: 100%;
   background-image: url("../images/index/library.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center 20%;
   background-repeat: no-repeat;
   opacity: 0.4;
   z-index: -2;
@@ -93,14 +93,14 @@ html[data-theme="dim"] .hero::after {
 }
 
 html[data-theme="dim"] .hero-title {
-  color: #B08D57;
-  -webkit-text-stroke: 0.5px rgba(176, 141, 87, 0.2);
+  color: #e8c97a;
+  -webkit-text-stroke: 0.5px rgba(232, 201, 122, 0.15);
 }
 
 /* Description — Inter */
 .hero-description {
   font-family: var(--font-body);
-  font-size: var(--text-lead);
+  font-size: 1.3rem;  /* war var(--text-lead) */
   font-weight: var(--weight-lead);
   font-style: normal;
   line-height: 1.7;
@@ -130,7 +130,7 @@ html[data-theme="dim"] .hero-description { color: rgba(245, 242, 237, 0.9); }
   border-bottom: 2px solid currentColor;
   color: #2C3E50;
   font-family: var(--font-body);
-  font-size: var(--text-lead);
+  font-size: 1.3rem;
   font-weight: var(--weight-button);
   font-style: italic; /* erlaubt: seltener Akzent */
   letter-spacing: 0.02em;
@@ -139,7 +139,7 @@ html[data-theme="dim"] .hero-description { color: rgba(245, 242, 237, 0.9); }
   transition: all 0.3s ease;
 }
 
-html[data-theme="dim"] .hero-cta-subtle { color: #B08D57; }
+html[data-theme="dim"] .hero-cta-subtle { color: #e8c97a; }
 
 .hero-cta-subtle:hover {
   color: #B08D57;
