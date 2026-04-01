@@ -398,3 +398,11 @@ input[disabled],
    Light Bronze: #d4b07a
    Cream/Beige:  #f5f3f0
    ========================================== */
+
+   /* ── DEBUG: rote Rahmen um alle Elemente ── */
+@media (max-width: 768px) {
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}

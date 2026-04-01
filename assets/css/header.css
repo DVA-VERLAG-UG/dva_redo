@@ -431,3 +431,15 @@ html[data-theme="dim"] .drawer-link:hover   { background: rgba(176, 141, 87, 0.1
   background: rgba(176, 141, 87, 0.15);
   color: #B08D57;
 }
+.site-header {
+  overflow: hidden;
+}
+
+.header-inner {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.search-dropdown {
+  max-width: 100%;
+}
