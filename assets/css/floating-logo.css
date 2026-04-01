@@ -131,7 +131,7 @@ html[data-theme="dim"] .floating-brand {
 @media (max-width: 520px) {
   .floating-brand {
     top: 16px; /* war: 0px */
-    left: 12px;
+    left: -3px;
   }
   .floating-brand-logo {
     width: 80px;
