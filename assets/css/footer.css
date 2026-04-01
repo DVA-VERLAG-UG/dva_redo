@@ -150,7 +150,13 @@ body { margin: 0; padding: 0; }
   color: #B08D57;
 }
 
-.dv-footer-brand img { height: 22px; width: auto; }
+/* ── Footer Logo — gleicher Crop wie floating logo ── */
+.dv-footer-brand img {
+  width: 80px;
+  height: 24px;          /* 30% von 80px */
+  object-fit: cover;
+  object-position: 50% 40%;
+}
 
 /* Legal links — Inter */
 .dv-footer-legal {
@@ -198,7 +204,7 @@ body { margin: 0; padding: 0; }
   font-family: var(--font-heading);
   font-size: clamp(4rem, 12vw, 10rem);
   font-weight: var(--weight-h2);
-  font-style: italic; /* erlaubt: seltener Akzent */
+  font-style: italic;
   color: #B08D57;
   background: none;
   border: none;
@@ -220,7 +226,7 @@ body { margin: 0; padding: 0; }
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.footer-talk-btn:hover      { color: #d4b07a; transform: translateY(-4px); }
+.footer-talk-btn:hover        { color: #d4b07a; transform: translateY(-4px); }
 .footer-talk-btn:hover::after { transform: scaleX(1); }
 .footer-talk-btn:active       { transform: translateY(-2px); }
 
@@ -243,6 +249,11 @@ body { margin: 0; padding: 0; }
   .dv-footer-grid  { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .footer-talk-btn { font-size: clamp(3rem, 10vw, 6rem); }
   .dv-footer-legal { flex-wrap: wrap; gap: 4px; }
+
+  .dv-footer-brand img {
+    width: 70px;
+    height: 21px; /* 30% von 70px */
+  }
 }
 
 @media (max-width: 480px) {
@@ -251,4 +262,9 @@ body { margin: 0; padding: 0; }
   .dv-footer-inner  { padding: 40px 20px 20px; }
   .dv-footer-bottom { flex-direction: column; align-items: flex-start; }
   .dv-footer-legal  { flex-wrap: wrap; }
+
+  .dv-footer-brand img {
+    width: 60px;
+    height: 18px; /* 30% von 60px */
+  }
 }
