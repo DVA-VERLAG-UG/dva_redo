@@ -74,7 +74,7 @@
         }
       });
     }, {
-      threshold: 0.5
+      threshold: 0.1
     });
     
     counters.forEach(counter => observer.observe(counter));
@@ -124,8 +124,20 @@
       });
     }, {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -20px 0px'
     });
+
+    counters.forEach(counter => observer.observe(counter));
+
+// NEU: Fallback nach 2 Sekunden
+setTimeout(() => {
+  counters.forEach(counter => {
+    if (!counter.classList.contains('counted')) {
+      counter.classList.add('counted');
+      animateCounter(counter);
+    }
+  });
+}, 2000);
     
     elements.forEach(el => {
       el.classList.add('reveal'); // Add class for CSS animation

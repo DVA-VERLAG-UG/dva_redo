@@ -141,7 +141,7 @@ html[data-theme="dim"] .review-book-title { color: rgba(176, 141, 87, 0.7); }
   font-size: var(--text-small);
   font-weight: var(--weight-body);
   line-height: 1.6; color: rgba(44, 62, 80, 0.8); margin-bottom: 16px;
-  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  display: block; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
 }
 
 html[data-theme="dim"] .review-text { color: rgba(245, 242, 237, 0.8); }
