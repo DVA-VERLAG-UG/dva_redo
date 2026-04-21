@@ -292,6 +292,7 @@ html[data-theme="dim"] .about-values { background: rgba(176, 141, 87, 0.05); }
   gap: 32px;
   padding: 0 20px 40px;
   min-width: min-content;
+  justify-content: center; /* ← neu */
 }
 
 .about-value-card {
