@@ -5,20 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DVAYD Publishing</title>
 
-  <!-- Primary redirect -->
   <script>
     (function () {
       const isGitHubPages = location.hostname.includes('github.io');
       const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
       const target = BASE_PATH + '/tr/index.html';
-
       if (!location.pathname.endsWith('/tr/index.html')) {
         location.replace(target);
       }
     })();
   </script>
 
-  <!-- Fallback for JS-disabled browsers -->
   <noscript>
     <meta http-equiv="refresh" content="0; url=/tr/index.html">
   </noscript>
@@ -58,12 +55,130 @@
       </a>
     </p>
   </div>
-    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+
+  <!-- ═══════════════════════════════════════════════════
+       NETLIFY FORM DETECTION
+       Alle Formularnamen die auf der Site verwendet werden
+       müssen hier als statische Dummy-Forms registriert sein
+       ═══════════════════════════════════════════════════ -->
+
+  <!-- DE / EN / TR / FR – Haupt-Kontaktformular -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
     <input type="text" name="vorname">
     <input type="text" name="nachname">
     <input type="email" name="email">
     <input type="tel" name="telefon">
     <textarea name="nachricht"></textarea>
   </form>
+
+  <!-- TR – Hakkımızda -->
+  <form name="contact-tr-hakkimizda" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- TR – Blog -->
+  <form name="contact-tr-blog" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- TR – Konfigurator -->
+  <form name="contact-tr-konfig" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- TR – İletişim -->
+  <form name="contact-tr" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <input type="text" name="betreff">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- EN – About -->
+  <form name="contact-en-about" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- EN – Contact -->
+  <form name="contact-en" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <input type="text" name="betreff">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- FR – À propos -->
+  <form name="contact-fr-apropos" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- FR – Contact -->
+  <form name="contact-fr" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <input type="text" name="betreff">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- DE – Kontakt -->
+  <form name="contact-de" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="vorname">
+    <input type="text" name="nachname">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <input type="text" name="betreff">
+    <textarea name="nachricht"></textarea>
+  </form>
+
+  <!-- Pakete / Packages -->
+  <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="package">
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <textarea name="message"></textarea>
+  </form>
+
+  <form name="package-selection-tr" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="package">
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <textarea name="message"></textarea>
+  </form>
+
+  <!-- Buchkonfigurator -->
+  <form name="buchkonfigurator" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name">
+    <input type="email" name="email">
+    <input type="tel" name="telefon">
+    <textarea name="nachricht"></textarea>
+    <textarea name="konfiguration"></textarea>
+  </form>
+
 </body>
 </html>
