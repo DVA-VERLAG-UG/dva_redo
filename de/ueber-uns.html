@@ -22,7 +22,6 @@
         })();
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/background.css">
     <link rel="stylesheet" href="../assets/css/header.css">
@@ -69,7 +68,6 @@
     
     <main class="about-main">
         
-        <!-- Hero -->
         <section class="about-hero" data-scroll-section>
             <div class="about-hero-bg" data-scroll data-scroll-speed="-2"></div>
             <div class="about-hero-content" data-scroll data-scroll-speed="1">
@@ -93,10 +91,8 @@
             </div>
         </section>
         
-        <!-- Story -->
         <section class="about-story" data-scroll-section>
             <div class="about-story-grid">
-                
                 <div class="about-story-text" data-scroll data-scroll-speed="0.5">
                     <span class="about-section-label">Die Geschichte</span>
                     <h2 class="about-section-title">
@@ -123,7 +119,6 @@
                         </p>
                     </div>
                 </div>
-                
                 <div class="about-story-media" data-scroll data-scroll-speed="1.5">
                     <div class="about-story-image" style="background-image: url('../assets/images/about/story-image.jpg');">
                         <div class="about-story-image-overlay"></div>
@@ -143,17 +138,14 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </section>
         
-        <!-- Values -->
         <section class="about-values" data-scroll-section>
             <div class="about-values-header" data-scroll data-scroll-speed="0.5">
                 <span class="about-section-label">Unsere Werte</span>
                 <h2 class="about-section-title">Wofür wir stehen</h2>
             </div>
-            
             <div class="about-values-scroll">
                 <div class="about-values-track">
                     <div class="about-value-card">
@@ -190,12 +182,10 @@
                         <h3>Qualität</h3>
                         <p>Premium-Druck auf internationalen High-Tech-Maschinen. Lektorat von Profis. Design, das im Regal auffällt.</p>
                     </div>
-                   
                 </div>
             </div>
         </section>
         
-        <!-- Team -->
         <section class="about-team" data-scroll-section>
             <div class="about-team-container">
                 <div class="about-team-header" data-scroll data-scroll-speed="0.5">
@@ -246,7 +236,6 @@
             </div>
         </section>
         
-        <!-- Locations -->
         <section class="about-locations" data-scroll-section>
             <div class="about-locations-header" data-scroll data-scroll-speed="0.5">
                 <span class="about-section-label">Standorte</span>
@@ -291,7 +280,6 @@
             </div>
         </section>
         
-        <!-- CTA -->
         <section class="about-cta" data-scroll-section>
             <div class="about-cta-content" data-scroll data-scroll-speed="0.5">
                 <h2>Bereit, deine Geschichte zu erzählen?</h2>
@@ -322,7 +310,8 @@
                 <h2>Kontakt aufnehmen</h2>
                 <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
             </div>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
+            <form class="contact-form" id="contactForm" name="contact" novalidate>
                 <input type="hidden" name="form-name" value="contact">
                 <div class="form-row">
                     <div class="form-group">
@@ -346,16 +335,26 @@
                     <label>Nachricht</label>
                     <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
                 </div>
-                <button type="submit" class="form-submit">Absenden</button>
+                <button type="submit" class="form-submit" id="cf-submit">Absenden</button>
+                <div class="form-message" id="cf-message" style="display:none;"></div>
             </form>
         </div>
     </div>
+
+    <!-- Netlify Form Detection (statisch für Build-Scan) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
+        <textarea name="nachricht"></textarea>
+    </form>
     
     <!-- JavaScript -->
     <script type="module" src="../assets/js/main.js"></script>
     <script src="../assets/js/about-page-optimized.js"></script>
     
-    <!-- Counter Fallback — garantiert nach 1.5s -->
+    <!-- Counter Fallback -->
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -382,33 +381,100 @@
         });
     </script>
 
-    <!-- Contact Popup Script -->
+    <!-- Contact Popup: Open/Close -->
     <script>
-        const aboutContactBtn = document.getElementById('aboutContactBtn');
-        const contactOverlay = document.getElementById('contactOverlay');
-        const contactClose = contactOverlay?.querySelector('.contact-close');
-        
-        aboutContactBtn?.addEventListener('click', () => {
-            contactOverlay.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-        });
-        contactClose?.addEventListener('click', () => {
-            contactOverlay.classList.remove('is-open');
-            document.body.style.overflow = '';
-        });
-        contactOverlay?.addEventListener('click', (e) => {
-            if (e.target === contactOverlay) {
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactOverlay = document.getElementById('contactOverlay');
+            const closeBtn       = contactOverlay?.querySelector('.contact-close');
+
+            window.openContact = function() {
+                contactOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeContact = function() {
                 contactOverlay.classList.remove('is-open');
                 document.body.style.overflow = '';
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && contactOverlay?.classList.contains('is-open')) {
-                contactOverlay.classList.remove('is-open');
-                document.body.style.overflow = '';
-            }
+            };
+
+            document.getElementById('aboutContactBtn')?.addEventListener('click', window.openContact);
+            closeBtn?.addEventListener('click', window.closeContact);
+            contactOverlay?.addEventListener('click', e => {
+                if (e.target === contactOverlay) window.closeContact();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') window.closeContact();
+            });
         });
     </script>
-    
+
+    <!-- Contact Popup: AJAX Submit -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form      = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const vorname  = form.querySelector('[name="vorname"]');
+                const nachname = form.querySelector('[name="nachname"]');
+                const email    = form.querySelector('[name="email"]');
+
+                let valid = true;
+                [vorname, nachname, email].forEach(el => {
+                    el.style.borderColor = '';
+                    if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    email.style.borderColor = '#c0392b'; valid = false;
+                }
+                if (!valid) {
+                    msgBox.textContent = 'Bitte fülle alle Pflichtfelder korrekt aus.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Wird gesendet...';
+                msgBox.style.display = 'none';
+
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact');
+
+                fetch(window.location.pathname, {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.textContent = '✓ Gesendet!';
+                    submitBtn.style.background = '#4a7c59';
+                    msgBox.textContent = 'Vielen Dank! Wir melden uns innerhalb von 24 Stunden.';
+                    msgBox.className = 'form-message success';
+                    msgBox.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        window.closeContact();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Absenden';
+                        submitBtn.style.background = '';
+                        msgBox.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Absenden';
+                    msgBox.textContent = 'Fehler beim Senden. Bitte versuche es erneut.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

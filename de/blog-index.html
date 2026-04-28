@@ -6,13 +6,11 @@
     
     <title>Blog | DVAYD Publishing</title>
     <meta name="description" content="Blog – Beiträge, Updates und Insights von DVAYD Publishing.">
-    <link rel="canonical" href="https://yoursite.com/de/blog/">
+    <link rel="canonical" href="https://dva-yd.com/de/blog/">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../../assets/images/branding/favicon.png">
     <link rel="apple-touch-icon" href="../../assets/images/branding/favicon.png">
     
-    <!-- Apply theme immediately -->
     <script>
         (function() {
             try {
@@ -24,7 +22,6 @@
         })();
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../../assets/css/global.css">
     <link rel="stylesheet" href="../../assets/css/background.css">
     <link rel="stylesheet" href="../../assets/css/header.css">
@@ -37,7 +34,6 @@
 <body class="no-curtain">
 
     <style>
-    /* CRITICAL: Block curtain completely on this page */
     body.no-curtain::before,
     body.no-curtain::after,
     body.no-curtain .curtain,
@@ -63,18 +59,14 @@
       visibility: hidden !important;
     }
     </style>
-    
-    
-    <!-- Floating Logo -->
+
     <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
         <img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
     
-    <!-- Header -->
     <div id="header-placeholder"></div>
     
-    <!-- Main Content -->
     <main>
         <section class="blog-wrap">
             <div class="blog-hero">
@@ -97,22 +89,19 @@
         </section>
     </main>
     
-    <!-- Footer -->
     <div id="footer-placeholder"></div>
     
     <!-- Contact Popup -->
     <div class="contact-overlay" id="contactOverlay">
         <div class="contact-popup">
             <button class="contact-close" type="button" aria-label="Schließen">✕</button>
-            
             <div class="contact-header">
                 <h2>Kontakt aufnehmen</h2>
                 <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
             </div>
-            
-            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
+            <form class="contact-form" id="contactForm" name="contact" novalidate>
                 <input type="hidden" name="form-name" value="contact">
-                
                 <div class="form-row">
                     <div class="form-group">
                         <label>Vorname *</label>
@@ -123,33 +112,30 @@
                         <input type="text" name="nachname" required>
                     </div>
                 </div>
-                
                 <div class="form-group">
                     <label>E-Mail *</label>
                     <input type="email" name="email" required>
                 </div>
-                
                 <div class="form-group">
                     <label>Telefon</label>
                     <input type="tel" name="telefon">
                 </div>
-                
                 <div class="form-group">
                     <label>Nachricht</label>
                     <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
                 </div>
-                
-                <button type="submit" class="form-submit">Absenden</button>
+                <button type="submit" class="form-submit" id="cf-submit">Absenden</button>
+                <div class="form-message" id="cf-message" style="display:none;"></div>
             </form>
         </div>
     </div>
-    
-    <!-- Hidden Netlify Form -->
+
+    <!-- Netlify Form Detection -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="vorname" />
-        <input type="text" name="nachname" />
-        <input type="email" name="email" />
-        <input type="tel" name="telefon" />
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
         <textarea name="nachricht"></textarea>
     </form>
     
@@ -161,11 +147,11 @@
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?output=csv";
         
         const els = {
-            q: document.getElementById("q"),
-            tag: document.getElementById("tag"),
+            q:     document.getElementById("q"),
+            tag:   document.getElementById("tag"),
             count: document.getElementById("count"),
             state: document.getElementById("state"),
-            grid: document.getElementById("grid"),
+            grid:  document.getElementById("grid"),
         };
         
         let ALL = [];
@@ -175,25 +161,14 @@
                 "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
             }[m]));
         }
-        
-        function norm(s) {
-            return String(s ?? "").toLowerCase().trim();
-        }
-        
-        function splitTags(s) {
-            return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean);
-        }
+        function norm(s) { return String(s ?? "").toLowerCase().trim(); }
+        function splitTags(s) { return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean); }
         
         function parseCSV(text) {
             const rows = [];
-            let row = [];
-            let cur = "";
-            let inQuotes = false;
-            
+            let row = [], cur = "", inQuotes = false;
             for(let i=0; i<text.length; i++) {
-                const c = text[i];
-                const n = text[i+1];
-                
+                const c = text[i], n = text[i+1];
                 if(inQuotes) {
                     if(c === '"' && n === '"') { cur += '"'; i++; }
                     else if(c === '"') { inQuotes = false; }
@@ -215,9 +190,7 @@
             const tags = new Set();
             posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
             const sorted = Array.from(tags).sort((a,b) => a.localeCompare(b, "de"));
-            
-            els.tag.innerHTML = 
-                `<option value="">Alle Tags</option>` +
+            els.tag.innerHTML = `<option value="">Alle Tags</option>` +
                 sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
         }
         
@@ -229,10 +202,8 @@
                 els.count.textContent = "";
                 return;
             }
-            
             els.state.style.display = "none";
             els.count.textContent = `${posts.length} Beitrag${posts.length === 1 ? "" : "e"}`;
-            
             els.grid.innerHTML = posts.map(p => `
                 <article class="blog-card">
                     ${p.cover
@@ -241,19 +212,17 @@
                     }
                     <div class="blog-card-body">
                         <div class="blog-meta">
-                            ${p.date ? `<span>${esc(p.date)}</span>` : ``}
+                            ${p.date   ? `<span>${esc(p.date)}</span>` : ``}
                             ${p.author ? `<span>·</span><span>${esc(p.author)}</span>` : ``}
                             ${p.tags?.[0]
                                 ? `<span class="blog-pill" title="${esc(p.tags.join(", "))}">
                                     ${esc(p.tags[0])}${p.tags.length>1 ? " +" + (p.tags.length-1) : ""}
-                                </span>`
+                                  </span>`
                                 : ``
                             }
                         </div>
-                        
                         <h2 class="blog-h2">${esc(p.title)}</h2>
                         <p class="blog-excerpt">${esc(p.excerpt || "")}</p>
-                        
                         <div class="blog-row">
                             <a class="blog-btn" href="post.html?slug=${encodeURIComponent(p.slug)}">
                                 Lesen <span aria-hidden="true">→</span>
@@ -265,120 +234,137 @@
         }
         
         function applyFilters() {
-            const q = norm(els.q.value);
+            const q   = norm(els.q.value);
             const tag = els.tag.value;
-            
             let out = ALL;
-            
-            if(tag) {
-                out = out.filter(p => (p.tags || []).includes(tag));
-            }
-            if(q) {
-                out = out.filter(p => {
-                    const hay = norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" "));
-                    return hay.includes(q);
-                });
-            }
-            
+            if(tag) out = out.filter(p => (p.tags || []).includes(tag));
+            if(q)   out = out.filter(p => {
+                const hay = norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" "));
+                return hay.includes(q);
+            });
             render(out);
         }
         
         (async function init() {
             try {
                 els.state.textContent = "Lade Beiträge …";
-                
                 const res = await fetch(SHEET_CSV_URL, { cache: "no-store" });
                 const csv = await res.text();
-                
                 const rows = parseCSV(csv);
                 if(rows.length < 2) throw new Error("CSV has no data rows");
-                
                 const header = rows[0].map(h => norm(h));
                 const idx = (name) => header.indexOf(norm(name));
-                
                 const posts = rows.slice(1).map(r => ({
-                    slug:   r[idx("slug")] || "",
-                    title:  r[idx("title")] || "",
-                    excerpt:r[idx("excerpt")] || r[idx("content")] || "",
-                    date:   r[idx("date")] || "",
-                    author: r[idx("author")] || "",
-                    cover:  r[idx("cover")] || "",
-                    tags:   splitTags(r[idx("tags")] || ""),
+                    slug:    r[idx("slug")]    || "",
+                    title:   r[idx("title")]   || "",
+                    excerpt: r[idx("excerpt")] || r[idx("content")] || "",
+                    date:    r[idx("date")]    || "",
+                    author:  r[idx("author")]  || "",
+                    cover:   r[idx("cover")]   || "",
+                    tags:    splitTags(r[idx("tags")] || ""),
                 })).filter(p => p.slug && p.title);
-                
                 posts.sort((a,b) => (b.date || "").localeCompare(a.date || ""));
-                
                 ALL = posts;
                 fillTagDropdown(ALL);
                 render(ALL);
-                
                 els.q.addEventListener("input", applyFilters);
                 els.tag.addEventListener("change", applyFilters);
-                
             } catch(err) {
                 console.error(err);
                 els.grid.innerHTML = "";
                 els.state.style.display = "block";
-                els.state.textContent = "Fehler beim Laden der Beiträge. Prüfe: (1) Sheet ist 'Published', (2) Header heißt slug,title,excerpt,content,date,author,cover,tags.";
+                els.state.textContent = "Fehler beim Laden der Beiträge.";
             }
         })();
     </script>
-    
-    <!-- Footer Contact Popup Setup -->
+
+    <!-- Contact Popup: Open/Close + AJAX Submit -->
     <script>
-        // Wait for footer to load, then setup contact popup
-        (async function() {
-            // Wait for footer
-            await new Promise(resolve => {
-                const checkFooter = setInterval(() => {
-                    if (document.querySelector('.footer-talk-btn')) {
-                        clearInterval(checkFooter);
-                        resolve();
-                    }
-                }, 100);
-            });
-            
-            // Setup contact popup
+        document.addEventListener('DOMContentLoaded', () => {
             const contactOverlay = document.getElementById('contactOverlay');
-            const footerButtons = [
-                document.getElementById('footerConfigBtn'),
-                document.getElementById('footerContactBtn'),
-                document.getElementById('footerConfiguratorBtn')
-            ].filter(Boolean);
-            
-            if (contactOverlay && footerButtons.length > 0) {
-                footerButtons.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        contactOverlay.classList.add('is-open');
-                        document.body.style.overflow = 'hidden';
-                    });
+            const form      = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
+            const closeBtn  = contactOverlay?.querySelector('.contact-close');
+
+            window.openContact = function() {
+                contactOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeContact = function() {
+                contactOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            };
+
+            closeBtn?.addEventListener('click', window.closeContact);
+            contactOverlay?.addEventListener('click', e => {
+                if (e.target === contactOverlay) window.closeContact();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') window.closeContact();
+            });
+
+            // AJAX Submit
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const vorname  = form.querySelector('[name="vorname"]');
+                const nachname = form.querySelector('[name="nachname"]');
+                const email    = form.querySelector('[name="email"]');
+
+                let valid = true;
+                [vorname, nachname, email].forEach(el => {
+                    el.style.borderColor = '';
+                    if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
                 });
-                
-                const closeBtn = contactOverlay.querySelector('.contact-close');
-                if (closeBtn) {
-                    closeBtn.addEventListener('click', () => {
-                        contactOverlay.classList.remove('is-open');
-                        document.body.style.overflow = '';
-                    });
+                if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    email.style.borderColor = '#c0392b'; valid = false;
                 }
-                
-                contactOverlay.addEventListener('click', (e) => {
-                    if (e.target === contactOverlay) {
-                        contactOverlay.classList.remove('is-open');
-                        document.body.style.overflow = '';
-                    }
+                if (!valid) {
+                    msgBox.textContent = 'Bitte fülle alle Pflichtfelder korrekt aus.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Wird gesendet...';
+                msgBox.style.display = 'none';
+
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact');
+
+                fetch(window.location.pathname, {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.textContent = '✓ Gesendet!';
+                    submitBtn.style.background = '#4a7c59';
+                    msgBox.textContent = 'Vielen Dank! Wir melden uns innerhalb von 24 Stunden.';
+                    msgBox.className = 'form-message success';
+                    msgBox.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        window.closeContact();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Absenden';
+                        submitBtn.style.background = '';
+                        msgBox.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Absenden';
+                    msgBox.textContent = 'Fehler beim Senden. Bitte versuche es erneut.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
                 });
-                
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && contactOverlay.classList.contains('is-open')) {
-                        contactOverlay.classList.remove('is-open');
-                        document.body.style.overflow = '';
-                    }
-                });
-                
-                console.log(`✅ ${footerButtons.length} footer button(s) connected to contact popup`);
-            }
-        })();
+            });
+        });
     </script>
     
     <!-- Cursor Follower -->

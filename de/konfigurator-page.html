@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konfigurator | DVAYD Publishing</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
     <link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
     
@@ -28,12 +27,10 @@
     <link rel="stylesheet" href="../assets/css/konfigurator-page.css">
     <link rel="stylesheet" href="../assets/css/contact-popup.css">
     <link rel="stylesheet" href="../assets/css/flipbook-popup.css">
-    <!-- ✅ config-display.css ENTFERNT - jetzt in flipbook-popup.css enthalten -->
 </head>
 <body class="no-curtain">
 
     <style>
-    /* CRITICAL: Block curtain completely on this page */
     body.no-curtain::before,
     body.no-curtain::after,
     body.no-curtain .curtain,
@@ -59,21 +56,16 @@
       visibility: hidden !important;
     }
     </style>
-    
-    
-    <!-- Particle Canvas for Background -->
+
     <canvas id="particle-canvas"></canvas>
     
-    <!-- Floating Logo -->
     <a href="index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
         <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
     
-    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
     
-    <!-- Hero -->
     <section class="konfig-hero">
         <div class="konfig-hero-container">
             <p class="konfig-kicker">PAKETE & KONFIGURATOR</p>
@@ -81,7 +73,6 @@
             <p class="konfig-hero-subtitle">
                 Wähle ein Paket oder stelle dir deine individuelle Lösung zusammen.
             </p>
-            
             <div class="konfig-hero-cta">
                 <button class="konfig-hero-cta-btn" id="heroContactBtn">
                     Kontakt aufnehmen
@@ -90,7 +81,6 @@
         </div>
     </section>
     
-    <!-- Trust -->
     <section class="konfig-trust">
         <div class="konfig-container-full">
             <p class="konfig-trust-ticker">
@@ -99,7 +89,6 @@
         </div>
     </section>
     
-    <!-- Main Content -->
     <main class="konfig-main">
         <section class="konfig-packages">
             <div class="konfig-container">
@@ -256,7 +245,6 @@
         </section>
     </main>
     
-    <!-- Footer -->
     <div id="footer-placeholder"></div>
     
     <!-- Contact Popup -->
@@ -267,7 +255,8 @@
                 <h2>Kontakt aufnehmen</h2>
                 <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
             </div>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
+            <form class="contact-form" id="contactForm" name="contact" novalidate>
                 <input type="hidden" name="form-name" value="contact">
                 <div class="form-row">
                     <div class="form-group">
@@ -291,55 +280,38 @@
                     <label>Nachricht</label>
                     <textarea name="nachricht" rows="5" placeholder="Erzähl uns von deinem Projekt..."></textarea>
                 </div>
-                <button type="submit" class="form-submit">Absenden</button>
+                <button type="submit" class="form-submit" id="cf-submit">Absenden</button>
+                <div class="form-message" id="cf-message" style="display:none;"></div>
             </form>
         </div>
     </div>
-    
-    <!-- Hidden Netlify Forms -->
-    <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="package" />
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <textarea name="message"></textarea>
-    </form>
+
+    <!-- Netlify Form Detection (hidden, statisch für Build-Scan) -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="vorname" />
-        <input type="text" name="nachname" />
-        <input type="email" name="email" />
-        <input type="tel" name="telefon" />
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
         <textarea name="nachricht"></textarea>
     </form>
-    <!-- Hidden Netlify Forms -->
-<form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="package" />
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <textarea name="message"></textarea>
-</form>
-
-<!-- ✅ NEU: Buchkonfigurator Form -->
-<form name="buchkonfigurator" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <input type="tel" name="telefon" />
-    <textarea name="nachricht"></textarea>
-    <textarea name="konfiguration"></textarea>
-</form>
-
-<form name="contact" netlify netlify-honeypot="bot-field" hidden>
-    <input type="text" name="vorname" />
-    <input type="text" name="nachname" />
-    <input type="email" name="email" />
-    <input type="tel" name="telefon" />
-    <textarea name="nachricht"></textarea>
-</form>
+    <form name="package-selection" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="package">
+        <input type="text" name="name">
+        <input type="email" name="email">
+        <textarea name="message"></textarea>
+    </form>
+    <form name="buchkonfigurator" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
+        <textarea name="nachricht"></textarea>
+        <textarea name="konfiguration"></textarea>
+    </form>
     
     <!-- Scripts -->
     <script type="module" src="../assets/js/main.js"></script>
     <script type="module" src="../assets/js/konfigurator-page.js"></script>
     
-    <!-- Background Script -->
     <script>
         window.addEventListener('load', () => {
             const canvas = document.getElementById('particle-canvas');
@@ -351,43 +323,154 @@
         });
     </script>
     
-    <!-- Contact Popup Setup -->
+    <!-- Contact Popup: Open/Close -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const contactOverlay = document.getElementById('contactOverlay');
-            const heroBtn = document.getElementById('heroContactBtn');
-            const closeBtn = contactOverlay?.querySelector('.contact-close');
-            
-            if (heroBtn && contactOverlay) {
-                heroBtn.addEventListener('click', () => {
-                    contactOverlay.classList.add('is-open');
-                    document.body.style.overflow = 'hidden';
-                });
-            }
-            
-            if (closeBtn && contactOverlay) {
-                closeBtn.addEventListener('click', () => {
-                    contactOverlay.classList.remove('is-open');
-                    document.body.style.overflow = '';
-                });
-            }
-            
-            contactOverlay?.addEventListener('click', (e) => {
-                if (e.target === contactOverlay) {
-                    contactOverlay.classList.remove('is-open');
-                    document.body.style.overflow = '';
-                }
+            const heroBtn        = document.getElementById('heroContactBtn');
+            const closeBtn       = contactOverlay?.querySelector('.contact-close');
+
+            window.openContact = function() {
+                contactOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeContact = function() {
+                contactOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            };
+
+            heroBtn?.addEventListener('click', window.openContact);
+            closeBtn?.addEventListener('click', window.closeContact);
+            contactOverlay?.addEventListener('click', e => {
+                if (e.target === contactOverlay) window.closeContact();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') window.closeContact();
             });
         });
     </script>
 
-    <!-- Flipbook Popup JS -->
+    <!-- Contact Popup: AJAX Submit -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form      = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const vorname  = form.querySelector('[name="vorname"]');
+                const nachname = form.querySelector('[name="nachname"]');
+                const email    = form.querySelector('[name="email"]');
+
+                let valid = true;
+                [vorname, nachname, email].forEach(el => {
+                    el.style.borderColor = '';
+                    if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    email.style.borderColor = '#c0392b'; valid = false;
+                }
+                if (!valid) {
+                    msgBox.textContent = 'Bitte fülle alle Pflichtfelder korrekt aus.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Wird gesendet...';
+                msgBox.style.display = 'none';
+
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact');
+
+                fetch(window.location.pathname, {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.textContent = '✓ Gesendet!';
+                    submitBtn.style.background = '#4a7c59';
+                    msgBox.textContent = 'Vielen Dank! Wir melden uns innerhalb von 24 Stunden.';
+                    msgBox.className = 'form-message success';
+                    msgBox.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        window.closeContact();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Absenden';
+                        submitBtn.style.background = '';
+                        msgBox.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Absenden';
+                    msgBox.textContent = 'Fehler beim Senden. Bitte versuche es erneut.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                });
+            });
+        });
+    </script>
+
+    <!-- Package Forms: AJAX Submit -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.quick-contact-form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const submitBtn = form.querySelector('.btn-quick-submit');
+                    const nameEl    = form.querySelector('[name="name"]');
+                    const emailEl   = form.querySelector('[name="email"]');
+
+                    let valid = true;
+                    [nameEl, emailEl].forEach(el => {
+                        el.style.borderColor = '';
+                        if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+                    });
+                    if (!valid) return;
+
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Wird gesendet...';
+
+                    const params = new URLSearchParams(new FormData(form));
+                    params.set('form-name', 'package-selection');
+
+                    fetch(window.location.pathname, {
+                        method:  'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body:    params.toString()
+                    })
+                    .then(res => {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        submitBtn.textContent = '✓ Gesendet!';
+                        submitBtn.style.background = '#4a7c59';
+                        form.reset();
+                    })
+                    .catch(err => {
+                        console.error('Package form error:', err);
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Anfrage senden';
+                    });
+                });
+            });
+        });
+    </script>
+
+    <!-- Flipbook Popup -->
     <script src="../assets/js/flipbook-popup.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        FlipbookPopup.init('#openConfigBtn');
-      });
+        document.addEventListener('DOMContentLoaded', () => {
+            FlipbookPopup.init('#openConfigBtn');
+        });
     </script>
-    
+
 </body>
 </html>
