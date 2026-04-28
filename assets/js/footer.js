@@ -8,7 +8,6 @@ const FOOTER_CONTENT = {
     knowledge:    'Wissen',
     contact:      'Kontakt',
     tagline:      'Deutschland \u2194 T\u00fcrkei \u00b7 Pers\u00f6nliche Betreuung \u00b7 100% Autorenrechte',
-    configurator: 'Konfigurator',
     privacy:      'Datenschutz',
     privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'Impressum',
@@ -18,11 +17,11 @@ const FOOTER_CONTENT = {
     widerruf:     'Widerruf',
     widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
-      { href: '/de/',               label: 'Start'         },
-      { href: '/de/ueber-uns.html', label: '\u00dcber uns' },
-      { href: '/de/projekte.html',  label: 'Projekte'      },
-      { href: '/de/pakete.html',    label: 'Pakete'        },
-      { href: '/de/kontakt.html',   label: 'Kontakt'       },
+      { href: '/de/',                       label: 'Start'         },
+      { href: '/de/ueber-uns.html',         label: '\u00dcber uns' },
+      { href: '/de/konfigurator-page.html', label: 'Konfigurator'  },
+      { href: '/de/kontakt.html',           label: 'Kontakt'       },
+      { href: '/de/blog-index.html',        label: 'Blog'          },
     ],
     serviceLinks: [
       'Manuskript-Check',
@@ -32,10 +31,10 @@ const FOOTER_CONTENT = {
       'Marketing',
     ],
     knowledgeLinks: [
-      { href: '/de/blog/',          label: 'Blog'       },
-      { href: '/de/faq/',           label: 'FAQ'        },
-      { href: '/de/prozess/',       label: 'Ablauf'     },
-      { href: '/de/projekte.html',  label: 'Referenzen' },
+      { href: '/de/blog-index.html', label: 'Blog'       },
+      { href: '/de/kontakt.html',    label: 'Kontakt'    },
+      { href: '/de/impressum.html',  label: 'Impressum'  },
+      { href: '/de/agb.html',        label: 'AGB'        },
     ],
   },
   en: {
@@ -45,7 +44,6 @@ const FOOTER_CONTENT = {
     knowledge:    'Resources',
     contact:      'Contact',
     tagline:      'Germany \u2194 Turkey \u00b7 Personal support \u00b7 100% author rights',
-    configurator: 'Configurator',
     privacy:      'Privacy Policy',
     privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'Imprint',
@@ -55,11 +53,11 @@ const FOOTER_CONTENT = {
     widerruf:     'Cancellation Policy',
     widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
-      { href: '/en/',               label: 'Home'      },
-      { href: '/en/about.html',     label: 'About Us'  },
-      { href: '/en/projects.html',  label: 'Projects'  },
-      { href: '/en/packages.html',  label: 'Packages'  },
-      { href: '/en/contact.html',   label: 'Contact'   },
+      { href: '/en/',                       label: 'Home'          },
+      { href: '/en/about.html',             label: 'About Us'      },
+      { href: '/en/configurator-page.html', label: 'Configurator'  },
+      { href: '/en/contact.html',           label: 'Contact'       },
+      { href: '/en/blog-index.html',        label: 'Blog'          },
     ],
     serviceLinks: [
       'Manuscript Review',
@@ -69,10 +67,10 @@ const FOOTER_CONTENT = {
       'Marketing',
     ],
     knowledgeLinks: [
-      { href: '/en/blog/',          label: 'Blog'       },
-      { href: '/en/faq/',           label: 'FAQ'        },
-      { href: '/en/process/',       label: 'Process'    },
-      { href: '/en/projects.html',  label: 'References' },
+      { href: '/en/blog-index.html', label: 'Blog'    },
+      { href: '/en/contact.html',    label: 'Contact' },
+      { href: '/de/impressum.html',  label: 'Imprint' },
+      { href: '/de/agb.html',        label: 'AGB'     },
     ],
   },
   tr: {
@@ -82,21 +80,20 @@ const FOOTER_CONTENT = {
     knowledge:    'Kaynaklar',
     contact:      '\u0130leti\u015fim',
     tagline:      'Almanya \u2194 T\u00fcrkiye \u00b7 Ki\u015fisel destek \u00b7 %100 yazar haklar\u0131',
-    configurator: 'Konfigurat\u00f6r',
     privacy:      'Gizlilik Politikas\u0131',
     privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'K\u00fcnye',
     imprintHref:  '/de/impressum.html',
     agb:          'AGB',
     agbHref:      '/de/agb.html',
-    widerruf:     'İptal Politikası',
+    widerruf:     '\u0130ptal Politikas\u0131',
     widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
-      { href: '/tr/',                label: 'Ana Sayfa'               },
-      { href: '/tr/hakkimizda.html', label: 'Hakk\u0131m\u0131zda'   },
-      { href: '/tr/projeler.html',   label: 'Projeler'                },
-      { href: '/tr/paketler.html',   label: 'Paketler'                },
-      { href: '/tr/iletisim.html',   label: '\u0130leti\u015fim'      },
+      { href: '/tr/',                  label: 'Ana Sayfa'             },
+      { href: '/tr/hakkimizda.html',   label: 'Hakk\u0131m\u0131zda' },
+      { href: '/tr/yapilandirma.html', label: 'Konfigurat\u00f6r'    },
+      { href: '/tr/iletisim.html',     label: '\u0130leti\u015fim'   },
+      { href: '/tr/blog-index.html',   label: 'Blog'                 },
     ],
     serviceLinks: [
       'El Yazmas\u0131 \u0130ncelemesi',
@@ -106,10 +103,10 @@ const FOOTER_CONTENT = {
       'Pazarlama',
     ],
     knowledgeLinks: [
-      { href: '/tr/blog/',           label: 'Blog'              },
-      { href: '/tr/faq/',            label: 'SSS'               },
-      { href: '/tr/surec/',          label: 'S\u00fcre\u00e7'  },
-      { href: '/tr/projeler.html',   label: 'Referanslar'       },
+      { href: '/tr/blog-index.html', label: 'Blog'               },
+      { href: '/tr/iletisim.html',   label: '\u0130leti\u015fim'  },
+      { href: '/de/impressum.html',  label: 'K\u00fcnye'         },
+      { href: '/de/agb.html',        label: 'AGB'                },
     ],
   },
   fr: {
@@ -119,7 +116,6 @@ const FOOTER_CONTENT = {
     knowledge:    'Ressources',
     contact:      'Contact',
     tagline:      "Allemagne \u2194 Turquie \u00b7 Suivi personnalis\u00e9 \u00b7 100% droits d'auteur",
-    configurator: 'Configurateur',
     privacy:      'Politique de confidentialit\u00e9',
     privacyHref:  '/de/datenschutzerklarung.html',
     imprint:      'Mentions l\u00e9gales',
@@ -129,11 +125,11 @@ const FOOTER_CONTENT = {
     widerruf:     'R\u00e9tractation',
     widerrufHref: '/de/widerrufsbelehrung.html',
     navLinks: [
-      { href: '/fr/',               label: 'Accueil'       },
-      { href: '/fr/a-propos.html',  label: '\u00c0 propos' },
-      { href: '/fr/projets.html',   label: 'Projets'       },
-      { href: '/fr/forfaits.html',  label: 'Forfaits'      },
-      { href: '/fr/contact.html',   label: 'Contact'       },
+      { href: '/fr/',                   label: 'Accueil'       },
+      { href: '/fr/a-propos.html',      label: '\u00c0 propos' },
+      { href: '/fr/configuration.html', label: 'Configurateur' },
+      { href: '/fr/contact.html',       label: 'Contact'       },
+      { href: '/fr/blog-index.html',    label: 'Blog'          },
     ],
     serviceLinks: [
       '\u00c9valuation manuscrit',
@@ -143,10 +139,10 @@ const FOOTER_CONTENT = {
       'Marketing',
     ],
     knowledgeLinks: [
-      { href: '/fr/blog/',          label: 'Blog'                  },
-      { href: '/fr/faq/',           label: 'FAQ'                   },
-      { href: '/fr/processus/',     label: 'Processus'             },
-      { href: '/fr/projets.html',   label: 'R\u00e9f\u00e9rences' },
+      { href: '/fr/blog-index.html', label: 'Blog'                    },
+      { href: '/fr/contact.html',    label: 'Contact'                 },
+      { href: '/de/impressum.html',  label: 'Mentions l\u00e9gales'  },
+      { href: '/de/agb.html',        label: 'CGV'                     },
     ],
   },
 };
@@ -163,43 +159,34 @@ export function initFooter() {
   const lang = getFooterLang();
   const t    = FOOTER_CONTENT[lang] || FOOTER_CONTENT.de;
 
-  // CTA button
   const ctaBtn = document.getElementById('footerConfigBtn');
   if (ctaBtn) ctaBtn.textContent = t.cta;
 
-  // Col 1: Nav links
   const colMain = document.getElementById('footer-col-main');
   if (colMain) {
     colMain.innerHTML = `<div class="dv-ftitle">${t.nav}</div>`
       + t.navLinks.map(l => `<a class="dv-flink" href="${l.href}">${l.label}</a>`).join('');
   }
 
-  // Col 2: Services
+  // Konfigurator-Button entfernt
   const colServices = document.getElementById('footer-col-services');
   if (colServices) {
     colServices.innerHTML = `<div class="dv-ftitle">${t.services}</div>`
-      + `<button class="dv-flink footer-config-btn" id="footerConfiguratorBtn" type="button"
-           style="background:none;border:none;cursor:pointer;text-align:left;padding:6px 0;width:100%;">
-           ${t.configurator}
-         </button>`
       + t.serviceLinks.map(s => `<span class="dv-flink">${s}</span>`).join('');
   }
 
-  // Col 3: Knowledge
   const colKnowledge = document.getElementById('footer-col-knowledge');
   if (colKnowledge) {
     colKnowledge.innerHTML = `<div class="dv-ftitle">${t.knowledge}</div>`
       + t.knowledgeLinks.map(l => `<a class="dv-flink" href="${l.href}">${l.label}</a>`).join('');
   }
 
-  // Contact column
   const contactTitle = document.getElementById('footer-contact-title');
   if (contactTitle) contactTitle.textContent = t.contact;
 
   const tagline = document.getElementById('footer-tagline');
   if (tagline) tagline.textContent = t.tagline;
 
-  // Bottom bar — year + alle 4 Legal-Links
   const yearEl = document.getElementById('footer-year');
   if (yearEl) {
     const year = new Date().getFullYear();
@@ -216,7 +203,7 @@ export function initFooter() {
 }
 
 function bindFooterButtons() {
-  const ids = ['footerConfigBtn', 'footerContactBtn', 'footerConfiguratorBtn'];
+  const ids = ['footerConfigBtn', 'footerContactBtn'];
 
   ids.forEach(id => {
     const btn = document.getElementById(id);
