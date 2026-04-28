@@ -386,7 +386,7 @@
                 // Checkbox ist kein Netlify-Feld, entfernen damit kein Fehler entsteht
                 params.delete('datenschutz');
 
-                fetch(window.location.pathname, {
+                fetch('/de/', {
                     method:  'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body:    params.toString()
