@@ -443,7 +443,7 @@
                 const params = new URLSearchParams(new FormData(form));
                 params.set('form-name', 'contact');
 
-                fetch(window.location.pathname, {
+                fetch('/de/', {
                     method:  'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body:    params.toString()
