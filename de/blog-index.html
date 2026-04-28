@@ -75,7 +75,6 @@
                     Neue Beiträge erscheinen automatisch, sobald sie im Google Sheet hinzugefügt werden.
                 </p>
             </div>
-            
             <div class="blog-controls">
                 <input id="q" class="blog-input" type="search" placeholder="Suchen (Titel / Teaser / Tags) …" autocomplete="off">
                 <select id="tag" class="blog-select">
@@ -83,7 +82,6 @@
                 </select>
                 <div id="count" class="blog-count"></div>
             </div>
-            
             <div id="state" class="blog-state">Lade Beiträge …</div>
             <section id="grid" class="blog-grid" aria-live="polite"></section>
         </section>
@@ -99,7 +97,6 @@
                 <h2>Kontakt aufnehmen</h2>
                 <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
             </div>
-            <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
             <form class="contact-form" id="contactForm" name="contact" novalidate>
                 <input type="hidden" name="form-name" value="contact">
                 <div class="form-row">
@@ -139,13 +136,11 @@
         <textarea name="nachricht"></textarea>
     </form>
     
-    <!-- JavaScript -->
     <script type="module" src="../../assets/js/main.js"></script>
     
     <!-- Blog Script -->
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?output=csv";
-        
         const els = {
             q:     document.getElementById("q"),
             tag:   document.getElementById("tag"),
@@ -153,9 +148,7 @@
             state: document.getElementById("state"),
             grid:  document.getElementById("grid"),
         };
-        
         let ALL = [];
-        
         function esc(str) {
             return String(str ?? "").replace(/[&<>"']/g, m => ({
                 "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
@@ -163,7 +156,6 @@
         }
         function norm(s) { return String(s ?? "").toLowerCase().trim(); }
         function splitTags(s) { return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean); }
-        
         function parseCSV(text) {
             const rows = [];
             let row = [], cur = "", inQuotes = false;
@@ -185,7 +177,6 @@
             rows.push(row);
             return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
         }
-        
         function fillTagDropdown(posts) {
             const tags = new Set();
             posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
@@ -193,7 +184,6 @@
             els.tag.innerHTML = `<option value="">Alle Tags</option>` +
                 sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
         }
-        
         function render(posts) {
             if(!posts.length) {
                 els.grid.innerHTML = "";
@@ -232,7 +222,6 @@
                 </article>
             `).join("");
         }
-        
         function applyFilters() {
             const q   = norm(els.q.value);
             const tag = els.tag.value;
@@ -244,7 +233,6 @@
             });
             render(out);
         }
-        
         (async function init() {
             try {
                 els.state.textContent = "Lade Beiträge …";
@@ -304,14 +292,11 @@
                 if (e.key === 'Escape') window.closeContact();
             });
 
-            // AJAX Submit
             form?.addEventListener('submit', function(e) {
                 e.preventDefault();
-
                 const vorname  = form.querySelector('[name="vorname"]');
                 const nachname = form.querySelector('[name="nachname"]');
                 const email    = form.querySelector('[name="email"]');
-
                 let valid = true;
                 [vorname, nachname, email].forEach(el => {
                     el.style.borderColor = '';
@@ -326,15 +311,13 @@
                     msgBox.style.display = 'block';
                     return;
                 }
-
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Wird gesendet...';
                 msgBox.style.display = 'none';
-
                 const params = new URLSearchParams(new FormData(form));
                 params.set('form-name', 'contact');
-
-                fetch(window.location.pathname, {
+                // Submit an /de/ wo Netlify das Formular kennt
+                fetch('/de/', {
                     method:  'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body:    params.toString()
@@ -367,7 +350,6 @@
         });
     </script>
     
-    <!-- Cursor Follower -->
     <script type="module">
         window.addEventListener('load', () => {
             setTimeout(() => {

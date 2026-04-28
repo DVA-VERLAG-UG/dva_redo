@@ -93,7 +93,6 @@
                 <h2>Kontakt aufnehmen</h2>
                 <p>Wir melden uns innerhalb von 24 Stunden bei dir zurück.</p>
             </div>
-            <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
             <form class="contact-form" id="contactForm" name="contact" novalidate>
                 <input type="hidden" name="form-name" value="contact">
                 <div class="form-row">
@@ -133,7 +132,6 @@
         <textarea name="nachricht"></textarea>
     </form>
     
-    <!-- JavaScript -->
     <script type="module" src="../../assets/js/main.js"></script>
     
     <!-- Post Script -->
@@ -276,7 +274,8 @@
                 msgBox.style.display = 'none';
                 const params = new URLSearchParams(new FormData(form));
                 params.set('form-name', 'contact');
-                fetch(window.location.pathname, {
+                // Submit an /de/ wo Netlify das Formular kennt
+                fetch('/de/', {
                     method:  'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body:    params.toString()
@@ -309,7 +308,6 @@
         });
     </script>
     
-    <!-- Cursor Follower -->
     <script type="module">
         window.addEventListener('load', () => {
             setTimeout(() => {
