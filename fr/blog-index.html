@@ -41,7 +41,7 @@
     }
     </style>
 
-    <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Home">
+    <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Accueil">
         <img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
@@ -76,7 +76,8 @@
                 <h2>Nous contacter</h2>
                 <p>Nous vous répondrons dans les 24 heures.</p>
             </div>
-            <form class="contact-form" name="contact" method="POST" data-netlify="true">
+            <!-- method/data-netlify supprimé – envoi via AJAX -->
+            <form class="contact-form" id="contactForm" name="contact" novalidate>
                 <input type="hidden" name="form-name" value="contact">
                 <div class="form-row">
                     <div class="form-group">
@@ -100,41 +101,39 @@
                     <label>Message</label>
                     <textarea name="nachricht" rows="5" placeholder="Parlez-nous de votre projet..."></textarea>
                 </div>
-                <button type="submit" class="form-submit">Envoyer</button>
+                <button type="submit" class="form-submit" id="cf-submit">Envoyer</button>
+                <div class="form-message" id="cf-message" style="display:none;"></div>
             </form>
         </div>
     </div>
-    
-    <!-- Hidden Netlify Form -->
+
+    <!-- Netlify Form Detection -->
     <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-        <input type="text" name="vorname" />
-        <input type="text" name="nachname" />
-        <input type="email" name="email" />
-        <input type="tel" name="telefon" />
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
         <textarea name="nachricht"></textarea>
     </form>
 
     <script type="module" src="../../assets/js/main.js"></script>
 
+    <!-- Blog Script -->
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub?gid=1855248514&output=csv";
-
         const els = {
-            q: document.getElementById("q"),
-            tag: document.getElementById("tag"),
+            q:     document.getElementById("q"),
+            tag:   document.getElementById("tag"),
             count: document.getElementById("count"),
             state: document.getElementById("state"),
-            grid: document.getElementById("grid"),
+            grid:  document.getElementById("grid"),
         };
-
         let ALL = [];
-
         function esc(str) {
             return String(str ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
         }
         function norm(s) { return String(s ?? "").toLowerCase().trim(); }
         function splitTags(s) { return String(s ?? "").split(",").map(t => t.trim()).filter(Boolean); }
-
         function parseCSV(text) {
             const rows = []; let row = [], cur = "", inQuotes = false;
             for(let i=0; i<text.length; i++) {
@@ -150,7 +149,6 @@
             row.push(cur); rows.push(row);
             return rows.filter(r => r.some(cell => String(cell).trim() !== ""));
         }
-
         function fillTagDropdown(posts) {
             const tags = new Set();
             posts.forEach(p => (p.tags || []).forEach(t => tags.add(t)));
@@ -158,7 +156,6 @@
             els.tag.innerHTML = `<option value="">Tous les Tags</option>` +
                 sorted.map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join("");
         }
-
         function render(posts) {
             if(!posts.length) {
                 els.grid.innerHTML = "";
@@ -169,7 +166,7 @@
             }
             els.state.style.display = "none";
             const n = posts.length;
-            els.count.textContent = n === 1 ? "1 article" : "{n} articles".replace("{n}", n);
+            els.count.textContent = n === 1 ? "1 article" : `${n} articles`;
             els.grid.innerHTML = posts.map(p => `
                 <article class="blog-card">
                     ${p.cover
@@ -177,7 +174,7 @@
                         : `<div class="blog-cover" aria-hidden="true"></div>`}
                     <div class="blog-card-body">
                         <div class="blog-meta">
-                            ${p.date ? `<span>${esc(p.date)}</span>` : ``}
+                            ${p.date   ? `<span>${esc(p.date)}</span>` : ``}
                             ${p.author ? `<span>·</span><span>${esc(p.author)}</span>` : ``}
                             ${p.tags?.[0] ? `<span class="blog-pill" title="${esc(p.tags.join(", "))}">${esc(p.tags[0])}${p.tags.length>1?" +"+(p.tags.length-1):""}</span>` : ``}
                         </div>
@@ -192,15 +189,13 @@
                 </article>
             `).join("");
         }
-
         function applyFilters() {
             const q = norm(els.q.value), tag = els.tag.value;
             let out = ALL;
             if(tag) out = out.filter(p => (p.tags || []).includes(tag));
-            if(q) out = out.filter(p => norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" ")).includes(q));
+            if(q)   out = out.filter(p => norm([p.title, p.excerpt, (p.tags||[]).join(" ")].join(" ")).includes(q));
             render(out);
         }
-
         (async function init() {
             try {
                 els.state.textContent = "Chargement des articles …";
@@ -211,10 +206,13 @@
                 const header = rows[0].map(h => norm(h));
                 const idx = name => header.indexOf(norm(name));
                 const posts = rows.slice(1).map(r => ({
-                    slug: r[idx("slug")]||"", title: r[idx("title")]||"",
+                    slug:    r[idx("slug")]||"",
+                    title:   r[idx("title")]||"",
                     excerpt: r[idx("excerpt")]||r[idx("content")]||"",
-                    date: r[idx("date")]||"", author: r[idx("author")]||"",
-                    cover: r[idx("cover")]||"", tags: splitTags(r[idx("tags")]||""),
+                    date:    r[idx("date")]||"",
+                    author:  r[idx("author")]||"",
+                    cover:   r[idx("cover")]||"",
+                    tags:    splitTags(r[idx("tags")]||""),
                 })).filter(p => p.slug && p.title);
                 posts.sort((a,b) => (b.date||"").localeCompare(a.date||""));
                 ALL = posts;
@@ -226,33 +224,94 @@
                 console.error(err);
                 els.grid.innerHTML = "";
                 els.state.style.display = "block";
-                els.state.textContent = "Erreur lors du chargement. Vérifiez : (1) La feuille est 'Publiée', (2) L'en-tête est slug,title,excerpt,content,date,author,cover,tags.";
+                els.state.textContent = "Erreur lors du chargement des articles.";
             }
         })();
     </script>
 
+    <!-- Contact Popup: Open/Close + AJAX Submit -->
     <script>
-        (async function() {
-            await new Promise(resolve => {
-                const check = setInterval(() => {
-                    if (document.querySelector('.footer-talk-btn')) { clearInterval(check); resolve(); }
-                }, 100);
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactOverlay = document.getElementById('contactOverlay');
+            const form      = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
+            const closeBtn  = contactOverlay?.querySelector('.contact-close');
+
+            window.openContact = function() {
+                contactOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeContact = function() {
+                contactOverlay.classList.remove('is-open');
+                document.body.style.overflow = '';
+            };
+
+            closeBtn?.addEventListener('click', window.closeContact);
+            contactOverlay?.addEventListener('click', e => {
+                if (e.target === contactOverlay) window.closeContact();
             });
-            const overlay = document.getElementById('contactOverlay');
-            const btns = [
-                document.getElementById('footerConfigBtn'),
-                document.getElementById('footerContactBtn'),
-                document.getElementById('footerConfiguratorBtn')
-            ].filter(Boolean);
-            if (overlay && btns.length > 0) {
-                btns.forEach(btn => btn.addEventListener('click', () => { overlay.classList.add('is-open'); document.body.style.overflow = 'hidden'; }));
-                const closeBtn = overlay.querySelector('.contact-close');
-                if (closeBtn) closeBtn.addEventListener('click', () => { overlay.classList.remove('is-open'); document.body.style.overflow = ''; });
-                overlay.addEventListener('click', e => { if (e.target === overlay) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; } });
-                document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('is-open')) { overlay.classList.remove('is-open'); document.body.style.overflow = ''; } });
-            }
-        })();
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') window.closeContact();
+            });
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const vorname  = form.querySelector('[name="vorname"]');
+                const nachname = form.querySelector('[name="nachname"]');
+                const email    = form.querySelector('[name="email"]');
+                let valid = true;
+                [vorname, nachname, email].forEach(el => {
+                    el.style.borderColor = '';
+                    if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    email.style.borderColor = '#c0392b'; valid = false;
+                }
+                if (!valid) {
+                    msgBox.textContent = 'Veuillez remplir tous les champs obligatoires.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Envoi en cours...';
+                msgBox.style.display = 'none';
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact');
+                fetch('/fr/', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.textContent = '✓ Envoyé !';
+                    submitBtn.style.background = '#4a7c59';
+                    msgBox.textContent = 'Merci ! Nous vous répondrons dans les 24 heures.';
+                    msgBox.className = 'form-message success';
+                    msgBox.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        window.closeContact();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Envoyer';
+                        submitBtn.style.background = '';
+                        msgBox.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Envoyer';
+                    msgBox.textContent = 'Erreur d\'envoi. Veuillez réessayer.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                });
+            });
+        });
     </script>
+
     <script type="module">
         window.addEventListener('load', () => {
             setTimeout(() => {

@@ -15,14 +15,11 @@
         (function() {
             try {
                 const theme = localStorage.getItem('dvayd_theme');
-                if (theme === 'dim') {
-                    document.documentElement.setAttribute('data-theme', 'dim');
-                }
+                if (theme === 'dim') document.documentElement.setAttribute('data-theme', 'dim');
             } catch(e) {}
         })();
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/background.css">
     <link rel="stylesheet" href="../assets/css/header.css">
@@ -43,20 +40,14 @@
     body.no-curtain .curtain-word,
     body.no-curtain .curtain-content,
     body.no-curtain [class*="curtain"] {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      width: 0 !important;
-      overflow: hidden !important;
-      position: absolute !important;
-      left: -9999px !important;
+      display: none !important; opacity: 0 !important;
+      pointer-events: none !important; visibility: hidden !important;
+      height: 0 !important; width: 0 !important; overflow: hidden !important;
+      position: absolute !important; left: -9999px !important;
     }
     body.no-curtain .curtain *,
     body.no-curtain [class*="curtain"] * {
-      display: none !important;
-      visibility: hidden !important;
+      display: none !important; visibility: hidden !important;
     }
     </style>
 
@@ -69,13 +60,10 @@
 
     <main class="about-main">
 
-        <!-- Hero -->
         <section class="about-hero" data-scroll-section>
             <div class="about-hero-bg" data-scroll data-scroll-speed="-2"></div>
             <div class="about-hero-content" data-scroll data-scroll-speed="1">
-                <div class="about-hero-kicker" data-scroll data-scroll-speed="0.5">
-                    Depuis 2005
-                </div>
+                <div class="about-hero-kicker" data-scroll data-scroll-speed="0.5">Depuis 2005</div>
                 <h1 class="about-hero-title" data-scroll data-scroll-speed="0.8">
                     Entre deux mondes.<br>
                     Pour votre histoire.
@@ -93,29 +81,17 @@
             </div>
         </section>
 
-        <!-- Histoire -->
         <section class="about-story" data-scroll-section>
             <div class="about-story-grid">
-
                 <div class="about-story-text" data-scroll data-scroll-speed="0.5">
                     <span class="about-section-label">Notre histoire</span>
-                    <h2 class="about-section-title">
-                        De la passion<br>
-                        est née la mission
-                    </h2>
+                    <h2 class="about-section-title">De la passion<br>est née la mission</h2>
                     <div class="about-story-content">
-                        <p>
-                            <strong>2005 à Istanbul :</strong> Ce qui a commencé comme une petite maison d'édition s'est transformé en une vision — offrir aux auteurs du monde entier l'accès au marché du livre professionnel. Sans intermédiaires. Sans compromis. Par des voies directes et une qualité maximale.
-                        </p>
-                        <p>
-                            Nous avons compris tôt que l'avenir de l'édition réside dans la connexion entre la production internationale et l'accès aux marchés locaux. Tandis que d'autres éditeurs s'enlisaient dans la bureaucratie, nous avons construit un pont entre les meilleures imprimeries de Turquie et le commerce du livre allemand.
-                        </p>
-                        <p>
-                            <strong>Aujourd'hui :</strong> Plus de 220 auteurs ont trouvé leur place sur le marché du livre avec nous. D'Amazon aux librairies locales — sans délais d'attente, sans perte de qualité, sans compromis sur vos droits.
-                        </p>
+                        <p><strong>2005 à Istanbul :</strong> Ce qui a commencé comme une petite maison d'édition s'est transformé en une vision — offrir aux auteurs du monde entier l'accès au marché du livre professionnel. Sans intermédiaires. Sans compromis. Par des voies directes et une qualité maximale.</p>
+                        <p>Nous avons compris tôt que l'avenir de l'édition réside dans la connexion entre la production internationale et l'accès aux marchés locaux. Tandis que d'autres éditeurs s'enlisaient dans la bureaucratie, nous avons construit un pont entre les meilleures imprimeries de Turquie et le commerce du livre allemand.</p>
+                        <p><strong>Aujourd'hui :</strong> Plus de 220 auteurs ont trouvé leur place sur le marché du livre avec nous. D'Amazon aux librairies locales — sans délais d'attente, sans perte de qualité, sans compromis sur vos droits.</p>
                     </div>
                 </div>
-
                 <div class="about-story-media" data-scroll data-scroll-speed="1.5">
                     <div class="about-story-image" style="background-image: url('../assets/images/about/story-image.jpg');">
                         <div class="about-story-image-overlay"></div>
@@ -135,17 +111,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- Valeurs -->
         <section class="about-values" data-scroll-section>
             <div class="about-values-header" data-scroll data-scroll-speed="0.5">
                 <span class="about-section-label">Nos valeurs</span>
                 <h2 class="about-section-title">Ce pour quoi nous nous engageons</h2>
             </div>
-
             <div class="about-values-scroll">
                 <div class="about-values-track">
                     <div class="about-value-card">
@@ -186,15 +159,11 @@
             </div>
         </section>
 
-        <!-- Équipe -->
         <section class="about-team" data-scroll-section>
             <div class="about-team-container">
                 <div class="about-team-header" data-scroll data-scroll-speed="0.5">
                     <span class="about-section-label">L'équipe</span>
-                    <h2 class="about-section-title">
-                        Les personnes<br>
-                        derrière DVAYD
-                    </h2>
+                    <h2 class="about-section-title">Les personnes<br>derrière DVAYD</h2>
                     <p class="about-team-intro">
                         D'Istanbul à Brême — une équipe internationale avec une seule mission :<br>
                         offrir aux auteurs le meilleur chemin vers le marché du livre.
@@ -237,14 +206,10 @@
             </div>
         </section>
 
-        <!-- Lieux -->
         <section class="about-locations" data-scroll-section>
             <div class="about-locations-header" data-scroll data-scroll-speed="0.5">
                 <span class="about-section-label">Nos lieux</span>
-                <h2 class="about-section-title">
-                    Deux villes.<br>
-                    Une mission.
-                </h2>
+                <h2 class="about-section-title">Deux villes.<br>Une mission.</h2>
             </div>
             <div class="about-locations-grid">
                 <div class="about-location-card" data-scroll data-scroll-speed="0.8">
@@ -282,7 +247,6 @@
             </div>
         </section>
 
-        <!-- CTA -->
         <section class="about-cta" data-scroll-section>
             <div class="about-cta-content" data-scroll data-scroll-speed="0.5">
                 <h2>Prêt à raconter votre histoire ?</h2>
@@ -313,7 +277,8 @@
                 <h2>Nous contacter</h2>
                 <p>Nous vous répondrons dans les 24 heures.</p>
             </div>
-            <form class="contact-form" name="contact-fr-apropos" method="POST" data-netlify="true">
+            <!-- method/data-netlify supprimé – envoi via AJAX -->
+            <form class="contact-form" id="contactForm" name="contact-fr-apropos" novalidate>
                 <input type="hidden" name="form-name" value="contact-fr-apropos">
                 <div class="form-row">
                     <div class="form-group">
@@ -337,11 +302,13 @@
                     <label>Message</label>
                     <textarea name="nachricht" rows="5" placeholder="Parlez-nous de votre projet…"></textarea>
                 </div>
-                <button type="submit" class="form-submit">Envoyer</button>
+                <button type="submit" class="form-submit" id="cf-submit">Envoyer</button>
+                <div class="form-message" id="cf-message" style="display:none;"></div>
             </form>
         </div>
     </div>
 
+    <!-- Netlify Form Detection -->
     <form name="contact-fr-apropos" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="vorname">
         <input type="text" name="nachname">
@@ -353,6 +320,7 @@
     <script type="module" src="../assets/js/main.js"></script>
     <script src="../assets/js/about-page-optimized.js"></script>
 
+    <!-- Counter Fallback -->
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -379,30 +347,87 @@
         });
     </script>
 
+    <!-- Contact Popup: Open/Close + AJAX Submit -->
     <script>
-        const aboutContactBtn = document.getElementById('aboutContactBtn');
-        const contactOverlay  = document.getElementById('contactOverlay');
-        const contactClose    = contactOverlay?.querySelector('.contact-close');
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactOverlay = document.getElementById('contactOverlay');
+            const form      = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
+            const closeBtn  = contactOverlay?.querySelector('.contact-close');
 
-        aboutContactBtn?.addEventListener('click', () => {
-            contactOverlay.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-        });
-        contactClose?.addEventListener('click', () => {
-            contactOverlay.classList.remove('is-open');
-            document.body.style.overflow = '';
-        });
-        contactOverlay?.addEventListener('click', (e) => {
-            if (e.target === contactOverlay) {
+            window.openContact = function() {
+                contactOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeContact = function() {
                 contactOverlay.classList.remove('is-open');
                 document.body.style.overflow = '';
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && contactOverlay?.classList.contains('is-open')) {
-                contactOverlay.classList.remove('is-open');
-                document.body.style.overflow = '';
-            }
+            };
+
+            document.getElementById('aboutContactBtn')?.addEventListener('click', window.openContact);
+            closeBtn?.addEventListener('click', window.closeContact);
+            contactOverlay?.addEventListener('click', e => {
+                if (e.target === contactOverlay) window.closeContact();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') window.closeContact();
+            });
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const vorname  = form.querySelector('[name="vorname"]');
+                const nachname = form.querySelector('[name="nachname"]');
+                const email    = form.querySelector('[name="email"]');
+                let valid = true;
+                [vorname, nachname, email].forEach(el => {
+                    el.style.borderColor = '';
+                    if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    email.style.borderColor = '#c0392b'; valid = false;
+                }
+                if (!valid) {
+                    msgBox.textContent = 'Veuillez remplir tous les champs obligatoires.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Envoi en cours...';
+                msgBox.style.display = 'none';
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact-fr-apropos');
+                fetch('/fr/', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.textContent = '✓ Envoyé !';
+                    submitBtn.style.background = '#4a7c59';
+                    msgBox.textContent = 'Merci ! Nous vous répondrons dans les 24 heures.';
+                    msgBox.className = 'form-message success';
+                    msgBox.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        window.closeContact();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Envoyer';
+                        submitBtn.style.background = '';
+                        msgBox.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Envoyer';
+                    msgBox.textContent = 'Erreur d\'envoi. Veuillez réessayer.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                });
+            });
         });
     </script>
 

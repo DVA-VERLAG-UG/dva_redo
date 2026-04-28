@@ -15,14 +15,11 @@
         (function() {
             try {
                 const theme = localStorage.getItem('dvayd_theme');
-                if (theme === 'dim') {
-                    document.documentElement.setAttribute('data-theme', 'dim');
-                }
+                if (theme === 'dim') document.documentElement.setAttribute('data-theme', 'dim');
             } catch(e) {}
         })();
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/background.css">
     <link rel="stylesheet" href="../assets/css/header.css">
@@ -42,20 +39,14 @@
     body.no-curtain .curtain-word,
     body.no-curtain .curtain-content,
     body.no-curtain [class*="curtain"] {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      width: 0 !important;
-      overflow: hidden !important;
-      position: absolute !important;
-      left: -9999px !important;
+      display: none !important; opacity: 0 !important;
+      pointer-events: none !important; visibility: hidden !important;
+      height: 0 !important; width: 0 !important; overflow: hidden !important;
+      position: absolute !important; left: -9999px !important;
     }
     body.no-curtain .curtain *,
     body.no-curtain [class*="curtain"] * {
-      display: none !important;
-      visibility: hidden !important;
+      display: none !important; visibility: hidden !important;
     }
     </style>
 
@@ -70,7 +61,6 @@
 
     <main class="contact-main">
 
-        <!-- Hero -->
         <section class="contact-hero">
             <div class="contact-hero-content">
                 <div class="contact-hero-label">Contact</div>
@@ -85,18 +75,17 @@
             </div>
         </section>
 
-        <!-- Contact Grid -->
         <section class="contact-grid-section">
             <div class="contact-grid-container">
 
-                <!-- Formulaire -->
                 <div class="contact-form-wrapper">
                     <div class="contact-form-header">
                         <h2>Envoyez-nous un message</h2>
                         <p>Nous répondons dans les 24 heures.</p>
                     </div>
 
-                    <form class="contact-form-main" name="contact-fr" method="POST" data-netlify="true">
+                    <!-- method/data-netlify supprimé – envoi via AJAX -->
+                    <form class="contact-form-main" id="contactFormMain" name="contact-fr" novalidate>
                         <input type="hidden" name="form-name" value="contact-fr">
 
                         <div class="form-row-dual">
@@ -107,15 +96,12 @@
                                 <input type="text" name="nachname" required placeholder="Nom *">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <input type="email" name="email" required placeholder="E-mail *">
                         </div>
-
                         <div class="form-group">
                             <input type="tel" name="telefon" placeholder="Téléphone (facultatif)">
                         </div>
-
                         <div class="form-group">
                             <select name="betreff" required>
                                 <option value="" disabled selected>Choisir un sujet *</option>
@@ -126,44 +112,37 @@
                                 <option value="partenariat">Partenariat</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <textarea name="nachricht" rows="6" required placeholder="Votre message *"></textarea>
                         </div>
-
                         <div class="form-privacy">
                             <label class="form-checkbox">
                                 <input type="checkbox" name="datenschutz" required>
                                 <span>J'ai lu et j'accepte la <a href="confidentialite.html" target="_blank">politique de confidentialité</a>.</span>
                             </label>
                         </div>
-
-                        <button type="submit" class="form-submit-btn">
+                        <button type="submit" class="form-submit-btn" id="contactSubmitBtn">
                             <span>Envoyer le message</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="22" y1="2" x2="11" y2="13"></line>
                                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                             </svg>
                         </button>
-
-                        <div class="form-success" id="formSuccess">
+                        <div class="form-success" id="formSuccess" style="display:none;">
                             ✓ Message envoyé avec succès ! Nous vous répondrons bientôt.
                         </div>
-
+                        <div class="form-error" id="formError" style="display:none;">
+                            Erreur d'envoi. Veuillez réessayer.
+                        </div>
                         <div class="form-cta-links">
                             <span class="form-cta-text">Ou :</span>
-                            <a href="configuration.html" class="form-cta-link">
-                                Configurer un package
-                            </a>
+                            <a href="configuration.html" class="form-cta-link">Configurer un package</a>
                             <span class="form-cta-divider">·</span>
-                            <a href="tel:+4940000000" class="form-cta-link">
-                                Appeler directement
-                            </a>
+                            <a href="tel:+4942157287972" class="form-cta-link">Appeler directement</a>
                         </div>
                     </form>
                 </div>
 
-                <!-- Infos -->
                 <div class="contact-info-wrapper">
 
                     <div class="contact-info-card card-phone">
@@ -173,7 +152,7 @@
                             </svg>
                         </div>
                         <h3>Appelez-nous</h3>
-                        <a href="tel:+4940000000" class="contact-card-link">+49 (0) 421 57287972</a>
+                        <a href="tel:+4942157287972" class="contact-card-link">+49 (0) 421 57287972</a>
                         <p class="contact-card-time">Lun–Ven, 9h00–18h00</p>
                     </div>
 
@@ -201,7 +180,6 @@
                             Production & Impression<br>
                             Altıntepe, Bahar Sokağı No:8 B<br>
                             34854 Maltepe/İstanbul, Türkiye
-
                         </p>
                     </div>
 
@@ -214,9 +192,8 @@
                         </div>
                         <h3>Brême</h3>
                         <p class="contact-card-address">
-                           Schwachhauser Heerstraße 179<br>
+                            Schwachhauser Heerstraße 179<br>
                             28211 Bremen, Deutschland
-
                         </p>
                     </div>
 
@@ -253,56 +230,46 @@
                     </div>
 
                 </div>
-
             </div>
         </section>
 
-        <!-- FAQ -->
         <section class="contact-faq-section">
             <div class="contact-faq-container">
                 <div class="contact-faq-header">
                     <h2>Questions fréquentes</h2>
                     <p>Réponses rapides aux questions les plus importantes</p>
                 </div>
-
                 <div class="contact-faq-grid">
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">01</div>
                         <h3>Combien de temps dure la production ?</h3>
                         <p>De la validation d'impression à la disponibilité mondiale : 14 jours maximum. D'autres éditeurs prennent souvent des mois.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">02</div>
                         <h3>Quel est le coût de la publication ?</h3>
                         <p>Les coûts dépendent du package choisi. Utilisez notre configurateur pour un devis personnalisé ou contactez-nous pour une consultation gratuite.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">03</div>
                         <h3>Est-ce que je conserve les droits sur mon livre ?</h3>
                         <p>Oui, à 100 % ! Vous conservez tous les droits sur votre œuvre. Nous sommes prestataires de services, pas éditeurs au sens classique.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">04</div>
                         <h3>Mon livre sera-t-il référencé sur Amazon ?</h3>
                         <p>Oui ! Votre livre sera disponible sur Amazon, dans les librairies allemandes et sur toutes les grandes plateformes en ligne.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">05</div>
                         <h3>Ai-je besoin d'un éditeur traditionnel ?</h3>
                         <p>Non ! Avec DVAYD Publishing, vous bénéficiez de tous les avantages d'un éditeur sans les inconvénients. Vous gardez le contrôle et les droits.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">06</div>
                         <h3>Comment fonctionne l'attribution de l'ISBN ?</h3>
                         <p>Nous attribuons votre ISBN allemand à Brême. Il est répertorié dans toutes les bases de données pertinentes et valable dans le monde entier.</p>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -311,9 +278,20 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Netlify Form Detection -->
+    <form name="contact-fr" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
+        <input type="text" name="betreff">
+        <textarea name="nachricht"></textarea>
+    </form>
+
     <script type="module" src="../assets/js/main.js"></script>
     <script src="../assets/js/contact-page.js"></script>
 
+    <!-- Background -->
     <script>
         window.addEventListener('load', () => {
             const canvas = document.getElementById('particle-canvas');
@@ -340,16 +318,67 @@
                         ctx.fillStyle = `rgba(176, 141, 87, ${p.opacity})`;
                         ctx.fillRect(p.x, p.y, p.size, p.size * 1.4);
                         p.y -= p.speedY;
-                        if (p.y + p.size < 0) {
-                            p.y = canvas.height + p.size;
-                            p.x = Math.random() * canvas.width;
-                        }
+                        if (p.y + p.size < 0) { p.y = canvas.height + p.size; p.x = Math.random() * canvas.width; }
                     });
                     requestAnimationFrame(animate);
                 }
                 animate();
             };
             document.head.appendChild(script);
+        });
+    </script>
+
+    <!-- Contact Form: AJAX Submit -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form      = document.getElementById('contactFormMain');
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const successEl = document.getElementById('formSuccess');
+            const errorEl   = document.getElementById('formError');
+
+            window.openContact  = () => {};
+            window.closeContact = () => {};
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const required = form.querySelectorAll('[required]');
+                let valid = true;
+                required.forEach(el => {
+                    el.style.borderColor = '';
+                    const isEmpty = el.type === 'checkbox' ? !el.checked : !el.value.trim();
+                    if (isEmpty) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (!valid) return;
+
+                submitBtn.disabled = true;
+                submitBtn.querySelector('span').textContent = 'Envoi en cours...';
+                successEl.style.display = 'none';
+                errorEl.style.display   = 'none';
+
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact-fr');
+                params.delete('datenschutz');
+
+                fetch('/fr/', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.querySelector('span').textContent = '✓ Envoyé !';
+                    submitBtn.style.background = '#4a7c59';
+                    successEl.style.display = 'block';
+                    form.reset();
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('span').textContent = 'Envoyer le message';
+                    errorEl.style.display = 'block';
+                });
+            });
         });
     </script>
 

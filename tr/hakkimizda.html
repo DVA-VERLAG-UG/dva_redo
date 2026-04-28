@@ -15,14 +15,11 @@
         (function() {
             try {
                 const theme = localStorage.getItem('dvayd_theme');
-                if (theme === 'dim') {
-                    document.documentElement.setAttribute('data-theme', 'dim');
-                }
+                if (theme === 'dim') document.documentElement.setAttribute('data-theme', 'dim');
             } catch(e) {}
         })();
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/background.css">
     <link rel="stylesheet" href="../assets/css/header.css">
@@ -43,20 +40,14 @@
     body.no-curtain .curtain-word,
     body.no-curtain .curtain-content,
     body.no-curtain [class*="curtain"] {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      width: 0 !important;
-      overflow: hidden !important;
-      position: absolute !important;
-      left: -9999px !important;
+      display: none !important; opacity: 0 !important;
+      pointer-events: none !important; visibility: hidden !important;
+      height: 0 !important; width: 0 !important; overflow: hidden !important;
+      position: absolute !important; left: -9999px !important;
     }
     body.no-curtain .curtain *,
     body.no-curtain [class*="curtain"] * {
-      display: none !important;
-      visibility: hidden !important;
+      display: none !important; visibility: hidden !important;
     }
     </style>
 
@@ -69,13 +60,10 @@
 
     <main class="about-main">
 
-        <!-- Hero -->
         <section class="about-hero" data-scroll-section>
             <div class="about-hero-bg" data-scroll data-scroll-speed="-2"></div>
             <div class="about-hero-content" data-scroll data-scroll-speed="1">
-                <div class="about-hero-kicker" data-scroll data-scroll-speed="0.5">
-                    2005'ten bu yana
-                </div>
+                <div class="about-hero-kicker" data-scroll data-scroll-speed="0.5">2005'ten bu yana</div>
                 <h1 class="about-hero-title" data-scroll data-scroll-speed="0.8">
                     İki dünya arasında.<br>
                     Senin hikayen için.
@@ -93,36 +81,17 @@
             </div>
         </section>
 
-        <!-- Hikaye -->
         <section class="about-story" data-scroll-section>
             <div class="about-story-grid">
-
                 <div class="about-story-text" data-scroll data-scroll-speed="0.5">
                     <span class="about-section-label">Hikayemiz</span>
-                    <h2 class="about-section-title">
-                        Tutkudan<br>
-                        misyon doğdu
-                    </h2>
+                    <h2 class="about-section-title">Tutkudan<br>misyon doğdu</h2>
                     <div class="about-story-content">
-                        <p>
-                            <strong>2005, İstanbul:</strong> Küçük bir yayınevi olarak başlayan bu yolculuk zamanla bir
-                            vizyona dönüştü: dünyanın dört bir yanındaki yazarlara profesyonel kitap
-                            piyasasına erişim sağlamak. Aracısız, taviz vermeden ve en yüksek kaliteyle.
-                        </p>
-                        <p>
-                            Erken fark ettik: Yayıncılığın geleceği, uluslararası üretimle yerel pazar
-                            erişiminin buluşmasında yatıyor. Diğer yayınevleri bürokratik engellerde
-                            boğulurken biz Türkiye'nin en iyi matbaalarını Alman kitap piyasasına
-                            bağlayan bir köprü inşa ettik.
-                        </p>
-                        <p>
-                            <strong>Bugün:</strong> 220'den fazla yazar bizimle birlikte kitap piyasasındaki
-                            yerini aldı. Amazon'dan yerel kitabevlerine kadar — bekleme süresi olmadan,
-                            kalite kaybı yaşamadan, haklarından ödün vermeden.
-                        </p>
+                        <p><strong>2005, İstanbul:</strong> Küçük bir yayınevi olarak başlayan bu yolculuk zamanla bir vizyona dönüştü: dünyanın dört bir yanındaki yazarlara profesyonel kitap piyasasına erişim sağlamak. Aracısız, taviz vermeden ve en yüksek kaliteyle.</p>
+                        <p>Erken fark ettik: Yayıncılığın geleceği, uluslararası üretimle yerel pazar erişiminin buluşmasında yatıyor. Diğer yayınevleri bürokratik engellerde boğulurken biz Türkiye'nin en iyi matbaalarını Alman kitap piyasasına bağlayan bir köprü inşa ettik.</p>
+                        <p><strong>Bugün:</strong> 220'den fazla yazar bizimle birlikte kitap piyasasındaki yerini aldı. Amazon'dan yerel kitabevlerine kadar — bekleme süresi olmadan, kalite kaybı yaşamadan, haklarından ödün vermeden.</p>
                     </div>
                 </div>
-
                 <div class="about-story-media" data-scroll data-scroll-speed="1.5">
                     <div class="about-story-image" style="background-image: url('../assets/images/about/story-image.jpg');">
                         <div class="about-story-image-overlay"></div>
@@ -142,17 +111,14 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- Değerler -->
         <section class="about-values" data-scroll-section>
             <div class="about-values-header" data-scroll data-scroll-speed="0.5">
                 <span class="about-section-label">Değerlerimiz</span>
                 <h2 class="about-section-title">Neyi savunuyoruz?</h2>
             </div>
-
             <div class="about-values-scroll">
                 <div class="about-values-track">
                     <div class="about-value-card">
@@ -193,17 +159,12 @@
             </div>
         </section>
 
-        <!-- Ekip -->
         <section class="about-team" data-scroll-section>
             <div class="about-team-container">
                 <div class="about-team-header" data-scroll data-scroll-speed="0.5">
                     <span class="about-section-label">Ekibimiz</span>
-                    <h2 class="about-section-title">
-                        DVAYD'nin arkasındaki insanlar
-                    </h2>
-                    <p class="about-team-intro">
-                        İstanbul'dan Almanya'ya tek bir misyonla çalışan bir ekip. Amacımız; yazardan kitap piyasasına uzanan yolu açmak.
-                    </p>
+                    <h2 class="about-section-title">DVAYD'nin arkasındaki insanlar</h2>
+                    <p class="about-team-intro">İstanbul'dan Almanya'ya tek bir misyonla çalışan bir ekip. Amacımız; yazardan kitap piyasasına uzanan yolu açmak.</p>
                 </div>
                 <div class="about-team-grid">
                     <div class="about-team-card" data-scroll data-scroll-speed="0.6">
@@ -242,14 +203,10 @@
             </div>
         </section>
 
-        <!-- Lokasyonlar -->
         <section class="about-locations" data-scroll-section>
             <div class="about-locations-header" data-scroll data-scroll-speed="0.5">
                 <span class="about-section-label">Konumlarımız</span>
-                <h2 class="about-section-title">
-                    İki şehir.<br>
-                    Bir misyon.
-                </h2>
+                <h2 class="about-section-title">İki şehir.<br>Bir misyon.</h2>
             </div>
             <div class="about-locations-grid">
                 <div class="about-location-card" data-scroll data-scroll-speed="0.8">
@@ -287,7 +244,6 @@
             </div>
         </section>
 
-        <!-- CTA -->
         <section class="about-cta" data-scroll-section>
             <div class="about-cta-content" data-scroll data-scroll-speed="0.5">
                 <h2>Hikayeni anlatmaya hazır mısın?</h2>
@@ -318,7 +274,8 @@
                 <h2>Bizimle iletişime geçin</h2>
                 <p>24 saat içinde size geri dönüş sağlıyoruz.</p>
             </div>
-            <form class="contact-form" name="contact-tr-hakkimizda" method="POST" data-netlify="true">
+            <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
+            <form class="contact-form" id="contactForm" name="contact-tr-hakkimizda" novalidate>
                 <input type="hidden" name="form-name" value="contact-tr-hakkimizda">
                 <div class="form-row">
                     <div class="form-group">
@@ -342,12 +299,13 @@
                     <label>Mesajınız</label>
                     <textarea name="nachricht" rows="5" placeholder="Projeniz hakkında bize anlatın…"></textarea>
                 </div>
-                <button type="submit" class="form-submit">Gönder</button>
+                <button type="submit" class="form-submit" id="cf-submit">Gönder</button>
+                <div class="form-message" id="cf-message" style="display:none;"></div>
             </form>
         </div>
     </div>
 
-    <!-- Netlify hidden form -->
+    <!-- Netlify Form Detection -->
     <form name="contact-tr-hakkimizda" netlify netlify-honeypot="bot-field" hidden>
         <input type="text" name="vorname">
         <input type="text" name="nachname">
@@ -356,11 +314,10 @@
         <textarea name="nachricht"></textarea>
     </form>
 
-    <!-- JavaScript -->
     <script type="module" src="../assets/js/main.js"></script>
     <script src="../assets/js/about-page-optimized.js"></script>
 
-    <!-- Counter Fallback — garantiert nach 1.5s -->
+    <!-- Counter Fallback -->
     <script>
         window.addEventListener('load', function() {
             setTimeout(function() {
@@ -387,30 +344,87 @@
         });
     </script>
 
+    <!-- Contact Popup: Open/Close + AJAX Submit -->
     <script>
-        const aboutContactBtn = document.getElementById('aboutContactBtn');
-        const contactOverlay  = document.getElementById('contactOverlay');
-        const contactClose    = contactOverlay?.querySelector('.contact-close');
+        document.addEventListener('DOMContentLoaded', () => {
+            const contactOverlay = document.getElementById('contactOverlay');
+            const form      = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
+            const closeBtn  = contactOverlay?.querySelector('.contact-close');
 
-        aboutContactBtn?.addEventListener('click', () => {
-            contactOverlay.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-        });
-        contactClose?.addEventListener('click', () => {
-            contactOverlay.classList.remove('is-open');
-            document.body.style.overflow = '';
-        });
-        contactOverlay?.addEventListener('click', (e) => {
-            if (e.target === contactOverlay) {
+            window.openContact = function() {
+                contactOverlay.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            };
+            window.closeContact = function() {
                 contactOverlay.classList.remove('is-open');
                 document.body.style.overflow = '';
-            }
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && contactOverlay?.classList.contains('is-open')) {
-                contactOverlay.classList.remove('is-open');
-                document.body.style.overflow = '';
-            }
+            };
+
+            document.getElementById('aboutContactBtn')?.addEventListener('click', window.openContact);
+            closeBtn?.addEventListener('click', window.closeContact);
+            contactOverlay?.addEventListener('click', e => {
+                if (e.target === contactOverlay) window.closeContact();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') window.closeContact();
+            });
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const vorname  = form.querySelector('[name="vorname"]');
+                const nachname = form.querySelector('[name="nachname"]');
+                const email    = form.querySelector('[name="email"]');
+                let valid = true;
+                [vorname, nachname, email].forEach(el => {
+                    el.style.borderColor = '';
+                    if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                    email.style.borderColor = '#c0392b'; valid = false;
+                }
+                if (!valid) {
+                    msgBox.textContent = 'Lütfen tüm zorunlu alanları doldurun.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Gönderiliyor...';
+                msgBox.style.display = 'none';
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact-tr-hakkimizda');
+                fetch('/tr/', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.textContent = '✓ Gönderildi!';
+                    submitBtn.style.background = '#4a7c59';
+                    msgBox.textContent = 'Teşekkürler! 24 saat içinde size geri döneceğiz.';
+                    msgBox.className = 'form-message success';
+                    msgBox.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                        window.closeContact();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Gönder';
+                        submitBtn.style.background = '';
+                        msgBox.style.display = 'none';
+                    }, 3000);
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Gönder';
+                    msgBox.textContent = 'Gönderme hatası. Lütfen tekrar deneyin.';
+                    msgBox.className = 'form-message error';
+                    msgBox.style.display = 'block';
+                });
+            });
         });
     </script>
 

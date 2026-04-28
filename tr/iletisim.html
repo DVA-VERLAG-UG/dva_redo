@@ -6,7 +6,7 @@
     
     <title>İletişim | DVAYD Publishing</title>
     <meta name="description" content="DVAYD Publishing ile iletişime geçin – İstanbul ve Almanya'dan size destek veriyoruz.">
-    <link rel="canonical" href="https://yoursite.com/tr/iletisim.html">
+    <link rel="canonical" href="https://dva-yd.com/tr/iletisim.html">
     
     <link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
     <link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
@@ -15,14 +15,11 @@
         (function() {
             try {
                 const theme = localStorage.getItem('dvayd_theme');
-                if (theme === 'dim') {
-                    document.documentElement.setAttribute('data-theme', 'dim');
-                }
+                if (theme === 'dim') document.documentElement.setAttribute('data-theme', 'dim');
             } catch(e) {}
         })();
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/background.css">
     <link rel="stylesheet" href="../assets/css/header.css">
@@ -42,20 +39,14 @@
     body.no-curtain .curtain-word,
     body.no-curtain .curtain-content,
     body.no-curtain [class*="curtain"] {
-      display: none !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      visibility: hidden !important;
-      height: 0 !important;
-      width: 0 !important;
-      overflow: hidden !important;
-      position: absolute !important;
-      left: -9999px !important;
+      display: none !important; opacity: 0 !important;
+      pointer-events: none !important; visibility: hidden !important;
+      height: 0 !important; width: 0 !important; overflow: hidden !important;
+      position: absolute !important; left: -9999px !important;
     }
     body.no-curtain .curtain *,
     body.no-curtain [class*="curtain"] * {
-      display: none !important;
-      visibility: hidden !important;
+      display: none !important; visibility: hidden !important;
     }
     </style>
 
@@ -70,7 +61,6 @@
 
     <main class="contact-main">
 
-        <!-- Hero -->
         <section class="contact-hero">
             <div class="contact-hero-content">
                 <div class="contact-hero-label">İletişim</div>
@@ -85,7 +75,6 @@
             </div>
         </section>
 
-        <!-- Contact Grid -->
         <section class="contact-grid-section">
             <div class="contact-grid-container">
 
@@ -99,13 +88,13 @@
                         </p>
                     </div>
 
-                    <!-- Bize ne zaman yazmalısınız? -->
                     <div style="margin: 24px 0; padding: 20px 24px; background: rgba(176,141,87,0.06); border-left: 3px solid rgba(176,141,87,0.35); border-radius: 0 10px 10px 0;">
                         <p style="font-weight: 600; margin-bottom: 6px; color: #B08D57;">Bize ne zaman yazmalısınız?</p>
                         <p style="font-size: 0.9rem; line-height: 1.65; margin: 0;">Dosyanız hazırsa, yayın sürecini planlamak istiyorsanız ya da hangi adımlara ihtiyaç duyduğunuzu netleştirmek istiyorsanız bize yazabilirsiniz.</p>
                     </div>
 
-                    <form class="contact-form-main" name="contact-tr" method="POST" data-netlify="true">
+                    <!-- method/data-netlify entfernt – Submit läuft per AJAX -->
+                    <form class="contact-form-main" id="contactFormMain" name="contact-tr" novalidate>
                         <input type="hidden" name="form-name" value="contact-tr">
 
                         <div class="form-row-dual">
@@ -116,15 +105,12 @@
                                 <input type="text" name="nachname" required placeholder="Soyad *">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <input type="email" name="email" required placeholder="E-posta *">
                         </div>
-
                         <div class="form-group">
                             <input type="tel" name="telefon" placeholder="Telefon (isteğe bağlı)">
                         </div>
-
                         <div class="form-group">
                             <select name="betreff" required>
                                 <option value="" disabled selected>Konu seçin *</option>
@@ -135,11 +121,9 @@
                                 <option value="isbirligi">İş birliği</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <textarea name="nachricht" rows="6" required placeholder="Mesajınız *"></textarea>
                         </div>
-
                         <div class="form-privacy">
                             <label class="form-checkbox">
                                 <input type="checkbox" name="datenschutz" required>
@@ -148,20 +132,19 @@
                                 </span>
                             </label>
                         </div>
-
-                        <button type="submit" class="form-submit-btn">
+                        <button type="submit" class="form-submit-btn" id="contactSubmitBtn">
                             <span>Mesajı gönder</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <line x1="22" y1="2" x2="11" y2="13"></line>
                                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                             </svg>
                         </button>
-
-                        <div class="form-success" id="formSuccess">
+                        <div class="form-success" id="formSuccess" style="display:none;">
                             ✓ Mesajınız başarıyla gönderildi. DVA Verlag ekibi en kısa sürede size geri dönüş yapacaktır.
                         </div>
-
-                        <!-- CTA Links -->
+                        <div class="form-error" id="formError" style="display:none;">
+                            Gönderme hatası. Lütfen tekrar deneyin.
+                        </div>
                         <div class="form-cta-links">
                             <span class="form-cta-text">İsterseniz yayın yolunuzu oluşturabilir ya da doğrudan bize yazabilirsiniz.</span>
                         </div>
@@ -171,7 +154,6 @@
                 <!-- Sağ: Bilgi Kartları -->
                 <div class="contact-info-wrapper">
 
-                    <!-- Telefon -->
                     <div class="contact-info-card card-phone">
                         <div class="contact-card-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -179,11 +161,10 @@
                             </svg>
                         </div>
                         <h3>Bize ulaşın</h3>
-                        <a href="tel:++49 (0) 421 57287972" class="contact-card-link">++49 (0) 421 57287972</a>
+                        <a href="tel:+4942157287972" class="contact-card-link">+49 (0) 421 57287972</a>
                         <p class="contact-card-time">Pzt–Cum, 09:00–18:00</p>
                     </div>
 
-                    <!-- E-posta -->
                     <div class="contact-info-card card-email">
                         <div class="contact-card-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -196,7 +177,6 @@
                         <p class="contact-card-time">24 saat içinde geri dönüş</p>
                     </div>
 
-                    <!-- İstanbul -->
                     <div class="contact-info-card card-location">
                         <div class="contact-card-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -212,7 +192,6 @@
                         </p>
                     </div>
 
-                    <!-- Almanya / Avrupa -->
                     <div class="contact-info-card card-location">
                         <div class="contact-card-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -228,7 +207,6 @@
                         </p>
                     </div>
 
-                    <!-- Size kim dönüş yapar? -->
                     <div class="contact-info-card" style="border-color: rgba(176,141,87,0.25);">
                         <div class="contact-card-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -240,12 +218,10 @@
                         <p class="contact-card-time">İlk geri dönüş, DVA Verlag ekibi tarafından öncelikle e-posta üzerinden yapılır.</p>
                     </div>
 
-                    <!-- Deneyim notu -->
                     <div style="padding: 20px 24px; background: rgba(176,141,87,0.06); border: 1px solid rgba(176,141,87,0.18); border-radius: 16px; font-size: 0.9rem; line-height: 1.65; color: rgba(44,62,80,0.75);">
                         Yazardan Direkt'te oluşan yayıncılık deneyimi, DVA ile Avrupa'daki yapıda sürdürülmektedir.
                     </div>
 
-                    <!-- Sosyal Medya -->
                     <div class="contact-info-card card-social">
                         <div class="contact-card-icon">
                             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -279,56 +255,46 @@
                     </div>
 
                 </div>
-
             </div>
         </section>
 
-        <!-- FAQ -->
         <section class="contact-faq-section">
             <div class="contact-faq-container">
                 <div class="contact-faq-header">
                     <h2>Sık sorulan sorular</h2>
                     <p>En çok merak edilen sorulara kısa yanıtlar</p>
                 </div>
-
                 <div class="contact-faq-grid">
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">01</div>
                         <h3>Yayın süreci ne kadar sürer?</h3>
                         <p>Baskı onayından satışa açılmaya kadar süreç en fazla 14 gün sürer. Böylece kitabınız kısa sürede okurla buluşur.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">02</div>
                         <h3>Yayın maliyeti neye göre belirlenir?</h3>
                         <p>Maliyet, kitabınızın ihtiyaç duyduğu hizmetlere göre belirlenir. Yayın sürecinizi oluşturarak size özel değerlendirme isteyebilir ya da doğrudan bizimle iletişime geçebilirsiniz.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">03</div>
                         <h3>Kitabımın hakları bende mi kalır?</h3>
                         <p>Evet. Eseriniz üzerindeki tüm haklar sizde kalır. Biz, yazarın yanında yer alan bir yayın çözüm ortağı olarak çalışırız.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">04</div>
                         <h3>Kitabım Amazon'da ve satış kanallarında yer alır mı?</h3>
                         <p>Evet. Kitabınız Amazon'da, Almanya'daki kitap satış ağlarında ve büyük çevrim içi platformlarda erişilebilir hale gelir.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">05</div>
                         <h3>Bu süreç için klasik bir yayınevine ihtiyacım var mı?</h3>
                         <p>Hayır. Bu süreçte kontrolü ve hakları sizde tutarken, profesyonel yayın desteğini birlikte planlıyoruz.</p>
                     </div>
-
                     <div class="contact-faq-card">
                         <div class="contact-faq-number">06</div>
                         <h3>ISBN süreci nasıl işler?</h3>
                         <p>ISBN süreci, kitabınızın satış ve kayıt altyapısına uygun şekilde planlanır. Böylece eseriniz gerekli veri tabanlarında yer alarak profesyonel biçimde sunulur.</p>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -337,9 +303,20 @@
 
     <div id="footer-placeholder"></div>
 
+    <!-- Netlify Form Detection -->
+    <form name="contact-tr" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="vorname">
+        <input type="text" name="nachname">
+        <input type="email" name="email">
+        <input type="tel" name="telefon">
+        <input type="text" name="betreff">
+        <textarea name="nachricht"></textarea>
+    </form>
+
     <script type="module" src="../assets/js/main.js"></script>
     <script src="../assets/js/contact-page.js"></script>
 
+    <!-- Background -->
     <script>
         window.addEventListener('load', () => {
             const canvas = document.getElementById('particle-canvas');
@@ -373,6 +350,60 @@
                 animate();
             };
             document.head.appendChild(script);
+        });
+    </script>
+
+    <!-- Contact Form: AJAX Submit -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form      = document.getElementById('contactFormMain');
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            const successEl = document.getElementById('formSuccess');
+            const errorEl   = document.getElementById('formError');
+
+            window.openContact  = () => {};
+            window.closeContact = () => {};
+
+            form?.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const required = form.querySelectorAll('[required]');
+                let valid = true;
+                required.forEach(el => {
+                    el.style.borderColor = '';
+                    const isEmpty = el.type === 'checkbox' ? !el.checked : !el.value.trim();
+                    if (isEmpty) { el.style.borderColor = '#c0392b'; valid = false; }
+                });
+                if (!valid) return;
+
+                submitBtn.disabled = true;
+                submitBtn.querySelector('span').textContent = 'Gönderiliyor...';
+                successEl.style.display = 'none';
+                errorEl.style.display   = 'none';
+
+                const params = new URLSearchParams(new FormData(form));
+                params.set('form-name', 'contact-tr');
+                params.delete('datenschutz');
+
+                fetch('/tr/', {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body:    params.toString()
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    submitBtn.querySelector('span').textContent = '✓ Gönderildi!';
+                    submitBtn.style.background = '#4a7c59';
+                    successEl.style.display = 'block';
+                    form.reset();
+                })
+                .catch(err => {
+                    console.error('Contact form error:', err);
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('span').textContent = 'Mesajı gönder';
+                    errorEl.style.display = 'block';
+                });
+            });
         });
     </script>
 

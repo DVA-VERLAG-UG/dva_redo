@@ -42,7 +42,6 @@
         })();
     </script>
 
-    <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/color-theme-red.css">
     <link rel="stylesheet" href="../assets/css/background.css">
@@ -75,7 +74,6 @@
 
     <main>
 
-        <!-- Hero -->
         <section class="hero" id="hero">
             <div class="hero-container">
                 <div class="hero-content">
@@ -91,7 +89,6 @@
             </div>
         </section>
 
-        <!-- Process Steps -->
         <section class="process-steps-section" id="process-steps-section">
             <div class="process-container">
                 <div class="process-header">
@@ -171,7 +168,6 @@
             </div>
         </section>
 
-        <!-- Konfigurator Showcase -->
         <section class="konfig-showcase" id="konfig-showcase">
             <div class="konfig-showcase-container">
                 <div class="konfig-showcase-media">
@@ -204,7 +200,6 @@
             </div>
         </section>
 
-        <!-- Horizontal Scroll -->
         <div class="horizontal-scroll-wrapper">
             <div class="horizontal-scroll-container">
                 <div class="horizontal-scroll-track">
@@ -236,7 +231,6 @@
             </div>
         </div>
 
-        <!-- Logo Carousel -->
         <section class="logo-carousel-section" id="logo-carousel-section">
             <div class="logo-carousel-container">
                 <div class="logo-carousel-wrapper">
@@ -245,7 +239,6 @@
             </div>
         </section>
 
-        <!-- Stats -->
         <section class="stats-combined-section" id="stats-combined-section">
             <div class="stats-combined-container">
                 <div class="stats-panel-left">
@@ -266,7 +259,6 @@
             </div>
         </section>
 
-        <!-- Reviews -->
         <section class="reviews-section" id="reviews-section">
             <div class="reviews-container">
                 <div class="reviews-header">
@@ -288,7 +280,6 @@
             </div>
         </section>
 
-        <!-- News -->
         <section class="news-section" id="news-section">
             <div class="news-container">
                 <div class="news-header">
@@ -374,28 +365,76 @@
     </div>
 
     <script>
-        window.openContact = function() { document.getElementById('contactOverlay').classList.add('is-open'); document.body.style.overflow = 'hidden'; };
-        window.closeContact = function() { document.getElementById('contactOverlay').classList.remove('is-open'); document.body.style.overflow = ''; };
+        window.openContact = function() {
+            document.getElementById('contactOverlay').classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+        };
+        window.closeContact = function() {
+            document.getElementById('contactOverlay').classList.remove('is-open');
+            document.body.style.overflow = '';
+        };
         document.getElementById('contactBtn')?.addEventListener('click', window.openContact);
         document.getElementById('processContactBtn')?.addEventListener('click', window.openContact);
         document.getElementById('panelContactBtn')?.addEventListener('click', window.openContact);
         document.getElementById('contactClose').addEventListener('click', window.closeContact);
-        document.getElementById('contactOverlay').addEventListener('click', function(e) { if (e.target === this) window.closeContact(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') window.closeContact(); });
+        document.getElementById('contactOverlay').addEventListener('click', function(e) {
+            if (e.target === this) window.closeContact();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') window.closeContact();
+        });
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const vorname = document.getElementById('cf-vorname'), nachname = document.getElementById('cf-nachname'), email = document.getElementById('cf-email');
-            const submitBtn = document.getElementById('cf-submit'), msgBox = document.getElementById('cf-message');
+            const vorname   = document.getElementById('cf-vorname');
+            const nachname  = document.getElementById('cf-nachname');
+            const email     = document.getElementById('cf-email');
+            const submitBtn = document.getElementById('cf-submit');
+            const msgBox    = document.getElementById('cf-message');
             let valid = true;
-            [vorname, nachname, email].forEach(el => { el.style.borderColor = ''; if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; } });
-            if (!valid) { msgBox.textContent = 'Veuillez remplir correctement tous les champs obligatoires.'; msgBox.className = 'form-message error'; msgBox.style.display = 'block'; return; }
-            submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours...'; msgBox.style.display = 'none';
+            [vorname, nachname, email].forEach(el => {
+                el.style.borderColor = '';
+                if (!el.value.trim()) { el.style.borderColor = '#c0392b'; valid = false; }
+            });
+            if (!valid) {
+                msgBox.textContent = 'Veuillez remplir correctement tous les champs obligatoires.';
+                msgBox.className = 'form-message error';
+                msgBox.style.display = 'block';
+                return;
+            }
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            msgBox.style.display = 'none';
             const params = new URLSearchParams();
-            params.append('form-name','contact'); params.append('vorname', vorname.value.trim()); params.append('nachname', nachname.value.trim()); params.append('email', email.value.trim());
-            params.append('telefon', document.getElementById('cf-telefon').value.trim()); params.append('nachricht', document.getElementById('cf-nachricht').value.trim());
-            fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() })
-            .then(res => { if (!res.ok) throw new Error(); submitBtn.textContent = '✓ Envoyé !'; submitBtn.style.background = '#4a7c59'; msgBox.textContent = 'Merci ! Nous vous répondrons dans les 24 heures.'; msgBox.className = 'form-message success'; msgBox.style.display = 'block'; document.getElementById('contactForm').reset(); setTimeout(window.closeContact, 3000); })
-            .catch(() => { submitBtn.disabled = false; submitBtn.textContent = 'Envoyer'; msgBox.textContent = 'Erreur d\'envoi. Veuillez réessayer.'; msgBox.className = 'form-message error'; msgBox.style.display = 'block'; });
+            params.append('form-name', 'contact');
+            params.append('vorname',   vorname.value.trim());
+            params.append('nachname',  nachname.value.trim());
+            params.append('email',     email.value.trim());
+            params.append('telefon',   document.getElementById('cf-telefon').value.trim());
+            params.append('nachricht', document.getElementById('cf-nachricht').value.trim());
+            // Submit an /fr/ wo Netlify das Formular kennt
+            fetch('/fr/', {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body:    params.toString()
+            })
+            .then(res => {
+                if (!res.ok) throw new Error();
+                submitBtn.textContent = '✓ Envoyé !';
+                submitBtn.style.background = '#4a7c59';
+                msgBox.textContent = 'Merci ! Nous vous répondrons dans les 24 heures.';
+                msgBox.className = 'form-message success';
+                msgBox.style.display = 'block';
+                document.getElementById('contactForm').reset();
+                setTimeout(window.closeContact, 3000);
+            })
+            .catch(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Envoyer';
+                msgBox.textContent = 'Erreur d\'envoi. Veuillez réessayer.';
+                msgBox.className = 'form-message error';
+                msgBox.style.display = 'block';
+            });
         });
     </script>
 </body>
