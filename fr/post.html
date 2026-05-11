@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogpost | DVAYD Publishing</title>
     <meta name="description" content="Blogpost de DVAYD Publishing.">
-    <link rel="icon" type="image/png" href="../../assets/images/branding/favicon.png">
-    <link rel="apple-touch-icon" href="../../assets/images/branding/favicon.png">
+    <link rel="icon" type="image/png" href="../assets/images/branding/favicon.png">
+    <link rel="apple-touch-icon" href="../assets/images/branding/favicon.png">
     <script>
         (function() {
             try {
@@ -15,14 +15,14 @@
             } catch(e) {}
         })();
     </script>
-    <link rel="stylesheet" href="../../assets/css/global.css">
-    <link rel="stylesheet" href="../../assets/css/background.css">
-    <link rel="stylesheet" href="../../assets/css/header.css">
-    <link rel="stylesheet" href="../../assets/css/floating-logo.css">
-    <link rel="stylesheet" href="../../assets/css/footer.css">
-    <link rel="stylesheet" href="../../assets/css/contact-popup.css">
-    <link rel="stylesheet" href="../../assets/css/blog-post.css">
-    <link rel="stylesheet" href="../../assets/css/cursor-follower.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/background.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/floating-logo.css">
+    <link rel="stylesheet" href="../assets/css/footer.css">
+    <link rel="stylesheet" href="../assets/css/contact-popup.css">
+    <link rel="stylesheet" href="../assets/css/blog-post.css">
+    <link rel="stylesheet" href="../assets/css/cursor-follower.css">
 </head>
 <body class="no-curtain">
 
@@ -41,7 +41,7 @@
     </style>
 
     <a href="../index.html" class="floating-brand" aria-label="DVAYD Publishing Accueil">
-        <img src="../../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
+        <img src="../assets/images/branding/dva-logo.png" alt="DVAYD Logo" class="floating-brand-logo">
         <span class="floating-brand-name">DVAYD Publishing</span>
     </a>
 
@@ -112,7 +112,7 @@
         <textarea name="nachricht"></textarea>
     </form>
 
-    <script type="module" src="../../assets/js/main.js"></script>
+    <script type="module" src="../assets/js/main.js"></script>
 
     <!-- Post Script -->
     <script>
@@ -282,7 +282,7 @@
     <script type="module">
         window.addEventListener('load', () => {
             setTimeout(() => {
-                import('../../assets/js/cursor-follower.js')
+                import('../assets/js/cursor-follower.js')
                     .then(module => module.initCursorFollower())
                     .catch(err => console.log('Cursor follower skipped:', err));
             }, 500);
