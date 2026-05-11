@@ -1,0 +1,8 @@
+# Blog canonical redirects (fixes /xx/blog/ → blog-index.html)
+/de/blog/     /de/blog-index.html   301
+/en/blog/     /en/blog-index.html   301
+/fr/blog/     /fr/blog-index.html   301
+/tr/blog/     /tr/blog-index.html   301
+
+# Root → Turkish (primary language)
+/             /tr/                  301
