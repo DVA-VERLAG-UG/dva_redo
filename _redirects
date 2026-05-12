@@ -1,8 +1,9 @@
-# Redirect all aliases to primary domain
-https://dvayd.com/*      https://dva-yd.de/:splat  301!
-https://dva-verlag.de/*  https://dva-yd.de/:splat  301!
-https://dva-yd.com/*     https://dva-yd.de/:splat  301!
-https://dvayd.de/*       https://dva-yd.de/:splat  301!
+# Redirect all to primary .com
+https://dva-yd.de/*      https://dva-yd.com/:splat  301!
+https://www.dva-yd.de/*  https://dva-yd.com/:splat  301!
+https://dvayd.com/*      https://dva-yd.com/:splat  301!
+https://dva-verlag.de/*  https://dva-yd.com/:splat  301!
+https://dvayd.de/*       https://dva-yd.com/:splat  301!
 
 # Blog canonical redirects
 /de/blog/     /de/blog-index.html   301
