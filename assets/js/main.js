@@ -127,7 +127,7 @@ async function loadHeader() {
     return;
   }
   try {
-    const response = await fetch(`${BASE_PATH}/components/header.html`, { cache: 'no-store' });
+    const response = await fetch(`${BASE_PATH}/components/header.html`);
     if (!response.ok) throw new Error(`Failed to load header (${response.status})`);
     const html = await response.text();
     placeholder.innerHTML = html;
@@ -142,7 +142,7 @@ async function loadFooter() {
   const placeholder = document.getElementById('footer-placeholder');
   if (!placeholder) return;
   try {
-    const response = await fetch(`${BASE_PATH}/components/footer.html`, { cache: 'no-store' });
+    const response = await fetch(`${BASE_PATH}/components/footer.html`);
     if (!response.ok) throw new Error(`Failed to load footer (${response.status})`);
     const html = await response.text();
     placeholder.innerHTML = html;

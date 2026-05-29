@@ -139,7 +139,7 @@ let blogCache    = null;   // aus Google Sheet
 async function loadStaticIndex() {
   if (staticIndex) return staticIndex;
   try {
-    const res = await fetch('/assets/data/search-index.json', { cache: 'no-store' });
+    const res = await fetch('/assets/data/search-index.json');
     if (!res.ok) throw new Error();
     staticIndex = await res.json();
   } catch {
