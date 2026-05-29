@@ -77,6 +77,4 @@ export function initLogoCarousel() {
     observer.observe(header);
   }
 
-  console.log('✅ Logo carousel initialized');
-  console.log('Image path:', imagePath);
 }

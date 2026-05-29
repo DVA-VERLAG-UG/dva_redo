@@ -1,11 +1,9 @@
 // horizontal-scroll-section.js - Horizontal scroll with vertical/horizontal input
 
 export function initHorizontalScroll() {
-  console.log('↔️  Initializing horizontal scroll section...');
   
   const wrapper = document.querySelector('.horizontal-scroll-wrapper');
   if (!wrapper) {
-    console.warn('Horizontal scroll wrapper not found');
     return;
   }
   
@@ -13,7 +11,6 @@ export function initHorizontalScroll() {
   const track = wrapper.querySelector('.horizontal-scroll-track');
   
   if (!container || !track) {
-    console.warn('Horizontal scroll elements not found');
     return;
   } 
   
@@ -142,7 +139,6 @@ export function initHorizontalScroll() {
     }, { passive: true });
 
     updateMobileParallax();
-    console.log('✅ Mobile parallax initialized');
   }
 
   // ─────────────────────────────────────────────
@@ -155,11 +151,9 @@ export function initHorizontalScroll() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', handleHorizontalScroll, { passive: false });
     handleScroll();
-    console.log('✅ Horizontal scroll initialized (desktop)');
   } else {
     // Mobile: vertical layout + parallax reveal
     initMobileParallax();
-    console.log('✅ Horizontal scroll initialized (mobile - vertical layout)');
   }
   
   // Handle resize

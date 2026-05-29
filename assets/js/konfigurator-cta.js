@@ -1,11 +1,9 @@
 // konfigurator-cta.js - Scroll-triggered CTA overlay
 
 export function initKonfiguratorCTA() {
-  console.log('📋 Initializing Konfigurator CTA...');
   
   const ctaSection = document.querySelector('.konfigurator-cta');
   if (!ctaSection) {
-    console.warn('Konfigurator CTA section not found');
     return;
   }
   
@@ -14,7 +12,6 @@ export function initKonfiguratorCTA() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        console.log('✅ Konfigurator CTA visible');
       }
     });
   }, {
@@ -24,5 +21,4 @@ export function initKonfiguratorCTA() {
   
   observer.observe(ctaSection);
   
-  console.log('✅ Konfigurator CTA initialized');
 }

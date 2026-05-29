@@ -3,7 +3,6 @@
 // news-card-clip.js is no longer needed separately.
 
 export function initNews() {
-  console.log("📰 initNews() fired");
 
   const PUB_BASE =
     "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4g1gNsiyY4k2A052LR7EaVUYFqrWGWNITOPqw5bGG_PTogiP84C44VQJpKn-HC2vxHin4fTy_puU0/pub";
@@ -112,7 +111,6 @@ export function initNews() {
     const cta   = document.getElementById(`lp${n}Cta`);
 
     if (!link || !img || !date || !tag || !title || !text) {
-      console.warn(`🟡 Missing DOM nodes for lp${n}…`);
       return;
     }
 
@@ -131,13 +129,10 @@ export function initNews() {
   async function loadLatest4() {
     const lang = getLang();
     const url  = SHEET_URLS[lang];
-    console.log(`🔗 Fetching CSV for [${lang}]:`, url);
 
     const res = await fetch(url, { cache: "no-store" });
-    console.log("📡 Response:", res.status, res.statusText);
 
     const raw = await res.text();
-    console.log("📄 First 200 chars:", raw.slice(0, 200));
 
     if (raw.trim().startsWith("<")) {
       throw new Error("Got HTML instead of CSV. Sheet not published or wrong URL.");
@@ -165,7 +160,6 @@ export function initNews() {
       }))
       .filter((p) => p.slug && p.title);
 
-    console.log(`🧩 Parsed posts [${lang}]:`, posts.length);
 
     posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
     const latest = posts.slice(0, 4);
@@ -294,7 +288,6 @@ export function initNews() {
 
   loadLatest4()
     .then((items) => {
-      console.log("✅ Using items:", items);
       const list = [...items, ...FALLBACK, ...FALLBACK, ...FALLBACK, ...FALLBACK].slice(0, 4);
       list.forEach((it, i) => applyRow(i, it));
     })

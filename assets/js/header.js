@@ -398,5 +398,4 @@ function setupSearch() {
     }
   });
 
-  console.log('✅ Search initialized (pages + blog)');
 }

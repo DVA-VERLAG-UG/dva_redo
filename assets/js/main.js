@@ -18,16 +18,10 @@ import { initNews } from './news-section.js';
 const isGitHubPages = window.location.hostname.includes('github.io');
 const BASE_PATH = isGitHubPages ? '/dva_redo' : '';
 
-console.log('🌍 Environment Detection:');
-console.log('  - Hostname:', window.location.hostname);
-console.log('  - Is GitHub Pages:', isGitHubPages);
-console.log('  - BASE_PATH:', BASE_PATH || '(empty - local)');
-console.log('  - Full URL:', window.location.href);
 
 function safeInit(name, fn) {
   try {
     fn();
-    console.log(`✅ ${name} initialized`);
   } catch (err) {
     console.error(`❌ ${name} failed:`, err);
   }
@@ -152,9 +146,10 @@ async function loadFooter() {
   }
 }
 
-async function init() {
-  console.log('🚀 Starting initialization...');
+const has = (sel) => !!document.querySelector(sel);
+const hasId = (id) => !!document.getElementById(id);
 
+async function init() {
   if (!document.body.classList.contains('no-curtain')) {
     safeInit('Curtain', initCurtain);
   }
@@ -162,26 +157,23 @@ async function init() {
   try {
     const storedTheme = getStoredTheme();
     applyTheme(storedTheme);
-  } catch (e) {
-    console.error('❌ Theme apply failed:', e);
-  }
+  } catch (e) {}
 
   await Promise.allSettled([loadHeader(), loadFooter()]);
 
   safeInit('Theme Toggle', initTheme);
   safeInit('Social Bar', initSocialBar);
-  safeInit('Background', initBackground);
-  safeInit('Carousel', initCarousel);
-  safeInit('Konfigurator CTA', initKonfiguratorCTA);
-  safeInit('Horizontal Scroll', initHorizontalScroll);
-  safeInit('Process Steps', initProcessSteps);
-  safeInit('Logo Carousel', initLogoCarousel);
-  safeInit('Bridge', initBridge);
-  safeInit('Reviews', initReviews);
-  safeInit('News', initNews);
+  if (has('#particle-canvas'))                          safeInit('Background',        initBackground);
+  if (hasId('addons-carousel'))                         safeInit('Carousel',          initCarousel);
+  if (has('.konfigurator-cta'))                         safeInit('Konfigurator CTA',  initKonfiguratorCTA);
+  if (has('.horizontal-scroll-wrapper'))                safeInit('Horizontal Scroll', initHorizontalScroll);
+  if (has('.process-steps-section'))                    safeInit('Process Steps',     initProcessSteps);
+  if (has('.logo-carousel-section'))                    safeInit('Logo Carousel',     initLogoCarousel);
+  if (has('.bridge-content'))                           safeInit('Bridge',            initBridge);
+  if (has('.reviews-section'))                          safeInit('Reviews',           initReviews);
+  if (has('.news-section'))                             safeInit('News',              initNews);
 
   document.documentElement.classList.add('page-loaded');
-  console.log('✅ All initialization complete!');
 }
 
 if (document.readyState === 'loading') {

@@ -30,10 +30,8 @@ function saveTheme(theme) {
 export function applyTheme(theme) {
   if (theme === THEME_DARK) {
     document.documentElement.setAttribute(THEME_ATTR, THEME_DARK);
-    console.log('🌙 Dark mode activated - Deep Blue Library');
   } else {
     document.documentElement.removeAttribute(THEME_ATTR);
-    console.log('☀️ Light mode activated - Warm Cream Paper');
   }
 }
 
@@ -52,18 +50,15 @@ function toggleTheme() {
   const themeName = isDarkMode() 
     ? 'Dark Mode (Deep Blue #2C3E50 + Bronze #B08D57)' 
     : 'Light Mode (Cream #faf8f5 + Bronze #B08D57)';
-  console.log(`🎨 Theme switched to: ${themeName}`);
   
   return isDarkMode();
 }
 
 // Initialize theme on page load
 export function initTheme() {
-  console.log('🎨 Initializing Royal Bronze Theme...');
   
   // Apply stored theme immediately (before page renders)
   const storedTheme = getStoredTheme();
-  console.log('📦 Stored theme:', storedTheme || 'default (light)');
   applyTheme(storedTheme);
   
   // Setup theme toggle button
@@ -73,7 +68,6 @@ export function initTheme() {
     return;
   }
   
-  console.log('✅ Theme toggle button found');
   
   // Sync button state
   function syncButtonState() {
@@ -83,21 +77,15 @@ export function initTheme() {
     const themeInfo = isDark 
       ? 'Dark (Deep Blue + Bronze)' 
       : 'Light (Cream + Bronze)';
-    console.log(`🌓 Theme synced: ${themeInfo}`);
   }
   
   syncButtonState();
   
   themeToggle.addEventListener('click', () => {
-    console.log('🖱️ Theme button clicked!');
     toggleTheme();
     syncButtonState();
   });
   
-  console.log('✅ Royal Bronze Theme initialized successfully');
-  console.log('🎨 Color Palette:');
-  console.log('   Light: Cream (#faf8f5) + Bronze (#B08D57)');
-  console.log('   Dark: Deep Blue (#2C3E50) + Bronze (#B08D57)');
 }
 
 // Apply theme early (call this in <head> if possible to prevent flash)

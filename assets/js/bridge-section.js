@@ -1,11 +1,9 @@
 // bridge-section.js - Connect sections with animated text
 
 export function initBridge() {
-  console.log('🌉 Initializing bridge section...');
   
   const bridge = document.querySelector('.bridge-content');
   if (!bridge) {
-    console.warn('Bridge section not found');
     return;
   }
   
@@ -23,5 +21,4 @@ export function initBridge() {
   
   observer.observe(bridge);
   
-  console.log('✅ Bridge section initialized');
 }

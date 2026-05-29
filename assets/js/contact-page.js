@@ -6,7 +6,6 @@
 (function() {
   'use strict';
   
-  console.log('📧 Contact Page Loading...');
   
   // ==========================================
   // 1. FORM VALIDATION & SUBMISSION
@@ -65,7 +64,6 @@
             successMsg.classList.remove('show');
           }, 5000);
           
-          console.log('✅ Form submitted successfully');
         } else {
           throw new Error('Submission failed');
         }
@@ -75,7 +73,6 @@
       }
     });
     
-    console.log('✅ Form initialized');
   }
   
   // ==========================================
@@ -151,7 +148,6 @@
       });
     }, 100);
     
-    console.log('✅ Cursor fix applied');
   }
   
   // ==========================================
@@ -172,7 +168,6 @@
     initSmoothScroll();    // Scroll to form
     initCardEffects();     // Card interactions
     
-    console.log('🎉 Contact Page Ready!');
   }
   
   init();

@@ -1,17 +1,14 @@
 // reviews-section.js - Native horizontal scrolling with Google Sheets (multilingual)
 
 export function initReviews() {
-  console.log('⭐ Initializing reviews section...');
   
   const section = document.querySelector('.reviews-section');
   if (!section) {
-    console.warn('Reviews section not found');
     return;
   }
   
   initReviewsCarousel();
   
-  console.log('✅ Reviews section initialized');
 }
 
 function initReviewsCarousel() {
@@ -25,7 +22,6 @@ function initReviewsCarousel() {
   const c3 = document.getElementById('reviewCard3');
 
   if (!stack || !prevBtn || !nextBtn || !c1 || !c2 || !c3) {
-    console.warn('Reviews carousel elements not found');
     return;
   }
 
@@ -115,7 +111,6 @@ function initReviewsCarousel() {
   async function loadReviewsFromSheet() {
     const lang = getLang();
     const url  = SHEET_URLS[lang];
-    console.log(`⭐ Fetching reviews [${lang}]:`, url);
 
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error("Reviews CSV fetch failed: " + res.status);
@@ -257,5 +252,4 @@ function initReviewsCarousel() {
       createDots();
       updateProgress();
     })
-    .catch(err => console.warn("Reviews: Failed to load, using fallback.", err));
 }

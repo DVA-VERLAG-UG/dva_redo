@@ -212,7 +212,6 @@ function animate() {
 }
 
 export function initBackground() {
-  console.log('📚 Initializing falling book pages (Royal Bronze Theme)...');
   
   pages = [];
   createCanvas();
@@ -226,7 +225,6 @@ export function initBackground() {
   animate();
   window.addEventListener('resize', resizeCanvas);
 
-  console.log('✅ Falling bronze book pages initialized!');
 }
 
 export function stopBackground() {
@@ -239,7 +237,6 @@ export function stopBackground() {
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.attributeName === 'data-theme') {
-      console.log('🎨 Theme changed, bronze pages will adapt');
     }
   });
 });

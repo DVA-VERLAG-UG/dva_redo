@@ -199,7 +199,6 @@ export function initFooter() {
   }
 
   bindFooterButtons();
-  console.log(`✅ Footer initialized (${lang.toUpperCase()})`);
 }
 
 function bindFooterButtons() {
@@ -225,5 +224,4 @@ function bindFooterButtons() {
     });
   });
 
-  console.log('✅ Footer-Buttons verbunden');
 }

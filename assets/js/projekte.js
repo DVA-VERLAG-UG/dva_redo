@@ -140,14 +140,12 @@ const projects = [
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🎨 Projekte page initializing...');
     
     renderProjects();
     initializeFilters();
     initializeModal();
     initializeContactPopup();
     
-    console.log('✅ Projekte page initialized');
 });
 
 // Render all projects

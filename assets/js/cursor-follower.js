@@ -3,11 +3,9 @@
 export function initCursorFollower() {
   // Completely wrapped in try-catch so it can NEVER break other code
   try {
-    console.log('🔵 Initializing cursor follower...');
     
     // Skip on touch devices
     if (window.matchMedia('(hover: none)').matches) {
-      console.log('⏭️ Touch device - skipping cursor follower');
       return;
     }
     
@@ -61,10 +59,8 @@ export function initCursorFollower() {
       }
     }, { passive: true });
     
-    console.log('✅ Cursor follower ready');
     
   } catch (error) {
     // Silent fail - won't break anything else
-    console.warn('Cursor follower failed (non-critical):', error);
   }
 }

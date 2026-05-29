@@ -6,7 +6,6 @@
 (function() {
   'use strict';
   
-  console.log('🎨 About Page Optimized - Loading...');
   
   // Performance settings
   const ENABLE_PARALLAX = window.innerWidth > 768; // Disable on mobile
@@ -18,7 +17,6 @@
   
   function initParallax() {
     if (!ENABLE_PARALLAX) {
-      console.log('📱 Parallax disabled on mobile');
       return;
     }
     
@@ -54,7 +52,6 @@
     }, { passive: true });
     
     updateParallax();
-    console.log('✅ Parallax initialized (optimized)');
   }
   
   // ==========================================
@@ -104,7 +101,6 @@
       requestAnimationFrame(update);
     }
     
-    console.log('✅ Counters initialized');
   }
   
   // ==========================================
@@ -144,7 +140,6 @@ setTimeout(() => {
       observer.observe(el);
     });
     
-    console.log('✅ Scroll reveal initialized');
   }
   
   // ==========================================
@@ -189,7 +184,6 @@ setTimeout(() => {
     
     container.style.cursor = 'grab';
     
-    console.log('✅ Horizontal scroll initialized');
   }
   
   // ==========================================
@@ -214,7 +208,6 @@ setTimeout(() => {
       }
     }, { passive: true });
     
-    console.log('✅ Scroll indicator initialized');
   }
   
   // ==========================================
@@ -238,7 +231,6 @@ setTimeout(() => {
     
     elements.forEach(el => observer.observe(el));
     
-    console.log('✅ Lazy backgrounds initialized');
   }
   
   // ==========================================
@@ -272,7 +264,6 @@ setTimeout(() => {
       }, 100);
     }
     
-    console.log('🎉 About Page Ready (Optimized)');
   }
   
   // ==========================================
@@ -328,7 +319,6 @@ setTimeout(() => {
         } catch(e) {}
       });
       
-      console.log('✅ Cursor fix forced');
     }, 100);
   }
   

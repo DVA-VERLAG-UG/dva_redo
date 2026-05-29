@@ -65,11 +65,9 @@ function createAddonCard(addon) {
 }
 
 export function initCarousel() {
-  console.log('🎠 Initializing add-ons carousel...');
   
   const carouselContainer = document.getElementById('addons-carousel');
   if (!carouselContainer) {
-    console.warn('Carousel container not found');
     return;
   }
   
@@ -97,5 +95,4 @@ export function initCarousel() {
     });
   });
   
-  console.log('✅ Carousel initialized with', ADDONS.length, 'add-ons (duplicated for loop)');
 }

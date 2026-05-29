@@ -1,11 +1,9 @@
 // process-steps.js - Animated process timeline
 
 export function initProcessSteps() {
-  console.log('📋 Initializing process steps...');
   
   const section = document.querySelector('.process-steps-section');
   if (!section) {
-    console.warn('Process steps section not found');
     return;
   }
   
@@ -52,5 +50,4 @@ export function initProcessSteps() {
     observer.observe(cta);
   }
   
-  console.log('✅ Process steps initialized with', steps.length, 'steps');
 }

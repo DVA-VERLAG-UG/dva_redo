@@ -1,11 +1,9 @@
 // stats-combined-section.js - Animated counters with parallax effect
 
 (function() {
-  console.log('📊 Initializing stats combined section...');
   
   const section = document.querySelector('.stats-combined-section');
   if (!section) {
-    console.warn('Stats combined section not found');
     return;
   }
   
@@ -13,7 +11,6 @@
   const panels = section.querySelectorAll('.stats-panel-left, .stats-panel-right');
   
   if (counters.length === 0) {
-    console.warn('No stat counters found');
     return;
   }
   
@@ -108,7 +105,6 @@
           }, 200); // Slight delay for stagger effect
         }
         
-        console.log('✅ Stats counters animated');
       }
     });
   }, {
@@ -127,5 +123,4 @@
   // Initial parallax position
   updateParallax();
   
-  console.log('✅ Stats combined section with parallax initialized');
 })();
