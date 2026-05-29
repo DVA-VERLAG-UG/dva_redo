@@ -1,80 +1,64 @@
-// logo-carousel.js - FIXED paths for both local and GitHub Pages
+// logo-carousel.js
+
+const LOGOS = [
+  { name: 'Libri',        file: 'libri.png' },
+  { name: 'Amazon',       file: 'amazon.png' },
+  { name: 'Google Books', file: 'google-books.png' },
+  { name: 'Thalia',       file: 'thalia.png' },
+  { name: 'Hugendubel',   file: 'hugendubel.png' },
+  { name: 'Kobo',         file: 'kobo.png' },
+];
+
+function buildCarousel(track, imagePath) {
+  if (track.dataset.built) return;
+  track.dataset.built = '1';
+
+  // Duplicate for seamless CSS loop
+  [...LOGOS, ...LOGOS].forEach(logo => {
+    const item = document.createElement('div');
+    item.className = 'logo-carousel-item';
+
+    const img = document.createElement('img');
+    img.src = `${imagePath}${logo.file}`;
+    img.alt = logo.name;
+    // No loading="lazy" — we're already deferring via IntersectionObserver
+    item.appendChild(img);
+    track.appendChild(item);
+  });
+}
 
 export function initLogoCarousel() {
   const section = document.querySelector('.logo-carousel-section');
   if (!section) return;
- 
-  const track = section.querySelector('.logo-carousel-track');
+
+  const track  = section.querySelector('.logo-carousel-track');
   const header = section.querySelector('.logo-carousel-header');
-  
-  if (!track) {
-    console.error('Logo carousel track not found');
-    return;
-  }
- 
-  // Logo data
-  const logos = [
-    { name: 'Libri', file: 'libri.png' },
-    { name: 'Amazon', file: 'amazon.png' },
-    { name: 'Google Books', file: 'google-books.png' },
-    { name: 'Thalia', file: 'thalia.png' },
-    { name: 'Hugendubel', file: 'hugendubel.png' },
-    { name: 'Kobo', file: 'kobo.png' }
-  ];
+  if (!track) return;
 
-  // Detect current path and build correct base path
-  const currentPath = window.location.pathname;
   const isGitHubPages = window.location.hostname.includes('github.io');
-  
-  // Build correct path based on environment
-  let imagePath;
-  if (isGitHubPages) {
-    // GitHub Pages: /dva_redo/de/index.html → /dva_redo/assets/images/...
-    imagePath = '/dva_redo/assets/images/index/logos/';
-  } else {
-    // Local: /de/index.html → ../assets/images/...
-    imagePath = '../assets/images/index/logos/';
-  }
+  const imagePath = isGitHubPages
+    ? '/dva_redo/assets/images/index/logos/'
+    : '../assets/images/index/logos/';
 
-  // Duplicate logos for seamless loop
-  const allLogos = [...logos, ...logos];
+  // Build the carousel 500px before it enters the viewport so images
+  // are already loaded by the time the user scrolls to this section.
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      buildCarousel(track, imagePath);
+      observer.disconnect();
+    }
+  }, { rootMargin: '500px 0px' });
 
-  // Create logo elements
-  allLogos.forEach(logo => {
-    const logoItem = document.createElement('div');
-    logoItem.className = 'logo-carousel-item';
-    
-    const img = document.createElement('img');
-    img.src = `${imagePath}${logo.file}`;
-    img.alt = logo.name;
-    img.loading = 'lazy';
-    
-    // Fallback if image doesn't load
-    img.onerror = () => {
-      console.error(`Failed to load logo: ${img.src}`);
-      logoItem.innerHTML = `<span style="font-size: 1.5rem; font-weight: 700; opacity: 0.5;">${logo.name}</span>`;
-    };
-    
-    logoItem.appendChild(img);
-    track.appendChild(logoItem);
-  });
+  observer.observe(section);
 
-  // Intersection Observer for header animation (optional)
+  // Header reveal animation
   if (header) {
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('logo-visible');
-        }
-      });
-    }, observerOptions);
-
-    observer.observe(header);
+    const headerObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        header.classList.add('logo-visible');
+        headerObserver.disconnect();
+      }
+    }, { threshold: 0.2 });
+    headerObserver.observe(header);
   }
-
 }
