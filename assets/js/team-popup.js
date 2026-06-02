@@ -78,6 +78,14 @@ export function initTeamPopup() {
   const lang = getLang();
   const byId = Object.fromEntries(TEAM.map(m => [m.id, m]));
 
+  // Hydrate card background images from team.js data
+  grid.querySelectorAll('.about-team-card-wrapper[data-team-id]').forEach(wrapper => {
+    const member = byId[wrapper.dataset.teamId];
+    if (!member?.photo) return;
+    const img = wrapper.querySelector('.about-team-image');
+    if (img) img.style.backgroundImage = `url('${member.photo}')`;
+  });
+
   // Accessibility labels per card
   const MORE = { de: 'mehr erfahren', en: 'learn more', tr: 'daha fazla', fr: 'en savoir plus' };
   grid.querySelectorAll('.about-team-card-wrapper[data-team-id]').forEach(wrapper => {
