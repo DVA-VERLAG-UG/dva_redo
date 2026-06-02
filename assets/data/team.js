@@ -1,77 +1,171 @@
 // ─────────────────────────────────────────────────────────────────────────────
-//  TEAM DATA  —  edit this file to update bios, photos and roles
+//  TEAM DATA  —  hier Text, Rolle und Foto pro Person eintragen
 //
-//  photo:  path relative to the HTML page that loads this file
-//          e.g. '../assets/images/about/team/bihter.jpg'
-//          Leave as '' to show a placeholder silhouette.
+//  photo:
+//    Bildpfad relativ zur HTML-Seite, z.B.:
+//    '../assets/images/about/team/bihter.jpg'
+//    Leer lassen ('') = Silhouetten-Platzhalter wird angezeigt.
 //
-//  bio:    Short paragraph shown in the popup. HTML allowed (e.g. <br>).
+//  role / bio:
+//    Pro Sprache ein eigener Text (de / en / tr / fr).
+//    Fehlt eine Übersetzung, wird automatisch 'de' als Fallback genutzt.
+//    HTML ist erlaubt (z.B. <br>, <strong>).
 //
-//  Each entry maps to one card via the matching `id` attribute.
+//  id: NICHT ändern — verknüpft den Eintrag mit der Karte auf der Seite.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const TEAM = [
   {
     id:    'bihter-sahin',
     name:  'Bihter Şahin',
-    role:  'Inhaberin · Allgemeine Koordinatorin',
-    photo: '',   // ← Bildpfad eintragen, z.B. '../assets/images/about/team/bihter.jpg'
-    bio:   'Hier kommt der Text über Bihter Şahin. Beschreibe ihre Rolle, ihren Hintergrund und ihre Leidenschaft für das Verlagswesen.',
+    photo: '',  // ← z.B. '../assets/images/about/team/bihter.jpg'
+    role: {
+      de: 'Inhaberin · Allgemeine Koordinatorin',
+      en: 'Owner · General Coordinator',
+      tr: 'Sahibi · Genel Koordinatör',
+      fr: 'Propriétaire · Coordinatrice Générale',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Bihter Şahin auf Deutsch.',
+      en: 'Text about Bihter Şahin in English.',
+      tr: 'Bihter Şahin hakkında Türkçe metin.',
+      fr: 'Texte sur Bihter Şahin en français.',
+    },
   },
   {
     id:    'busra-sahin',
     name:  'Büşra Şahin',
-    role:  'Chefredakteurin',
     photo: '',
-    bio:   'Hier kommt der Text über Büşra Şahin.',
+    role: {
+      de: 'Chefredakteurin',
+      en: 'Editor-in-Chief',
+      tr: 'Genel Yayın Yönetmeni',
+      fr: 'Rédactrice en Chef',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Büşra Şahin auf Deutsch.',
+      en: 'Text about Büşra Şahin in English.',
+      tr: 'Büşra Şahin hakkında Türkçe metin.',
+      fr: 'Texte sur Büşra Şahin en français.',
+    },
   },
   {
     id:    'bilgehan-pullukcu',
     name:  'Bilgehan Pullukcu',
-    role:  'Verlagskoordination & Autorenmanagement',
     photo: '',
-    bio:   'Hier kommt der Text über Bilgehan Pullukcu.',
+    role: {
+      de: 'Verlagskoordination & Autorenmanagement',
+      en: 'Publishing Coordination & Author Management',
+      tr: 'Yayın Koordinasyonu & Yazar Yönetimi',
+      fr: 'Coordination Éditoriale & Gestion des Auteurs',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Bilgehan Pullukcu auf Deutsch.',
+      en: 'Text about Bilgehan Pullukcu in English.',
+      tr: 'Bilgehan Pullukcu hakkında Türkçe metin.',
+      fr: 'Texte sur Bilgehan Pullukcu en français.',
+    },
   },
   {
     id:    'sibel-caglar',
     name:  'Sibel Çağlar',
-    role:  'Autorenberaterin',
     photo: '',
-    bio:   'Hier kommt der Text über Sibel Çağlar.',
+    role: {
+      de: 'Autorenberaterin',
+      en: 'Author Consultant',
+      tr: 'Yazar Danışmanı',
+      fr: 'Conseillère Auteurs',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Sibel Çağlar auf Deutsch.',
+      en: 'Text about Sibel Çağlar in English.',
+      tr: 'Sibel Çağlar hakkında Türkçe metin.',
+      fr: 'Texte sur Sibel Çağlar en français.',
+    },
   },
   {
     id:    'nilay-karaduman',
     name:  'Nilay Karaduman',
-    role:  'Autorenberaterin · Content & Social Media Managerin',
     photo: '',
-    bio:   'Hier kommt der Text über Nilay Karaduman.',
+    role: {
+      de: 'Autorenberaterin · Content & Social Media Managerin',
+      en: 'Author Consultant · Content & Social Media Manager',
+      tr: 'Yazar Danışmanı · İçerik & Sosyal Medya Yöneticisi',
+      fr: 'Conseillère Auteurs · Responsable Contenu & Réseaux Sociaux',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Nilay Karaduman auf Deutsch.',
+      en: 'Text about Nilay Karaduman in English.',
+      tr: 'Nilay Karaduman hakkında Türkçe metin.',
+      fr: 'Texte sur Nilay Karaduman en français.',
+    },
   },
   {
     id:    'erinc-sahin',
     name:  'Erinc Şahin',
-    role:  'Content & Social Media Manager',
     photo: '',
-    bio:   'Hier kommt der Text über Erinc Şahin.',
+    role: {
+      de: 'Content & Social Media Manager',
+      en: 'Content & Social Media Manager',
+      tr: 'İçerik & Sosyal Medya Yöneticisi',
+      fr: 'Responsable Contenu & Réseaux Sociaux',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Erinc Şahin auf Deutsch.',
+      en: 'Text about Erinc Şahin in English.',
+      tr: 'Erinc Şahin hakkında Türkçe metin.',
+      fr: 'Texte sur Erinc Şahin en français.',
+    },
   },
   {
     id:    'nese-siyamoglu',
     name:  'Neşe Siyamoğlu',
-    role:  'Lektorat & Verlagsgestaltung',
     photo: '',
-    bio:   'Hier kommt der Text über Neşe Siyamoğlu.',
+    role: {
+      de: 'Lektorat & Verlagsgestaltung',
+      en: 'Editing & Publishing Design',
+      tr: 'Redaksiyon & Yayın Tasarımı',
+      fr: 'Édition & Mise en Page',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Neşe Siyamoğlu auf Deutsch.',
+      en: 'Text about Neşe Siyamoğlu in English.',
+      tr: 'Neşe Siyamoğlu hakkında Türkçe metin.',
+      fr: 'Texte sur Neşe Siyamoğlu en français.',
+    },
   },
   {
     id:    'zekeriya-avci',
     name:  'Zekeriya Avcı',
-    role:  'Finanz- & Buchhaltungskoordination',
     photo: '',
-    bio:   'Hier kommt der Text über Zekeriya Avcı.',
+    role: {
+      de: 'Finanz- & Buchhaltungskoordination',
+      en: 'Finance & Accounting Coordination',
+      tr: 'Finans & Muhasebe Koordinasyonu',
+      fr: 'Coordination Finance & Comptabilité',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Zekeriya Avcı auf Deutsch.',
+      en: 'Text about Zekeriya Avcı in English.',
+      tr: 'Zekeriya Avcı hakkında Türkçe metin.',
+      fr: 'Texte sur Zekeriya Avcı en français.',
+    },
   },
   {
     id:    'arzu-ozen-cakir',
     name:  'Arzu Özen Çakır',
-    role:  'Finanzen & Buchhaltung',
     photo: '',
-    bio:   'Hier kommt der Text über Arzu Özen Çakır.',
+    role: {
+      de: 'Finanzen & Buchhaltung',
+      en: 'Finance & Accounting',
+      tr: 'Finans & Muhasebe',
+      fr: 'Finance & Comptabilité',
+    },
+    bio: {
+      de: 'Hier kommt der Text über Arzu Özen Çakır auf Deutsch.',
+      en: 'Text about Arzu Özen Çakır in English.',
+      tr: 'Arzu Özen Çakır hakkında Türkçe metin.',
+      fr: 'Texte sur Arzu Özen Çakır en français.',
+    },
   },
 ];

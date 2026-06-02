@@ -6,7 +6,25 @@ const PLACEHOLDER_SVG = `
   <ellipse cx="40" cy="72" rx="28" ry="18" fill="white"/>
 </svg>`;
 
-function buildOverlay() {
+// Close label per language
+const CLOSE_LABEL = { de: 'Schließen', en: 'Close', tr: 'Kapat', fr: 'Fermer' };
+
+// Detect language from URL path (matches site's own convention)
+function getLang() {
+  const p = window.location.pathname;
+  if (p.includes('/en/')) return 'en';
+  if (p.includes('/tr/')) return 'tr';
+  if (p.includes('/fr/')) return 'fr';
+  return 'de';
+}
+
+// Return localised string — falls back to 'de' if translation missing
+function t(field, lang) {
+  if (typeof field === 'string') return field;          // legacy plain string
+  return field[lang] || field.de || '';
+}
+
+function buildOverlay(lang) {
   const overlay = document.createElement('div');
   overlay.className = 'team-popup-overlay';
   overlay.id = 'teamPopupOverlay';
@@ -16,7 +34,7 @@ function buildOverlay() {
         <div class="team-popup-photo-placeholder" id="teamPopupPlaceholder">${PLACEHOLDER_SVG}</div>
       </div>
       <div class="team-popup-content">
-        <button class="team-popup-close" id="teamPopupClose" aria-label="Schließen">✕</button>
+        <button class="team-popup-close" id="teamPopupClose" aria-label="${CLOSE_LABEL[lang] || 'Close'}">✕</button>
         <span class="team-popup-role"  id="teamPopupRole"></span>
         <h2  class="team-popup-name"   id="teamPopupName"></h2>
         <hr  class="team-popup-divider">
@@ -27,13 +45,13 @@ function buildOverlay() {
   return overlay;
 }
 
-function openPopup(overlay, member) {
+function openPopup(overlay, member, lang) {
   const photo       = document.getElementById('teamPopupPhoto');
   const placeholder = document.getElementById('teamPopupPlaceholder');
 
-  document.getElementById('teamPopupRole').textContent    = member.role;
-  document.getElementById('teamPopupName').textContent    = member.name;
-  document.getElementById('teamPopupBio').innerHTML       = member.bio;
+  document.getElementById('teamPopupRole').textContent = t(member.role, lang);
+  document.getElementById('teamPopupName').textContent = member.name;
+  document.getElementById('teamPopupBio').innerHTML    = t(member.bio, lang);
 
   if (member.photo) {
     photo.style.backgroundImage = `url('${member.photo}')`;
@@ -57,38 +75,36 @@ export function initTeamPopup() {
   const grid = document.querySelector('.about-team-grid');
   if (!grid) return;
 
-  // Build index by id for O(1) lookup
+  const lang = getLang();
   const byId = Object.fromEntries(TEAM.map(m => [m.id, m]));
 
-  // Wire up each card
-  grid.querySelectorAll('.about-team-card-wrapper').forEach(wrapper => {
-    const id = wrapper.dataset.teamId;
-    if (!id || !byId[id]) return;
-
+  // Accessibility labels per card
+  const MORE = { de: 'mehr erfahren', en: 'learn more', tr: 'daha fazla', fr: 'en savoir plus' };
+  grid.querySelectorAll('.about-team-card-wrapper[data-team-id]').forEach(wrapper => {
+    const member = byId[wrapper.dataset.teamId];
+    if (!member) return;
     const card = wrapper.querySelector('.about-team-card');
     card.setAttribute('tabindex', '0');
     card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', `${byId[id].name} – mehr erfahren`);
+    card.setAttribute('aria-label', `${member.name} – ${MORE[lang] || 'learn more'}`);
   });
 
-  const overlay = buildOverlay();
+  const overlay = buildOverlay(lang);
 
-  // Click handler on the grid (event delegation)
   grid.addEventListener('click', e => {
     const wrapper = e.target.closest('.about-team-card-wrapper[data-team-id]');
     if (!wrapper) return;
     const member = byId[wrapper.dataset.teamId];
-    if (member) openPopup(overlay, member);
+    if (member) openPopup(overlay, member, lang);
   });
 
-  // Keyboard: Enter / Space on focused card
   grid.addEventListener('keydown', e => {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     const wrapper = e.target.closest('.about-team-card-wrapper[data-team-id]');
     if (!wrapper) return;
     e.preventDefault();
     const member = byId[wrapper.dataset.teamId];
-    if (member) openPopup(overlay, member);
+    if (member) openPopup(overlay, member, lang);
   });
 
   document.getElementById('teamPopupClose').addEventListener('click', () => closePopup(overlay));
