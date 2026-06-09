@@ -193,7 +193,7 @@ Quand tu nous contactes, je veux que tu ne te sentes pas comme si tu avais postu
   {
     id:    'nilay-karaduman',
     name:  'Nilay Karaduman',
-    photo: '',
+    photo: '../assets/images/about/nilay.PNG',
     role: {
       de: 'Autorenberaterin · Content & Social Media Managerin',
       en: 'Author Consultant · Content & Social Media Manager',
