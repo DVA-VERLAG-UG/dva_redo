@@ -86,6 +86,14 @@ export function initTeamPopup() {
     if (img) img.style.backgroundImage = `url('${member.photo}')`;
   });
 
+  // Hydrate taglines onto cards
+  grid.querySelectorAll('.about-team-card-wrapper[data-team-id]').forEach(wrapper => {
+    const member = byId[wrapper.dataset.teamId];
+    if (!member?.tagline) return;
+    const el = wrapper.querySelector('.about-team-tagline');
+    if (el) el.textContent = t(member.tagline, lang);
+  });
+
   // Accessibility labels per card
   const MORE = { de: 'mehr erfahren', en: 'learn more', tr: 'daha fazla', fr: 'en savoir plus' };
   grid.querySelectorAll('.about-team-card-wrapper[data-team-id]').forEach(wrapper => {
