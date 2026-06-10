@@ -83,7 +83,10 @@ export function initTeamPopup() {
     const member = byId[wrapper.dataset.teamId];
     if (!member?.photo) return;
     const img = wrapper.querySelector('.about-team-image');
-    if (img) img.style.backgroundImage = `url('${member.photo}')`;
+    if (!img) return;
+    img.style.backgroundImage    = `url('${member.photo}')`;
+    if (member.photoSize)     img.style.backgroundSize     = member.photoSize;
+    if (member.photoPosition) img.style.backgroundPosition = member.photoPosition;
   });
 
   // Hydrate taglines onto cards

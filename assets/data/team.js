@@ -17,9 +17,11 @@
 
 export const TEAM = [
   {
-    id:    'bihter-sahin',
-    name:  'Bihter Şahin',
-    photo: '../assets/images/about/bihter.png',
+    id:           'bihter-sahin',
+    name:         'Bihter Şahin',
+    photo:        '../assets/images/about/bihter.png',
+    photoSize:    'auto 125%',
+    photoPosition:'50% 30%',
     role: {
       de: 'Inhaberin · Allgemeine Koordinatorin',
       en: 'Owner · General Coordinator',
@@ -60,9 +62,11 @@ Quand tu nous écris, je veux que tu ressentes ceci : Ici, on ne te donne pas se
     },
   },
   {
-    id:    'busra-sahin',
-    name:  'Büşra Şahin',
-    photo: '../assets/images/about/büsrasahin-ekip.png',
+    id:           'busra-sahin',
+    name:         'Büşra Şahin',
+    photo:        '../assets/images/about/büsrasahin-ekip.png',
+    photoSize:    'auto 140%',
+    photoPosition:'50% 15%',
     role: {
       de: 'Chefredakteurin',
       en: 'Editor-in-Chief',
@@ -104,9 +108,10 @@ Quand ton manuscrit vient chez nous, je veux qu'il se sente non pas parcouru —
     },
   },
   {
-    id:    'bilgehan-pullukcu',
-    name:  'Bilgehan Pullukcu',
-    photo: '../assets/images/about/bilge.png',
+    id:           'bilgehan-pullukcu',
+    name:         'Bilgehan Pullukcu',
+    photo:        '../assets/images/about/bilge.png',
+    photoPosition:'50% 20%',
     role: {
       de: 'Autorenmanagement & Verlagskoordination',
       en: 'Author Management & Publishing Coordination',
@@ -147,9 +152,11 @@ Quand un auteur vient nous voir, je veux l'accueillir ainsi : sereinement, chale
     },
   },
   {
-    id:    'sibel-caglar',
-    name:  'Sibel Çağlar',
-    photo: '../assets/images/about/sibelcaglar.png',
+    id:           'sibel-caglar',
+    name:         'Sibel Çağlar',
+    photo:        '../assets/images/about/sibelcaglar.png',
+    photoSize:    'auto 125%',
+    photoPosition:'50% 30%',
     role: {
       de: 'Autorenberaterin',
       en: 'Author Consultant',
@@ -234,9 +241,10 @@ Quand tu nous contactes, je veux que tu te sentes non seulement orienté — mai
     },
   },
   {
-    id:    'erinc-sahin',
-    name:  'Erinç Şahin',
-    photo: '../assets/images/about/erinc.jpg',
+    id:           'erinc-sahin',
+    name:         'Erinç Şahin',
+    photo:        '../assets/images/about/erinc.jpg',
+    photoPosition:'50% 15%',
     role: {
       de: 'Digitale Reichweite & Social-Media-Kommunikation',
       en: 'Digital Reach & Social Media Communications',
@@ -277,9 +285,11 @@ Si tu veux raconter ton histoire — nous pouvons commencer ensemble. Peu import
     },
   },
   {
-    id:    'nese-siyamoglu',
-    name:  'Neşe Siyamoğlu',
-    photo: '../assets/images/about/nesesiyamoglu-ekip.png',
+    id:           'nese-siyamoglu',
+    name:         'Neşe Siyamoğlu',
+    photo:        '../assets/images/about/nesesiyamoglu-ekip.png',
+    photoSize:    'auto 140%',
+    photoPosition:'50% 15%',
     role: {
       de: 'Lektorat & Verlagsgestaltung',
       en: 'Editing & Publishing Design',
@@ -343,9 +353,10 @@ Tu n'as pas à suivre chaque étape une par une. Mais je veux que tu saches ceci
     },
   },
   {
-    id:    'arzu-ozen-cakir',
-    name:  'Arzu Özen Çakır',
-    photo: '../assets/images/about/arzucakır.png',
+    id:           'arzu-ozen-cakir',
+    name:         'Arzu Özen Çakır',
+    photo:        '../assets/images/about/arzucakır.png',
+    photoPosition:'50% 20%',
     role: {
       de: 'Finanzen & Buchhaltung',
       en: 'Finance & Accounting',

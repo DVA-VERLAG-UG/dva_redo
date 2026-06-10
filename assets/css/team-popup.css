@@ -28,7 +28,7 @@
   border-radius: 16px;
   display: flex;
   gap: 0;
-  max-width: 760px;
+  max-width: 900px;
   width: 100%;
   max-height: 90vh;
   overflow: hidden;
@@ -43,9 +43,9 @@
 
 /* ── Photo panel ── */
 .team-popup-photo {
-  width: 260px;
+  width: 360px;
   flex-shrink: 0;
-  background: #2C3E50 center/cover no-repeat;
+  background: #2C3E50 center top / cover no-repeat;
   position: relative;
 }
 
@@ -151,16 +151,23 @@ html[data-theme="dim"] .team-popup-close { background: #1e1c18; color: #e8e2d8; 
   outline-offset: 3px;
 }
 
+/* ── Tablet: schmaleres Foto-Panel ── */
+@media (max-width: 720px) {
+  .team-popup { max-width: 100%; }
+
+  .team-popup-photo { width: 260px; }
+}
+
 /* ── Mobile ── */
-@media (max-width: 600px) {
+@media (max-width: 560px) {
   .team-popup {
     flex-direction: column;
-    max-height: 85vh;
+    max-height: 88vh;
   }
 
   .team-popup-photo {
     width: 100%;
-    height: 220px;
+    height: 260px;
   }
 
   .team-popup-content {
