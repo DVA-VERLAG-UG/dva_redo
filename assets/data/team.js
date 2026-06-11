@@ -65,8 +65,8 @@ Quand tu nous écris, je veux que tu ressentes ceci : Ici, on ne te donne pas se
     id:           'busra-sahin',
     name:         'Büşra Şahin',
     photo:        '../assets/images/about/büsrasahin-ekip.png',
-    photoSize:    'auto 140%',
-    photoPosition:'50% 15%',
+    photoSize:    'auto 115%',
+    photoPosition:'55% 90%',
     role: {
       de: 'Chefredakteurin',
       en: 'Editor-in-Chief',
@@ -156,8 +156,8 @@ Quand un auteur vient nous voir, je veux l'accueillir ainsi : sereinement, chale
     id:           'sibel-caglar',
     name:         'Sibel Çağlar',
     photo:        '../assets/images/about/sibelcaglar.png',
-    photoSize:    'auto 125%',
-    photoPosition:'50% 30%',
+    photoSize:    'auto 100%',
+    photoPosition:'60% 60%',
     role: {
       de: 'Autorenberaterin',
       en: 'Author Consultant',
@@ -245,7 +245,8 @@ Quand tu nous contactes, je veux que tu te sentes non seulement orienté — mai
     id:           'erinc-sahin',
     name:         'Erinç Şahin',
     photo:        '../assets/images/about/erinc.jpg',
-    photoPosition:'50% 15%',
+    photoSize:    'auto 120%',
+    photoPosition:'50% 55%',
     role: {
       de: 'Digitale Reichweite & Social-Media-Kommunikation',
       en: 'Digital Reach & Social Media Communications',
@@ -290,8 +291,7 @@ Si tu veux raconter ton histoire — nous pouvons commencer ensemble. Peu import
     id:           'nese-siyamoglu',
     name:         'Neşe Siyamoğlu',
     photo:        '../assets/images/about/nesesiyamoglu-ekip.png',
-    photoSize:    'auto 140%',
-    photoPosition:'50% 15%',
+    photoPosition:'50% 10%',
     role: {
       de: 'Lektorat & Verlagsgestaltung',
       en: 'Editing & Publishing Design',
@@ -365,7 +365,8 @@ Bir yazar ilk kez bir sözleşme gördüğünde ya da sürecin mali tarafında k
     id:           'arzu-ozen-cakir',
     name:         'Arzu Özen Çakır',
     photo:        '../assets/images/about/arzucakır.png',
-    photoPosition:'50% 20%',
+    photoSize:    'auto 100%',
+    photoPosition:'50% 00%',
     role: {
       de: 'Finanzen & Buchhaltung',
       en: 'Finance & Accounting',
