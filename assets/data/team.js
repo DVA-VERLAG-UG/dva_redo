@@ -121,7 +121,7 @@ Quand ton manuscrit vient chez nous, je veux qu'il se sente non pas parcouru —
     tagline: {
       de: 'Sie hört zuerst zu. Und dieser Unterschied verändert alles.',
       en: 'She listens first. And that difference changes everything.',
-      tr: 'Önce dinler. Ve bu fark her şeyi değiştirir.',
+      tr: 'Her kitabın bir yolculuğu vardır. Benim işim, o yolculukta yazara eşlik etmek.',
       fr: 'Elle écoute d\'abord. Et cette différence change tout.',
     },
     bio: {
@@ -138,11 +138,12 @@ It was one of our cherished authors who brought me to this family. In that momen
 When I'm not working, I spend time with my son and daughter. Every moment with them reminds me: the most precious things grow without hurry.<br><br>
 When an author comes to us, I want to welcome them like this: unhurried, warm, safe. As if to say: "You haven't arrived too late — we can start from right here." It doesn't matter what stage your manuscript is at. I'm already there.`,
       tr: `Ben Bilgehan.<br><br>
-Sakin biriyim. Ama sakinlik bende uzaklık değil — tam tersine, daha iyi duyabilmek için içeri çekilmektir. Sezgilerime güvenirim. Bir yazarın nerede sıkıştığını, nerede cesaretinin kırıldığını, nerede sadece bir sestirmeye ihtiyaç duyduğunu çoğu zaman söylenmeden anlarım.<br><br>
-Fikirden kitaba uzanan o uzun yolda yazarlarımızın yanındayım. Dağılmadan, kaybolmadan, cesaretini yitirmeden ilerleyebilmeleri için. Koordinasyon dediğimizde çoğu insan akla süreçler gelir — bende ise akla insanlar gelir.<br><br>
-Beni bu aileye getiren, kendi hikâyesini yayınevimizle buluşturan kıymetli bir yazarımız oldu. O an anladım: kalbim yeni hikâyelere ne kadar açık, ve kendimi en güçlü nerede hissediyorum. O yüzden buradayım.<br><br>
-Çalışmadığımda oğlum ve kızımla vakit geçiriyorum. Onlarla geçirdiğim her an bana şunu hatırlatıyor: En değerli şeyler, acele etmeden büyür.<br><br>
-Bir yazar bize geldiğinde onu şöyle karşılamak isterim: Telaşsız, sıcak, güvenli. Sanki "geç kalmadın — buradan başlayabiliriz" der gibi. Dosyanın hangi aşamada olduğu önemli değil. Ben zaten oradayım.`,
+Dinlemeyi konuşmaktan, anlamayı yönlendirmekten daha değerli bulurum. Belki de bu yüzden bir yazarın yalnızca yazdıklarını değil, satır aralarında saklı kalan duygularını da duymaya çalışırım. Bazen bir dosyanın ilerlemesini engelleyen şey teknik bir sorun değil; küçük bir tereddüt, kaybolan bir cesaret ya da yalnızca duyulma ihtiyacıdır.<br><br>
+Yazarlarımızın fikir aşamasından kitabın okurla buluştuğu ana kadar uzanan yolculuğunda yanlarında yer alıyorum. Sürecin her adımında; düzenleyen, takip eden, yön gösteren ve gerektiğinde yalnızca güven veren kişi olmayı önemsiyorum. Çünkü biliyorum ki her güçlü kitabın arkasında, yazara inanan bir ekip vardır.<br><br>
+Yayıncılık dünyasına farklı bir sektörden geldim. Bu bana dosyalara yalnızca bir yayın projesi olarak değil, bir insanın emeği, hayali ve hikâyesi olarak bakmayı öğretti. Her yazarın kendine özgü bir sesi olduğuna inanıyor; o sesin kaybolmadan okura ulaşabilmesi için çalışıyorum.<br><br>
+Hayatımın en kıymetli kısmını ailem oluşturuyor. Oğlum ve kızımla geçirdiğim zaman, bana sabrın, gelişimin ve gerçek hikâyelerin çoğu zaman sessizce büyüdüğünü hatırlatıyor.<br><br>
+Bir yazar yayınevimizin kapısını çaldığında onu önce bir dosya olarak değil, anlatacak bir hikâyesi olan insan olarak görmek isterim. Samimi, güven veren ve yol arkadaşlığı hissi taşıyan bir yayıncılık anlayışının en önemli parçası olduğuna inanıyorum.<br><br>
+Dosyanız hangi aşamada olursa olsun, hikâyenizin yolculuğunda size eşlik etmek için buradayım.`,
       fr: `Je suis Bilgehan.<br><br>
 Je suis calme. Mais le calme, pour moi, n'est pas une distance — c'est le contraire : se tourner vers l'intérieur pour mieux écouter. Je fais confiance à mon intuition. Je sens souvent sans qu'on me le dise là où un auteur est bloqué, là où son courage s'est brisé, là où il a simplement besoin d'une pause.<br><br>
 Sur le long chemin qui va de l'idée au livre, je marche aux côtés de nos auteurs. Pour qu'ils puissent avancer — sans se disperser, sans se perdre, sans perdre courage. Quand la plupart des gens entendent « coordination », ils pensent aux processus — moi, je pense aux personnes.<br><br>
@@ -254,7 +255,7 @@ Quand tu nous contactes, je veux que tu te sentes non seulement orienté — mai
     tagline: {
       de: 'Lernen ist für ihn Erholung. Und der Moment, in dem ein Buch die richtige Person erreicht, ist unvergleichlich.',
       en: 'Learning is his rest. And the moment a book reaches the right person is incomparable to anything else.',
-      tr: 'Öğrenmek onun için dinlenmektir. Ve bir kitabın doğru kişiye ulaştığı an, başka hiçbir şeyle kıyaslanamaz.',
+      tr: 'Her hikâye anlatılmayı hak eder. Benim işim, onun doğru insanlara ulaşmasını sağlamak.',
       fr: 'Apprendre est son repos. Et le moment où un livre atteint la bonne personne est incomparable à tout le reste.',
     },
     bio: {
@@ -271,11 +272,12 @@ I decided on this work the day I realised the effect stories have on people. Tha
 In my free time you'll find me outdoors. Walking, cycling, or researching something. Learning is my way of resting.<br><br>
 If you want to tell your story — we can start together. It doesn't matter where you are right now.`,
       tr: `Ben Erinç.<br><br>
-Meraklıyım — ve bu bende bir huy değil, bir meslek. Her şeyin nasıl çalıştığını anlamak istiyorum. Bir hikâye neden insanları etkiliyor? Bir kitap neden yanlış kitleye ulaşıyor? Bir fikir neden kitaba dönüşemiyor? Bu sorular beni durduruyor — ve cevaplarını bulana kadar da bırakmıyor.<br><br>
-Dijital dünyada bir kitabın sesiyim. Senin yazdıktan sonra doğru insanların seni bulmasını sağlıyorum. Ama bunun ötesinde — bir joker gibiyim. Nerede bir boşluk varsa, nerede birisi "bunu kim yapacak?" diye bakınıyorsa, ben oradayım.<br><br>
-Hikâyelerin insanlar üzerindeki etkisini fark ettiğim gün bu işe karar verdim. Bir kitabın doğru kişiye ulaştığı o anı — o bağlantıyı kurmak — başka hiçbir şeyle kıyaslanamaz.<br><br>
-Boş vakitlerinde beni dışarıda bulursun. Yürüyüşte, bisiklette, ya da bir şeyleri araştırırken. Öğrenmek benim için dinlenmektir.<br><br>
-Hikâyeni anlatmak istiyorsan — birlikte başlayabiliriz. Nerede olduğun önemli değil.`,
+Merak benim için yalnızca bir karakter özelliği değil; dünyayı anlamanın ve anlatmanın en güçlü yolu. Bir kitabın neden bazı insanlara dokunduğunu, bir hikâyenin neden hafızalarda yer ettiğini ya da bazen neden görünmeden kaybolduğunu düşünürüm. Bu soruların peşinden gitmek, yaptığım işin de temelini oluşturuyor.<br><br>
+Yayınevimizde bir kitabın dijital dünyadaki yolculuğuna eşlik ediyorum. Bir yazar yazmayı tamamladığında hikâyesi aslında yeni bir yolculuğa başlar. Ben de o yolculukta kitabın sesini duyurmak, doğru okurlarla buluşmasını sağlamak ve hikâyenin hak ettiği görünürlüğe ulaşmasına katkıda bulunmak için çalışıyorum.<br><br>
+Ancak yaptığım iş yalnızca sosyal medya ya da dijital iletişimden ibaret değil. Gerektiğinde farklı alanlarda sorumluluk almaktan, çözüm üretmekten ve ekibin ihtiyaç duyduğu yerde destek olmaktan mutluluk duyuyorum. Çünkü yayıncılığın özünde ekip ruhunun ve ortak emeğin olduğuna inanıyorum.<br><br>
+Kitapların insanlar üzerindeki etkisini fark ettiğim gün bu alanda çalışmak istediğimi anladım. Bir hikâyenin doğru zamanda, doğru kişiye ulaşmasına vesile olmak; bu mesleğin en değerli taraflarından biri.<br><br>
+İş dışında da keşfetmeyi severim. Yürüyüşlerde, bisiklet üzerinde ya da yeni şeyler araştırırken kendimi dinlenmiş hissederim. Öğrenmek benim için bir görev değil, yaşam biçimidir.<br><br>
+Eğer anlatacak bir hikâyeniz varsa, bilin ki o hikâyenin okuruna ulaşabilmesi için çalışan bir ekip var. Ben de o ekibin bir parçası olarak, yolculuğunuza eşlik etmek için buradayım.`,
       fr: `Je suis Erinç.<br><br>
 Je suis curieux — et chez moi ce n'est pas un trait de caractère, c'est un métier. Je veux comprendre comment tout fonctionne. Pourquoi une histoire touche-t-elle les gens ? Pourquoi un livre atteint-il le mauvais public ? Pourquoi une idée ne peut-elle pas devenir un livre ? Ces questions m'arrêtent — et ne me lâchent pas tant que je n'ai pas trouvé les réponses.<br><br>
 Dans le monde numérique, je suis la voix d'un livre. Après que tu as écrit, je fais en sorte que les bonnes personnes te trouvent. Mais au-delà de ça — je suis comme un joker. Partout où il y a un vide, partout où quelqu'un cherche « qui va faire ça ? », je suis là.<br><br>
@@ -342,13 +344,20 @@ Tu n'as pas à suivre chaque étape une par une. Mais je veux que tu saches ceci
     tagline: {
       de: 'Zahlen sprechen durch Ordnung — er hört auf beides.',
       en: 'Numbers speak through order — he listens to both.',
-      tr: 'Rakamlar düzenle konuşur — o her ikisini de dinler.',
+      tr: 'Yazarın kalemi özgür olmalı; gerisini güvenle emanet edebileceği bir düzen tamamlamalı.',
       fr: 'Les chiffres parlent par l\'ordre — il écoute les deux.',
     },
     bio: {
       de: 'Hier kommt der Text über Zekeriya Avcı auf Deutsch.',
       en: 'Text about Zekeriya Avcı in English.',
-      tr: 'Zekeriya Avcı hakkında Türkçe metin.',
+      tr: `Ben Zeki.<br><br>
+Yıllardır rakamlarla, sistemlerle ve düzenle çalışıyorum. Ancak benim için muhasebe yalnızca sayılardan ibaret değil; güvenin, sürdürülebilirliğin ve sağlam bir yapının temelidir.<br><br>
+2004 yılından bu yana farklı sektörlerde finans ve muhasebe alanında görev aldım. Bu süreç bana yalnızca hesap yönetmeyi değil, karmaşık görünen süreçleri sadeleştirmeyi, eksikleri fark etmeyi ve kalıcı çözümler üretmeyi öğretti. Çünkü iyi kurulmuş bir sistem, insanların asıl yapmak istedikleri işe odaklanabilmesini sağlar.<br><br>
+Yayınevimizde yazarlarımızın karşılaştığı sözleşmeler, telif süreçleri, ödemeler ve mali konularla ilgileniyorum. Bir yazarın aklında rakamlardan çok hikâyesi olması gerektiğine inanıyorum. Bu nedenle sürecin finansal tarafını anlaşılır, şeffaf ve güvenilir bir şekilde yürütmeyi önemsiyorum.<br><br>
+Meslek hayatım boyunca en değer verdiğim şeylerden biri sorumluluk almak oldu. Bir işi üstlendiğimde yalnızca tamamlamayı değil, en doğru şekilde sonuçlandırmayı hedeflerim. Güvenin sözle değil, istikrarlı çalışmayla kazanıldığına inanırım.<br><br>
+İş hayatının dışında ise ailem hayatımın merkezinde yer alıyor. Eşim ve çocuklarımla geçirdiğim zaman bana dengeyi, sabrı ve emek verilen her şeyin zamanla değer kazandığını hatırlatıyor.<br><br>
+Bir yazar ilk kez bir sözleşme gördüğünde ya da sürecin mali tarafında kendini kararsız hissettiğinde şunu bilmesini isterim: Burada yalnız değilsiniz. Sorularınızı yanıtlamak, süreci açıklamak ve size güvenli bir yol sunmak için buradayım.<br><br>
+Çünkü iyi hikâyeler güven üzerine kurulur. Biz de o güveni korumak için çalışıyoruz.`,
       fr: 'Texte sur Zekeriya Avcı en français.',
     },
   },
