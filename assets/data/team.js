@@ -93,12 +93,11 @@ My attention doesn't scatter easily. I look quietly. Sometimes in a sentence I g
 We're not just trying to make a text "correct" here. We're trying to make it stronger — not against its author, but together with them.<br><br>
 When your manuscript comes to us, I want it to feel not processed — but understood.`,
       tr: `Ben Büşra.<br><br>
-Bir metni düzeltmiyorum. Onu sahibine geri veriyorum — daha güçlü ama hâlâ onun.<br><br>
-Türk Dili ve Edebiyatı doktoramı tamamlamış biri olarak hiçbir metne sadece okur gözüyle bakamadım. Her zaman hem editör hem edebiyatçı gözüyle baktım. Bu mesleki bir şekilleniş belki ama bir kitap var ki hâlâ dönüp okuyorum: Antonin Artaud'nun Heliogabalos'u. Her şeyin birbirine bağlı olduğunu hissettiren, derin düşüncelere sevk eden bir kitap. Bir editörün favori kitabı olması için alışılmadık bir seçim ama bu benim.<br><br>
-Boş zamanlarımda kendi kıyafetlerimi dikiyorum. Terzi geleneğinin güçlü olduğu bir aileden geliyorum, kumaşlar ve kıyafetler her zaman hayatımın bir parçasıydı. İnsanlar bunu öğrenince şaşırıyor. Ben şaşırmıyorum. Sabırla, dikkatle bir şey oluşturmak: hem terzilikte hem editörlükte aynı his.<br><br>
-Tarihî roman yazan bir yazarımız vardı. Dönemin su tesisatını araştırmıştım. Bunu ona anlattığımda "aklıma hiç gelmezdi" dedi. İşte editörlük tam da bu: Yazarın göremediği yere bakmak. Onunla birlikte. Ona rağmen değil.<br><br>
-Bu işi bir çocuk büyütmek gibi hissediyorum. O kadar kişisel, o kadar hassas. Yazarların heyecanına tanık olmak — bu yüzden bırakmayı düşünemiyorum.<br><br>
-Dosyan geldiğinde üzerinden geçilmiş değil, anlaşılmış olsun isterim.`,
+Ben temel olarak metinle uğraşıyorum, evet ama aslında daha çok sesle uğraşıyorum. Bir yazarın sesi yerli yerinde mi, cümle güçlenirken o iç titreşim kayboluyor mu, ben daha çok oralara bakıyorum.<br><br>
+Bazı metinler teknik olarak düzelir, belki mükemmelleşir ama ruhu geride kalır. Benim içime sinmeyen şey tam da bu. Bir metin toparlanabilir, güçlenebilir, daha berrak hâle gelebilir ama sonunda hâlâ sahibine ait durmuyorsa, orada bir şey eksik kalmıştır.<br><br>
+Ben dikkatimi kolay dağıtmam. Sessizce bakarım. Bazen bir cümlede en çok, hiç yazılmamış yere takılırım. Nefes nerede kesilmiş, duygu nerede geri çekilmiş, ses nerede incinmiş… Sanırım benim editörlüğüm biraz da orada başlıyor.<br><br>
+Biz burada bir metni "düzgün" hâle getirmeye çalışmıyoruz sadece. Onu, sahibine rağmen değil; sahibiyle birlikte güçlendirmeye çalışıyoruz.<br><br>
+Dosyan bize geldiğinde, üzerinden geçilmiş değil; anlaşılmış olsun isterim.`,
       fr: `Je suis Büşra.<br><br>
 Je travaille avec des textes, oui. Mais en réalité, je travaille davantage avec des voix. Est-ce que la voix d'un auteur est vraiment à sa place, est-ce que cette vibration intérieure se perd à mesure que la phrase se renforce — c'est là que je regarde davantage.<br><br>
 Car certains textes s'améliorent techniquement mais leur âme reste en retrait. C'est exactement ce qui ne me convient pas. Un texte peut se rassembler, se renforcer, devenir plus clair ; mais s'il n'appartient toujours pas à son auteur à la fin — il manque quelque chose là.<br><br>
@@ -184,12 +183,11 @@ I'm not someone who rushes. I don't try to get someone to open up by pressuring 
 For us, an author isn't someone greeted with "let's see what they sent." Especially not at the first step. Because the first step is sometimes heavier than the text itself.<br><br>
 When you reach out to us, I want you to feel not like you've applied somewhere — but like someone has quietly made room for you.`,
       tr: `Ben Sibel.<br><br>
-Dışarıdan ciddi görünürüm. Beni tanıyanlar kısa sürede bunun sadece ilk izlenim olduğunu fark eder. Aslında çok gülen, eğlenmeyi seven, komik tarafı baskın biriyim. Ama bir yazarın en hassas anında yanındayken, o ciddiyete ihtiyaç var. İkisini de biliyorum.<br><br>
-Genelde insanların en kırılgan olduğu anda yanlarındayım. Daha hiçbir şey netleşmemişken, "göndereyim mi, bekleteyim mi?" arasında gidip gelirken… O anı çok önemsiyorum. Çünkü çoğu zaman mesele sadece kitap değildir — insan bazen kendini gösterip göstermemeye karar veriyordur.<br><br>
-İlk görüşmemizden sonra bir yazarım "sesiniz bana güven verdi" demişti. O cümle beni hem mutlu etmiş hem heyecanlandırmıştı. Sonrasında yalnızca ilk kitabını değil, birkaç kitabını daha birlikte yayımladık. Güven bir kez kurulduğunda, her şey onun üzerine inşa ediliyor.<br><br>
-Bir yazarımızın kitabını okurken kendimi o kadar içinde buldum ki merakıma yenilip aradım: "Bunları gerçekten yaşadınız mı?" diye sordum. Cevabı ne olursa olsun, o soru benim bu işe bakışımı anlatıyor. Bir metin beni oraya götürüyorsa, doğru yerdeyim demektir.<br><br>
-Çalışmadığımda kızlarımla vakit geçiriyorum. Birlikte gezmek, sohbet etmek, bazen sadece evde sakin bir gün. Onlarla geçirdiğim zaman bana denge veriyor ve bu denge her yazara da vermek istediğim şey.<br><br>
-Bize ulaştığında, bir yere başvurmuş gibi değil — biri sana sessizce yer açmış gibi hissetmeni isterim.`,
+Ben genelde insanların en hassas olduğu anda yanlarındayım. Daha hiçbir şey netleşmemişken, daha kendi yazdığına bile tam nasıl bakacağını bilemezken, daha "göndereyim mi, bekleteyim mi?" arasında gidip gelirken…<br><br>
+Ben o anı çok önemsiyorum çünkü çoğu zaman mesele sadece kitap değildir. İnsan bazen aslında kendini gösterip göstermemeye karar veriyordur. Bir metni paylaşmak, bazen sandığımızdan çok daha kişisel bir şeydir.<br><br>
+Ben acele ettiren biri değilim. İnsanı zorlayarak açmaya çalışmam. Birinin gerçekten konuşabilmesi için önce rahatlaması gerektiğini bilirim. Bazen bir insana yapılabilecek en büyük iyilik, ona hız değil, alan vermektir.<br><br>
+Bizim için bir yazar, "bakalım ne göndermiş" diye karşılanan biri değildir. Özellikle ilk adımda hiç değildir çünkü ilk adım bazen metinden daha ağırdır.<br><br>
+Bize ulaştığında, sanki bir yere başvurmuş gibi değil; sanki biri sana sessizce yer açmış gibi hissetmeni isterim.`,
       fr: `Je suis Sibel.<br><br>
 Je suis généralement aux côtés des gens au moment où ils sont le plus vulnérables. Quand rien n'est encore clair. Quand quelqu'un ne sait même pas encore comment regarder ce qu'il a écrit. Quand il hésite encore entre « Dois-je l'envoyer ou attendre ? »<br><br>
 Je prends ce moment très au sérieux. Parce que la plupart du temps, il ne s'agit pas que du livre. Parfois, quelqu'un est en train de décider s'il veut se montrer ou non. Partager un texte peut parfois être bien plus personnel qu'on ne le pense.<br><br>
@@ -205,7 +203,7 @@ Quand tu nous contactes, je veux que tu ne te sentes pas comme si tu avais postu
     role: {
       de: 'Autorenberaterin · Content & Social Media Managerin',
       en: 'Author Consultant · Content & Social Media Manager',
-      tr: 'Yazar Danışmanı · İçerik ve Sosyal Medya Sorumlusu',
+      tr: 'Yazar Koçu · İçerik ve Sosyal Medya Sorumlusu',
       fr: 'Conseillère Auteurs · Responsable Contenu & Réseaux Sociaux',
     },
     tagline: {
@@ -227,12 +225,12 @@ I love working with authors because I believe there's a separate world behind ev
 At the same time, I work in content, social media and visual production. I take active roles at many points — from book promotional photography to preparing digital content. This gives me the opportunity to see not only the writing process of a book, but also how it reaches readers, holistically.<br><br>
 I completed Creative Writing training at the Müjdat Gezen Arts Centre and am completing the Author Coaching programme. But the most precious thing for me is when an author feels understood.<br><br>
 When you reach out to us, I want you to feel not just directed somewhere — but genuinely cared for.`,
-      tr: `Ben Nilay.<br><br>
-Sessizim. Dışarıdan öyle görünürüm en azından ama zihmim hiç susmaz. Yolda karşılaştığım bir bakış, duyduğum yarım bir cümle, yağmurun İstanbul kaldırımlarına vurması — bunlar bende uzun süre yaşar ve çoğu zaman bir hikâyenin başlangıcına dönüşür.<br><br>
-Bir yazarla tanıştığımda ilk sorduğum şey "Ne yazmış?" değil, "Neden yazmış?" Çünkü arkasını bilmeden önünü göremezsin. Yazarlarımızın eserlerinin hem yayın sürecinde hem de doğru okura ulaşmasında yanlarındayım. Ama benim için bu iki şey hiçbir zaman ayrı olmadı. İnsan önce anlaşılır, sonra görünür.<br><br>
-Bu işe yayıncılık dünyasından değil, hayatın içinden geldim. Farklı yaşamlara, farklı mücadelelere tanıklık ettim. Bu da bana şunu öğretti: Hikâyelere önce kalple, sonra teknikle yaklaşmak. Kendi yazdığım romanda bir karakterin çocukluğunu anlatırken fark ettim bunu. Onu anlatmıyordum, onunla hissediyordum. "Tam oldu" dediğim an tam da orasıydı.<br><br>
-Çalışmadığımda İstanbul'u fotoğraflıyorum. Özellikle yağmurlu havalarda ıslanan kaldırımları, camlardaki damlaları, şemsiyelerin altında akan hayatı. Bana hem huzur hem ilham veriyor.<br><br>
-Bize ulaştığında şunu hissetmeni isterim: Burada sadece eserin değil, sen de görülürsün.`,
+      tr: `Merhaba, ben Nilay.<br><br>
+Yayınevimizde yazarlarla birebir iletişim kuruyor, eserlerinin hem yayın sürecinde hem de görünürlüğünde aktif rol alıyorum. Kitaplarımızın doğru okura ulaşması ve hak ettiği değeri görmesi, çalışmalarımızın en önemli parçalarından biri.<br><br>
+Her metnin arkasında kendine özgü bir dünya olduğuna inanıyorum. Bu nedenle bir yazarı yalnızca dosyasıyla değil, duygularıyla da tanımaya çalışıyorum. Ne anlatmak istediğini, hangi duygularla yazdığını ve kelimelerinin ardındaki sesi anlamak benim için büyük önem taşıyor.<br><br>
+Aynı zamanda içerik üretimi, sosyal medya yönetimi ve görsel tasarım alanlarında çalışıyorum. Kitap tanıtımlarından dijital içeriklere kadar birçok aşamada aktif olarak yer alıyor, eserlerin okurlarla buluşma sürecini destekliyorum.<br><br>
+Müjdat Gezen Sanat Merkezi'nde Yaratıcı Yazarlık eğitimi aldım ve Yazar Koçluğu alanında eğitimimi sürdürdüm.<br><br>
+Eğer yolumuz kesişirse, yalnızca yönlendiren değil; tıkandığınız noktada yanınızda duran, gerçekten dinleyen, çözüm odaklı yaklaşan ve süreciniz boyunca sizi destekleyen biriyle çalıştığınızı hissetmenizi isterim.`,
       fr: `Je suis Nilay.<br><br>
 Je travaille à la fois directement avec les auteurs et étroitement sur la façon dont notre maison d'édition apparaît au monde extérieur. Ce que cela signifie pour toi : il y a quelqu'un qui, d'un côté, se tient à tes côtés dans ton parcours d'auteur, et de l'autre, prend au sérieux la visibilité et la présentation de ton œuvre.<br><br>
 J'aime travailler avec les auteurs parce que je crois qu'il y a un monde séparé derrière chaque texte. Comprendre un auteur, pour moi, commence non seulement par lire son manuscrit — mais aussi par ressentir ce qu'il veut exprimer, d'où il vient et comment il s'exprime.<br><br>
@@ -318,11 +316,11 @@ I'm meticulous. But not in that harsh, suffocating way. More in the kind that pu
 We don't underestimate details here. Because sometimes what you call a detail is the quietest way to tell an author: "Your work matters to me."<br><br>
 You don't have to follow every stage one by one. But I want you to know this: Your work doesn't get lost here.`,
       tr: `Ben Neşe.<br><br>
-Ben daha çok görünmeyen yerdeyim. Ve bu benim için bir şikâyet değil; tam tersine, bir tercih.<br><br>
-Tasarım benim için göze çarpmak değil, işe yaramak demek. Bir kitapta karmaşık fontlar yerine sade ve okunabilir olanı seçmek — bu küçük bir karar gibi görünür. Ama okur sayfaları çevirirken hiç takılmıyorsa, işte orada benim emeğim var. Görünmez ama hissedilir.<br><br>
-Bazen bitirdiğim bir tasarıma dönüp bakıyorum. Kendime güvenimi tazelemek için. O an "tam oldu" dediğim anların izini görüyorum ve bu bana yeter.<br><br>
-Çalışmadığımda film izliyor ve boya yapıyorum. İkisi de aynı şey aslında: Bir şeyi katman katman oluşturmak. Sabırla. Sessizce.<br><br>
-Sen her aşamayı takip etmek zorunda değilsin ama şunu bilmeni isterim: Eserin burada gözden kaçmaz.`,
+Ben daha çok görünmeyen yerdeyim. Zaten çoğu zaman bir şey görünmüyorsa ve yine de her şey yerli yerindeyse, orada iyi bir emek vardır.<br><br>
+Dosyanın kitaba dönüşürken dağılmaması, eksilmemesi, özensizleşmemesi için çalışıyorum çünkü bir kitabın son hâli, sadece ne anlattığıyla değil, nasıl taşındığıyla da ilgilidir. Bazen insan tam da bu görünmeyen yerde saygı görür.<br><br>
+Ben titiz biriyim ama sert, boğucu şekilde değil. Daha çok insanın içini rahatlatan türden. Her şeyin yerli yerinde olması, bazen çok sessiz ama çok güçlü bir güven duygusu yaratır.<br><br>
+Biz burada detayı küçümsemiyoruz çünkü detaya önem vermek, bir yazara "senin emeğin benim için önemli" demenin en sessiz yoludur.<br><br>
+Sen her aşamayı tek tek takip etmek zorunda değilsin ama şunu bilmeni isterim: Eserin burada gözden kaçmaz.`,
       fr: `Je suis Neşe.<br><br>
 Je suis surtout dans l'endroit invisible. Quand quelque chose ne se voit pas et que pourtant tout est à sa place — c'est là qu'il y a généralement un bon travail.<br><br>
 Je travaille pour que ton manuscrit ne se disperse pas, ne diminue pas, ne devienne pas négligé sur son chemin vers le livre. Car la forme finale d'un livre ne dépend pas seulement de ce qu'il raconte — mais aussi de la façon dont il est porté. Et parfois quelqu'un reçoit le plus de respect précisément à cet endroit invisible.<br><br>
@@ -393,10 +391,10 @@ I like clarity. Not things that are patched together afterwards, but things that
 We don't build trust here only with warmth. We build it with correctness too. With transparency. With solidity.<br><br>
 Even where there are numbers, a person can feel protected. That's exactly what is precious to me.`,
       tr: `Ben Arzu.<br><br>
-Benim alanım rakamlar, kayıtlar, düzen. Dışarıdan bakınca duygudan uzak gibi görünebilir ama bana sorarsan güvenin en derin tarafı tam da burada kurulur.<br><br>
-Yıllar önce köy ilkokulunda öğretmenlik yaptım. Orada zeki, çalışkan ama okuyabileceği bir ortamı olmayan bir öğrencim vardı. Kardeşimi parasız yatılı okul sınavına götürürken onu da yanıma aldım. Sınavı kazandı. Öğretmen oldu. Yıllar sonra bana ulaştı. O bana güvenmişti, ben de doğru olanı yaptığımı biliyordum. İşte ben buyum. Rakamların içinde bile olsam, önce insanı görürüm.<br><br>
-Duygusal biriyim, bunu saklamamı bekleme. Ama iş söz konusu olduğunda rakamlar rakam, kuruş kuruştur çünkü bir yazarın güvende hissedebilmesi için her şeyin net ve şeffaf olması gerekir. Karışıklık yorar. Netlik ise sessizce rahatlatır.<br><br>
-Çalışmadığımda kitap okuyorum, geziyorum, sevdiklerimle vakit geçiriyorum. Kendime tam dokunan şeyi hâlâ arıyorum ve bu dürüstlük de benim bir parçam.<br><br>
+Benim alanım daha çok rakamlar, kayıtlar, düzen… Dışarıdan bakınca duygudan uzak gibi görünebilir ama bana sorarsan güvenin en derin tarafı biraz da burada kurulur.<br><br>
+İnsan güzel sözleri, güzel kitapları sever, evet ama gerçekten rahatlaması için bir yerde işlerin temiz yürümesi gerekir. Karışıklık yorar. Belirsizlik insanın içini daraltır. Netlik ise çoğu zaman sessizce rahatlatır.<br><br>
+Ben netliği severim. Sonradan toparlanan şeyleri değil, baştan açık olan şeyleri. Herkesin, neyin nasıl yürüdüğünü bilebildiği, içi rahat bir düzeni.<br><br>
+Biz burada güveni sadece sıcaklıkla kurmuyoruz. Düzenle de kuruyoruz. Şeffaflıkla da. Sağlamlıkla da.<br><br>
 Rakamların konuştuğu bir alanda bile insan kendini korunmuş hissedebilir. Benim için kıymetli olan tam da bu.`,
       fr: `Je suis Arzu.<br><br>
 Mon domaine, c'est surtout les chiffres, les registres, l'ordre. Vu de l'extérieur, ça peut sembler loin des émotions. Mais si tu me demandes, le côté le plus profond de la confiance se construit un peu ici aussi.<br><br>
