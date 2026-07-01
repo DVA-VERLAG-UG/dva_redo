@@ -528,6 +528,21 @@ html[data-theme="dim"] .about-team-card {
   text-transform: uppercase;
 }
 
+/* Tagline — italic quote shown on card below name & role */
+.about-team-tagline {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+  margin: 6px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* ── Mobile ≤ 768px ── */
 @media (max-width: 768px) {
   .about-team-grid {

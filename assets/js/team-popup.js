@@ -83,7 +83,18 @@ export function initTeamPopup() {
     const member = byId[wrapper.dataset.teamId];
     if (!member?.photo) return;
     const img = wrapper.querySelector('.about-team-image');
-    if (img) img.style.backgroundImage = `url('${member.photo}')`;
+    if (!img) return;
+    img.style.backgroundImage    = `url('${member.photo}')`;
+    if (member.photoSize)     img.style.backgroundSize     = member.photoSize;
+    if (member.photoPosition) img.style.backgroundPosition = member.photoPosition;
+  });
+
+  // Hydrate taglines onto cards
+  grid.querySelectorAll('.about-team-card-wrapper[data-team-id]').forEach(wrapper => {
+    const member = byId[wrapper.dataset.teamId];
+    if (!member?.tagline) return;
+    const el = wrapper.querySelector('.about-team-tagline');
+    if (el) el.textContent = t(member.tagline, lang);
   });
 
   // Accessibility labels per card
